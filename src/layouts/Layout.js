@@ -7,7 +7,7 @@ const Layout = (props) => {
   const { children } = props;
   return (
     <>
-      <Container maxWidth="xs" sx={{ p: 0 }}>
+      <Container maxWidth="xs" sx={{ p: 0, mb: '56px' }}>
         {children}
       </Container>
       <TheBottomNavigation />

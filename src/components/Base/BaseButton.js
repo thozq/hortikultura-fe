@@ -25,19 +25,33 @@ const CustomButton = styled(Button)({
 });
 
 const BaseButton = (props) => {
-  const { children, ...rest } = props;
-  return (
-    <CustomButton
-      sx={{
-        color: 'white',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-      }}
-      {...rest}>
-      {children}
-    </CustomButton>
-  );
+  const { withIcon, children, ...rest } = props;
+
+  if (withIcon)
+    return (
+      <CustomButton
+        sx={{
+          color: 'white',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}
+        {...rest}>
+        {children}
+      </CustomButton>
+    );
+  else
+    return (
+      <CustomButton
+        sx={{
+          color: 'white',
+          display: 'flex',
+          alignItems: 'center'
+        }}
+        {...rest}>
+        {children}
+      </CustomButton>
+    );
 };
 
 export default BaseButton;

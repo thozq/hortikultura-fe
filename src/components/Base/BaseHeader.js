@@ -12,7 +12,7 @@ const BaseHeader = (props) => {
           <ArrowBackIosNewRounded />
         </IconButton>
       </Link>
-      <Typography>{label}</Typography>
+      <Typography variant="h4">{label}</Typography>
     </Box>
   );
 };

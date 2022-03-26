@@ -13,6 +13,7 @@ const theme = createTheme({
       main: '#313552',
       light: '#F3F5F9'
     },
+    black: '#222222',
     red: {
       main: '#B8405E'
     },
@@ -38,6 +39,7 @@ const theme = createTheme({
     // 14 by default
     // fontSize: 14,
     fontFamily: ['"Poppins"', 'sans-serif'].join(','),
+    h4: { fontSize: '15.63px' },
     h5: {
       fontSize: '12.5px',
       fontWeight: 'bold'
@@ -48,6 +50,9 @@ const theme = createTheme({
     },
     body1: {
       fontSize: '10px'
+    },
+    body2: {
+      fontSize: '12.5px'
     }
   }
 });

@@ -7,7 +7,7 @@ import React from 'react';
 function IsiBlanko() {
   return (
     <>
-      <BaseHeader label="Isi Blanko" backTo="/stok" />
+      <BaseHeader label="Blanko" backTo="/stok" />
       <Box display="flex" flexDirection="column" gap={2} p={2} mb="56px">
         <BaseTextField
           fullWidth

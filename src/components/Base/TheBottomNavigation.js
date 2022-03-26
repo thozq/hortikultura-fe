@@ -4,6 +4,7 @@ import RestoreIcon from '@mui/icons-material/Restore';
 import { HomeRounded, WarehouseRounded } from '@mui/icons-material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import IconPenjualan from 'public/images/icons/IconPenjualan';
+import theme from 'themes/theme';
 
 const TheBottomNavigation = () => {
   const [value, setValue] = React.useState(0);
@@ -24,8 +25,19 @@ const TheBottomNavigation = () => {
   ];
 
   return (
-    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 100 }} elevation={3}>
+    <Paper
+      square
+      elevation={3}
+      sx={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        backgroundColor: theme.palette.dark.main
+      }}>
       <BottomNavigation
+        sx={{ backgroundColor: 'inherit' }}
         showLabels
         value={value}
         onChange={(event, newValue) => {
@@ -37,6 +49,14 @@ const TheBottomNavigation = () => {
             label={action.label}
             icon={action.icon}
             onClick={action.link}
+            sx={{
+              color: 'white',
+              opacity: 0.7,
+              '&.Mui-selected': {
+                color: theme.palette.optional.contrastText,
+                opacity: 1
+              }
+            }}
           />
         ))}
       </BottomNavigation>

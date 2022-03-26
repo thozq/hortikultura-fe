@@ -24,7 +24,7 @@ const blue = {
 
 const Tab = styled(TabUnstyled)`
   font-family: 'Poppins', sans-serif;
-  color: ${theme.palette.dark};
+  color: ${theme.palette.black};
   cursor: pointer;
   font-size: 0.675rem;
   font-weight: bold;
