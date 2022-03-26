@@ -1,5 +1,5 @@
 import { Box, Paper, Typography } from '@mui/material';
-import BaseProfileHeader from 'components/Base/BaseProfileHeader';
+import BaseProfileHeader from 'components/Base/TheProfileHeader';
 import React from 'react';
 
 function Dashboard() {

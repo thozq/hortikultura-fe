@@ -6,12 +6,12 @@ import React from 'react';
 const Layout = (props) => {
   const { children } = props;
   return (
-    <div>
+    <>
       <Container maxWidth="xs" sx={{ p: 0 }}>
         {children}
       </Container>
       <TheBottomNavigation />
-    </div>
+    </>
   );
 };
 

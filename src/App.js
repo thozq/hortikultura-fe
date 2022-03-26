@@ -1,16 +1,21 @@
 import { BrowserRouter } from 'react-router-dom';
 import RouterConfig from 'navigation/RouterConfig';
 import Layout from 'layouts/Layout';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import theme from 'themes/theme';
 
 function App() {
   return (
-    <div>
-      <Layout>
-        <BrowserRouter>
-          <RouterConfig />
-        </BrowserRouter>
-      </Layout>
-    </div>
+    <>
+      <CssBaseline />
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <Layout>
+            <RouterConfig />
+          </Layout>
+        </ThemeProvider>
+      </BrowserRouter>
+    </>
   );
 }
 
