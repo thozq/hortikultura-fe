@@ -19,9 +19,9 @@ const TheBottomNavigation = () => {
     {
       label: 'Penjualan',
       icon: <IconPenjualan />,
-      link: () => navigate('/')
+      link: () => navigate('/penjualan')
     },
-    { label: 'Riwayat', icon: <RestoreIcon />, link: () => navigate('/') }
+    { label: 'Riwayat', icon: <RestoreIcon />, link: () => navigate('/riwayat') }
   ];
 
   return (
@@ -54,7 +54,8 @@ const TheBottomNavigation = () => {
               opacity: 0.7,
               '&.Mui-selected': {
                 color: theme.palette.optional.contrastText,
-                opacity: 1
+                opacity: 1,
+                backgroundColor: theme.palette.green.main
               }
             }}
           />

@@ -79,7 +79,7 @@ function TabPanel(props) {
   return (
     <TabPanelCustom value={value} {...other}>
       {value === index && (
-        <Box p={3} bgcolor={theme.palette.dark.light} borderRadius={2}>
+        <Box p={2} bgcolor={theme.palette.dark.light} borderRadius={2}>
           {children}
         </Box>
       )}
