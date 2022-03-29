@@ -46,7 +46,9 @@ function Penjualan() {
           <Typography variant="h5">Catat Penjualan</Typography>
           <AddCircleRounded />
         </BaseButton>
-        <BaseTabs labels={['Cabai Merah Besar', 'Cabai Merah Keriting', 'Cabai Rawit Merah']}>
+        <BaseTabs
+          variant="contained"
+          labels={['Cabai Merah Besar', 'Cabai Merah Keriting', 'Cabai Rawit Merah']}>
           {/* CMB */}
           <Box display="flex" flexDirection="column" gap={1}>
             <Typography>Total penjualan Cabai Merah Besar</Typography>

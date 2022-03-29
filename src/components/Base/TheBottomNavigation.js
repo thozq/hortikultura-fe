@@ -7,11 +7,25 @@ import IconPenjualan from 'public/images/icons/IconPenjualan';
 import theme from 'themes/theme';
 
 const TheBottomNavigation = () => {
-  const [value, setValue] = React.useState(0);
   const navigate = useNavigate();
-
   const location = useLocation();
-  console.log('ini test', location.pathname);
+
+  function getPageIndex(route) {
+    switch (route) {
+      case '/':
+        return 0;
+      case '/stok':
+        return 1;
+      case '/penjualan':
+        return 2;
+      case '/riwayat':
+        return 3;
+      default:
+        return 0;
+    }
+  }
+
+  const value = getPageIndex(location.pathname);
 
   const actions = [
     { label: 'Beranda', icon: <HomeRounded />, link: () => navigate('/') },
@@ -36,13 +50,7 @@ const TheBottomNavigation = () => {
         zIndex: 100,
         backgroundColor: theme.palette.dark.main
       }}>
-      <BottomNavigation
-        sx={{ backgroundColor: 'inherit' }}
-        showLabels
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}>
+      <BottomNavigation sx={{ backgroundColor: 'inherit' }} showLabels value={value}>
         {actions.map((action, index) => (
           <BottomNavigationAction
             key={index}

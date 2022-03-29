@@ -49,7 +49,9 @@ function Stok() {
           <Typography variant="h5">Isi Blanko</Typography>
           <AddCircleRounded />
         </BaseButton>
-        <BaseTabs labels={['Cabai Merah Besar', 'Cabai Merah Keriting', 'Cabai Rawit Merah']}>
+        <BaseTabs
+          variant="contained"
+          labels={['Cabai Merah Besar', 'Cabai Merah Keriting', 'Cabai Rawit Merah']}>
           <Box display="flex" flexDirection="column" gap={1}>
             <Typography>Stok terkini yang anda miliki didapatkan dari mengisi blanko</Typography>
             <Box display="flex" alignItems="center" justifyContent="space-between">

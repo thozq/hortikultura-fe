@@ -74,15 +74,18 @@ const TabsList = styled(TabsListUnstyled)`
 `;
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+  const { children, value, index, variant, ...other } = props;
 
   return (
     <TabPanelCustom value={value} {...other}>
-      {value === index && (
-        <Box p={2} bgcolor={theme.palette.dark.light} borderRadius={2}>
-          {children}
-        </Box>
-      )}
+      {value === index &&
+        (variant === 'contained' ? (
+          <Box p={2} bgcolor={theme.palette.dark.light} borderRadius={2}>
+            {children}
+          </Box>
+        ) : (
+          <Box>{children}</Box>
+        ))}
     </TabPanelCustom>
   );
 }
@@ -94,7 +97,7 @@ TabPanel.propTypes = {
 };
 
 export default function BaseTabs(props) {
-  const { labels, children } = props;
+  const { labels, children, variant } = props;
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -111,7 +114,7 @@ export default function BaseTabs(props) {
         </TabsList>
         {Array.isArray(children) ? (
           children.map((child, index) => (
-            <TabPanel key={index} value={index} index={index}>
+            <TabPanel key={index} value={index} index={index} variant={variant}>
               {child}
             </TabPanel>
           ))
