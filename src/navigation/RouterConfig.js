@@ -1,4 +1,6 @@
+import CatatPenjualan from 'components/Page/Petani/CatatPenjualan';
 import DetailBlanko from 'components/Page/Petani/DetailBlanko';
+import DetailPenjualan from 'components/Page/Petani/DetailPenjualan';
 import IsiBlanko from 'components/Page/Petani/IsiBlanko';
 import Dashboard from 'containers/Petani/Dashboard';
 import Penjualan from 'containers/Petani/Penjualan';
@@ -16,6 +18,8 @@ function RouterConfig() {
       <Route path="stok/detail-blanko/:id" element={<DetailBlanko />} />
 
       <Route path="penjualan" element={<Penjualan />} />
+      <Route path="penjualan/catat-penjualan" element={<CatatPenjualan />} />
+      <Route path="penjualan/detail-penjualan/:id" element={<DetailPenjualan />} />
 
       <Route path="riwayat" element={<Riwayat />} />
     </Routes>

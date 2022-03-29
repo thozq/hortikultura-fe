@@ -1,10 +1,11 @@
 import { Box, Paper, Typography } from '@mui/material';
+import TheBottomNavigation from 'components/Base/TheBottomNavigation';
 import BaseProfileHeader from 'components/Base/TheProfileHeader';
 import React from 'react';
 
 function Dashboard() {
   return (
-    <div style={{ fontSize: '100px' }}>
+    <Box sx={{ mb: '56px' }}>
       <BaseProfileHeader />
       <Box px={2}>
         <Typography>
@@ -21,7 +22,8 @@ function Dashboard() {
           <Typography>Harga Cabai Terkini</Typography>
         </Paper>
       </Box>
-    </div>
+      <TheBottomNavigation />
+    </Box>
   );
 }
 

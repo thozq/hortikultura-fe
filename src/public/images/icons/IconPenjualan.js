@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SvgIcon as MuiSvgIcon, styled } from '@mui/material';
 
 const SvgIcon = styled(MuiSvgIcon, {
-  name: 'MopeimIcon',
+  name: 'IconPenjualan',
   shouldForwardProp: (prop) => prop !== 'fill'
 })(() => ({
   fill: 'none',

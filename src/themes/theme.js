@@ -5,9 +5,10 @@ import { red } from '@mui/material/colors';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#2563EB',
-      light: '#EFF6FF',
-      dark: '#1945A4'
+      main: '#2EB086'
+    },
+    secondary: {
+      main: '#313552'
     },
     dark: {
       main: '#313552',
@@ -16,12 +17,6 @@ const theme = createTheme({
     black: '#222222',
     red: {
       main: '#B8405E'
-    },
-    yellow: {
-      main: '#FFFBEB'
-    },
-    orange: {
-      main: '#FBBF24'
     },
     green: {
       main: '#2EB086'
@@ -39,7 +34,7 @@ const theme = createTheme({
     // 14 by default
     // fontSize: 14,
     fontFamily: ['"Poppins"', 'sans-serif'].join(','),
-    h4: { fontSize: '15.63px' },
+    h4: { fontSize: '15.63px', fontWeight: 'bold' },
     h5: {
       fontSize: '12.5px',
       fontWeight: 'bold'

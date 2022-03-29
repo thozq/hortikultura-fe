@@ -4,6 +4,8 @@ import BaseTabs from 'components/Base/BaseTabs';
 import TheProfileHeader from 'components/Base/TheProfileHeader';
 import { AddCircleRounded } from '@mui/icons-material';
 import CardBlanko from 'components/Page/Petani/CardBlanko';
+import TheBottomNavigation from 'components/Base/TheBottomNavigation';
+import { useNavigate } from 'react-router-dom';
 
 const dataBlanko = [
   {
@@ -41,10 +43,16 @@ const dataBlanko = [
 ];
 
 function Stok() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/riwayat');
+  };
+
   return (
     <>
       <TheProfileHeader />
-      <Box display="flex" flexDirection="column" gap={3} p={2}>
+      <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
         <BaseButton withIcon href="/stok/isi-blanko" size="large" variant="outlined" fullWidth>
           <Typography variant="h5">Isi Blanko</Typography>
           <AddCircleRounded />
@@ -98,13 +106,16 @@ function Stok() {
         <Box display="flex" flexDirection="column" gap={2}>
           <Box display="flex" alignItems="center" justifyContent="space-between">
             <Typography variant="h5">Riwayat Blanko</Typography>
-            <Typography variant="h6">Lihat Semua</Typography>
+            <Typography variant="h6" onClick={handleClick}>
+              Lihat Semua
+            </Typography>
           </Box>
           {dataBlanko.map((item, index) => (
             <CardBlanko key={index} item={item} />
           ))}
         </Box>
       </Box>
+      <TheBottomNavigation />
     </>
   );
 }

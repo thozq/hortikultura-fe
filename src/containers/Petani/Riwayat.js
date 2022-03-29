@@ -1,8 +1,12 @@
 import { Box } from '@mui/material';
 import BaseTabs from 'components/Base/BaseTabs';
+import TheBottomNavigation from 'components/Base/TheBottomNavigation';
 import TheProfileHeader from 'components/Base/TheProfileHeader';
 import CardRiwayatBlanko from 'components/Page/Petani/CardRiwayatBlanko';
 import CardRiwayatPenjualan from 'components/Page/Petani/CardRiwayatPenjualan';
+import IconNotFound from 'public/images/icons/IconNotFound';
+
+// import iconNotFound from 'public/images/icons/icon_riwayat_notfound.svg';
 
 const riwayatPenjualan = [
   {
@@ -74,20 +78,33 @@ function Riwayat() {
   return (
     <>
       <TheProfileHeader />
-      <Box p={2}>
+      <Box p={2} mb="56px">
         <BaseTabs labels={['Riwayat Penjualan', 'Riwayat Blanko']}>
           <Box display="flex" flexDirection="column" gap={1.5}>
-            {riwayatPenjualan.map((item, index) => (
-              <CardRiwayatPenjualan key={index} item={item} />
-            ))}
+            {riwayatPenjualan ? (
+              riwayatPenjualan.map((item, index) => (
+                <CardRiwayatPenjualan key={index} item={item} />
+              ))
+            ) : (
+              <Box>
+                <IconNotFound />
+                {/* <img src="/images/icons/icon_riwayat_notfound.svg" alt="not found" /> */}
+              </Box>
+            )}
           </Box>
           <Box display="flex" flexDirection="column" gap={1.5}>
-            {riwayatBlanko.map((item, index) => (
-              <CardRiwayatBlanko key={index} item={item} />
-            ))}
+            {riwayatBlanko ? (
+              riwayatBlanko.map((item, index) => <CardRiwayatBlanko key={index} item={item} />)
+            ) : (
+              <Box>
+                <IconNotFound />
+                {/* <img src="/images/icons/icon_riwayat_notfound.svg" alt="not found" /> */}
+              </Box>
+            )}
           </Box>
         </BaseTabs>
       </Box>
+      <TheBottomNavigation />
     </>
   );
 }

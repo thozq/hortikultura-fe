@@ -2,8 +2,10 @@ import { AddCircleRounded } from '@mui/icons-material';
 import { Box, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseTabs from 'components/Base/BaseTabs';
+import TheBottomNavigation from 'components/Base/TheBottomNavigation';
 import TheProfileHeader from 'components/Base/TheProfileHeader';
 import CardPenjualan from 'components/Page/Petani/CardPenjualan';
+import { useNavigate } from 'react-router-dom';
 
 const penjualan = [
   {
@@ -15,7 +17,7 @@ const penjualan = [
     tanggal: '13 Maret 2022'
   },
   {
-    id: 0,
+    id: 1,
     jumlahDijual: 450,
     hargaJual: 40150,
     dijualKepada: { name: 'Rian Sunandar', type: 'Pengumpul' },
@@ -23,7 +25,7 @@ const penjualan = [
     tanggal: '13 Maret 2022'
   },
   {
-    id: 0,
+    id: 2,
     jumlahDijual: 450,
     hargaJual: 40150,
     dijualKepada: { name: 'Rian Sunandar', type: 'Pengumpul' },
@@ -33,10 +35,16 @@ const penjualan = [
 ];
 
 function Penjualan() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/riwayat');
+  };
+
   return (
     <>
       <TheProfileHeader />
-      <Box display="flex" flexDirection="column" gap={3} p={2}>
+      <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
         <BaseButton
           withIcon
           href="/penjualan/catat-penjualan"
@@ -100,7 +108,9 @@ function Penjualan() {
             <Typography variant="h5">Penjualan Ditunggu</Typography>
             <Box display="flex" alignItems="center" justifyContent="space-between">
               <Typography>Menunggu pembeli menerima penjualan anda</Typography>
-              <Typography variant="h6">Lihat Semua</Typography>
+              <Typography variant="h6" onClick={handleClick}>
+                Lihat Semua
+              </Typography>
             </Box>
           </Box>
           {penjualan.map((item, index) => (
@@ -108,6 +118,7 @@ function Penjualan() {
           ))}
         </Box>
       </Box>
+      <TheBottomNavigation />
     </>
   );
 }
