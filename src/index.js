@@ -3,9 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import MetaTags from 'react-meta-tags';
 
 ReactDOM.render(
   <React.StrictMode>
+    <MetaTags>
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      />
+    </MetaTags>
     <App />
   </React.StrictMode>,
   document.getElementById('root')

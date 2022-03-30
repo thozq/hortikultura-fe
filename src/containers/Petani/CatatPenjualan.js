@@ -8,6 +8,7 @@ import {
   Typography
 } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
+import BaseDatePicker from 'components/Base/BaseDatePicker';
 import BaseHeader from 'components/Base/BaseHeader';
 import BaseTextField from 'components/Base/BaseTextField';
 import React from 'react';
@@ -29,6 +30,7 @@ function CatatPenjualan() {
             <FormControlLabel value="crm" control={<Radio />} label="Cabai Rawit Merah" />
           </RadioGroup>
         </FormControl>
+        <BaseDatePicker fullWidth id="" name="tanggal" label="Tanggal Transaksi" />
         <BaseTextField fullWidth id="" name="jumlahDijual" label="Jumlah Dijual (kg)" />
         <BaseTextField fullWidth id="" name="hargaPerKg" label="Harga Per kg (Rp)" />
         <FormControl>

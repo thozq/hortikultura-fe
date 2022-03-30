@@ -7,8 +7,8 @@ const CustomTextField = styled(TextField)({
 });
 
 const BaseTextField = (props) => {
-  const { ...rest } = props;
-  return <CustomTextField {...rest} sx={{ backgroundColor: 'white', borderRadius: 1 }} />;
+  const { ...params } = props;
+  return <CustomTextField {...params} sx={{ backgroundColor: 'white', borderRadius: 1 }} />;
 };
 
 export default BaseTextField;
