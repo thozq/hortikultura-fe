@@ -11,6 +11,7 @@ import { Routes, Route } from 'react-router-dom';
 import IsiBlanko from 'containers/Petani/IsiBlanko';
 import DetailBlanko from 'containers/Petani/DetailBlanko';
 import DetailPenjualan from 'containers/Petani/DetailPenjualan';
+import DataDiri from 'containers/Petani/DataDiri';
 
 function RouterConfig() {
   return (
@@ -31,6 +32,8 @@ function RouterConfig() {
         <Route path="penjualan/detail-penjualan/:id" element={<DetailPenjualan />} />
 
         <Route path="riwayat" element={<Riwayat />} />
+
+        <Route path="data-diri" element={<DataDiri />} />
       </Route>
     </Routes>
   );

@@ -25,9 +25,9 @@ const CustomButton = styled(Button)({
 });
 
 const BaseButton = (props) => {
-  const { withIcon, children, ...rest } = props;
+  const { type = 'primary', withIcon, children, variant, ...rest } = props;
 
-  if (withIcon)
+  if (type === 'primary' && withIcon)
     return (
       <CustomButton
         sx={{
@@ -39,6 +39,23 @@ const BaseButton = (props) => {
         {...rest}>
         {children}
       </CustomButton>
+    );
+  else if (type === 'error' && variant === 'outlined')
+    return (
+      <Button
+        sx={{
+          borderRadius: '8px',
+          boxShadow: 'none',
+          textTransform: 'none',
+          fontSize: 16,
+          padding: '8px 16px',
+          lineHeight: 1.5
+        }}
+        color="error"
+        variant="outlined"
+        {...rest}>
+        {children}
+      </Button>
     );
   else
     return (

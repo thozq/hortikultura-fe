@@ -1,4 +1,5 @@
 import {
+  Autocomplete,
   Box,
   FormControl,
   FormControlLabel,
@@ -12,6 +13,11 @@ import BaseDatePicker from 'components/Base/BaseDatePicker';
 import BaseHeader from 'components/Base/BaseHeader';
 import BaseTextField from 'components/Base/BaseTextField';
 import React from 'react';
+
+const optionsNama = [
+  { id: 0, label: 'Abdel' },
+  { id: 1, label: 'Temon' }
+];
 
 function CatatPenjualan() {
   return (
@@ -47,7 +53,12 @@ function CatatPenjualan() {
             <FormControlLabel value="grosir" control={<Radio />} label="Grosir" />
           </RadioGroup>
         </FormControl>
-        <BaseTextField fullWidth id="" name="nama" label="Nama" />
+        <Autocomplete
+          disablePortal
+          id="nama"
+          options={optionsNama}
+          renderInput={(params) => <BaseTextField {...params} label="Nama Pembeli" />}
+        />
         <BaseButton>Kirim</BaseButton>
       </Box>
     </>
