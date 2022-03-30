@@ -2,12 +2,11 @@ import { Box } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseHeader from 'components/Base/BaseHeader';
 import BaseTextField from 'components/Base/BaseTextField';
-import React from 'react';
 
 function IsiBlanko() {
   return (
     <>
-      <BaseHeader label="Blanko" backTo="/stok" />
+      <BaseHeader label="Blanko" to="/petani/stok" />
       <Box display="flex" flexDirection="column" gap={2} p={2}>
         <BaseTextField
           fullWidth

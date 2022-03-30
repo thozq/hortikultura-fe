@@ -15,7 +15,7 @@ const data = {
 function DetailPenjualan() {
   return (
     <>
-      <BaseHeader label="Blanko - 28 Februari 2022" backTo="/penjualan" />
+      <BaseHeader label="Blanko - 28 Februari 2022" to="/petani/penjualan" />
       <Box display="flex" flexDirection="column" gap={3} px={2}>
         <Box>
           <Typography variant="h5">Nama Pembeli</Typography>

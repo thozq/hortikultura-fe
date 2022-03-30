@@ -12,13 +12,13 @@ const TheBottomNavigation = () => {
 
   function getPageIndex(route) {
     switch (route) {
-      case '/':
+      case '/petani/beranda':
         return 0;
-      case '/stok':
+      case '/petani/stok':
         return 1;
-      case '/penjualan':
+      case '/petani/penjualan':
         return 2;
-      case '/riwayat':
+      case '/petani/riwayat':
         return 3;
       default:
         return 0;
@@ -28,14 +28,14 @@ const TheBottomNavigation = () => {
   const value = getPageIndex(location.pathname);
 
   const actions = [
-    { label: 'Beranda', icon: <HomeRounded />, link: () => navigate('/') },
-    { label: 'Stok', icon: <WarehouseRounded />, link: () => navigate('/stok') },
+    { label: 'Beranda', icon: <HomeRounded />, link: () => navigate('/petani/beranda') },
+    { label: 'Stok', icon: <WarehouseRounded />, link: () => navigate('/petani/stok') },
     {
       label: 'Penjualan',
       icon: <IconPenjualan />,
-      link: () => navigate('/penjualan')
+      link: () => navigate('/petani/penjualan')
     },
-    { label: 'Riwayat', icon: <RestoreIcon />, link: () => navigate('/riwayat') }
+    { label: 'Riwayat', icon: <RestoreIcon />, link: () => navigate('/petani/riwayat') }
   ];
 
   return (

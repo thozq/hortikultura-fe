@@ -8,7 +8,10 @@ const CardBlanko = (props) => {
 
   return (
     <>
-      <BaseCardList title={item.type} date={item.date} link={`/stok/detail-blanko/${item.id}`}>
+      <BaseCardList
+        title={item.type}
+        date={item.date}
+        link={`/petani/stok/detail-blanko/${item.id}`}>
         <Box mt={1.5} px={2} display="flex" flexDirection="column" gap={1}>
           <Box
             py={0.5}

@@ -15,7 +15,7 @@ import React from 'react';
 function CatatPenjualan() {
   return (
     <>
-      <BaseHeader label="Jual Jenis Cabai" backTo="/penjualan" />
+      <BaseHeader label="Jual Jenis Cabai" to="/petani/penjualan" />
       <Box display="flex" flexDirection="column" gap={2} p={2}>
         <FormControl>
           <FormLabel id="radio-buttons-group-label-jenis-cabai">

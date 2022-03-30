@@ -18,7 +18,7 @@ const data = {
 function DetailBlanko() {
   return (
     <>
-      <BaseHeader label="Blanko - 28 Februari 2022" backTo="/stok" />
+      <BaseHeader label="Blanko - 28 Februari 2022" to="/petani/stok" />
       <Box display="flex" flexDirection="column" gap={3} px={2}>
         <Box>
           <Typography variant="h5">Luas tanaman akhir bulan lalu (Ha)</Typography>

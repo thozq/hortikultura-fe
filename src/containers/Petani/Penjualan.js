@@ -47,7 +47,7 @@ function Penjualan() {
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
         <BaseButton
           withIcon
-          href="/penjualan/catat-penjualan"
+          href="penjualan/catat-penjualan"
           size="large"
           variant="outlined"
           fullWidth>

@@ -53,7 +53,12 @@ function Stok() {
     <>
       <TheProfileHeader />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
-        <BaseButton withIcon href="/stok/isi-blanko" size="large" variant="outlined" fullWidth>
+        <BaseButton
+          withIcon
+          href="/petani/stok/isi-blanko"
+          size="large"
+          variant="outlined"
+          fullWidth>
           <Typography variant="h5">Isi Blanko</Typography>
           <AddCircleRounded />
         </BaseButton>

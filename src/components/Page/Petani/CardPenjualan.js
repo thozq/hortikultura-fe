@@ -10,7 +10,7 @@ const CardPenjualan = (props) => {
       <BaseCardList
         title={item.jenisCabai}
         date={item.tanggal}
-        link={`/penjualan/detail-penjualan/${item.id}`}>
+        link={`detail-penjualan/${item.id}`}>
         <Box mt={1.5} px={2} display="flex" flexDirection="column" gap={1}>
           <Box
             py={0.5}
