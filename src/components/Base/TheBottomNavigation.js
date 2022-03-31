@@ -107,7 +107,9 @@ const TheBottomNavigation = (props) => {
         left: 0,
         right: 0,
         zIndex: 100,
-        backgroundColor: theme.palette.dark.main
+        backgroundColor: theme.palette.dark.main,
+        maxWidth: '444px',
+        mx: 'auto'
       }}>
       <BottomNavigation sx={{ backgroundColor: 'inherit' }} showLabels value={value}>
         {actions.map((action, index) => (
