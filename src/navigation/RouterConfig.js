@@ -1,17 +1,27 @@
 import Daftar from 'containers/Daftar';
 import Masuk from 'containers/Masuk';
 
-import CatatPenjualan from 'containers/Petani/CatatPenjualan';
-import Beranda from 'containers/Petani/Beranda';
+import CatatPenjualanPetani from 'containers/Petani/CatatPenjualanPetani';
+import BerandaPetani from 'containers/Petani/BerandaPetani';
 import IndexPetani from 'containers/Petani/IndexPetani';
-import Penjualan from 'containers/Petani/Penjualan';
-import Riwayat from 'containers/Petani/Riwayat';
-import Stok from 'containers/Petani/Stok';
+import Penjualan from 'containers/Petani/PenjualanPetani';
+import RiwayatPetani from 'containers/Petani/RiwayatPetani';
+import StokPetani from 'containers/Petani/StokPetani';
 import { Routes, Route } from 'react-router-dom';
-import IsiBlanko from 'containers/Petani/IsiBlanko';
-import DetailBlanko from 'containers/Petani/DetailBlanko';
-import DetailPenjualan from 'containers/Petani/DetailPenjualan';
-import DataDiri from 'containers/Petani/DataDiri';
+import IsiBlankoPetani from 'containers/Petani/IsiBlankoPetani';
+import DetailBlankoPetani from 'containers/Petani/DetailBlankoPetani';
+import DetailPenjualanPetani from 'containers/Petani/DetailPenjualanPetani';
+import DataDiriPetani from 'containers/Petani/DataDiriPetani';
+
+import BerandaPedagang from 'containers/Pedagang/BerandaPedagang';
+import StokPedagang from 'containers/Pedagang/StokPedagang';
+import PenjualanPedagang from 'containers/Pedagang/PenjualanPedagang';
+import CatatPenjualanPedagang from 'containers/Pedagang/CatatPenjualanPedagang';
+import UsangPedagang from 'containers/Pedagang/UsangPedagang';
+import RiwayatPedagang from 'containers/Pedagang/RiwayatPedagang';
+import CatatUsangPedagang from 'containers/Pedagang/CatatUsangPedagang';
+import DetailPenjualanPedagang from 'containers/Pedagang/DetailPenjualanPedagang';
+import DataDiriPedagang from 'containers/Pedagang/DataDiriPedagang';
 
 function RouterConfig() {
   return (
@@ -21,19 +31,28 @@ function RouterConfig() {
 
       {/* Petani */}
       <Route path="petani" element={<IndexPetani />}>
-        <Route path="beranda" element={<Beranda />} />
-
-        <Route path="stok" element={<Stok />} />
-        <Route path="stok/isi-blanko" element={<IsiBlanko />} />
-        <Route path="stok/detail-blanko/:id" element={<DetailBlanko />} />
-
+        <Route path="beranda" element={<BerandaPetani />} />
+        <Route path="stok" element={<StokPetani />} />
+        <Route path="stok/isi-blanko" element={<IsiBlankoPetani />} />
+        <Route path="stok/detail-blanko/:id" element={<DetailBlankoPetani />} />
         <Route path="penjualan" element={<Penjualan />} />
-        <Route path="penjualan/catat-penjualan" element={<CatatPenjualan />} />
-        <Route path="penjualan/detail-penjualan/:id" element={<DetailPenjualan />} />
+        <Route path="penjualan/catat-penjualan" element={<CatatPenjualanPetani />} />
+        <Route path="penjualan/detail-penjualan/:id" element={<DetailPenjualanPetani />} />
+        <Route path="riwayat" element={<RiwayatPetani />} />
+        <Route path="data-diri" element={<DataDiriPetani />} />
+      </Route>
 
-        <Route path="riwayat" element={<Riwayat />} />
-
-        <Route path="data-diri" element={<DataDiri />} />
+      {/* Pedagang */}
+      <Route path="pedagang" element={<IndexPetani />}>
+        <Route path="beranda" element={<BerandaPedagang />} />
+        <Route path="stok" element={<StokPedagang />} />
+        <Route path="penjualan" element={<PenjualanPedagang />} />
+        <Route path="penjualan/catat-penjualan" element={<CatatPenjualanPedagang />} />
+        <Route path="usang" element={<UsangPedagang />} />
+        <Route path="usang/catat-usang" element={<CatatUsangPedagang />} />
+        <Route path="riwayat" element={<RiwayatPedagang />} />
+        <Route path="riwayat/detail-penjualan/:id" element={<DetailPenjualanPedagang />} />
+        <Route path="data-diri" element={<DataDiriPedagang />} />
       </Route>
     </Routes>
   );

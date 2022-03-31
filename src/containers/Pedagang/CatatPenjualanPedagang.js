@@ -19,10 +19,10 @@ const optionsNama = [
   { id: 1, label: 'Temon' }
 ];
 
-function CatatPenjualan() {
+function CatatPenjualanPedagang() {
   return (
     <>
-      <BaseHeader label="Jual Jenis Cabai" to="/petani/penjualan" />
+      <BaseHeader label="Jual Jenis Cabai" to="/pedagang/penjualan" />
       <Box display="flex" flexDirection="column" gap={2} p={2}>
         <FormControl>
           <FormLabel id="radio-buttons-group-label-jenis-cabai">
@@ -65,4 +65,4 @@ function CatatPenjualan() {
   );
 }
 
-export default CatatPenjualan;
+export default CatatPenjualanPedagang;

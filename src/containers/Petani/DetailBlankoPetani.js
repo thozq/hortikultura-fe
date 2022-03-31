@@ -15,7 +15,7 @@ const data = {
   hargaPerKilo: 48000
 };
 
-function DetailBlanko() {
+function DetailBlankoPetani() {
   return (
     <>
       <BaseHeader label="Blanko - 28 Februari 2022" to="/petani/stok" />
@@ -70,4 +70,4 @@ function DetailBlanko() {
   );
 }
 
-export default DetailBlanko;
+export default DetailBlankoPetani;

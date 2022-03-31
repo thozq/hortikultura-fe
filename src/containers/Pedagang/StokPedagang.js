@@ -1,48 +1,30 @@
 import { Box, Typography } from '@mui/material';
-import BaseButton from 'components/Base/BaseButton';
 import BaseTabs from 'components/Base/BaseTabs';
 import TheProfileHeader from 'components/Base/TheProfileHeader';
-import { AddCircleRounded } from '@mui/icons-material';
-import CardBlanko from 'components/Page/Petani/CardBlanko';
 import TheBottomNavigation from 'components/Base/TheBottomNavigation';
 import { useNavigate } from 'react-router-dom';
+import CardKonfirmasi from 'components/Page/Pedagang/CardKonfirmasi';
 
-const dataBlanko = [
+const dataKonfirmasi = [
   {
     id: 0,
-    blanko: {
-      luasAkhir: 80,
-      luasHabis: 120,
-      luasBelumHabis: 70,
-      luasRusak: 20,
-      luasPenanaman: 150,
-      luasAkhirBulan: 140,
-      produksiHabis: 10,
-      produksiBelumHabis: 5,
-      hargaPerKilo: 48000
-    },
-    type: 'Cabai Merah Besar',
-    date: '13 Maret 2022'
+    jenisCabai: 'Cabai Merah Keriting',
+    date: '13 Maret 2022',
+    jumlah: 85,
+    hargaJual: 45000,
+    penjual: 'Kevin Saputra (Petani)'
   },
   {
     id: 1,
-    blanko: {
-      luasAkhir: 80,
-      luasHabis: 120,
-      luasBelumHabis: 70,
-      luasRusak: 20,
-      luasPenanaman: 150,
-      luasAkhirBulan: 140,
-      produksiHabis: 10,
-      produksiBelumHabis: 5,
-      hargaPerKilo: 48000
-    },
-    type: 'Cabai Merah Besar',
-    date: '13 Maret 2022'
+    jenisCabai: 'Cabai Merah Keriting',
+    date: '13 Maret 2022',
+    jumlah: 85,
+    hargaJual: 45000,
+    penjual: 'Kevin Saputra (Petani)'
   }
 ];
 
-function Stok() {
+function StokPedagang() {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -51,22 +33,13 @@ function Stok() {
 
   return (
     <>
-      <TheProfileHeader />
+      <TheProfileHeader name="Ahmad" role="Pedagang" />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
-        <BaseButton
-          withIcon
-          href="/petani/stok/isi-blanko"
-          size="large"
-          variant="outlined"
-          fullWidth>
-          <Typography variant="h5">Isi Blanko</Typography>
-          <AddCircleRounded />
-        </BaseButton>
         <BaseTabs
           variant="contained"
           labels={['Cabai Merah Besar', 'Cabai Merah Keriting', 'Cabai Rawit Merah']}>
           <Box display="flex" flexDirection="column" gap={1}>
-            <Typography>Stok terkini yang anda miliki didapatkan dari mengisi blanko</Typography>
+            <Typography>Stok terkini yang anda miliki didapatkan dari pembelian</Typography>
             <Box display="flex" alignItems="center" justifyContent="space-between">
               <Typography variant="h6">Harga Jual Per kg:</Typography>
               <Typography variant="h6">Rp 40.150</Typography>
@@ -80,7 +53,7 @@ function Stok() {
             </Box>
           </Box>
           <Box display="flex" flexDirection="column" gap={1}>
-            <Typography>Stok terkini yang anda miliki didapatkan dari mengisi blanko</Typography>
+            <Typography>Stok terkini yang anda miliki didapatkan dari pembelian</Typography>
             <Box display="flex" alignItems="center" justifyContent="space-between">
               <Typography variant="h6">Harga Jual Per kg:</Typography>
               <Typography variant="h6">Rp 40.150</Typography>
@@ -94,7 +67,7 @@ function Stok() {
             </Box>
           </Box>
           <Box display="flex" flexDirection="column" gap={1}>
-            <Typography>Stok terkini yang anda miliki didapatkan dari mengisi blanko</Typography>
+            <Typography>Stok terkini yang anda miliki didapatkan dari pembelian</Typography>
             <Box display="flex" alignItems="center" justifyContent="space-between">
               <Typography variant="h6">Harga Jual Per kg:</Typography>
               <Typography variant="h6">Rp 40.150</Typography>
@@ -110,19 +83,19 @@ function Stok() {
         </BaseTabs>
         <Box display="flex" flexDirection="column" gap={2}>
           <Box display="flex" alignItems="center" justifyContent="space-between">
-            <Typography variant="h5">Riwayat Blanko</Typography>
+            <Typography variant="h5">Menunggu Konfirmasi</Typography>
             <Typography variant="h6" onClick={handleClick}>
               Lihat Semua
             </Typography>
           </Box>
-          {dataBlanko.map((item, index) => (
-            <CardBlanko key={index} item={item} />
+          {dataKonfirmasi.map((item, index) => (
+            <CardKonfirmasi key={index} item={item} type="waiting" />
           ))}
         </Box>
       </Box>
-      <TheBottomNavigation />
+      <TheBottomNavigation role="pedagang" />
     </>
   );
 }
 
-export default Stok;
+export default StokPedagang;

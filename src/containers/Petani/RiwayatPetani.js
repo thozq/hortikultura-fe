@@ -74,10 +74,10 @@ const riwayatBlanko = [
   }
 ];
 
-function Riwayat() {
+function RiwayatPetani() {
   return (
     <>
-      <TheProfileHeader />
+      <TheProfileHeader name="Ahmad" role="Petani" />
       <Box p={2} mb="56px">
         <BaseTabs labels={['Riwayat Penjualan', 'Riwayat Blanko']}>
           <Box display="flex" flexDirection="column" gap={1.5}>
@@ -104,9 +104,9 @@ function Riwayat() {
           </Box>
         </BaseTabs>
       </Box>
-      <TheBottomNavigation />
+      <TheBottomNavigation role="petani" />
     </>
   );
 }
 
-export default Riwayat;
+export default RiwayatPetani;

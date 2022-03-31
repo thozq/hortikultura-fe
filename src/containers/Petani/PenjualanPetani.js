@@ -34,7 +34,7 @@ const penjualan = [
   }
 ];
 
-function Penjualan() {
+function PenjualanPetani() {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -43,7 +43,7 @@ function Penjualan() {
 
   return (
     <>
-      <TheProfileHeader />
+      <TheProfileHeader name="Ahmad" role="Petani" />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
         <BaseButton
           withIcon
@@ -118,9 +118,9 @@ function Penjualan() {
           ))}
         </Box>
       </Box>
-      <TheBottomNavigation />
+      <TheBottomNavigation role="petani" />
     </>
   );
 }
 
-export default Penjualan;
+export default PenjualanPetani;

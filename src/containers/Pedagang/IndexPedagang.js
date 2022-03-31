@@ -1,8 +1,8 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-function IndexPetani() {
+function IndexPedagang() {
   return <Outlet />;
 }
 
-export default IndexPetani;
+export default IndexPedagang;

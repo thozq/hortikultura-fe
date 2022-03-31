@@ -4,10 +4,10 @@ import TheProfileHeader from 'components/Base/TheProfileHeader';
 import React from 'react';
 import theme from 'themes/theme';
 
-function Beranda() {
+function BerandaPetani() {
   return (
     <>
-      <TheProfileHeader />
+      <TheProfileHeader name="Ahmad" role="Petani" />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
         <Box>
           <Typography>
@@ -34,10 +34,10 @@ function Beranda() {
           borderRadius={2}>
           <Typography variant="h4">Total Penjualan</Typography>
         </Box>
-        <TheBottomNavigation />
+        <TheBottomNavigation role="petani" />
       </Box>
     </>
   );
 }
 
-export default Beranda;
+export default BerandaPetani;

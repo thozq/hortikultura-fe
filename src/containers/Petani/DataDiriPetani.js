@@ -4,7 +4,7 @@ import BaseButton from 'components/Base/BaseButton';
 import BaseHeader from 'components/Base/BaseHeader';
 import React from 'react';
 
-function DataDiri() {
+function DataDiriPetani() {
   return (
     <>
       <BaseHeader label="Jual Jenis Cabai" to={-1} />
@@ -40,4 +40,4 @@ function DataDiri() {
   );
 }
 
-export default DataDiri;
+export default DataDiriPetani;

@@ -20,7 +20,7 @@ const optionsJenisCabai = [
   }
 ];
 
-function IsiBlanko() {
+function IsiBlankoPetani() {
   const [jenisCabai, setJenisCabai] = useState('');
 
   const handleChange = (event) => {
@@ -99,4 +99,4 @@ function IsiBlanko() {
   );
 }
 
-export default IsiBlanko;
+export default IsiBlankoPetani;
