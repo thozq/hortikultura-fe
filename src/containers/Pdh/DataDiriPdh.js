@@ -1,9 +1,8 @@
 import { Avatar, Box, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseHeader from 'components/Base/BaseHeader';
-import React from 'react';
 
-function DataDiriPedagang() {
+function DataDiriPdh() {
   return (
     <>
       <BaseHeader label="Data Diri" to={-1} />
@@ -16,7 +15,7 @@ function DataDiriPedagang() {
           </Box>
           <Box>
             <Typography variant="h5">Peran</Typography>
-            <Typography>Pedagang</Typography>
+            <Typography>Pdh</Typography>
           </Box>
           <Box>
             <Typography variant="h5">Alamat</Typography>
@@ -39,4 +38,4 @@ function DataDiriPedagang() {
   );
 }
 
-export default DataDiriPedagang;
+export default DataDiriPdh;

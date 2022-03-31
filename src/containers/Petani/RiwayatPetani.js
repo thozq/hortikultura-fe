@@ -77,7 +77,7 @@ const riwayatBlanko = [
 function RiwayatPetani() {
   return (
     <>
-      <TheProfileHeader name="Ahmad" role="Petani" />
+      <TheProfileHeader name="Ahmad" role="petani" />
       <Box p={2} mb="56px">
         <BaseTabs labels={['Riwayat Penjualan', 'Riwayat Blanko']}>
           <Box display="flex" flexDirection="column" gap={1.5}>

@@ -77,7 +77,7 @@ const riwayatUsang = [
 function RiwayatPedagang() {
   return (
     <>
-      <TheProfileHeader name="Ahmad" role="Pedagang" />
+      <TheProfileHeader name="Ahmad" role="pedagang" />
       <Box p={2} mb="56px">
         <BaseTabs labels={['Riwayat Penjualan', 'Riwayat Usang']}>
           <Box display="flex" flexDirection="column" gap={1.5}>

@@ -43,7 +43,7 @@ function PenjualanPetani() {
 
   return (
     <>
-      <TheProfileHeader name="Ahmad" role="Petani" />
+      <TheProfileHeader name="Ahmad" role="petani" />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
         <BaseButton
           withIcon

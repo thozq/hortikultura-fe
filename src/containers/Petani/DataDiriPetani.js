@@ -1,4 +1,3 @@
-import { ExitToAppRounded } from '@mui/icons-material';
 import { Avatar, Box, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseHeader from 'components/Base/BaseHeader';
@@ -31,7 +30,7 @@ function DataDiriPetani() {
             <Typography variant="h5">Provinsi</Typography>
             <Typography>Jawa Timur</Typography>
           </Box>
-          <BaseButton variant="outlined" type="error" startIcon={<ExitToAppRounded />}>
+          <BaseButton variant="outlined" type="error">
             Keluar
           </BaseButton>
         </Stack>

@@ -22,7 +22,7 @@ const BaseCardList = (props) => {
           alignItems="center"
           justifyContent="space-between">
           <Typography variant="h6">
-            {title} - {date}
+            {title} {date ? `-${date}` : ''}
           </Typography>
           <IconButton aria-label="settings" onClick={handleDetail}>
             <ChevronRightRounded sx={{ color: theme.palette.optional.contrastText }} />

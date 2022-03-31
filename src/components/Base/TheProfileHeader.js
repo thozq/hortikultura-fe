@@ -6,27 +6,24 @@ const TheProfileHeader = (props) => {
   const { name, role } = props;
   const navigate = useNavigate();
 
-  let link = '';
-  switch (role) {
-    case 'Petani':
-      link = 'petani';
-      break;
-    case 'Pedagang':
-      link = 'pedagang';
-      break;
-    default:
-      link = '';
-      break;
+  function stringAvatar(name) {
+    return {
+      children: `${name.split(' ')[0][0]}`
+    };
   }
+
+  let roleName = role.replace(/\w+/g, function (w) {
+    return w[0].toUpperCase() + w.slice(1).toLowerCase();
+  });
 
   return (
     <Box display="flex" justifyContent="space-between" alignItems="center" p={2}>
       <Box display="flex" flexDirection="column" gap={0.5}>
         <Typography variant="h4">{name}</Typography>
-        <Typography variant="h5">{role}</Typography>
+        <Typography variant="h5">{roleName}</Typography>
       </Box>
 
-      <Avatar onClick={() => navigate(`/${link}/data-diri`)}>P</Avatar>
+      <Avatar {...stringAvatar(name)} onClick={() => navigate(`/${role}/data-diri`)} />
     </Box>
   );
 };

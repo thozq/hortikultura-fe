@@ -3,7 +3,7 @@ import BaseButton from 'components/Base/BaseButton';
 import BaseHeader from 'components/Base/BaseHeader';
 import React from 'react';
 
-function DataDiriPedagang() {
+function DataDiriDinas() {
   return (
     <>
       <BaseHeader label="Data Diri" to={-1} />
@@ -16,7 +16,7 @@ function DataDiriPedagang() {
           </Box>
           <Box>
             <Typography variant="h5">Peran</Typography>
-            <Typography>Pedagang</Typography>
+            <Typography>Dinas</Typography>
           </Box>
           <Box>
             <Typography variant="h5">Alamat</Typography>
@@ -39,4 +39,4 @@ function DataDiriPedagang() {
   );
 }
 
-export default DataDiriPedagang;
+export default DataDiriDinas;

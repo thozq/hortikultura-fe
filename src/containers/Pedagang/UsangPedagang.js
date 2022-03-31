@@ -40,7 +40,7 @@ function UsangPedagang() {
 
   return (
     <>
-      <TheProfileHeader name="Ahmad" role="Pedagang" />
+      <TheProfileHeader name="Ahmad" role="pedagang" />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
         <BaseButton withIcon href="usang/catat-usang" size="large" variant="outlined" fullWidth>
           <Typography variant="h5">Catat Cabai Usang</Typography>

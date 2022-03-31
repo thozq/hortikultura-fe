@@ -1,3 +1,4 @@
+import { ExitToAppRounded } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
@@ -53,6 +54,7 @@ const BaseButton = (props) => {
         }}
         color="error"
         variant="outlined"
+        startIcon={<ExitToAppRounded />}
         {...rest}>
         {children}
       </Button>

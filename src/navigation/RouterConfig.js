@@ -23,6 +23,14 @@ import CatatUsangPedagang from 'containers/Pedagang/CatatUsangPedagang';
 import DetailPenjualanPedagang from 'containers/Pedagang/DetailPenjualanPedagang';
 import DataDiriPedagang from 'containers/Pedagang/DataDiriPedagang';
 
+import IndexDinas from 'containers/Dinas/IndexDinas';
+import BerandaDinas from 'containers/Dinas/BerandaDinas';
+import DataDiriDinas from 'containers/Dinas/DataDiriDinas';
+
+import IndexPdh from 'containers/Pdh/IndexPdh';
+import BerandaPdh from 'containers/Pdh/BerandaPdh';
+import DataDiriPdh from 'containers/Pdh/DataDiriPdh';
+
 function RouterConfig() {
   return (
     <Routes>
@@ -53,6 +61,18 @@ function RouterConfig() {
         <Route path="riwayat" element={<RiwayatPedagang />} />
         <Route path="riwayat/detail-penjualan/:id" element={<DetailPenjualanPedagang />} />
         <Route path="data-diri" element={<DataDiriPedagang />} />
+      </Route>
+
+      {/* Dinas */}
+      <Route path="dinas" element={<IndexDinas />}>
+        <Route path="beranda" element={<BerandaDinas />} />
+        <Route path="data-diri" element={<DataDiriDinas />} />
+      </Route>
+
+      {/* PDH */}
+      <Route path="pdh" element={<IndexPdh />}>
+        <Route path="beranda" element={<BerandaPdh />} />
+        <Route path="data-diri" element={<DataDiriPdh />} />
       </Route>
     </Routes>
   );

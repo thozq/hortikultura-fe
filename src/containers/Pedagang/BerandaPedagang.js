@@ -7,7 +7,7 @@ import theme from 'themes/theme';
 function BerandaPedagang() {
   return (
     <>
-      <TheProfileHeader name="Ahmad" role="Pedagang" />
+      <TheProfileHeader name="Ahmad" role="pedagang" />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
         <Box>
           <Typography>

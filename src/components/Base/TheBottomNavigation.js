@@ -13,34 +13,37 @@ const TheBottomNavigation = (props) => {
   const location = useLocation();
 
   function getPageIndex(route) {
-    if (role === 'petani') {
-      switch (route) {
-        case '/petani/beranda':
-          return 0;
-        case '/petani/stok':
-          return 1;
-        case '/petani/penjualan':
-          return 2;
-        case '/petani/riwayat':
-          return 3;
-        default:
-          return 0;
-      }
-    } else if (role === 'pedagang') {
-      switch (route) {
-        case '/pedagang/beranda':
-          return 0;
-        case '/pedagang/stok':
-          return 1;
-        case '/pedagang/penjualan':
-          return 2;
-        case '/pedagang/usang':
-          return 3;
-        case '/pedagang/riwayat':
-          return 4;
-        default:
-          return 0;
-      }
+    switch (role) {
+      case 'petani':
+        switch (route) {
+          case '/petani/beranda':
+            return 0;
+          case '/petani/stok':
+            return 1;
+          case '/petani/penjualan':
+            return 2;
+          case '/petani/riwayat':
+            return 3;
+          default:
+            return 0;
+        }
+      case 'pedagang':
+        switch (route) {
+          case '/pedagang/beranda':
+            return 0;
+          case '/pedagang/stok':
+            return 1;
+          case '/pedagang/penjualan':
+            return 2;
+          case '/pedagang/usang':
+            return 3;
+          case '/pedagang/riwayat':
+            return 4;
+          default:
+            return 0;
+        }
+      default:
+        '';
     }
   }
 
