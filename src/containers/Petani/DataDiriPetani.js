@@ -6,7 +6,7 @@ import React from 'react';
 function DataDiriPetani() {
   return (
     <>
-      <BaseHeader label="Jual Jenis Cabai" to={-1} />
+      <BaseHeader label="Jual Tipe Cabai" to={-1} />
       <Box p={2}>
         <Stack spacing={2}>
           <Avatar>P</Avatar>

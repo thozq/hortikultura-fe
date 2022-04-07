@@ -9,14 +9,18 @@ const data = {
   },
   jumlahTerjual: 80,
   hargaPerKilo: 48000,
-  totalPendapatan: 4480000
+  totalPendapatan: 4480000,
+  tipe: 'Cabai Merah Keriting',
+  tanggal: '28 Februari 2022',
+  status: 'Menunggu Konfirmasi'
 };
 
-function DetailPenjualanPedagang() {
+function DetailJualBeliPedagang() {
   return (
     <>
-      <BaseHeader label="Blanko - 28 Februari 2022" to={-1} />
+      <BaseHeader label={`${data.tipe} - ${data.tanggal}`} to={-1} />
       <Stack gap={3} px={2}>
+        <Typography variant="h4">Status: {data.status}</Typography>
         <Box>
           <Typography variant="h5">Nama Pembeli</Typography>
           <Typography variant="body2">{data.pembeli.nama}</Typography>
@@ -47,4 +51,4 @@ function DetailPenjualanPedagang() {
   );
 }
 
-export default DetailPenjualanPedagang;
+export default DetailJualBeliPedagang;

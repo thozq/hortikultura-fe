@@ -1,36 +1,51 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseTabs from 'components/Base/BaseTabs';
 import TheBottomNavigation from 'components/Base/TheBottomNavigation';
 import TheProfileHeader from 'components/Base/TheProfileHeader';
-import CardKonfirmasi from 'components/Page/Pedagang/CardKonfirmasi';
+import CardJualBeli from 'components/Page/Pedagang/CardJualBeli';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const dataPenjualan = [
+const dataKonfirmasi = [
   {
     id: 0,
+    status: 'Menunggu',
+    jenisCabai: 'Cabai Merah Keriting',
     date: '13 Maret 2022',
-    jumlah: 450,
-    jenisCabai: 'Cabai Merah Besar',
-    hargaJual: 40150,
-    penjual: { name: 'Rian Sunandar', type: 'Pengumpul' }
+    jumlah: 85,
+    hargaJual: 45000,
+    penjual: { name: 'Kevin Saputra', type: 'Petani' }
   },
   {
     id: 1,
+    status: 'Menunggu',
+    jenisCabai: 'Cabai Merah Keriting',
     date: '13 Maret 2022',
-    jumlah: 450,
-    jenisCabai: 'Cabai Merah Besar',
-    hargaJual: 40150,
-    penjual: { name: 'Rian Sunandar', type: 'Pengumpul' }
+    jumlah: 85,
+    hargaJual: 45000,
+    penjual: { name: 'Kevin Saputra', type: 'Petani' }
+  }
+];
+
+const dataDaftar = [
+  {
+    id: 0,
+    status: 'Terjual',
+    jenisCabai: 'Cabai Merah Keriting',
+    date: '13 Maret 2022',
+    jumlah: 85,
+    hargaJual: 45000,
+    penjual: { name: 'Kevin Saputra', type: 'Petani' }
   },
   {
-    id: 2,
+    id: 1,
+    status: 'Ditolak',
+    jenisCabai: 'Cabai Merah Keriting',
     date: '13 Maret 2022',
-    jumlah: 450,
-    jenisCabai: 'Cabai Merah Besar',
-    hargaJual: 40150,
-    penjual: { name: 'Rian Sunandar', type: 'Pengumpul' }
+    jumlah: 85,
+    hargaJual: 45000,
+    penjual: { name: 'Kevin Saputra', type: 'Petani' }
   }
 ];
 
@@ -98,20 +113,34 @@ function PenjualanPedagang() {
             </Box>
           </Box>
         </BaseTabs>
-        <Box display="flex" flexDirection="column" gap={2}>
-          <Box display="flex" flexDirection="column" gap={1}>
-            <Typography variant="h5">Konfirmasi Penjualan</Typography>
-            <Box display="flex" alignItems="center" justifyContent="space-between">
-              <Typography>Menunggu pembeli konfirmasi penjualan anda</Typography>
+        <Stack gap={2}>
+          <Stack gap={1}>
+            <Typography variant="h5">Penjualan Ditunggu</Typography>
+            <Stack direction="row" justifyContent="space-between">
+              <Typography>Menunggu pembeli menerima penjualan anda</Typography>
               <Typography variant="h6" onClick={() => navigate('/pedagang/riwayat')}>
                 Lihat Semua
               </Typography>
-            </Box>
-          </Box>
-          {dataPenjualan.map((item, index) => (
-            <CardKonfirmasi key={index} item={item} type="selling" />
+            </Stack>
+          </Stack>
+          {dataKonfirmasi.map((item, index) => (
+            <CardJualBeli key={index} item={item} wait link={`detail-penjualan/${item.id}`} />
           ))}
-        </Box>
+        </Stack>
+        <Stack gap={2}>
+          <Stack gap={1}>
+            <Typography variant="h5">Daftar Penjualan</Typography>
+            <Stack direction="row" justifyContent="space-between">
+              <Typography>Daftar penjualan yang anda sudah lakukan</Typography>
+              <Typography variant="h6" onClick={() => navigate('/pedagang/riwayat')}>
+                Lihat Semua
+              </Typography>
+            </Stack>
+          </Stack>
+          {dataDaftar.map((item, index) => (
+            <CardJualBeli key={index} item={item} link={`detail-penjualan/${item.id}`} />
+          ))}
+        </Stack>
       </Box>
       <TheBottomNavigation role="pedagang" />
     </>

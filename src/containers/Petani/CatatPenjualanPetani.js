@@ -54,13 +54,12 @@ function CatatPenjualanPetani() {
 
   return (
     <>
-      <BaseHeader label="Jual Jenis Cabai" to="/petani/penjualan" />
+      <BaseHeader label="Jual Tipe Cabai" to="/petani/penjualan" />
       <Stack gap={2} p={2}>
-        <BaseDatePicker fullWidth id="" name="tanggal" label="Tanggal Transaksi" />
         <Typography variant="h5">Pilih Tipe Cabai</Typography>
         <BaseTextField
           select
-          label="Jenis Cabai"
+          label="Tipe Cabai"
           value={jenisCabai}
           onChange={(event) => setJenisCabai(event.target.value)}>
           {optionsJenisCabai.map((option) => (
@@ -69,7 +68,8 @@ function CatatPenjualanPetani() {
             </MenuItem>
           ))}
         </BaseTextField>
-
+        <Typography variant="h5">Transaksi</Typography>
+        <BaseDatePicker fullWidth id="" name="tanggal" label="Tanggal Transaksi" />
         <BaseTextField fullWidth id="" name="jumlahDijual" label="Jumlah Dijual (kg)" />
         <BaseTextField fullWidth id="" name="hargaPerKg" label="Harga Per kg (Rp)" />
         <Typography variant="h5">Dijual Kepada</Typography>

@@ -13,7 +13,8 @@ const CustomButton = styled(Button)({
   backgroundColor: '#2EB086',
   '&:hover': {
     backgroundColor: '#2EB086',
-    boxShadow: 'none'
+    boxShadow: 'none',
+    border: 'none'
   },
   '&:active': {
     boxShadow: 'none',

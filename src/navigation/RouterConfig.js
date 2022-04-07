@@ -23,8 +23,8 @@ import CatatPenjualanPedagang from 'containers/Pedagang/CatatPenjualanPedagang';
 import UsangPedagang from 'containers/Pedagang/UsangPedagang';
 import RiwayatPedagang from 'containers/Pedagang/RiwayatPedagang';
 import CatatUsangPedagang from 'containers/Pedagang/CatatUsangPedagang';
-import DetailPenjualanPedagang from 'containers/Pedagang/DetailPenjualanPedagang';
 import DataDiriPedagang from 'containers/Pedagang/DataDiriPedagang';
+import DetailJualBeliPedagang from 'containers/Pedagang/DetailJualBeliPedagang';
 
 import IndexDinas from 'containers/Dinas/IndexDinas';
 import BerandaDinas from 'containers/Dinas/BerandaDinas';
@@ -59,12 +59,14 @@ function RouterConfig() {
       <Route path="pedagang" element={<IndexPetani />}>
         <Route path="beranda" element={<BerandaPedagang />} />
         <Route path="stok" element={<StokPedagang />} />
+        <Route path="stok/detail-pembelian/:id" element={<DetailJualBeliPedagang />} />
         <Route path="penjualan" element={<PenjualanPedagang />} />
         <Route path="penjualan/catat-penjualan" element={<CatatPenjualanPedagang />} />
+        <Route path="penjualan/detail-penjualan/:id" element={<DetailJualBeliPedagang />} />
         <Route path="usang" element={<UsangPedagang />} />
         <Route path="usang/catat-usang" element={<CatatUsangPedagang />} />
         <Route path="riwayat" element={<RiwayatPedagang />} />
-        <Route path="riwayat/detail-penjualan/:id" element={<DetailPenjualanPedagang />} />
+        <Route path="riwayat/detail-penjualan/:id" element={<DetailJualBeliPedagang />} />
         <Route path="data-diri" element={<DataDiriPedagang />} />
       </Route>
 

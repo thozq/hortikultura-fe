@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import theme from 'themes/theme';
 
 const BaseCard = (props) => {
-  const { title, link, children, ...rest } = props;
+  const { title, link, status = 'Menunggu', children, ...rest } = props;
 
   const navigate = useNavigate();
+
+  // Notes: bgcolor bisa pake enum
 
   return (
     <Box>
@@ -14,7 +16,15 @@ const BaseCard = (props) => {
         <Box
           px={2}
           py={0.5}
-          bgcolor={theme.palette.secondary.main}
+          bgcolor={
+            status === 'Menunggu'
+              ? theme.palette.secondary.main
+              : status === 'Terjual'
+              ? theme.palette.primary.main
+              : status === 'Ditolak'
+              ? theme.palette.red.main
+              : theme.palette.secondary.main
+          }
           borderRadius={2}
           display="flex"
           alignItems="center"

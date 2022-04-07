@@ -31,7 +31,7 @@ function IsiBlankoPetani() {
     <>
       <BaseHeader label="Blanko" to={-1} />
       <Box display="flex" flexDirection="column" gap={2} p={2}>
-        <BaseTextField select label="Jenis Cabai" value={jenisCabai} onChange={handleChange}>
+        <BaseTextField select label="Tipe Cabai" value={jenisCabai} onChange={handleChange}>
           {optionsJenisCabai.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
