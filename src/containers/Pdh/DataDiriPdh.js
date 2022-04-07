@@ -29,7 +29,7 @@ function DataDiriPdh() {
             <Typography variant="h5">Provinsi</Typography>
             <Typography>Jawa Timur</Typography>
           </Box>
-          <BaseButton type="exit">Keluar</BaseButton>
+          <BaseButton shape="exit">Keluar</BaseButton>
         </Stack>
       </Box>
     </>

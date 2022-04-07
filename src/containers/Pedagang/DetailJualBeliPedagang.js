@@ -15,6 +15,12 @@ const data = {
   status: 'Menunggu Konfirmasi'
 };
 
+const test = {
+  1: 'Menunggu Konfirmasi'
+};
+Object.freeze(test);
+console.log(test[1]);
+
 function DetailJualBeliPedagang() {
   return (
     <>

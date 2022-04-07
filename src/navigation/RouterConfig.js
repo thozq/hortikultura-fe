@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Daftar from 'containers/Daftar';
 import Masuk from 'containers/Masuk';
@@ -35,13 +35,16 @@ import BerandaPdh from 'containers/Pdh/BerandaPdh';
 import DataDiriPdh from 'containers/Pdh/DataDiriPdh';
 
 function RouterConfig() {
+  //Notes: implement private route
   return (
     <Routes>
+      <Route path="/" element={<Navigate to={'masuk'} replace />} />
       <Route path="masuk" element={<Masuk />} />
       <Route path="daftar" element={<Daftar />} />
 
       {/* Petani */}
       <Route path="petani" element={<IndexPetani />}>
+        <Route path="/petani" element={<Navigate to={'beranda'} replace />} />
         <Route path="beranda" element={<BerandaPetani />} />
         <Route path="beranda/isi-blanko" element={<IsiBlankoPetani />} />
         <Route path="beranda/detail-blanko/:id" element={<DetailBlankoPetani />} />
@@ -57,6 +60,7 @@ function RouterConfig() {
 
       {/* Pedagang */}
       <Route path="pedagang" element={<IndexPetani />}>
+        <Route path="/pedagang" element={<Navigate to={'beranda'} replace />} />
         <Route path="beranda" element={<BerandaPedagang />} />
         <Route path="stok" element={<StokPedagang />} />
         <Route path="stok/detail-pembelian/:id" element={<DetailJualBeliPedagang />} />
@@ -72,12 +76,14 @@ function RouterConfig() {
 
       {/* Dinas */}
       <Route path="dinas" element={<IndexDinas />}>
+        <Route path="/dinas" element={<Navigate to={'beranda'} replace />} />
         <Route path="beranda" element={<BerandaDinas />} />
         <Route path="data-diri" element={<DataDiriDinas />} />
       </Route>
 
       {/* PDH */}
       <Route path="pdh" element={<IndexPdh />}>
+        <Route path="/pdh" element={<Navigate to={'beranda'} replace />} />
         <Route path="beranda" element={<BerandaPdh />} />
         <Route path="data-diri" element={<DataDiriPdh />} />
       </Route>
