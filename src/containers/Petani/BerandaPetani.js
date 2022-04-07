@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material';
+import BaseButton from 'components/Base/BaseButton';
 import TheBottomNavigation from 'components/Base/TheBottomNavigation';
 import TheProfileHeader from 'components/Base/TheProfileHeader';
 import React from 'react';
@@ -16,6 +17,14 @@ function BerandaPetani() {
             habitasse ultrices pretium nisi, dis. Magna.
           </Typography>
         </Box>
+        <BaseButton
+          shape="withicon"
+          href="/petani/beranda/isi-blanko"
+          size="large"
+          variant="outlined"
+          fullWidth>
+          <Typography variant="h5">Isi Blanko</Typography>
+        </BaseButton>
         <Box
           display={'flex'}
           flexDirection={'column'}

@@ -27,10 +27,6 @@ const dataKonfirmasi = [
 function StokPedagang() {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate('/riwayat');
-  };
-
   return (
     <>
       <TheProfileHeader name="Ahmad" role="pedagang" />
@@ -84,7 +80,7 @@ function StokPedagang() {
         <Box display="flex" flexDirection="column" gap={2}>
           <Box display="flex" alignItems="center" justifyContent="space-between">
             <Typography variant="h5">Menunggu Konfirmasi</Typography>
-            <Typography variant="h6" onClick={handleClick}>
+            <Typography variant="h6" onClick={() => navigate('/pedagang/riwayat')}>
               Lihat Semua
             </Typography>
           </Box>

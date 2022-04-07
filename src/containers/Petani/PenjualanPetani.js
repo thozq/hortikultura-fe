@@ -1,5 +1,4 @@
-import { AddCircleRounded } from '@mui/icons-material';
-import { Box, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseTabs from 'components/Base/BaseTabs';
 import TheBottomNavigation from 'components/Base/TheBottomNavigation';
@@ -37,22 +36,17 @@ const penjualan = [
 function PenjualanPetani() {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate('/riwayat');
-  };
-
   return (
     <>
       <TheProfileHeader name="Ahmad" role="petani" />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
         <BaseButton
-          withIcon
+          shape="withicon"
           href="penjualan/catat-penjualan"
           size="large"
           variant="outlined"
           fullWidth>
           <Typography variant="h5">Catat Penjualan</Typography>
-          <AddCircleRounded />
         </BaseButton>
         <BaseTabs
           variant="contained"
@@ -103,21 +97,23 @@ function PenjualanPetani() {
             </Box>
           </Box>
         </BaseTabs>
-        <Box display="flex" flexDirection="column" gap={2}>
-          <Box display="flex" flexDirection="column" gap={1}>
-            <Typography variant="h5">Penjualan Ditunggu</Typography>
-            <Box display="flex" alignItems="center" justifyContent="space-between">
-              <Typography>Menunggu pembeli menerima penjualan anda</Typography>
-              <Typography variant="h6" onClick={handleClick}>
-                Lihat Semua
-              </Typography>
-            </Box>
+
+        <Box display="flex" flexDirection="column" gap={1}>
+          <Typography variant="h5">Penjualan Ditunggu</Typography>
+          <Box display="flex" alignItems="center" justifyContent="space-between">
+            <Typography>Menunggu pembeli menerima penjualan anda</Typography>
+            <Typography variant="h6" onClick={() => navigate('/petani/riwayat')}>
+              Lihat Semua
+            </Typography>
           </Box>
+        </Box>
+        <Stack gap={2}>
           {penjualan.map((item, index) => (
             <CardPenjualan key={index} item={item} />
           ))}
-        </Box>
+        </Stack>
       </Box>
+
       <TheBottomNavigation role="petani" />
     </>
   );

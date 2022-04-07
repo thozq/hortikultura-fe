@@ -1,4 +1,3 @@
-import { AddCircleRounded } from '@mui/icons-material';
 import { Box, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseTabs from 'components/Base/BaseTabs';
@@ -38,22 +37,17 @@ const dataPenjualan = [
 function PenjualanPedagang() {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate('/riwayat');
-  };
-
   return (
     <>
       <TheProfileHeader name="Ahmad" role="pedagang" />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
         <BaseButton
-          withIcon
+          shape="withicon"
           href="penjualan/catat-penjualan"
           size="large"
           variant="outlined"
           fullWidth>
           <Typography variant="h5">Catat Penjualan</Typography>
-          <AddCircleRounded />
         </BaseButton>
         <BaseTabs
           variant="contained"
@@ -109,7 +103,7 @@ function PenjualanPedagang() {
             <Typography variant="h5">Konfirmasi Penjualan</Typography>
             <Box display="flex" alignItems="center" justifyContent="space-between">
               <Typography>Menunggu pembeli konfirmasi penjualan anda</Typography>
-              <Typography variant="h6" onClick={handleClick}>
+              <Typography variant="h6" onClick={() => navigate('/pedagang/riwayat')}>
                 Lihat Semua
               </Typography>
             </Box>

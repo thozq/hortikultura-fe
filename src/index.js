@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import store from 'redux/store';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -13,7 +15,9 @@ ReactDOM.render(
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
       />
     </MetaTags>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

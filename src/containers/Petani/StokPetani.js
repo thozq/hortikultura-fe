@@ -2,65 +2,45 @@ import { Box, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseTabs from 'components/Base/BaseTabs';
 import TheProfileHeader from 'components/Base/TheProfileHeader';
-import { AddCircleRounded } from '@mui/icons-material';
-import CardBlanko from 'components/Page/Petani/CardBlanko';
 import TheBottomNavigation from 'components/Base/TheBottomNavigation';
 import { useNavigate } from 'react-router-dom';
+import CardStok from 'components/Page/Petani/CardStok';
 
-const dataBlanko = [
+const dataStok = [
   {
     id: 0,
-    blanko: {
-      luasAkhir: 80,
-      luasHabis: 120,
-      luasBelumHabis: 70,
-      luasRusak: 20,
-      luasPenanaman: 150,
-      luasAkhirBulan: 140,
-      produksiHabis: 10,
-      produksiBelumHabis: 5,
-      hargaPerKilo: 48000
-    },
-    type: 'Cabai Merah Besar',
-    date: '13 Maret 2022'
+    tipe: 'Cabai Merah Besar',
+    totalPanen: 120,
+    panenSukses: 100,
+    panenGagal: 100,
+    hargaJual: 45000,
+    date: '12 September 2022'
   },
   {
     id: 1,
-    blanko: {
-      luasAkhir: 80,
-      luasHabis: 120,
-      luasBelumHabis: 70,
-      luasRusak: 20,
-      luasPenanaman: 150,
-      luasAkhirBulan: 140,
-      produksiHabis: 10,
-      produksiBelumHabis: 5,
-      hargaPerKilo: 48000
-    },
-    type: 'Cabai Merah Besar',
-    date: '13 Maret 2022'
+    tipe: 'Cabai Merah Besar',
+    totalPanen: 120,
+    panenSukses: 100,
+    panenGagal: 100,
+    hargaJual: 45000,
+    date: '12 September 2022'
   }
 ];
 
 function StokPetani() {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate('/riwayat');
-  };
-
   return (
     <>
       <TheProfileHeader name="Ahmad" role="petani" />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
         <BaseButton
-          withIcon
-          href="/petani/stok/isi-blanko"
+          shape="withicon"
+          href="/petani/stok/catat-stok"
           size="large"
           variant="outlined"
           fullWidth>
-          <Typography variant="h5">Isi Blanko</Typography>
-          <AddCircleRounded />
+          <Typography variant="h5">Catat Stok</Typography>
         </BaseButton>
         <BaseTabs
           variant="contained"
@@ -110,13 +90,13 @@ function StokPetani() {
         </BaseTabs>
         <Box display="flex" flexDirection="column" gap={2}>
           <Box display="flex" alignItems="center" justifyContent="space-between">
-            <Typography variant="h5">Riwayat Blanko</Typography>
-            <Typography variant="h6" onClick={handleClick}>
+            <Typography variant="h5">Riwayat Stok</Typography>
+            <Typography variant="h6" onClick={() => navigate('/petani/riwayat')}>
               Lihat Semua
             </Typography>
           </Box>
-          {dataBlanko.map((item, index) => (
-            <CardBlanko key={index} item={item} />
+          {dataStok.map((item, index) => (
+            <CardStok key={index} item={item} />
           ))}
         </Box>
       </Box>

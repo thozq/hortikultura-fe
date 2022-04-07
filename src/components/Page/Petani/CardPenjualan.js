@@ -1,56 +1,42 @@
-import { Box, Typography } from '@mui/material';
-import BaseCardList from 'components/Base/BaseCardList';
-import theme from 'themes/theme';
+import { Box, Stack, Typography } from '@mui/material';
+import BaseButton from 'components/Base/BaseButton';
+import BaseCard from 'components/Base/BaseCard';
 
 const CardPenjualan = (props) => {
   const { item } = props;
 
   return (
     <>
-      <BaseCardList
-        title={item.jenisCabai}
+      <BaseCard
+        title={`Status: ${item.status} - ${item.tanggal}`}
         date={item.tanggal}
         link={`detail-penjualan/${item.id}`}>
-        <Box mt={1.5} px={2} display="flex" flexDirection="column" gap={1}>
-          <Box
-            py={0.5}
-            px={2}
-            bgcolor={theme.palette.dark.light}
-            borderRadius={1}
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between">
-            <Typography>Jumlah Dijual</Typography>
-            <Typography>{item.jumlahDijual}</Typography>
-          </Box>
-
-          <Box
-            py={0.5}
-            px={2}
-            bgcolor={theme.palette.dark.light}
-            borderRadius={1}
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between">
-            <Typography>Harga jual / kg</Typography>
-            <Typography>{item.hargaJual}</Typography>
-          </Box>
-
-          <Box
-            py={0.5}
-            px={2}
-            bgcolor={theme.palette.dark.light}
-            borderRadius={1}
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between">
+        <Stack gap={1}>
+          <Stack direction="row" alignItems="center" justifyContent="space-between">
             <Typography>Dijual Kepada</Typography>
-            <Typography>
-              {item.dijualKepada.name} - {item.dijualKepada.type}
+            <Typography variant="h6">
+              {item.dijualKepada.name} ({item.dijualKepada.type})
             </Typography>
+          </Stack>
+          <Stack direction="row" justifyContent="space-between">
+            <Typography>Tipe Cabai</Typography>
+            <Typography variant="h6">{item.tipe}</Typography>
+          </Stack>
+          <Stack direction="row" justifyContent="space-between">
+            <Typography>Jumlah Dijual</Typography>
+            <Typography variant="h6">{item.jumlahDijual}</Typography>
+          </Stack>
+          <Stack direction="row" alignItems="center" justifyContent="space-between">
+            <Typography>Harga jual / kg</Typography>
+            <Typography variant="h6">{item.hargaJual}</Typography>
+          </Stack>
+          <Box mt={2}>
+            <BaseButton shape="error" fullWidth>
+              Batal
+            </BaseButton>
           </Box>
-        </Box>
-      </BaseCardList>
+        </Stack>
+      </BaseCard>
     </>
   );
 };

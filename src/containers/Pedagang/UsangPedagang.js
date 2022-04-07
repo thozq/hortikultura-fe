@@ -1,4 +1,3 @@
-import { AddCircleRounded } from '@mui/icons-material';
 import { Box, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseTabs from 'components/Base/BaseTabs';
@@ -42,9 +41,13 @@ function UsangPedagang() {
     <>
       <TheProfileHeader name="Ahmad" role="pedagang" />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
-        <BaseButton withIcon href="usang/catat-usang" size="large" variant="outlined" fullWidth>
+        <BaseButton
+          shape="withicon"
+          href="usang/catat-usang"
+          size="large"
+          variant="outlined"
+          fullWidth>
           <Typography variant="h5">Catat Cabai Usang</Typography>
-          <AddCircleRounded />
         </BaseButton>
         <BaseTabs
           variant="contained"

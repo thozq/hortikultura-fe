@@ -1,3 +1,5 @@
+import { Routes, Route } from 'react-router-dom';
+
 import Daftar from 'containers/Daftar';
 import Masuk from 'containers/Masuk';
 
@@ -7,11 +9,12 @@ import IndexPetani from 'containers/Petani/IndexPetani';
 import Penjualan from 'containers/Petani/PenjualanPetani';
 import RiwayatPetani from 'containers/Petani/RiwayatPetani';
 import StokPetani from 'containers/Petani/StokPetani';
-import { Routes, Route } from 'react-router-dom';
 import IsiBlankoPetani from 'containers/Petani/IsiBlankoPetani';
 import DetailBlankoPetani from 'containers/Petani/DetailBlankoPetani';
 import DetailPenjualanPetani from 'containers/Petani/DetailPenjualanPetani';
 import DataDiriPetani from 'containers/Petani/DataDiriPetani';
+import CatatStokPetani from 'containers/Petani/CatatStokPetani';
+import DetailStokPetani from 'containers/Petani/DetailStokPetani';
 
 import BerandaPedagang from 'containers/Pedagang/BerandaPedagang';
 import StokPedagang from 'containers/Pedagang/StokPedagang';
@@ -40,9 +43,11 @@ function RouterConfig() {
       {/* Petani */}
       <Route path="petani" element={<IndexPetani />}>
         <Route path="beranda" element={<BerandaPetani />} />
+        <Route path="beranda/isi-blanko" element={<IsiBlankoPetani />} />
+        <Route path="beranda/detail-blanko/:id" element={<DetailBlankoPetani />} />
         <Route path="stok" element={<StokPetani />} />
-        <Route path="stok/isi-blanko" element={<IsiBlankoPetani />} />
-        <Route path="stok/detail-blanko/:id" element={<DetailBlankoPetani />} />
+        <Route path="stok/catat-stok" element={<CatatStokPetani />} />
+        <Route path="stok/detail-stok/:id" element={<DetailStokPetani />} />
         <Route path="penjualan" element={<Penjualan />} />
         <Route path="penjualan/catat-penjualan" element={<CatatPenjualanPetani />} />
         <Route path="penjualan/detail-penjualan/:id" element={<DetailPenjualanPetani />} />

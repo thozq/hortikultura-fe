@@ -1,4 +1,4 @@
-import { ExitToAppRounded } from '@mui/icons-material';
+import { AddCircleRounded, ExitToAppRounded } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
@@ -26,51 +26,66 @@ const CustomButton = styled(Button)({
 });
 
 const BaseButton = (props) => {
-  const { type = 'primary', withIcon, children, variant, ...rest } = props;
+  const { shape, children, ...rest } = props;
 
-  if (type === 'primary' && withIcon)
-    return (
-      <CustomButton
-        sx={{
-          color: 'white',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between'
-        }}
-        {...rest}>
-        {children}
-      </CustomButton>
-    );
-  else if (type === 'error' && variant === 'outlined')
-    return (
-      <Button
-        sx={{
-          borderRadius: '8px',
-          boxShadow: 'none',
-          textTransform: 'none',
-          fontSize: 16,
-          padding: '8px 16px',
-          lineHeight: 1.5
-        }}
-        color="error"
-        variant="outlined"
-        startIcon={<ExitToAppRounded />}
-        {...rest}>
-        {children}
-      </Button>
-    );
-  else
-    return (
-      <CustomButton
-        sx={{
-          color: 'white',
-          display: 'flex',
-          alignItems: 'center'
-        }}
-        {...rest}>
-        {children}
-      </CustomButton>
-    );
+  return (
+    <>
+      {shape === 'withicon' ? (
+        <CustomButton
+          sx={{
+            color: 'white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}
+          {...rest}>
+          {children}
+          <AddCircleRounded />
+        </CustomButton>
+      ) : shape === 'error' ? (
+        <Button
+          sx={{
+            borderRadius: '8px',
+            boxShadow: 'none',
+            textTransform: 'none',
+            fontSize: 16,
+            padding: '8px 16px',
+            lineHeight: 1.5
+          }}
+          color="error"
+          variant="outlined"
+          {...rest}>
+          {children}
+        </Button>
+      ) : shape === 'exit' ? (
+        <Button
+          sx={{
+            borderRadius: '8px',
+            boxShadow: 'none',
+            textTransform: 'none',
+            fontSize: 16,
+            padding: '8px 16px',
+            lineHeight: 1.5
+          }}
+          color="error"
+          variant="outlined"
+          startIcon={<ExitToAppRounded />}
+          {...rest}>
+          {children}
+        </Button>
+      ) : (
+        <CustomButton
+          sx={{
+            color: 'white',
+            display: 'flex',
+            alignItems: 'center'
+          }}
+          {...rest}>
+          {children}
+        </CustomButton>
+      )}
+    </>
+  );
 };
 
 export default BaseButton;

@@ -17,7 +17,7 @@ function BerandaPdh() {
             habitasse ultrices pretium nisi, dis. Magna.
           </Typography>
         </Box>
-        <BaseButton withIcon href="" size="large" variant="outlined" fullWidth>
+        <BaseButton shape="withicon" href="" size="large" variant="outlined" fullWidth>
           <Typography variant="h5">Akuisisi Akun</Typography>
           <SupervisedUserCircleRounded />
         </BaseButton>

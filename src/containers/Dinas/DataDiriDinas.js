@@ -30,9 +30,7 @@ function DataDiriDinas() {
             <Typography variant="h5">Provinsi</Typography>
             <Typography>Jawa Timur</Typography>
           </Box>
-          <BaseButton variant="outlined" type="error">
-            Keluar
-          </BaseButton>
+          <BaseButton type="exit">Keluar</BaseButton>
         </Stack>
       </Box>
     </>

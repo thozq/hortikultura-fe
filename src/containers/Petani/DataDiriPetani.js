@@ -30,9 +30,7 @@ function DataDiriPetani() {
             <Typography variant="h5">Provinsi</Typography>
             <Typography>Jawa Timur</Typography>
           </Box>
-          <BaseButton variant="outlined" type="error">
-            Keluar
-          </BaseButton>
+          <BaseButton shape="exit">Keluar</BaseButton>
         </Stack>
       </Box>
     </>
