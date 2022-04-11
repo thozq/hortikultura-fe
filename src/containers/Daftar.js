@@ -1,7 +1,12 @@
-import { Box, Link, MenuItem, Typography } from '@mui/material';
+import { Box, Link, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
-import BaseTextField from 'components/Base/BaseTextField';
-import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as yup from 'yup';
+import { Form, Formik } from 'formik';
+import React, { useEffect, useState } from 'react';
+import { register } from 'redux/slices/auth';
+import { useNavigate } from 'react-router-dom';
+import FormikController from 'components/Formik/FormikController';
 
 const optionsPeran = [
   {
@@ -15,10 +20,56 @@ const optionsPeran = [
 ];
 
 function Daftar() {
-  const [peran, setPeran] = useState('distributor');
+  const [loading, setLoading] = useState(false);
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { message } = useSelector((state) => state.message);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleChange = (event) => {
-    setPeran(event.target.value);
+  // Notes: perlu diroute berdasarkan role
+  useEffect(() => {
+    if (isLoggedIn) {
+      return navigate('/petani/beranda');
+    }
+  }, [isLoggedIn]);
+
+  const initialValues = {};
+  const validationSchema = yup.object({
+    email: yup
+      .string('Enter your email')
+      .email('Enter a valid email')
+      .required('Email is required'),
+    password: yup
+      .string('Enter your password')
+      .min(8, 'Password should be of minimum 8 characters length')
+      .required('Password is required')
+  });
+  const onSubmit = (formValue) => {
+    alert(JSON.stringify(formValue, null, 2));
+    const { nama, email, password, repassword, provinsi, kecamatan, kabupaten, alamat, peran } =
+      formValue;
+    setLoading(true);
+    dispatch(
+      register({
+        nama,
+        email,
+        password,
+        repassword,
+        provinsi,
+        kecamatan,
+        kabupaten,
+        alamat,
+        peran
+      })
+    )
+      .unwrap()
+      .then(() => {
+        // Notes: perlu diroute berdasarkan role
+        navigate('/petani');
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -26,29 +77,107 @@ function Daftar() {
       <Box p={2} variant="h4">
         Sistem Cabai
       </Box>
-      <Box display="flex" flexDirection="column" gap={2} p={2}>
-        <Typography variant="h4">Daftar</Typography>
-        <Typography>
-          Menjadi bagian dalam proses distribusi didaerahmu dan tawarkan cabai terbaikmu !{' '}
-        </Typography>
-        <BaseTextField fullWidth id="email" name="email" label="Email" />
-        <BaseTextField fullWidth id="password" name="password" label="Password" />
-        <BaseTextField fullWidth id="repassword" name="repassword" label="Ketik Ulang Password" />
-        <BaseTextField fullWidth id="kecamatan" name="kecamatan" label="Kecamatan" />
-        <BaseTextField fullWidth id="kabupaten" name="kabupaten" label="Kabupaten" />
-        <BaseTextField fullWidth id="privonsi" name="privonsi" label="Provinsi" />
-        {/* alamat pake text area nih */}
-        <BaseTextField fullWidth id="alamat" name="alamat" label="Alamat" />
-        <BaseTextField select label="peran" value={peran} onChange={handleChange}>
-          {optionsPeran.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </BaseTextField>
-
-        <BaseButton>Daftar</BaseButton>
-      </Box>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+        {(formikProps) => {
+          return (
+            <Form>
+              <Stack gap={2} p={2}>
+                <Typography variant="h4">Daftar</Typography>
+                <Typography>
+                  Menjadi bagian dalam proses distribusi didaerahmu dan tawarkan cabai terbaikmu !{' '}
+                </Typography>
+                {message && (
+                  <div>
+                    <div role="alert">{message}</div>
+                  </div>
+                )}
+                <FormikController
+                  control="textfield"
+                  fullWidth
+                  id="nama"
+                  name="nama"
+                  label="Nama"
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="textfield"
+                  fullWidth
+                  id="email"
+                  name="email"
+                  label="Email"
+                  type="email"
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="textfield"
+                  fullWidth
+                  id="password"
+                  name="password"
+                  label="Password"
+                  type="password"
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="textfield"
+                  fullWidth
+                  id="repassword"
+                  name="repassword"
+                  label="Ketik Ulang Password"
+                  type="password"
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="textfield"
+                  fullWidth
+                  id="privonsi"
+                  name="provinsi"
+                  label="Provinsi"
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="textfield"
+                  fullWidth
+                  id="kecamatan"
+                  name="kecamatan"
+                  label="Kecamatan"
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="textfield"
+                  fullWidth
+                  id="kabupaten"
+                  name="kabupaten"
+                  label="Kabupaten"
+                  formikProps={formikProps}
+                />
+                {/* alamat pake text area nih */}
+                <FormikController
+                  control="multiline"
+                  fullWidth
+                  id="alamat"
+                  name="alamat"
+                  label="Alamat"
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="select"
+                  fullWidth
+                  id="peran"
+                  name="peran"
+                  label="Peran"
+                  options={optionsPeran}
+                  formikProps={formikProps}
+                />
+                <Box mt={2}>
+                  <BaseButton fullWidth type="submit">
+                    {loading && <span>Loading...</span>}Daftar
+                  </BaseButton>
+                </Box>
+              </Stack>
+            </Form>
+          );
+        }}
+      </Formik>
       <Box display="flex" flexDirection="column" alignItems="center" gap={1} p={2}>
         <Typography display="inline-block" variant="body2">
           Belum punya akun?
