@@ -180,14 +180,11 @@ function Daftar() {
       </Formik>
       <Box display="flex" flexDirection="column" alignItems="center" gap={1} p={2}>
         <Typography display="inline-block" variant="body2">
-          Belum punya akun?
-          <Link> Daftar!</Link>
+          Sudah punya akun?
+          <Link href="/masuk"> Masuk!</Link>
         </Typography>
         <Link color="black">
           <Typography variant="body2">Lupa password?</Typography>
-        </Link>
-        <Link underline="none">
-          <Typography variant="body2">Masuk sebagai Guest</Typography>
         </Link>
       </Box>
     </>

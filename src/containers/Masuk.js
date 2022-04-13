@@ -96,7 +96,7 @@ function Masuk() {
                   type="password"
                   formikProps={formikProps}
                 />
-                <BaseButton type="submit">{loading && <span>Loading...</span>}Masuk</BaseButton>
+                <BaseButton type="submit">{loading ? <span>Memuat...</span> : 'Masuk'}</BaseButton>
               </Stack>
             </Form>
           )}
@@ -105,7 +105,7 @@ function Masuk() {
       <Box display="flex" flexDirection="column" alignItems="center" gap={1} p={2}>
         <Typography display="inline-block" variant="body2">
           Belum punya akun?
-          <Link> Daftar!</Link>
+          <Link href="/daftar"> Daftar!</Link>
         </Typography>
         <Link color="black">
           <Typography variant="body2">Lupa password?</Typography>

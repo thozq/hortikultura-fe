@@ -1,99 +1,121 @@
-import { Autocomplete, Box, MenuItem, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
-import BaseDatePicker from 'components/Base/BaseDatePicker';
 import BaseHeader from 'components/Base/BaseHeader';
-import BaseTextField from 'components/Base/BaseTextField';
-import React, { useState } from 'react';
+// import BaseTextField from 'components/Base/BaseTextField';
+import FormikController from 'components/Formik/FormikController';
+import { Form, Formik } from 'formik';
+// import React, { useState } from 'react';
+// import { useDispatch } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
+// import { login } from 'redux/slices/auth';
+import * as yup from 'yup';
+import { optionsTipeCabai, optionsPedagang } from 'utils/constants';
 
 const optionsNama = [
   { id: 0, label: 'Abdel' },
   { id: 1, label: 'Temon' }
 ];
 
-const optionsJenisCabai = [
-  {
-    value: 'CMB',
-    label: 'Cabai Merah Besar'
-  },
-  {
-    value: 'CMK',
-    label: 'Cabai Merah Keriting'
-  },
-  {
-    value: 'CRM',
-    label: 'Cabai Rawit Merah'
-  }
-];
-
-const optionsPedagang = [
-  {
-    value: 'pengumpul',
-    label: 'Pengumpul'
-  },
-  {
-    value: 'pengecer',
-    label: 'Pengecer'
-  },
-  {
-    value: 'distributor',
-    label: 'Distributor'
-  },
-  {
-    value: 'agen',
-    label: 'Agen'
-  },
-  {
-    value: 'grosir',
-    label: 'Grosir'
-  }
-];
-
 function CatatPenjualanPetani() {
-  const [jenisCabai, setJenisCabai] = useState('');
-  const [tipePedagang, setTipePedagang] = useState('');
+  // const [loading, setLoading] = useState(false);
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
+
+  const initialValues = {
+    cabai: '',
+    tanggal: null,
+    jumlahDijual: '',
+    hargaPerKg: '',
+    pedagang: '',
+    nama: ''
+  };
+  const validationSchema = yup.object({
+    cabai: yup.string('Masukkan tipe cabai').required('Tipe cabai diperlukan'),
+    tanggal: yup.date('Masukkan tanggal transaksi').required('Tanggal transaksi diperlukan'),
+    jumlahDijual: yup.number('Masukkan jumlah dijual').required('Jumlah dijual diperlukan'),
+    hargaPerKg: yup.number('Masukkan harga per kg').required('Harga per kg diperlukan'),
+    pedagang: yup.string('Tipe pedagang dijual').required('Tipe pedagang diperlukan'),
+    nama: yup.string('Masukkan nama pedagang').required('Nama pedagang diperlukan')
+  });
+  const onSubmit = (formValue) => {
+    alert(JSON.stringify(formValue, null, 2));
+    // const { cabai, tanggal, jumlahDijual, hargaPerKg, pedagang, nama } = formValue;
+    // setLoading(true);
+    // dispatch(login({ email, password }))
+    //   .unwrap()
+    //   .then(() => {
+    //     // Notes: perlu diroute berdasarkan role
+    //     navigate('/petani');
+    //   })
+    //   .catch(() => {
+    //     setLoading(false);
+    //   });
+  };
 
   return (
     <>
-      <BaseHeader label="Jual Tipe Cabai" to="/petani/penjualan" />
-      <Stack gap={2} p={2}>
-        <Typography variant="h5">Pilih Tipe Cabai</Typography>
-        <BaseTextField
-          select
-          label="Tipe Cabai"
-          value={jenisCabai}
-          onChange={(event) => setJenisCabai(event.target.value)}>
-          {optionsJenisCabai.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </BaseTextField>
-        <Typography variant="h5">Transaksi</Typography>
-        <BaseDatePicker fullWidth id="" name="tanggal" label="Tanggal Transaksi" />
-        <BaseTextField fullWidth id="" name="jumlahDijual" label="Jumlah Dijual (kg)" />
-        <BaseTextField fullWidth id="" name="hargaPerKg" label="Harga Per kg (Rp)" />
-        <Typography variant="h5">Dijual Kepada</Typography>
-        <BaseTextField
-          select
-          label="Tipe Pedagang"
-          value={tipePedagang}
-          onChange={(event) => setTipePedagang(event.target.value)}>
-          {optionsPedagang.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </BaseTextField>
-        <Autocomplete
-          disablePortal
-          id="nama"
-          options={optionsNama}
-          renderInput={(params) => <BaseTextField {...params} label="Nama Pembeli" />}
-        />
-        <Box mt={5}>
-          <BaseButton fullWidth>Kirim</BaseButton>
-        </Box>
-      </Stack>
+      <BaseHeader label="Catat Penjualan Cabai" to="/petani/penjualan" />
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+        {(formikProps) => {
+          console.log(formikProps);
+          return (
+            <Form>
+              <Stack gap={2} p={2}>
+                <Typography variant="h5">Pilih Tipe Cabai</Typography>
+                <FormikController
+                  control="select"
+                  label="Tipe Cabai"
+                  name="cabai"
+                  options={optionsTipeCabai}
+                  formikProps={formikProps}
+                />
+                <Typography variant="h5">Transaksi</Typography>
+                <FormikController
+                  control="datepicker"
+                  label="Tanggal Transaksi"
+                  name="tanggal"
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="textfield"
+                  label="Jumlah Dijual (kg)"
+                  name="jumlahDijual"
+                  type="number"
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="textfield"
+                  label="Harga Per kg (Rp)"
+                  name="hargaPerKg"
+                  type="number"
+                  formikProps={formikProps}
+                />
+                <Typography variant="h5">Dijual Kepada</Typography>
+                <FormikController
+                  control="select"
+                  label="Tipe Pedagang"
+                  name="pedagang"
+                  options={optionsPedagang}
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="autocomplete"
+                  label="Nama Pedagang"
+                  name="nama"
+                  options={optionsNama}
+                  formikProps={formikProps}
+                />
+                <Box mt={5}>
+                  <BaseButton fullWidth type="submit">
+                    {/* {loading ? <span>Memuat...</span> : 'Kirim'} */}
+                    Kirim
+                  </BaseButton>
+                </Box>
+              </Stack>
+            </Form>
+          );
+        }}
+      </Formik>
     </>
   );
 }
