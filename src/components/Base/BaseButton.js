@@ -1,6 +1,7 @@
 import { AddCircleRounded, ExitToAppRounded } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 const CustomButton = styled(Button)({
   borderRadius: '8px',
@@ -27,7 +28,9 @@ const CustomButton = styled(Button)({
 });
 
 const BaseButton = (props) => {
-  const { shape, children, ...rest } = props;
+  const { shape, children, link, ...rest } = props;
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -39,6 +42,7 @@ const BaseButton = (props) => {
             alignItems: 'center',
             justifyContent: 'space-between'
           }}
+          onClick={() => navigate(link)}
           {...rest}>
           {children}
           <AddCircleRounded />
@@ -55,6 +59,7 @@ const BaseButton = (props) => {
           }}
           color="error"
           variant="outlined"
+          onClick={() => navigate(link)}
           {...rest}>
           {children}
         </Button>
@@ -71,6 +76,7 @@ const BaseButton = (props) => {
           color="error"
           variant="outlined"
           startIcon={<ExitToAppRounded />}
+          onClick={() => navigate(link)}
           {...rest}>
           {children}
         </Button>
@@ -81,6 +87,7 @@ const BaseButton = (props) => {
             display: 'flex',
             alignItems: 'center'
           }}
+          onClick={() => navigate(link)}
           {...rest}>
           {children}
         </CustomButton>

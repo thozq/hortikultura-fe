@@ -3,9 +3,9 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Daftar from 'containers/Daftar';
 import Masuk from 'containers/Masuk';
 
+import IndexPetani from 'containers/Petani/IndexPetani';
 import CatatPenjualanPetani from 'containers/Petani/CatatPenjualanPetani';
 import BerandaPetani from 'containers/Petani/BerandaPetani';
-import IndexPetani from 'containers/Petani/IndexPetani';
 import Penjualan from 'containers/Petani/PenjualanPetani';
 import RiwayatPetani from 'containers/Petani/RiwayatPetani';
 import StokPetani from 'containers/Petani/StokPetani';
@@ -16,6 +16,7 @@ import DataDiriPetani from 'containers/Petani/DataDiriPetani';
 import CatatStokPetani from 'containers/Petani/CatatStokPetani';
 import DetailStokPetani from 'containers/Petani/DetailStokPetani';
 
+import IndexPedagang from 'containers/Pedagang/IndexPedagang';
 import BerandaPedagang from 'containers/Pedagang/BerandaPedagang';
 import StokPedagang from 'containers/Pedagang/StokPedagang';
 import PenjualanPedagang from 'containers/Pedagang/PenjualanPedagang';
@@ -35,9 +36,9 @@ import BerandaPdh from 'containers/Pdh/BerandaPdh';
 import DataDiriPdh from 'containers/Pdh/DataDiriPdh';
 
 function RouterConfig() {
-  //Notes: implement private route
   return (
     <Routes>
+      <Route path="*" element={<Navigate to="/" replace />} />
       <Route path="/" element={<Navigate to={'masuk'} replace />} />
       <Route path="masuk" element={<Masuk />} />
       <Route path="daftar" element={<Daftar />} />
@@ -59,7 +60,7 @@ function RouterConfig() {
       </Route>
 
       {/* Pedagang */}
-      <Route path="pedagang" element={<IndexPetani />}>
+      <Route path="pedagang" element={<IndexPedagang />}>
         <Route path="/pedagang" element={<Navigate to={'beranda'} replace />} />
         <Route path="beranda" element={<BerandaPedagang />} />
         <Route path="stok" element={<StokPedagang />} />

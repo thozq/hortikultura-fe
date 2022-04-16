@@ -41,12 +41,7 @@ function UsangPedagang() {
     <>
       <TheProfileHeader name="Ahmad" role="pedagang" />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
-        <BaseButton
-          shape="withicon"
-          href="usang/catat-usang"
-          size="large"
-          variant="outlined"
-          fullWidth>
+        <BaseButton shape="withicon" link="catat-usang" size="large" variant="outlined" fullWidth>
           <Typography variant="h5">Catat Cabai Usang</Typography>
         </BaseButton>
         <BaseTabs

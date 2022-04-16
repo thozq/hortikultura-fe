@@ -1,8 +1,16 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router-dom';
 
 function IndexPedagang() {
-  return <Outlet />;
+  const { user: currentUser } = useSelector((state) => state.auth);
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  console.log('ini isloggendin', isLoggedIn);
+  console.log('ini currentuser', currentUser);
+  if (isLoggedIn && currentUser.access === 'pedagang') return <Outlet />;
+  else if (isLoggedIn && currentUser.access !== 'pedagang')
+    return <Navigate to={`${currentUser.access}/beranda`} replace />;
+  else return <Navigate to="masuk" replace />;
 }
 
 export default IndexPedagang;

@@ -7,7 +7,7 @@ import { Form, Formik } from 'formik';
 // import React, { useState } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
-// import { login } from 'redux/slices/auth';
+// import { signin } from 'redux/slices/auth';
 import * as yup from 'yup';
 import { optionsTipeCabai, optionsPedagang } from 'utils/constants';
 
@@ -41,7 +41,7 @@ function CatatPenjualanPetani() {
     alert(JSON.stringify(formValue, null, 2));
     // const { cabai, tanggal, jumlahDijual, hargaPerKg, pedagang, nama } = formValue;
     // setLoading(true);
-    // dispatch(login({ email, password }))
+    // dispatch(signin({ email, password }))
     //   .unwrap()
     //   .then(() => {
     //     // Notes: perlu diroute berdasarkan role

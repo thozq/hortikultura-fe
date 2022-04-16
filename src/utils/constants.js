@@ -36,4 +36,31 @@ const optionsPedagang = [
   }
 ];
 
-export { optionsTipeCabai, optionsPedagang };
+const optionsRole = [
+  {
+    value: 'petani',
+    label: 'Petani'
+  },
+  {
+    value: 'pengepul',
+    label: 'Pengepul'
+  },
+  {
+    value: 'pengecer',
+    label: 'Pengecer'
+  },
+  {
+    value: 'distributor',
+    label: 'Distributor'
+  },
+  {
+    value: 'agen',
+    label: 'Agen'
+  },
+  {
+    value: 'grosir',
+    label: 'Grosir'
+  }
+];
+
+export { optionsTipeCabai, optionsPedagang, optionsRole };

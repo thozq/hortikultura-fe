@@ -17,12 +17,7 @@ function BerandaPetani() {
             habitasse ultrices pretium nisi, dis. Magna.
           </Typography>
         </Box>
-        <BaseButton
-          shape="withicon"
-          href="/petani/beranda/isi-blanko"
-          size="large"
-          variant="outlined"
-          fullWidth>
+        <BaseButton shape="withicon" link="isi-blanko" size="large" variant="outlined" fullWidth>
           <Typography variant="h5">Isi Blanko</Typography>
         </BaseButton>
         <Box

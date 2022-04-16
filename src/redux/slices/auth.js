@@ -4,13 +4,21 @@ import { setMessage } from './message';
 import AuthService from '../../services/auth.service';
 
 const user = JSON.parse(localStorage.getItem('user'));
-console.log('ini user');
 
-export const register = createAsyncThunk(
-  'auth/register',
-  async ({ username, email, password }, thunkAPI) => {
+export const signup = createAsyncThunk(
+  'auth/signup',
+  async ({ name, email, password, provinsi, kecamatan, kabupaten, alamat, role }, thunkAPI) => {
     try {
-      const response = await AuthService.register(email, password);
+      const response = await AuthService.signup(
+        name,
+        email,
+        password,
+        provinsi,
+        kecamatan,
+        kabupaten,
+        alamat,
+        role
+      );
       thunkAPI.dispatch(setMessage(response.data.message));
       return response.data;
     } catch (error) {
@@ -23,10 +31,10 @@ export const register = createAsyncThunk(
     }
   }
 );
-export const login = createAsyncThunk('auth/login', async ({ email, password }, thunkAPI) => {
+export const signin = createAsyncThunk('auth/signin', async ({ email, password }, thunkAPI) => {
   try {
-    const data = await AuthService.login(email, password);
-    return { user: data };
+    const data = await AuthService.signin(email, password);
+    return { user: data.user };
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -45,17 +53,17 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [register.fulfilled]: (state, action) => {
+    [signup.fulfilled]: (state, action) => {
       state.isLoggedIn = false;
     },
-    [register.rejected]: (state, action) => {
+    [signup.rejected]: (state, action) => {
       state.isLoggedIn = false;
     },
-    [login.fulfilled]: (state, action) => {
+    [signin.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;
     },
-    [login.rejected]: (state, action) => {
+    [signin.rejected]: (state, action) => {
       state.isLoggedIn = false;
       state.user = null;
     },

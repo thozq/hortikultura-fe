@@ -2,8 +2,16 @@ import { Avatar, Box, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseHeader from 'components/Base/BaseHeader';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { logout } from 'redux/slices/auth';
 
 function DataDiriPetani() {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <>
       <BaseHeader label="Jual Tipe Cabai" to={-1} />
@@ -30,7 +38,9 @@ function DataDiriPetani() {
             <Typography variant="h5">Provinsi</Typography>
             <Typography>Jawa Timur</Typography>
           </Box>
-          <BaseButton shape="exit">Keluar</BaseButton>
+          <BaseButton shape="exit" onClick={handleLogout}>
+            Keluar
+          </BaseButton>
         </Stack>
       </Box>
     </>

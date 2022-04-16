@@ -7,7 +7,7 @@ import { optionsTipeCabai } from 'utils/constants';
 // import { useState } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
-// import { login } from 'redux/slices/auth';
+// import { signin } from 'redux/slices/auth';
 import * as yup from 'yup';
 
 function CatatStokPetani() {
@@ -33,7 +33,7 @@ function CatatStokPetani() {
     alert(JSON.stringify(formValue, null, 2));
     // const { email, password } = formValue;
     // setLoading(true);
-    // dispatch(login({ email, password }))
+    // dispatch(signin({ email, password }))
     //   .unwrap()
     //   .then(() => {
     //     // Notes: perlu diroute berdasarkan role

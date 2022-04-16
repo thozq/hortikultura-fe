@@ -5,12 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { Form, Formik } from 'formik';
 import { clearMessage } from 'redux/slices/message';
-import { login } from 'redux/slices/auth';
-import { useNavigate } from 'react-router-dom';
+import { signin } from 'redux/slices/auth';
+import { Navigate, useNavigate } from 'react-router-dom';
 import FormikController from 'components/Formik/FormikController';
 
 function Masuk() {
   const [loading, setLoading] = useState(false);
+  const { user: currentUser } = useSelector((state) => state.auth);
   const { isLoggedIn } = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
@@ -20,16 +21,9 @@ function Masuk() {
     dispatch(clearMessage());
   }, [dispatch]);
 
-  // Notes: perlu diroute berdasarkan role
-  useEffect(() => {
-    if (isLoggedIn) {
-      return navigate('/petani/beranda');
-    }
-  }, [isLoggedIn]);
-
   const initialValues = {
-    email: 'eve.holt@reqres.in',
-    password: 'cityslicka'
+    email: '',
+    password: ''
   };
   const validationSchema = yup.object({
     email: yup
@@ -38,23 +32,23 @@ function Masuk() {
       .required('Email is required'),
     password: yup
       .string('Enter your password')
-      .min(8, 'Password should be of minimum 8 characters length')
+      .min(6, 'Password should be of minimum 6 characters length')
       .required('Password is required')
   });
   const onSubmit = (formValue) => {
-    // alert(JSON.stringify(formValue, null, 2));
     const { email, password } = formValue;
     setLoading(true);
-    dispatch(login({ email, password }))
+    dispatch(signin({ email, password }))
       .unwrap()
-      .then(() => {
-        // Notes: perlu diroute berdasarkan role
-        navigate('/petani');
-      })
+      .then(() => {})
       .catch(() => {
         setLoading(false);
       });
   };
+
+  if (isLoggedIn) {
+    return <Navigate to={`/${currentUser.access}`} />;
+  }
 
   return (
     <>
@@ -105,7 +99,7 @@ function Masuk() {
       <Box display="flex" flexDirection="column" alignItems="center" gap={1} p={2}>
         <Typography display="inline-block" variant="body2">
           Belum punya akun?
-          <Link href="/daftar"> Daftar!</Link>
+          <Link onClick={() => navigate('/daftar')}> Daftar!</Link>
         </Typography>
         <Link color="black">
           <Typography variant="body2">Lupa password?</Typography>

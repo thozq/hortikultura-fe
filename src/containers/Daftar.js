@@ -3,35 +3,19 @@ import BaseButton from 'components/Base/BaseButton';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { Form, Formik } from 'formik';
-import React, { useEffect, useState } from 'react';
-import { register } from 'redux/slices/auth';
+import React, { useState } from 'react';
+import { signup } from 'redux/slices/auth';
 import { useNavigate } from 'react-router-dom';
 import FormikController from 'components/Formik/FormikController';
-
-const optionsPeran = [
-  {
-    value: 'distributor',
-    label: 'Distributor'
-  },
-  {
-    value: 'agen',
-    label: 'Agen'
-  }
-];
+import { optionsRole } from 'utils/constants';
 
 function Daftar() {
   const [loading, setLoading] = useState(false);
-  const { isLoggedIn } = useSelector((state) => state.auth);
   const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // Notes: perlu diroute berdasarkan role
-  useEffect(() => {
-    if (isLoggedIn) {
-      return navigate('/petani/beranda');
-    }
-  }, [isLoggedIn]);
 
   const initialValues = {};
   const validationSchema = yup.object({
@@ -41,32 +25,27 @@ function Daftar() {
       .required('Email is required'),
     password: yup
       .string('Enter your password')
-      .min(8, 'Password should be of minimum 8 characters length')
+      .min(6, 'Password should be of minimum 6 characters length')
       .required('Password is required')
   });
   const onSubmit = (formValue) => {
     alert(JSON.stringify(formValue, null, 2));
-    const { nama, email, password, repassword, provinsi, kecamatan, kabupaten, alamat, peran } =
-      formValue;
+    const { name, email, password, provinsi, kecamatan, kabupaten, alamat, role } = formValue;
     setLoading(true);
     dispatch(
-      register({
-        nama,
+      signup({
+        name,
         email,
         password,
-        repassword,
         provinsi,
         kecamatan,
         kabupaten,
         alamat,
-        peran
+        role
       })
     )
       .unwrap()
-      .then(() => {
-        // Notes: perlu diroute berdasarkan role
-        navigate('/petani');
-      })
+      .then(() => {})
       .catch(() => {
         setLoading(false);
       });
@@ -94,8 +73,8 @@ function Daftar() {
                 <FormikController
                   control="textfield"
                   fullWidth
-                  id="nama"
-                  name="nama"
+                  id="name"
+                  name="name"
                   label="Nama"
                   formikProps={formikProps}
                 />
@@ -129,7 +108,7 @@ function Daftar() {
                 <FormikController
                   control="textfield"
                   fullWidth
-                  id="privonsi"
+                  id="provinsi"
                   name="provinsi"
                   label="Provinsi"
                   formikProps={formikProps}
@@ -163,9 +142,9 @@ function Daftar() {
                   control="select"
                   fullWidth
                   id="peran"
-                  name="peran"
+                  name="role"
                   label="Peran"
-                  options={optionsPeran}
+                  options={optionsRole}
                   formikProps={formikProps}
                 />
                 <Box mt={2}>
@@ -181,7 +160,7 @@ function Daftar() {
       <Box display="flex" flexDirection="column" alignItems="center" gap={1} p={2}>
         <Typography display="inline-block" variant="body2">
           Sudah punya akun?
-          <Link href="/masuk"> Masuk!</Link>
+          <Link onClick={() => navigate('/masuk')}> Masuk!</Link>
         </Typography>
         <Link color="black">
           <Typography variant="body2">Lupa password?</Typography>

@@ -34,12 +34,7 @@ function StokPetani() {
     <>
       <TheProfileHeader name="Ahmad" role="petani" />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
-        <BaseButton
-          shape="withicon"
-          href="/petani/stok/catat-stok"
-          size="large"
-          variant="outlined"
-          fullWidth>
+        <BaseButton shape="withicon" link="catat-stok" size="large" variant="outlined" fullWidth>
           <Typography variant="h5">Catat Stok</Typography>
         </BaseButton>
         <BaseTabs

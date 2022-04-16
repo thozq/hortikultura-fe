@@ -16,7 +16,7 @@ function BerandaDinas() {
             habitasse ultrices pretium nisi, dis. Magna.
           </Typography>
         </Box>
-        <BaseButton shape="withicon" href="" size="large" variant="outlined" fullWidth>
+        <BaseButton shape="withicon" link="" size="large" variant="outlined" fullWidth>
           <Typography variant="h5">Export Data Cabai</Typography>
           <FileDownloadRounded />
         </BaseButton>

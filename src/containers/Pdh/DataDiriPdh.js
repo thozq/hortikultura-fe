@@ -1,8 +1,15 @@
 import { Avatar, Box, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseHeader from 'components/Base/BaseHeader';
+import { useDispatch } from 'react-redux';
+import { logout } from 'redux/slices/auth';
 
 function DataDiriPdh() {
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <>
       <BaseHeader label="Data Diri" to={-1} />
@@ -29,7 +36,9 @@ function DataDiriPdh() {
             <Typography variant="h5">Provinsi</Typography>
             <Typography>Jawa Timur</Typography>
           </Box>
-          <BaseButton shape="exit">Keluar</BaseButton>
+          <BaseButton shape="exit" onClick={handleLogout}>
+            Keluar
+          </BaseButton>{' '}
         </Stack>
       </Box>
     </>

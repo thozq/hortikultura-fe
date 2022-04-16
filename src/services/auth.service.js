@@ -1,31 +1,38 @@
 import axios from 'axios';
-const API_URL = 'https://reqres.in/api/';
-const register = (username, email, password) => {
-  return axios.post(API_URL + 'signup', {
-    username,
+const API_URL = 'https://backend-cabai.herokuapp.com/api/v1/';
+const signup = (name, email, password, provinsi, kecamatan, kabupaten, alamat, role) => {
+  return axios.post(API_URL + 'auth/signup', {
+    name,
     email,
-    password
+    password,
+    provinsi,
+    kecamatan,
+    kabupaten,
+    alamat,
+    role
   });
 };
-const login = (username, password) => {
+const signin = (email, password) => {
   return axios
-    .post(API_URL + 'login', {
-      username,
+    .post(API_URL + 'auth/signin', {
+      email,
       password
     })
     .then((response) => {
-      if (response.data.accessToken) {
-        localStorage.setItem('user', JSON.stringify(response.data));
+      if (response.data) {
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem('auth-token', response.data.token);
       }
       return response.data;
     });
 };
 const logout = () => {
   localStorage.removeItem('user');
+  localStorage.removeItem('auth-token');
 };
 const authService = {
-  register,
-  login,
+  signup,
+  signin,
   logout
 };
 export default authService;

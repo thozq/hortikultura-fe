@@ -27,7 +27,7 @@ function CatatUsangPedagang() {
     alert(JSON.stringify(formValue, null, 2));
     // const { cabai, tanggal, jumlahDijual, hargaPerKg } = formValue;
     // setLoading(true);
-    // dispatch(login({ email, password }))
+    // dispatch(signin({ email, password }))
     //   .unwrap()
     //   .then(() => {
     //     // Notes: perlu diroute berdasarkan role
