@@ -69,4 +69,22 @@ const CabaiEnum = Object.freeze({
   cabaiRawitMerah: 'Cabai Rawit Merah'
 });
 
-export { optionsTipeCabai, optionsPedagang, optionsRole, CabaiEnum };
+const StatusEnum = Object.freeze({
+  diterima: 'Diterima',
+  diajukan: 'Diajukan',
+  ditolak: 'Ditolak'
+});
+
+const RoleEnum = Object.freeze({
+  petani: 'Petani',
+  agen: 'Agen',
+  distributor: 'Distributor',
+  pengepul: 'Pengepul',
+  pengecer: 'Pengecer',
+  grosir: 'Grosir',
+  pdh: 'PDH',
+  dinasPetanianKota: 'Dinas Pertanian Kota',
+  dinasPertanianKabupaten: 'Dinas Pertanian Kabupaten'
+});
+
+export { optionsTipeCabai, optionsPedagang, optionsRole, CabaiEnum, StatusEnum, RoleEnum };

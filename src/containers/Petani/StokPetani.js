@@ -7,13 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import CardStok from 'components/Page/Petani/CardStok';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDashboardStok } from 'redux/slices/user';
+import { getDashboardStok } from 'redux/slices/stok';
 
 function StokPetani() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  const riwayat = user?.dashboard.riwayat;
+  const { stoks } = useSelector((state) => state.stok);
 
   useEffect(() => {
     dispatch(getDashboardStok());
@@ -79,7 +78,7 @@ function StokPetani() {
               Lihat Semua
             </Typography>
           </Box>
-          {riwayat.map((item, index) => (
+          {stoks?.map((item, index) => (
             <CardStok key={index} item={item} />
           ))}
         </Box>

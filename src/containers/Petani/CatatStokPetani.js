@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
-import { addStok } from 'redux/slices/user';
+import { addStok } from 'redux/slices/stok';
 
 function CatatStokPetani() {
   const [loading, setLoading] = useState(false);

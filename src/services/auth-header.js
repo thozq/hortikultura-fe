@@ -3,9 +3,8 @@ export default function authHeader() {
   const token = localStorage.getItem('auth-token');
 
   if (token) {
-    // return { Authorization: 'Bearer ' + user.token };
     return {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
       Accept: 'application/json',
       Authorization: `Bearer ${token}`
     };

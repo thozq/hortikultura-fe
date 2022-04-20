@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import theme from 'themes/theme';
 
 const BaseCard = (props) => {
-  const { title, link, status = 'Menunggu', children, ...rest } = props;
+  const { title, link, status = 'diajukan', children, ...rest } = props;
 
   const navigate = useNavigate();
 
@@ -17,11 +17,11 @@ const BaseCard = (props) => {
           px={2}
           py={0.5}
           bgcolor={
-            status === 'Menunggu'
+            status === 'diajukan'
               ? theme.palette.secondary.main
-              : status === 'Terjual'
+              : status === 'diterima'
               ? theme.palette.primary.main
-              : status === 'Ditolak'
+              : status === 'ditolak'
               ? theme.palette.red.main
               : theme.palette.secondary.main
           }

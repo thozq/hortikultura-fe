@@ -4,14 +4,14 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getStokById } from 'redux/slices/user';
+import { getStokById } from 'redux/slices/stok';
 import { formatNumber, formatRupiah } from 'utils/Formats';
 import { momentFormat } from 'utils/MomentFormat';
 
 function DetailStokPetani() {
-  const { id } = useParams();
   const dispatch = useDispatch();
-  const { detail } = useSelector((state) => state.user);
+  const { id } = useParams();
+  const { detail } = useSelector((state) => state.stok);
 
   const data = detail[0];
 

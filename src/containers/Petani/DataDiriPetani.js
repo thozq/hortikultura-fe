@@ -2,11 +2,12 @@ import { Avatar, Box, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseHeader from 'components/Base/BaseHeader';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from 'redux/slices/auth';
 
 function DataDiriPetani() {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -20,7 +21,7 @@ function DataDiriPetani() {
           <Avatar>P</Avatar>
           <Box>
             <Typography variant="h5">Nama</Typography>
-            <Typography>Aditya Marwan</Typography>
+            <Typography>{user.name}</Typography>
           </Box>
           <Box>
             <Typography variant="h5">Peran</Typography>

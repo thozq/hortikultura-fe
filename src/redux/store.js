@@ -13,7 +13,8 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import authReducer from './slices/auth';
 import messageReducer from './slices/message';
-import userReducer from './slices/user';
+import stokSlice from './slices/stok';
+import transaksiSlice from './slices/transaksi';
 
 const persistConfig = {
   key: 'root',
@@ -23,14 +24,15 @@ const persistConfig = {
 const reducer = combineReducers({
   auth: authReducer,
   message: messageReducer,
-  user: userReducer
+  stok: stokSlice,
+  transaksi: transaksiSlice
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
 // const reducer = {
 //   auth: authReducer,
 //   message: messageReducer,
-//   user: userReducer
+//   stok: stokSlice
 // };
 
 const store = configureStore({

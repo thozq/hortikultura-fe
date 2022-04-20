@@ -20,7 +20,7 @@ const TheBottomNavigation = (props) => {
             return 0;
           case '/petani/stok':
             return 1;
-          case '/petani/penjualan':
+          case '/petani/transaksi':
             return 2;
           case '/petani/riwayat':
             return 3;
@@ -33,7 +33,7 @@ const TheBottomNavigation = (props) => {
             return 0;
           case '/pedagang/stok':
             return 1;
-          case '/pedagang/penjualan':
+          case '/pedagang/transaksi':
             return 2;
           case '/pedagang/usang':
             return 3;
@@ -53,9 +53,9 @@ const TheBottomNavigation = (props) => {
     { label: 'Beranda', icon: <HomeRounded />, link: () => navigate('/petani/beranda') },
     { label: 'Stok', icon: <WarehouseRounded />, link: () => navigate('/petani/stok') },
     {
-      label: 'Penjualan',
+      label: 'Transaksi',
       icon: <IconPenjualan />,
-      link: () => navigate('/petani/penjualan')
+      link: () => navigate('/petani/transaksi')
     },
     { label: 'Riwayat', icon: <RestoreIcon />, link: () => navigate('/petani/riwayat') }
   ];
@@ -72,9 +72,9 @@ const TheBottomNavigation = (props) => {
       link: () => navigate('/pedagang/stok')
     },
     {
-      label: 'Penjualan',
+      label: 'Transaksi',
       icon: <IconPenjualan />,
-      link: () => navigate('/pedagang/penjualan')
+      link: () => navigate('/pedagang/transaksi')
     },
     {
       label: 'Usang',

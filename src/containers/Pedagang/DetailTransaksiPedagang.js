@@ -1,6 +1,9 @@
 import { Box, Divider, Stack, Typography } from '@mui/material';
 import BaseHeader from 'components/Base/BaseHeader';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getTransaksiById } from 'redux/slices/transaksi';
 
 const data = {
   pembeli: {
@@ -15,7 +18,17 @@ const data = {
   status: 'Menunggu Konfirmasi'
 };
 
-function DetailJualBeliPedagang() {
+function DetailTransaksiPedagang() {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  const { detail } = useSelector((state) => state.transaksi);
+  console.log('ini detail', detail);
+
+  useEffect(() => {
+    dispatch(getTransaksiById(id));
+  }, [dispatch]);
+
   return (
     <>
       <BaseHeader label={`${data.tipe} - ${data.tanggal}`} to={-1} />
@@ -51,4 +64,4 @@ function DetailJualBeliPedagang() {
   );
 }
 
-export default DetailJualBeliPedagang;
+export default DetailTransaksiPedagang;

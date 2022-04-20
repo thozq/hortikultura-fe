@@ -1,54 +1,11 @@
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import BaseTabs from 'components/Base/BaseTabs';
 import TheProfileHeader from 'components/Base/TheProfileHeader';
 import TheBottomNavigation from 'components/Base/TheBottomNavigation';
-import { useNavigate } from 'react-router-dom';
-import CardJualBeli from 'components/Page/Pedagang/CardJualBeli';
-
-const dataKonfirmasi = [
-  {
-    id: 0,
-    status: 'Menunggu',
-    jenisCabai: 'Cabai Merah Keriting',
-    date: '13 Maret 2022',
-    jumlah: 85,
-    hargaJual: 45000,
-    penjual: { name: 'Kevin Saputra', type: 'Petani' }
-  },
-  {
-    id: 1,
-    status: 'Menunggu',
-    jenisCabai: 'Cabai Merah Keriting',
-    date: '13 Maret 2022',
-    jumlah: 85,
-    hargaJual: 45000,
-    penjual: { name: 'Kevin Saputra', type: 'Petani' }
-  }
-];
-
-const dataDaftar = [
-  {
-    id: 0,
-    status: 'Terjual',
-    jenisCabai: 'Cabai Merah Keriting',
-    date: '13 Maret 2022',
-    jumlah: 85,
-    hargaJual: 45000,
-    penjual: { name: 'Kevin Saputra', type: 'Petani' }
-  },
-  {
-    id: 1,
-    status: 'Ditolak',
-    jenisCabai: 'Cabai Merah Keriting',
-    date: '13 Maret 2022',
-    jumlah: 85,
-    hargaJual: 45000,
-    penjual: { name: 'Kevin Saputra', type: 'Petani' }
-  }
-];
+// import { useNavigate } from 'react-router-dom';
 
 function StokPedagang() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <>
@@ -100,34 +57,6 @@ function StokPedagang() {
             </Box>
           </Box>
         </BaseTabs>
-        <Stack gap={2}>
-          <Stack gap={1}>
-            <Typography variant="h5">Konfirmasi Pembelian</Typography>
-            <Stack direction="row" justifyContent="space-between">
-              <Typography>Menunggu pembeli menerima penjualan anda</Typography>
-              <Typography variant="h6" onClick={() => navigate('/pedagang/riwayat')}>
-                Lihat Semua
-              </Typography>
-            </Stack>
-          </Stack>
-          {dataKonfirmasi.map((item, index) => (
-            <CardJualBeli key={index} item={item} confirm link={`detail-pembelian/${item.id}`} />
-          ))}
-        </Stack>
-        <Stack gap={2}>
-          <Stack gap={1}>
-            <Typography variant="h5">Daftar Pembelian</Typography>
-            <Stack direction="row" justifyContent="space-between">
-              <Typography>Daftar penjualan yang anda sudah lakukan</Typography>
-              <Typography variant="h6" onClick={() => navigate('/pedagang/riwayat')}>
-                Lihat Semua
-              </Typography>
-            </Stack>
-          </Stack>
-          {dataDaftar.map((item, index) => (
-            <CardJualBeli key={index} item={item} link={`detail-pembelian/${item.id}`} />
-          ))}
-        </Stack>
       </Box>
       <TheBottomNavigation role="pedagang" />
     </>

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const BaseHeader = (props) => {
   const { label, to } = props;
 
-  const { status } = useSelector((state) => state.user);
+  const { status } = useSelector((state) => state.stok);
 
   return (
     <>

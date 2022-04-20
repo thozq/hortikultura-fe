@@ -12,7 +12,7 @@ const data = {
   totalPendapatan: 4480000
 };
 
-function DetailPenjualanPetani() {
+function DetailTransaksiPetani() {
   return (
     <>
       <BaseHeader label="Blanko - 28 Februari 2022" to="/petani/penjualan" />
@@ -47,4 +47,4 @@ function DetailPenjualanPetani() {
   );
 }
 
-export default DetailPenjualanPetani;
+export default DetailTransaksiPetani;

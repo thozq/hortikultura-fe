@@ -1,28 +1,28 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import UserService from 'services/user.service';
+import StokService from 'services/stok.service';
 
-export const getDashboardStok = createAsyncThunk('user/getDashboardStok', async () => {
-  const response = await UserService.getDashboardStok();
+export const getDashboardStok = createAsyncThunk('stok/getDashboardStok', async () => {
+  const response = await StokService.getDashboardStok();
   return response.data;
 });
 
-export const addStok = createAsyncThunk('user/addStok', async (data) => {
-  const response = await UserService.addStok(data);
+export const addStok = createAsyncThunk('stok/addStok', async (data) => {
+  const response = await StokService.addStok(data);
   return response.data;
 });
 
-export const getAllStok = createAsyncThunk('user/getAllStok', async () => {
-  const response = await UserService.getAllStok();
+export const getAllStok = createAsyncThunk('stok/getAllStok', async () => {
+  const response = await StokService.getAllStok();
   return response.data.data;
 });
 
-export const getStokById = createAsyncThunk('user/getStokById', async (id) => {
-  const response = await UserService.getStokById(id);
+export const getStokById = createAsyncThunk('stok/getStokById', async (id) => {
+  const response = await StokService.getStokById(id);
   return response.data.data;
 });
 
-const userSlice = createSlice({
-  name: 'user',
+const stokSlice = createSlice({
+  name: 'stok',
   initialState: { dashboard: null, status: null, stoks: null, detail: null },
   extraReducers: {
     [getDashboardStok.pending]: (state) => {
@@ -67,4 +67,4 @@ const userSlice = createSlice({
   }
 });
 
-export default userSlice.reducer;
+export default stokSlice.reducer;

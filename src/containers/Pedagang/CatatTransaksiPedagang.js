@@ -16,7 +16,7 @@ const optionsNama = [
   { id: 1, label: 'Temon' }
 ];
 
-function CatatPenjualanPedagang() {
+function CatatTransaksiPedagang() {
   // const [loading, setLoading] = useState(false);
   // const dispatch = useDispatch();
   // const navigate = useNavigate();
@@ -54,7 +54,7 @@ function CatatPenjualanPedagang() {
 
   return (
     <>
-      <BaseHeader label="Catat Penjualan Cabai" to="/pedagang/penjualan" />
+      <BaseHeader label="Catat Transaksi Cabai" to="/pedagang/transaksi" />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formikProps) => {
           console.log(formikProps);
@@ -120,4 +120,4 @@ function CatatPenjualanPedagang() {
   );
 }
 
-export default CatatPenjualanPedagang;
+export default CatatTransaksiPedagang;

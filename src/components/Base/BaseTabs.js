@@ -31,7 +31,7 @@ const Tab = styled(TabUnstyled)`
   background-color: transparent;
   width: 100%;
   padding: 6px 12px;
-  margin: 6px 6px;
+  // margin: 6px 6px;
   border: none;
   border-radius: 8px;
   display: flex;

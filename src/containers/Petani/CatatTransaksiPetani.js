@@ -10,36 +10,49 @@ import { Form, Formik } from 'formik';
 // import { signin } from 'redux/slices/auth';
 import * as yup from 'yup';
 import { optionsTipeCabai, optionsPedagang } from 'utils/constants';
+import { useEffect } from 'react';
+import userService from 'services/user.service';
+import { useState } from 'react';
 
 const optionsNama = [
   { id: 0, label: 'Abdel' },
   { id: 1, label: 'Temon' }
 ];
 
-function CatatPenjualanPetani() {
+function CatatTransaksiPetani() {
   // const [loading, setLoading] = useState(false);
   // const dispatch = useDispatch();
   // const navigate = useNavigate();
+  const [tipePedagang, setTipePedagang] = useState('');
+  console.log('tipepedagang', tipePedagang);
+  useEffect(() => {
+    userService
+      .getPedagangByRole(tipePedagang)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => error);
+  }, [tipePedagang]);
 
   const initialValues = {
-    cabai: '',
+    tipeCabai: '',
     tanggal: null,
     jumlahDijual: '',
-    hargaPerKg: '',
+    hargaJual: '',
     pedagang: '',
     nama: ''
   };
   const validationSchema = yup.object({
-    cabai: yup.string('Masukkan tipe cabai').required('Tipe cabai diperlukan'),
+    tipeCabai: yup.string('Masukkan tipe cabai').required('Tipe cabai diperlukan'),
     tanggal: yup.date('Masukkan tanggal transaksi').required('Tanggal transaksi diperlukan'),
     jumlahDijual: yup.number('Masukkan jumlah dijual').required('Jumlah dijual diperlukan'),
-    hargaPerKg: yup.number('Masukkan harga per kg').required('Harga per kg diperlukan'),
-    pedagang: yup.string('Tipe pedagang dijual').required('Tipe pedagang diperlukan'),
-    nama: yup.string('Masukkan nama pedagang').required('Nama pedagang diperlukan')
+    hargaJual: yup.number('Masukkan harga per kg').required('Harga per kg diperlukan'),
+    tipePedagang: yup.string('Tipe pedagang dijual').required('Tipe pedagang diperlukan'),
+    pembeli: yup.string('Masukkan nama pedagang').required('Nama pedagang diperlukan')
   });
-  const onSubmit = (formValue) => {
-    alert(JSON.stringify(formValue, null, 2));
-    // const { cabai, tanggal, jumlahDijual, hargaPerKg, pedagang, nama } = formValue;
+  const onSubmit = () => {
+    // const { tipePedagang } = formValue;
+    // alert(JSON.stringify(formValue, null, 2));
     // setLoading(true);
     // dispatch(signin({ email, password }))
     //   .unwrap()
@@ -57,7 +70,8 @@ function CatatPenjualanPetani() {
       <BaseHeader label="Catat Penjualan Cabai" to="/petani/penjualan" />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formikProps) => {
-          console.log(formikProps);
+          setTipePedagang(formikProps.values.tipePedagang);
+          console.log('ini formikprops', formikProps);
           return (
             <Form>
               <Stack gap={2} p={2}>
@@ -65,7 +79,7 @@ function CatatPenjualanPetani() {
                 <FormikController
                   control="select"
                   label="Tipe Cabai"
-                  name="cabai"
+                  name="tipeCabai"
                   options={optionsTipeCabai}
                   formikProps={formikProps}
                 />
@@ -86,7 +100,7 @@ function CatatPenjualanPetani() {
                 <FormikController
                   control="textfield"
                   label="Harga Per kg (Rp)"
-                  name="hargaPerKg"
+                  name="hargaJual"
                   type="number"
                   formikProps={formikProps}
                 />
@@ -94,14 +108,14 @@ function CatatPenjualanPetani() {
                 <FormikController
                   control="select"
                   label="Tipe Pedagang"
-                  name="pedagang"
+                  name="tipePedagang"
                   options={optionsPedagang}
                   formikProps={formikProps}
                 />
                 <FormikController
                   control="autocomplete"
                   label="Nama Pedagang"
-                  name="nama"
+                  name="pembeli"
                   options={optionsNama}
                   formikProps={formikProps}
                 />
@@ -120,4 +134,4 @@ function CatatPenjualanPetani() {
   );
 }
 
-export default CatatPenjualanPetani;
+export default CatatTransaksiPetani;
