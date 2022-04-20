@@ -4,44 +4,47 @@ import BaseHeader from 'components/Base/BaseHeader';
 import FormikController from 'components/Formik/FormikController';
 import { Form, Formik } from 'formik';
 import { optionsTipeCabai } from 'utils/constants';
-// import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
-// import { signin } from 'redux/slices/auth';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
+import { addStok } from 'redux/slices/user';
 
 function CatatStokPetani() {
-  // const [loading, setLoading] = useState(false);
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const initialValues = {
-    email: 'eve.holt@reqres.in',
-    password: 'cityslicka'
+    tipeCabai: '',
+    totalHasilPanen: '',
+    hasilPanenSukses: '',
+    hasilPanenGagal: '',
+    hargaJual: ''
   };
   const validationSchema = yup.object({
-    email: yup
-      .string('Enter your email')
-      .email('Enter a valid email')
-      .required('Email is required'),
-    password: yup
-      .string('Enter your password')
-      .min(8, 'Password should be of minimum 8 characters length')
-      .required('Password is required')
+    tipeCabai: yup.string('Masukkan Tipe Cabai').required('Tipe Cabai Wajib diisi'),
+    totalHasilPanen: yup
+      .number('Masukkan Total Hasil Panen')
+      .required('Total Hasil Panen Wajib diisi'),
+    hasilPanenSukses: yup
+      .number('Masukkan Hasil Panen Sukses')
+      .required('Hasil Panen Sukses Wajib diisi'),
+    hasilPanenGagal: yup
+      .number('Masukkan Hasil Panen Gagal')
+      .required('Hasil Panen Gagal Wajib diisi'),
+    hargaJual: yup.number('Masukkan Harga Jual').required('Harga Jual Wajib diisi')
   });
   const onSubmit = (formValue) => {
-    alert(JSON.stringify(formValue, null, 2));
-    // const { email, password } = formValue;
-    // setLoading(true);
-    // dispatch(signin({ email, password }))
-    //   .unwrap()
-    //   .then(() => {
-    //     // Notes: perlu diroute berdasarkan role
-    //     navigate('/petani');
-    //   })
-    //   .catch(() => {
-    //     setLoading(false);
-    //   });
+    const { tipeCabai, totalHasilPanen, hasilPanenSukses, hasilPanenGagal, hargaJual } = formValue;
+    setLoading(true);
+    dispatch(addStok({ tipeCabai, totalHasilPanen, hasilPanenSukses, hasilPanenGagal, hargaJual }))
+      .unwrap()
+      .then(() => {
+        navigate('/petani/stok');
+        setLoading(false);
+      })
+      .catch(() => {});
   };
 
   return (
@@ -53,16 +56,16 @@ function CatatStokPetani() {
             <Stack gap={2} p={2}>
               <FormikController
                 control="select"
-                id="tipe"
-                name="tipe"
+                id="tipeCabai"
+                name="tipeCabai"
                 label="Tipe Cabai"
                 options={optionsTipeCabai}
                 formikProps={formikProps}
               />
               <FormikController
                 control="textfield"
-                id="totalPanen"
-                name="totalPanen"
+                id="totalHasilPanen"
+                name="totalHasilPanen"
                 label="Total Hasil Panen (kg)"
                 type="number"
                 formikProps={formikProps}
@@ -70,8 +73,8 @@ function CatatStokPetani() {
               <FormikController
                 control="textfield"
                 fullWidth
-                id="panenSukses"
-                name="panenSukses"
+                id="hasilPanenSukses"
+                name="hasilPanenSukses"
                 label="Hasil Panen Sukses (kg)"
                 type="number"
                 formikProps={formikProps}
@@ -79,8 +82,8 @@ function CatatStokPetani() {
               <FormikController
                 control="textfield"
                 fullWidth
-                id="panenGagal"
-                name="panenGagal"
+                id="hasilPanenGagal"
+                name="hasilPanenGagal"
                 label="Hasil Panen Gagal (kg)"
                 type="number"
                 formikProps={formikProps}
@@ -95,9 +98,8 @@ function CatatStokPetani() {
                 formikProps={formikProps}
               />
               <Box mt={2}>
-                <BaseButton fullWidth type="submit">
-                  {/* {loading ? <span>Memuat...</span> : 'Masuk'} */}
-                  Masuk
+                <BaseButton fullWidth type="submit" disabled={loading}>
+                  {loading ? <span>Memuat...</span> : 'Kirim'}
                 </BaseButton>
               </Box>
             </Stack>

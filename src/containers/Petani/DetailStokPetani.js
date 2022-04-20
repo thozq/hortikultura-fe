@@ -1,42 +1,48 @@
-import { Box, Divider, Stack, Typography } from '@mui/material';
+import { Divider, Stack, Typography } from '@mui/material';
 import BaseHeader from 'components/Base/BaseHeader';
 import React from 'react';
-
-const data = {
-  id: 0,
-  tipe: 'Cabai Merah Besar',
-  totalPanen: 120,
-  panenSukses: 100,
-  panenGagal: 100,
-  hargaJual: 45000,
-  date: '12 September 2022'
-};
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getStokById } from 'redux/slices/user';
+import { formatNumber, formatRupiah } from 'utils/Formats';
+import { momentFormat } from 'utils/MomentFormat';
 
 function DetailStokPetani() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { detail } = useSelector((state) => state.user);
+
+  const data = detail[0];
+
+  useEffect(() => {
+    dispatch(getStokById(id));
+  }, [dispatch]);
+
   return (
     <>
-      <BaseHeader label="Blanko - 28 Februari 2022" to={-1} />
-      <Stack gap={3} px={2}>
-        <Box>
+      <BaseHeader label={`Stok - ${momentFormat(detail.createdAt)}`} to={-1} />
+      <Stack gap={3} pt={2} px={2}>
+        <Stack gap={1}>
           <Typography variant="h5">Total Hasil Panen</Typography>
-          <Typography variant="body2">{data.totalPanen}</Typography>
+          <Typography variant="body2">{formatNumber(data.totalHasilPanen)}</Typography>
           <Divider />
-        </Box>
-        <Box>
+        </Stack>
+        <Stack gap={1}>
           <Typography variant="h5">Hasil Panen Sukses</Typography>
-          <Typography variant="body2">{data.panenSukses}</Typography>
+          <Typography variant="body2">{formatNumber(data.hasilPanenSukses)}</Typography>
           <Divider />
-        </Box>
-        <Box>
+        </Stack>
+        <Stack gap={1}>
           <Typography variant="h5">Hasil Panen Gagal</Typography>
-          <Typography variant="body2">{data.panenGagal}</Typography>
+          <Typography variant="body2">{formatNumber(data.hasilPanenGagal)}</Typography>
           <Divider />
-        </Box>
-        <Box>
+        </Stack>
+        <Stack gap={1}>
           <Typography variant="h5">Harga jual per Kg (Rp/Kg)</Typography>
-          <Typography variant="body2">{data.hargaJual}</Typography>
+          <Typography variant="body2">{formatRupiah(data.hargaJual)}</Typography>
           <Divider />
-        </Box>
+        </Stack>
       </Stack>
     </>
   );

@@ -1,6 +1,7 @@
 import { Stack, Typography } from '@mui/material';
 import BaseCard from 'components/Base/BaseCard';
 import React from 'react';
+import { momentFormat } from 'utils/MomentFormat';
 
 const CardRiwayatStok = (props) => {
   const { item } = props;
@@ -8,14 +9,14 @@ const CardRiwayatStok = (props) => {
   return (
     <BaseCard>
       <Stack gap={1}>
-        <Typography variant="h6">{item.date}</Typography>
+        <Typography variant="h6">{momentFormat(item.createdAt)}</Typography>
         <Stack direction="row" justifyContent="space-between">
           <Typography>Tipe Cabai</Typography>
-          <Typography variant="h6">{item.tipe}</Typography>
+          <Typography variant="h6">{item.tipeCabai}</Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
           <Typography>Total Hasil Panen (kg)</Typography>
-          <Typography variant="h6">{item.totalPanen}</Typography>
+          <Typography variant="h6">{item.totalHasilPanen}</Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
           <Typography>Harga Panen Sukses (kg)</Typography>
@@ -23,7 +24,7 @@ const CardRiwayatStok = (props) => {
         </Stack>
         <Stack direction="row" justifyContent="space-between">
           <Typography>Harga Panen Gagal (kg)</Typography>
-          <Typography variant="h6">{item.panenGagal}</Typography>
+          <Typography variant="h6">{item.hasilPanenGagal}</Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
           <Typography>Harga jual per kg (Rp)</Typography>

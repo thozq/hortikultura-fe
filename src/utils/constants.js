@@ -1,14 +1,14 @@
 const optionsTipeCabai = [
   {
-    value: 'CMB',
+    value: 'cabaiMerahBesar',
     label: 'Cabai Merah Besar'
   },
   {
-    value: 'CMK',
+    value: 'cabaiMerahKeriting',
     label: 'Cabai Merah Keriting'
   },
   {
-    value: 'CRM',
+    value: 'cabaiRawitMerah',
     label: 'Cabai Rawit Merah'
   }
 ];
@@ -63,4 +63,10 @@ const optionsRole = [
   }
 ];
 
-export { optionsTipeCabai, optionsPedagang, optionsRole };
+const CabaiEnum = Object.freeze({
+  cabaiMerahBesar: 'Cabai Merah Besar',
+  cabaiMerahKeriting: 'Cabai Merah Keriting',
+  cabaiRawitMerah: 'Cabai Rawit Merah'
+});
+
+export { optionsTipeCabai, optionsPedagang, optionsRole, CabaiEnum };

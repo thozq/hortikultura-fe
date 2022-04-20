@@ -5,30 +5,19 @@ import TheProfileHeader from 'components/Base/TheProfileHeader';
 import TheBottomNavigation from 'components/Base/TheBottomNavigation';
 import { useNavigate } from 'react-router-dom';
 import CardStok from 'components/Page/Petani/CardStok';
-
-const dataStok = [
-  {
-    id: 0,
-    tipe: 'Cabai Merah Besar',
-    totalPanen: 120,
-    panenSukses: 100,
-    panenGagal: 100,
-    hargaJual: 45000,
-    date: '12 September 2022'
-  },
-  {
-    id: 1,
-    tipe: 'Cabai Merah Besar',
-    totalPanen: 120,
-    panenSukses: 100,
-    panenGagal: 100,
-    hargaJual: 45000,
-    date: '12 September 2022'
-  }
-];
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDashboardStok } from 'redux/slices/user';
 
 function StokPetani() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const riwayat = user?.dashboard.riwayat;
+
+  useEffect(() => {
+    dispatch(getDashboardStok());
+  }, [dispatch]);
 
   return (
     <>
@@ -90,7 +79,7 @@ function StokPetani() {
               Lihat Semua
             </Typography>
           </Box>
-          {dataStok.map((item, index) => (
+          {riwayat.map((item, index) => (
             <CardStok key={index} item={item} />
           ))}
         </Box>

@@ -6,6 +6,9 @@ import CardRiwayatBlanko from 'components/Page/Petani/CardRiwayatBlanko';
 import CardRiwayatPenjualan from 'components/Page/Petani/CardRiwayatPenjualan';
 import CardRiwayatStok from 'components/Page/Petani/CardRiwayatStok';
 import IconNotFound from 'public/images/icons/IconNotFound';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllStok } from 'redux/slices/user';
 
 // import iconNotFound from 'public/images/icons/icon_riwayat_notfound.svg';
 
@@ -75,28 +78,16 @@ const riwayatBlanko = [
   }
 ];
 
-const riwayatStok = [
-  {
-    id: 0,
-    tipe: 'Cabai Merah Besar',
-    totalPanen: 120,
-    panenSukses: 100,
-    panenGagal: 100,
-    hargaJual: 45000,
-    date: '12 September 2022'
-  },
-  {
-    id: 1,
-    tipe: 'Cabai Merah Besar',
-    totalPanen: 120,
-    panenSukses: 100,
-    panenGagal: 100,
-    hargaJual: 45000,
-    date: '12 September 2022'
-  }
-];
-
 function RiwayatPetani() {
+  const dispatch = useDispatch();
+
+  const { stoks } = useSelector((state) => state.user);
+  console.log('ini stoks', stoks);
+
+  useEffect(() => {
+    dispatch(getAllStok());
+  }, [dispatch]);
+
   return (
     <>
       <TheProfileHeader name="Ahmad" role="petani" />
@@ -129,8 +120,8 @@ function RiwayatPetani() {
           </Stack>
 
           <Stack gap={1.5}>
-            {riwayatStok ? (
-              riwayatStok.map((item, index) => <CardRiwayatStok key={index} item={item} />)
+            {stoks ? (
+              stoks.map((item, index) => <CardRiwayatStok key={index} item={item} />)
             ) : (
               <Box>
                 <IconNotFound />
