@@ -29,11 +29,6 @@ const reducer = combineReducers({
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
-// const reducer = {
-//   auth: authReducer,
-//   message: messageReducer,
-//   stok: stokSlice
-// };
 
 const store = configureStore({
   reducer: persistedReducer,
@@ -46,4 +41,5 @@ const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
 export default store;

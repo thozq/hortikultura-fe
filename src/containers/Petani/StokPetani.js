@@ -12,7 +12,9 @@ import { getDashboardStok } from 'redux/slices/stok';
 function StokPetani() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { stoks } = useSelector((state) => state.stok);
+  const {
+    dashboard: { riwayat }
+  } = useSelector((state) => state.stok);
 
   useEffect(() => {
     dispatch(getDashboardStok());
@@ -78,7 +80,7 @@ function StokPetani() {
               Lihat Semua
             </Typography>
           </Box>
-          {stoks?.map((item, index) => (
+          {riwayat?.map((item, index) => (
             <CardStok key={index} item={item} />
           ))}
         </Box>

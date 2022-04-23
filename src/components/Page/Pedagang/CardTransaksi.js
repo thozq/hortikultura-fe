@@ -1,59 +1,105 @@
 import { Box, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseCard from 'components/Base/BaseCard';
-import React from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  acceptTransaksi,
+  declineTransaksi,
+  deleteTransaksi,
+  getAllTransaksi
+} from 'redux/slices/transaksi';
 import { CabaiEnum, RoleEnum, StatusEnum } from 'utils/constants';
 import { formatNumber, formatRupiah } from 'utils/Formats';
 import { momentFormat } from 'utils/MomentFormat';
 
 const CardTransaksi = (props) => {
-  const { item, confirm, wait } = props;
+  const { item, type, button } = props;
+
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    try {
+      dispatch(deleteTransaksi(item._id));
+    } finally {
+      dispatch(getAllTransaksi());
+    }
+  };
+
+  const handleDecline = () => {
+    try {
+      dispatch(declineTransaksi(item._id));
+    } finally {
+      dispatch(getAllTransaksi());
+    }
+  };
+
+  const handleAccept = () => {
+    try {
+      dispatch(acceptTransaksi(item._id));
+    } finally {
+      dispatch(getAllTransaksi());
+    }
+  };
 
   return (
-    <BaseCard
-      title={`Status: ${StatusEnum[item.statusPenjualan]} - ${momentFormat(item.createdAt)}`}
-      status={item.statusPenjualan}
-      link={`detail-transaksi/${item._id}`}>
-      <Stack gap={1}>
-        <Stack direction="row" justifyContent="space-between">
-          <Typography>Dijual Kepada</Typography>
-          <Typography variant="h6">
-            {item.pembeli.name} ({RoleEnum[item.pembeli.role]})
-          </Typography>
+    <>
+      <BaseCard
+        title={`Status: ${StatusEnum[item.statusTransaksi]} - ${momentFormat(item.createdAt)}`}
+        link={`detail-transaksi/${type}/${item._id}`}
+        status={item.statusTransaksi}>
+        <Stack gap={1}>
+          {type === 'diajukan' && (
+            <Stack direction="row" alignItems="center" justifyContent="space-between">
+              <Typography>Dijual Kepada</Typography>
+              <Typography variant="h6">
+                {item.pembeli.name} ({RoleEnum[item.pembeli.role]})
+              </Typography>
+            </Stack>
+          )}
+          {type === 'konfirmasi' && (
+            <Stack direction="row" alignItems="center" justifyContent="space-between">
+              <Typography>Dibeli Dari</Typography>
+              <Typography variant="h6">
+                {item.penjual.name} ({RoleEnum[item.penjual.role]})
+              </Typography>
+            </Stack>
+          )}
+          <Stack direction="row" justifyContent="space-between">
+            <Typography>Tipe Cabai</Typography>
+            <Typography variant="h6">{CabaiEnum[item.tipeCabai]}</Typography>
+          </Stack>
+          <Stack direction="row" justifyContent="space-between">
+            <Typography>Jumlah Dijual</Typography>
+            <Typography variant="h6">{formatNumber(item.jumlahDijual)}</Typography>
+          </Stack>
+          <Stack direction="row" alignItems="center" justifyContent="space-between">
+            <Typography>Harga jual Per kg</Typography>
+            <Typography variant="h6">{formatRupiah(item.hargaJual)}</Typography>
+          </Stack>
+          {button && (
+            <Box display="flex" flexDirection="row" alignItems="center" gap={2} mt={1}>
+              {button === 'diajukan' && (
+                <>
+                  <BaseButton shape="error" variant="outlined" fullWidth onClick={handleDelete}>
+                    Batal
+                  </BaseButton>
+                </>
+              )}
+              {button === 'konfirmasi' && (
+                <>
+                  <BaseButton shape="error" variant="outlined" fullWidth onClick={handleDecline}>
+                    Tolak
+                  </BaseButton>
+                  <BaseButton fullWidth onClick={handleAccept}>
+                    Terima
+                  </BaseButton>
+                </>
+              )}
+            </Box>
+          )}
         </Stack>
-        <Stack direction="row" justifyContent="space-between">
-          <Typography>Tipe Cabai</Typography>
-          <Typography variant="h6">{CabaiEnum[item.tipeCabai]}</Typography>
-        </Stack>
-        <Stack direction="row" justifyContent="space-between">
-          <Typography>Jumlah Dijual</Typography>
-          <Typography variant="h6">{formatNumber(item.jumlahDijual)}</Typography>
-        </Stack>
-        <Stack direction="row" justifyContent="space-between">
-          <Typography>Harga Jual Per kg</Typography>
-          <Typography variant="h6">{formatRupiah(item.hargaJual)}</Typography>
-        </Stack>
-        {confirm && wait && (
-          <Box display="flex" flexDirection="row" alignItems="center" gap={2} mt={1}>
-            {confirm && (
-              <>
-                <BaseButton shape="error" variant="outlined" fullWidth>
-                  Batal
-                </BaseButton>
-                <BaseButton fullWidth>Terima</BaseButton>
-              </>
-            )}
-            {wait && (
-              <>
-                <BaseButton shape="error" variant="outlined" fullWidth>
-                  Batal
-                </BaseButton>
-              </>
-            )}
-          </Box>
-        )}
-      </Stack>
-    </BaseCard>
+      </BaseCard>
+    </>
   );
 };
 

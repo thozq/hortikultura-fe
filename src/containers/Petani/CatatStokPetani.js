@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseHeader from 'components/Base/BaseHeader';
 import FormikController from 'components/Formik/FormikController';
@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
+import { today } from 'utils/MomentFormat';
 import { addStok } from 'redux/slices/stok';
 
 function CatatStokPetani() {
@@ -17,6 +18,7 @@ function CatatStokPetani() {
 
   const initialValues = {
     tipeCabai: '',
+    tanggalPencatatan: today,
     totalHasilPanen: '',
     hasilPanenSukses: '',
     hasilPanenGagal: '',
@@ -24,6 +26,9 @@ function CatatStokPetani() {
   };
   const validationSchema = yup.object({
     tipeCabai: yup.string('Masukkan Tipe Cabai').required('Tipe Cabai Wajib diisi'),
+    tanggalPencatatan: yup
+      .date('Masukkan tanggal pencatatan')
+      .required('Tanggal pencatatan diperlukan'),
     totalHasilPanen: yup
       .number('Masukkan Total Hasil Panen')
       .required('Total Hasil Panen Wajib diisi'),
@@ -36,12 +41,19 @@ function CatatStokPetani() {
     hargaJual: yup.number('Masukkan Harga Jual').required('Harga Jual Wajib diisi')
   });
   const onSubmit = (formValue) => {
+    console.log(formValue);
     const { tipeCabai, totalHasilPanen, hasilPanenSukses, hasilPanenGagal, hargaJual } = formValue;
+    const formData = new URLSearchParams();
+    formData.append('tipeCabai', tipeCabai);
+    formData.append('totalHasilPanen', totalHasilPanen);
+    formData.append('hasilPanenSukses', hasilPanenSukses);
+    formData.append('hasilPanenGagal', hasilPanenGagal);
+    formData.append('hargaJual', hargaJual);
     setLoading(true);
-    dispatch(addStok({ tipeCabai, totalHasilPanen, hasilPanenSukses, hasilPanenGagal, hargaJual }))
+    dispatch(addStok(formData))
       .unwrap()
       .then(() => {
-        navigate('/petani/stok');
+        navigate(-1);
         setLoading(false);
       })
       .catch(() => {});
@@ -49,62 +61,71 @@ function CatatStokPetani() {
 
   return (
     <>
-      <BaseHeader label="Catat Stok" to="/petani/stok" />
+      <BaseHeader label="Catat Stok Cabai" to={-1} />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-        {(formikProps) => (
-          <Form>
-            <Stack gap={2} p={2}>
-              <FormikController
-                control="select"
-                id="tipeCabai"
-                name="tipeCabai"
-                label="Tipe Cabai"
-                options={optionsTipeCabai}
-                formikProps={formikProps}
-              />
-              <FormikController
-                control="textfield"
-                id="totalHasilPanen"
-                name="totalHasilPanen"
-                label="Total Hasil Panen (kg)"
-                type="number"
-                formikProps={formikProps}
-              />
-              <FormikController
-                control="textfield"
-                fullWidth
-                id="hasilPanenSukses"
-                name="hasilPanenSukses"
-                label="Hasil Panen Sukses (kg)"
-                type="number"
-                formikProps={formikProps}
-              />
-              <FormikController
-                control="textfield"
-                fullWidth
-                id="hasilPanenGagal"
-                name="hasilPanenGagal"
-                label="Hasil Panen Gagal (kg)"
-                type="number"
-                formikProps={formikProps}
-              />
-              <FormikController
-                control="textfield"
-                fullWidth
-                id="hargaJual"
-                name="hargaJual"
-                label="Hasil jual per kg (Rp)"
-                type="number"
-                formikProps={formikProps}
-              />
-              <Box mt={2}>
-                <BaseButton fullWidth type="submit" disabled={loading}>
-                  {loading ? <span>Memuat...</span> : 'Kirim'}
-                </BaseButton>
-              </Box>
-            </Stack>
-          </Form>
-        )}
+        {(formikProps) => {
+          return (
+            <Form>
+              <Stack gap={2} p={2}>
+                <Typography variant="h5">Pilih TIpe Cabai</Typography>
+                <FormikController
+                  control="select"
+                  id="tipeCabai"
+                  name="tipeCabai"
+                  label="Tipe Cabai"
+                  options={optionsTipeCabai}
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="datepicker"
+                  label="Tanggal Pencatatan"
+                  name="tanggalPencatatan"
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="textfield"
+                  id="totalHasilPanen"
+                  name="totalHasilPanen"
+                  label="Total Hasil Panen (kg)"
+                  type="number"
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="textfield"
+                  fullWidth
+                  id="hasilPanenSukses"
+                  name="hasilPanenSukses"
+                  label="Hasil Panen Sukses (kg)"
+                  type="number"
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="textfield"
+                  fullWidth
+                  id="hasilPanenGagal"
+                  name="hasilPanenGagal"
+                  label="Hasil Panen Gagal (kg)"
+                  type="number"
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="textfield"
+                  fullWidth
+                  id="hargaJual"
+                  name="hargaJual"
+                  label="Hasil jual per kg (Rp)"
+                  type="number"
+                  formikProps={formikProps}
+                />
+                <Box mt={2}>
+                  <BaseButton fullWidth type="submit" disabled={loading}>
+                    {loading ? <span>Memuat...</span> : 'Kirim'}
+                  </BaseButton>
+                </Box>
+              </Stack>
+            </Form>
+          );
+        }}
       </Formik>
     </>
   );

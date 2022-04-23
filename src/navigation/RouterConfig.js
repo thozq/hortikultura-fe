@@ -25,7 +25,7 @@ import UsangPedagang from 'containers/Pedagang/UsangPedagang';
 import RiwayatPedagang from 'containers/Pedagang/RiwayatPedagang';
 import CatatUsangPedagang from 'containers/Pedagang/CatatUsangPedagang';
 import DataDiriPedagang from 'containers/Pedagang/DataDiriPedagang';
-import DetailJualBeliPedagang from 'containers/Pedagang/DetailTransaksiPedagang';
+import DetailTransaksiPedagang from 'containers/Pedagang/DetailTransaksiPedagang';
 
 import IndexDinas from 'containers/Dinas/IndexDinas';
 import BerandaDinas from 'containers/Dinas/BerandaDinas';
@@ -64,14 +64,14 @@ function RouterConfig() {
         <Route path="/pedagang" element={<Navigate to={'beranda'} replace />} />
         <Route path="beranda" element={<BerandaPedagang />} />
         <Route path="stok" element={<StokPedagang />} />
-        <Route path="stok/detail-pembelian/:id" element={<DetailJualBeliPedagang />} />
+        <Route path="stok/detail-pembelian/:id" element={<DetailTransaksiPedagang />} />
         <Route path="transaksi" element={<TransaksiPedagang />} />
         <Route path="transaksi/catat-transaksi" element={<CatatTransaksiPedagang />} />
-        <Route path="transaksi/detail-transaksi/:id" element={<DetailJualBeliPedagang />} />
+        <Route path="transaksi/detail-transaksi/:type/:id" element={<DetailTransaksiPedagang />} />
         <Route path="usang" element={<UsangPedagang />} />
         <Route path="usang/catat-usang" element={<CatatUsangPedagang />} />
         <Route path="riwayat" element={<RiwayatPedagang />} />
-        <Route path="riwayat/detail-transaksi/:id" element={<DetailJualBeliPedagang />} />
+        <Route path="riwayat/detail-transaksi/:id" element={<DetailTransaksiPedagang />} />
         <Route path="data-diri" element={<DataDiriPedagang />} />
       </Route>
 

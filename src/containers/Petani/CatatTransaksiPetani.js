@@ -1,37 +1,36 @@
 import { Box, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseHeader from 'components/Base/BaseHeader';
-// import BaseTextField from 'components/Base/BaseTextField';
 import FormikController from 'components/Formik/FormikController';
 import { Form, Formik } from 'formik';
-// import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
-// import { signin } from 'redux/slices/auth';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { optionsTipeCabai, optionsPedagang } from 'utils/constants';
 import { useEffect } from 'react';
 import userService from 'services/user.service';
 import { useState } from 'react';
-
-const optionsNama = [
-  { id: 0, label: 'Abdel' },
-  { id: 1, label: 'Temon' }
-];
+import { addTransaksi } from 'redux/slices/transaksi';
 
 function CatatTransaksiPetani() {
-  // const [loading, setLoading] = useState(false);
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  const [tipePedagang, setTipePedagang] = useState('');
-  console.log('tipepedagang', tipePedagang);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [tipePedagang, setTipePedagang] = useState('distributor');
+  const [namaPedagang, setNamaPedagang] = useState([]);
+
   useEffect(() => {
-    userService
-      .getPedagangByRole(tipePedagang)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => error);
+    if (tipePedagang) {
+      setLoading(true);
+      userService
+        .getPedagangByRole(tipePedagang)
+        .then((response) => {
+          const data = response.data.pedagang.map(({ _id, name }) => ({ id: _id, label: name }));
+          setNamaPedagang(data);
+          setLoading(false);
+        })
+        .catch((error) => error);
+    }
   }, [tipePedagang]);
 
   const initialValues = {
@@ -39,8 +38,8 @@ function CatatTransaksiPetani() {
     tanggal: null,
     jumlahDijual: '',
     hargaJual: '',
-    pedagang: '',
-    nama: ''
+    tipePedagang: '',
+    pembeli: ''
   };
   const validationSchema = yup.object({
     tipeCabai: yup.string('Masukkan tipe cabai').required('Tipe cabai diperlukan'),
@@ -50,28 +49,32 @@ function CatatTransaksiPetani() {
     tipePedagang: yup.string('Tipe pedagang dijual').required('Tipe pedagang diperlukan'),
     pembeli: yup.string('Masukkan nama pedagang').required('Nama pedagang diperlukan')
   });
-  const onSubmit = () => {
-    // const { tipePedagang } = formValue;
-    // alert(JSON.stringify(formValue, null, 2));
-    // setLoading(true);
-    // dispatch(signin({ email, password }))
-    //   .unwrap()
-    //   .then(() => {
-    //     // Notes: perlu diroute berdasarkan role
-    //     navigate('/petani');
-    //   })
-    //   .catch(() => {
-    //     setLoading(false);
-    //   });
+  const onSubmit = (formValue) => {
+    const { tipeCabai, tanggal, jumlahDijual, hargaJual, pembeli } = formValue;
+    const formData = new URLSearchParams();
+    formData.append('tipeCabai', tipeCabai);
+    formData.append('tanggal', tanggal);
+    formData.append('jumlahDijual', jumlahDijual);
+    formData.append('hargaJual', hargaJual);
+    formData.append('pembeli', pembeli);
+    setLoading(true);
+    dispatch(addTransaksi(formData))
+      .unwrap()
+      .then(() => {
+        // Notes: perlu diroute berdasarkan role
+        navigate(-1);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   };
 
   return (
     <>
-      <BaseHeader label="Catat Penjualan Cabai" to="/petani/penjualan" />
+      <BaseHeader label="Catat Transaksi Cabai" to={-1} />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formikProps) => {
           setTipePedagang(formikProps.values.tipePedagang);
-          console.log('ini formikprops', formikProps);
           return (
             <Form>
               <Stack gap={2} p={2}>
@@ -110,13 +113,15 @@ function CatatTransaksiPetani() {
                   label="Tipe Pedagang"
                   name="tipePedagang"
                   options={optionsPedagang}
+                  defaultValue={'distributor'}
                   formikProps={formikProps}
                 />
                 <FormikController
                   control="autocomplete"
                   label="Nama Pedagang"
                   name="pembeli"
-                  options={optionsNama}
+                  options={namaPedagang}
+                  disabled={loading}
                   formikProps={formikProps}
                 />
                 <Box mt={5}>

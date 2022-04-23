@@ -19,7 +19,7 @@ const BaseTextField = (props) => {
 };
 
 const FormikAutocomplete = (props) => {
-  const { options, name, formikProps, ...rest } = props;
+  const { options, name, disabled, formikProps, ...rest } = props;
 
   return (
     <Autocomplete
@@ -32,12 +32,10 @@ const FormikAutocomplete = (props) => {
           //Just give a value to a value to avoid null
           value = '';
         }
-        console.log('ini onchange', formikProps);
-        console.log('ini value', value);
-        console.log('ini event', event);
         formikProps.setFieldValue(name, value.id);
       }}
       options={options}
+      disabled={disabled}
       renderInput={(params) => (
         <Field component={BaseTextField} formikProps={formikProps} {...params} {...rest} />
       )}

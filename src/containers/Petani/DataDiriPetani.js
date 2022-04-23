@@ -4,6 +4,7 @@ import BaseHeader from 'components/Base/BaseHeader';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from 'redux/slices/auth';
+import { persistor } from 'redux/store';
 
 function DataDiriPetani() {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ function DataDiriPetani() {
 
   const handleLogout = () => {
     dispatch(logout());
+    persistor.purge();
   };
 
   return (

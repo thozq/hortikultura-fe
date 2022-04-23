@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 const BaseHeader = (props) => {
   const { label, to } = props;
 
-  const { status } = useSelector((state) => state.stok);
+  const { status: stok } = useSelector((state) => state.stok);
+  const { status: transaksi } = useSelector((state) => state.transaksi);
 
   return (
     <>
@@ -19,7 +20,7 @@ const BaseHeader = (props) => {
         <Typography variant="h4">{label}</Typography>
       </Box>
 
-      <Box display={status !== 'loading' ? 'hidden' : ''}>
+      <Box display={stok === 'loading' || transaksi === 'loading' ? '' : 'hidden'}>
         <LinearProgress />
       </Box>
     </>

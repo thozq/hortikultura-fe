@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import theme from 'themes/theme';
 
 const BaseCard = (props) => {
-  const { title, link, status = 'diajukan', children, ...rest } = props;
+  const { title, link, status = 0, children, ...rest } = props;
 
   const navigate = useNavigate();
 
@@ -17,12 +17,12 @@ const BaseCard = (props) => {
           px={2}
           py={0.5}
           bgcolor={
-            status === 'diajukan'
+            status === 0
               ? theme.palette.secondary.main
-              : status === 'diterima'
-              ? theme.palette.primary.main
-              : status === 'ditolak'
+              : status === 1
               ? theme.palette.red.main
+              : status === 2
+              ? theme.palette.primary.main
               : theme.palette.secondary.main
           }
           borderRadius={2}

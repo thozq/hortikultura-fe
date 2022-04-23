@@ -13,8 +13,7 @@ function TransaksiPetani() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { transaksi, diajukan } = useSelector((state) => state.transaksi);
-
+  const { riwayat, diajukan } = useSelector((state) => state.transaksi);
   useEffect(() => {
     dispatch(getAllTransaksi());
   }, [dispatch]);
@@ -91,7 +90,7 @@ function TransaksiPetani() {
           </Box>
         </Box>
         <Stack gap={2}>
-          {diajukan.map((item, index) => (
+          {diajukan?.map((item, index) => (
             <CardTransaksi key={index} item={item} />
           ))}
         </Stack>
@@ -101,12 +100,12 @@ function TransaksiPetani() {
             <Typography variant="h5">Daftar Transaksi</Typography>
             <Stack direction="row" justifyContent="space-between">
               <Typography>Daftar transaksi yang anda sudah lakukan</Typography>
-              <Typography variant="h6" onClick={() => navigate('/pedagang/riwayat')}>
+              <Typography variant="h6" onClick={() => navigate('/petani/riwayat')}>
                 Lihat Semua
               </Typography>
             </Stack>
           </Stack>
-          {transaksi.map((item, index) => (
+          {riwayat?.map((item, index) => (
             <CardTransaksi key={index} item={item} />
           ))}
         </Stack>

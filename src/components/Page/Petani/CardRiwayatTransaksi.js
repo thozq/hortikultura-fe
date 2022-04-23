@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import BaseCard from 'components/Base/BaseCard';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CabaiEnum, RoleEnum } from 'utils/constants';
+import { CabaiEnum, RoleEnum, StatusEnum } from 'utils/constants';
 import { formatNumber, formatRupiah } from 'utils/Formats';
 import { momentFormat } from 'utils/MomentFormat';
 
@@ -17,7 +17,11 @@ const CardRiwayatTransaksi = (props) => {
       flexDirection="column"
       gap={1}
       onClick={() => navigate(`detail-transaksi/${item._id}`)}>
-      <Typography variant="h6">{momentFormat(item.createdAt)}</Typography>
+      <Typography variant="h6">{momentFormat(item.tanggalPencatatan)}</Typography>
+      <Box display="flex" alignItems="center" justifyContent="space-between">
+        <Typography>Status</Typography>
+        <Typography variant="h6">{StatusEnum[item.statusTransaksi]}</Typography>
+      </Box>
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <Typography>Tipe Cabai</Typography>
         <Typography variant="h6">{CabaiEnum[item.tipeCabai]}</Typography>

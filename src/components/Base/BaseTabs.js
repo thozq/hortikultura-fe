@@ -127,3 +127,18 @@ export default function BaseTabs(props) {
     </Box>
   );
 }
+
+// const { type: params } = useParams();
+// const navigate = useNavigate();
+
+// const lowerLabels = labels.map((el) => el.toLowerCase());
+// const indexToValue = Object.fromEntries(Object.entries(lowerLabels).map((a) => a.reverse()));
+
+// const [value, setValue] = React.useState(indexToValue[params]);
+
+// const handleChange = (event, newValue) => {
+//   setValue(newValue);
+//   let link = `/${lowerLabels[newValue]}`;
+//   console.log('ini link', link);
+//   navigate(link);
+// };

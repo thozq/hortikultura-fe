@@ -48,8 +48,7 @@ function RiwayatPetani() {
   const dispatch = useDispatch();
 
   const { stoks } = useSelector((state) => state.stok);
-  const { transaksi } = useSelector((state) => state.transaksi);
-
+  const { riwayat: riwayatTransaksi } = useSelector((state) => state.transaksi);
   useEffect(() => {
     dispatch(getAllStok());
     dispatch(getAllTransaksi());
@@ -86,8 +85,10 @@ function RiwayatPetani() {
           </Stack>
 
           <Stack gap={1.5}>
-            {transaksi ? (
-              transaksi.map((item, index) => <CardRiwayatTransaksi key={index} item={item} />)
+            {riwayatTransaksi ? (
+              riwayatTransaksi.map((item, index) => (
+                <CardRiwayatTransaksi key={index} item={item} />
+              ))
             ) : (
               <Box>
                 <IconNotFound />

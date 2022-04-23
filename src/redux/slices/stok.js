@@ -23,7 +23,7 @@ export const getStokById = createAsyncThunk('stok/getStokById', async (id) => {
 
 const stokSlice = createSlice({
   name: 'stok',
-  initialState: { dashboard: null, status: null, stoks: null, detail: null },
+  initialState: { dashboard: {}, status: null, stoks: null, detail: null },
   extraReducers: {
     [getDashboardStok.pending]: (state) => {
       state.status = 'loading';

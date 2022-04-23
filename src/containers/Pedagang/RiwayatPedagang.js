@@ -11,41 +11,6 @@ import { getAllTransaksi } from 'redux/slices/transaksi';
 
 // import iconNotFound from 'public/images/icons/icon_riwayat_notfound.svg';
 
-// const riwayatPenjualan = [
-//   {
-//     id: 0,
-//     date: '28 Februari 2022',
-//     jenisCabai: 'Cabai Merah Besar',
-//     jumlahDijual: 540,
-//     hargaPerKg: 40150,
-//     dijualKepada: { name: 'Rian Sunandar', jenis: 'Pengumpul' }
-//   },
-//   {
-//     id: 1,
-//     date: '28 Februari 2022',
-//     jenisCabai: 'Cabai Merah Besar',
-//     jumlahDijual: 540,
-//     hargaPerKg: 40150,
-//     dijualKepada: { name: 'Rian Sunandar', jenis: 'Pengumpul' }
-//   },
-//   {
-//     id: 2,
-//     date: '28 Februari 2022',
-//     jenisCabai: 'Cabai Merah Besar',
-//     jumlahDijual: 540,
-//     hargaPerKg: 40150,
-//     dijualKepada: { name: 'Rian Sunandar', jenis: 'Pengumpul' }
-//   },
-//   {
-//     id: 3,
-//     date: '28 Februari 2022',
-//     jenisCabai: 'Cabai Merah Besar',
-//     jumlahDijual: 540,
-//     hargaPerKg: 40150,
-//     dijualKepada: { name: 'Rian Sunandar', jenis: 'Pengumpul' }
-//   }
-// ];
-
 const riwayatUsang = [
   {
     id: 0,
@@ -80,7 +45,7 @@ const riwayatUsang = [
 function RiwayatPedagang() {
   const dispatch = useDispatch();
 
-  const { transaksi } = useSelector((state) => state.transaksi);
+  const { riwayat } = useSelector((state) => state.transaksi);
 
   useEffect(() => {
     dispatch(getAllTransaksi());
@@ -92,8 +57,8 @@ function RiwayatPedagang() {
       <Box p={2} mb="56px">
         <BaseTabs labels={['Riwayat Transaksi', 'Riwayat Usang']}>
           <Box display="flex" flexDirection="column" gap={1.5}>
-            {transaksi ? (
-              transaksi.map((item, index) => <CardRiwayatTransaksi key={index} item={item} />)
+            {riwayat ? (
+              riwayat?.map((item, index) => <CardRiwayatTransaksi key={index} item={item} />)
             ) : (
               <Box>
                 <IconNotFound />

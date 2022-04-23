@@ -9,46 +9,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getAllTransaksi } from 'redux/slices/transaksi';
 
-const dataKonfirmasi = [
-  {
-    _id: '625abc3e165be87c4ef3ede8',
-    penjual: '6255ad3ea947447c84087fe9',
-    tipeCabai: 'cabaiMerahBesar',
-    jumlahDijual: '9',
-    hargaJual: 8,
-    pembeli: {
-      _id: '624d144be8b53d19928dccb3',
-      name: 'boongan',
-      role: 'pengecer'
-    },
-    statusPenjualan: 'diajukan',
-    createdAt: '2022-04-16T12:53:18.171Z',
-    updatedAt: '2022-04-16T12:53:18.171Z',
-    __v: 0
-  },
-  {
-    _id: '625a5f47186c511744ba8d15',
-    penjual: '6255ad3ea947447c84087fe9',
-    jumlahDijual: '7',
-    hargaJual: 8,
-    pembeli: {
-      _id: '624d144be8b53d19928dccb3',
-      name: 'boongan',
-      role: 'pengecer'
-    },
-    statusPenjualan: 'ditolak',
-    createdAt: '2022-04-16T06:16:39.081Z',
-    updatedAt: '2022-04-16T06:42:48.681Z',
-    __v: 0,
-    alasanDitolak: 'halo'
-  }
-];
-
 function TransaksiPedagang() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { transaksi, diajukan } = useSelector((state) => state.transaksi);
+  const { diajukan, konfirmasi, riwayat } = useSelector((state) => state.transaksi);
 
   useEffect(() => {
     dispatch(getAllTransaksi());
@@ -115,7 +80,7 @@ function TransaksiPedagang() {
             </Box>
           </Box>
         </BaseTabs>
-        <BaseTabs labels={['Transaksi Ditunggu', 'Konfirmasi Transaksi']}>
+        <BaseTabs labels={['Transaksi Diajukan', 'Konfirmasi Transaksi']}>
           <Stack gap={2}>
             <Stack gap={1}>
               <Stack direction="row" justifyContent="space-between">
@@ -125,8 +90,8 @@ function TransaksiPedagang() {
                 </Typography>
               </Stack>
             </Stack>
-            {diajukan.map((item, index) => (
-              <CardTransaksi key={index} item={item} wait />
+            {diajukan?.map((item, index) => (
+              <CardTransaksi key={index} item={item} type="diajukan" button="diajukan" />
             ))}
           </Stack>
           <Stack gap={2}>
@@ -138,8 +103,8 @@ function TransaksiPedagang() {
                 </Typography>
               </Stack>
             </Stack>
-            {dataKonfirmasi.map((item, index) => (
-              <CardTransaksi key={index} item={item} confirm />
+            {konfirmasi?.map((item, index) => (
+              <CardTransaksi key={index} item={item} type="konfirmasi" button="konfirmasi" />
             ))}
           </Stack>
         </BaseTabs>
@@ -153,8 +118,8 @@ function TransaksiPedagang() {
               </Typography>
             </Stack>
           </Stack>
-          {transaksi.map((item, index) => (
-            <CardTransaksi key={index} item={item} />
+          {riwayat?.map((item, index) => (
+            <CardTransaksi key={index} item={item} type="diajukan" />
           ))}
         </Stack>
       </Box>

@@ -15,14 +15,6 @@ const optionsTipeCabai = [
 
 const optionsPedagang = [
   {
-    value: 'pengumpul',
-    label: 'Pengumpul'
-  },
-  {
-    value: 'pengecer',
-    label: 'Pengecer'
-  },
-  {
     value: 'distributor',
     label: 'Distributor'
   },
@@ -31,8 +23,16 @@ const optionsPedagang = [
     label: 'Agen'
   },
   {
+    value: 'pengepul',
+    label: 'Pengepul'
+  },
+  {
     value: 'grosir',
     label: 'Grosir'
+  },
+  {
+    value: 'pengecer',
+    label: 'Pengecer'
   }
 ];
 
@@ -70,9 +70,9 @@ const CabaiEnum = Object.freeze({
 });
 
 const StatusEnum = Object.freeze({
-  diterima: 'Diterima',
-  diajukan: 'Diajukan',
-  ditolak: 'Ditolak'
+  0: 'Diajukan',
+  1: 'Ditolak',
+  2: 'Diterima'
 });
 
 const RoleEnum = Object.freeze({

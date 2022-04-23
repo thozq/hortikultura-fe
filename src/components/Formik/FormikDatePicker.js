@@ -3,6 +3,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import { TextField } from '@mui/material';
 import { Field } from 'formik';
+import { getDateFormat } from 'utils/MomentFormat';
 
 const BaseTextField = (props) => {
   const { formikProps, form, field, ...rest } = props;
@@ -27,9 +28,9 @@ const FormikDatePicker = (props) => {
     <LocalizationProvider dateAdapter={DateAdapter}>
       <MobileDatePicker
         name={name}
-        value={formikProps.values.tanggal}
+        value={formikProps.values[name]}
         onChange={(value) => {
-          formikProps.setFieldValue(name, value);
+          formikProps.setFieldValue(name, getDateFormat(value));
         }}
         renderInput={(params) => (
           <Field component={BaseTextField} formikProps={formikProps} {...params} />
