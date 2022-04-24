@@ -41,7 +41,6 @@ function CatatStokPetani() {
     hargaJual: yup.number('Masukkan Harga Jual').required('Harga Jual Wajib diisi')
   });
   const onSubmit = (formValue) => {
-    console.log(formValue);
     const { tipeCabai, totalHasilPanen, hasilPanenSukses, hasilPanenGagal, hargaJual } = formValue;
     const formData = new URLSearchParams();
     formData.append('tipeCabai', tipeCabai);

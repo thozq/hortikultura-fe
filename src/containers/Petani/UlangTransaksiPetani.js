@@ -1,67 +1,54 @@
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Divider, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseHeader from 'components/Base/BaseHeader';
 import FormikController from 'components/Formik/FormikController';
 import { Form, Formik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as yup from 'yup';
-import { optionsTipeCabai, optionsPedagang } from 'utils/constants';
+import { optionsTipeCabai } from 'utils/constants';
 import { useEffect } from 'react';
-import userService from 'services/user.service';
 import { useState } from 'react';
-import { addTransaksi } from 'redux/slices/transaksi';
-import { today } from 'utils/MomentFormat';
+import { editTransaksi, getTransaksiById, reset } from 'redux/slices/transaksi';
 
-function CatatTransaksiPetani() {
+function UlangTransaksiPetani() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { id } = useParams();
   const [loading, setLoading] = useState(false);
-  const [tipePedagang, setTipePedagang] = useState('distributor');
-  const [namaPedagang, setNamaPedagang] = useState([]);
+
+  const { detail } = useSelector((state) => state.transaksi);
 
   useEffect(() => {
-    if (tipePedagang) {
-      setLoading(true);
-      userService
-        .getPedagangByRole(tipePedagang)
-        .then((response) => {
-          const data = response.data.pedagang.map(({ _id, name }) => ({ id: _id, label: name }));
-          setNamaPedagang(data);
-          setLoading(false);
-        })
-        .catch((error) => error);
-    }
-  }, [tipePedagang]);
+    dispatch(reset());
+    dispatch(getTransaksiById(id));
+  }, [dispatch]);
 
   const initialValues = {
-    tipeCabai: '',
-    tanggalPencatatan: today,
-    jumlahDijual: '',
-    hargaJual: '',
-    tipePedagang: '',
-    pembeli: ''
+    tipeCabai: detail[0]?.tipeCabai ?? '',
+    tanggalPencatatan: detail[0]?.tanggalPencatatan ?? '',
+    jumlahDijual: detail[0]?.jumlahDijual ?? '',
+    hargaJual: detail[0]?.hargaJual ?? ''
   };
+
   const validationSchema = yup.object({
     tipeCabai: yup.string('Masukkan tipe cabai').required('Tipe cabai diperlukan'),
     tanggalPencatatan: yup
       .date('Masukkan tanggal transaksi')
       .required('Tanggal transaksi diperlukan'),
     jumlahDijual: yup.number('Masukkan jumlah dijual').required('Jumlah dijual diperlukan'),
-    hargaJual: yup.number('Masukkan harga per kg').required('Harga per kg diperlukan'),
-    tipePedagang: yup.string('Tipe pedagang dijual').required('Tipe pedagang diperlukan'),
-    pembeli: yup.string('Masukkan nama pedagang').required('Nama pedagang diperlukan')
+    hargaJual: yup.number('Masukkan harga per kg').required('Harga per kg diperlukan')
   });
   const onSubmit = (formValue) => {
-    const { tipeCabai, tanggalPencatatan, jumlahDijual, hargaJual, pembeli } = formValue;
+    const { tipeCabai, tanggalPencatatan, jumlahDijual, hargaJual } = formValue;
     const formData = new URLSearchParams();
     formData.append('tipeCabai', tipeCabai);
     formData.append('tanggalPencatatan', tanggalPencatatan);
     formData.append('jumlahDijual', jumlahDijual);
     formData.append('hargaJual', hargaJual);
-    formData.append('pembeli', pembeli);
+
     setLoading(true);
-    dispatch(addTransaksi(formData))
+    dispatch(editTransaksi({ id, formData }))
       .unwrap()
       .then(() => {
         navigate(-1);
@@ -73,10 +60,9 @@ function CatatTransaksiPetani() {
 
   return (
     <>
-      <BaseHeader label="Catat Transaksi Cabai" to={-1} />
+      <BaseHeader label={'Ajukan Kembali Transaksi Cabai'} to={-1} />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formikProps) => {
-          setTipePedagang(formikProps.values.tipePedagang);
           return (
             <Form>
               <Stack gap={2} p={2}>
@@ -110,26 +96,19 @@ function CatatTransaksiPetani() {
                   formikProps={formikProps}
                 />
                 <Typography variant="h5">Dijual Kepada</Typography>
-                <FormikController
-                  control="select"
-                  label="Tipe Pedagang"
-                  name="tipePedagang"
-                  options={optionsPedagang}
-                  defaultValue={'distributor'}
-                  formikProps={formikProps}
-                />
-                <FormikController
-                  control="autocomplete"
-                  label="Nama Pedagang"
-                  name="pembeli"
-                  options={namaPedagang}
-                  disabled={loading}
-                  formikProps={formikProps}
-                />
+                <Stack gap={1}>
+                  <Typography variant="h5">Nama Penjual</Typography>
+                  <Typography variant="body2">{detail[0]?.pembeli.name}</Typography>
+                  <Divider />
+                </Stack>
+                <Stack gap={1}>
+                  <Typography variant="h5">Peran</Typography>
+                  <Typography variant="body2">{detail[0]?.pembeli.role}</Typography>
+                  <Divider />
+                </Stack>
                 <Box mt={5}>
                   <BaseButton fullWidth type="submit">
-                    {/* {loading ? <span>Memuat...</span> : 'Kirim'} */}
-                    Kirim
+                    {loading ? <span>Memuat...</span> : 'Kirim'}
                   </BaseButton>
                 </Box>
               </Stack>
@@ -141,4 +120,4 @@ function CatatTransaksiPetani() {
   );
 }
 
-export default CatatTransaksiPetani;
+export default UlangTransaksiPetani;

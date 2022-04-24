@@ -30,8 +30,10 @@ const declineTransaksi = async (id) => {
   return axios.put(API_URL + 'transaksi/ubahstatus/tolak/' + id, {}, { headers: authHeader() });
 };
 
-const editTransaksi = async (id) => {
-  return axios.put(API_URL + 'transaksi/ubahstatus/ajukankembali/' + id, { headers: authHeader() });
+const editTransaksi = async ({ id, formData }) => {
+  return axios.put(API_URL + 'transaksi/ubahstatus/ajukankembali/' + id, formData, {
+    headers: authHeader()
+  });
 };
 
 const transaksiService = {

@@ -15,6 +15,7 @@ import DetailTransaksiPetani from 'containers/Petani/DetailTransaksiPetani';
 import DataDiriPetani from 'containers/Petani/DataDiriPetani';
 import CatatStokPetani from 'containers/Petani/CatatStokPetani';
 import DetailStokPetani from 'containers/Petani/DetailStokPetani';
+import UlangTransaksiPetani from 'containers/Petani/UlangTransaksiPetani';
 
 import IndexPedagang from 'containers/Pedagang/IndexPedagang';
 import BerandaPedagang from 'containers/Pedagang/BerandaPedagang';
@@ -26,6 +27,7 @@ import RiwayatPedagang from 'containers/Pedagang/RiwayatPedagang';
 import CatatUsangPedagang from 'containers/Pedagang/CatatUsangPedagang';
 import DataDiriPedagang from 'containers/Pedagang/DataDiriPedagang';
 import DetailTransaksiPedagang from 'containers/Pedagang/DetailTransaksiPedagang';
+import UlangTransaksiPedagang from 'containers/Pedagang/UlangTransaksiPedagang';
 
 import IndexDinas from 'containers/Dinas/IndexDinas';
 import BerandaDinas from 'containers/Dinas/BerandaDinas';
@@ -54,6 +56,7 @@ function RouterConfig() {
         <Route path="stok/detail-stok/:id" element={<DetailStokPetani />} />
         <Route path="transaksi" element={<TransaksiPetani />} />
         <Route path="transaksi/catat-transaksi" element={<CatatTransaksiPetani />} />
+        <Route path="transaksi/ulang-transaksi/:id" element={<UlangTransaksiPetani />} />
         <Route path="transaksi/detail-transaksi/:id" element={<DetailTransaksiPetani />} />
         <Route path="riwayat" element={<RiwayatPetani />} />
         <Route path="data-diri" element={<DataDiriPetani />} />
@@ -67,7 +70,8 @@ function RouterConfig() {
         <Route path="stok/detail-pembelian/:id" element={<DetailTransaksiPedagang />} />
         <Route path="transaksi" element={<TransaksiPedagang />} />
         <Route path="transaksi/catat-transaksi" element={<CatatTransaksiPedagang />} />
-        <Route path="transaksi/detail-transaksi/:type/:id" element={<DetailTransaksiPedagang />} />
+        <Route path="transaksi/ulang-transaksi/:id" element={<UlangTransaksiPedagang />} />
+        <Route path="transaksi/detail-transaksi/:id" element={<DetailTransaksiPedagang />} />
         <Route path="usang" element={<UsangPedagang />} />
         <Route path="usang/catat-usang" element={<CatatUsangPedagang />} />
         <Route path="riwayat" element={<RiwayatPedagang />} />

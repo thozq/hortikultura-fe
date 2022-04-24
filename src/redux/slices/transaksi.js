@@ -43,10 +43,13 @@ export const declineTransaksi = createAsyncThunk(
   }
 );
 
-export const editTransaksi = createAsyncThunk('transaksi/editTransaksi', async (id) => {
-  const response = await TransaksiService.editTransaksi(id);
-  return response.data;
-});
+export const editTransaksi = createAsyncThunk(
+  'transaksi/editTransaksi',
+  async ({ id, formData }) => {
+    const response = await TransaksiService.editTransaksi({ id, formData });
+    return response.data;
+  }
+);
 
 const transaksiSlice = createSlice({
   name: 'transaksi',
@@ -56,6 +59,11 @@ const transaksiSlice = createSlice({
     diajukan: [],
     detail: {},
     riwayat: []
+  },
+  reducers: {
+    reset: (state) => {
+      state.detail = {};
+    }
   },
   extraReducers: {
     [getAllTransaksi.pending]: (state) => {
@@ -128,4 +136,5 @@ const transaksiSlice = createSlice({
   }
 });
 
+export const { reset } = transaksiSlice.actions;
 export default transaksiSlice.reducer;

@@ -47,7 +47,7 @@ const riwayatBlanko = [
 function RiwayatPetani() {
   const dispatch = useDispatch();
 
-  const { stoks } = useSelector((state) => state.stok);
+  const { stoks: riwayatStok } = useSelector((state) => state.stok);
   const { riwayat: riwayatTransaksi } = useSelector((state) => state.transaksi);
   useEffect(() => {
     dispatch(getAllStok());
@@ -74,8 +74,8 @@ function RiwayatPetani() {
           </Stack>
 
           <Stack gap={1.5}>
-            {stoks ? (
-              stoks.map((item, index) => <CardRiwayatStok key={index} item={item} />)
+            {riwayatStok ? (
+              riwayatStok.map((item, index) => <CardRiwayatStok key={index} item={item} />)
             ) : (
               <Box>
                 <IconNotFound />

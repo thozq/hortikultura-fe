@@ -80,6 +80,21 @@ const BaseButton = (props) => {
           {...rest}>
           {children}
         </Button>
+      ) : shape === 'outlined' ? (
+        <Button
+          sx={{
+            borderRadius: '8px',
+            boxShadow: 'none',
+            textTransform: 'none',
+            fontSize: 16,
+            padding: '8px 16px',
+            lineHeight: 1.5
+          }}
+          variant="outlined"
+          onClick={() => navigate(link)}
+          {...rest}>
+          {children}
+        </Button>
       ) : (
         <CustomButton
           sx={{
