@@ -10,7 +10,7 @@ const getTransaksiById = async (id) => {
   return axios.get(API_URL + 'transaksi/lihattransaksi/' + id, { headers: authHeader() });
 };
 
-const getTransaksiByTipeCabai = async (tipe) => {
+const getTransaksiByType = async (tipe) => {
   return axios.get(API_URL + 'transaksi/lihattransaksi' + tipe, { headers: authHeader() });
 };
 
@@ -39,7 +39,7 @@ const editTransaksi = async ({ id, formData }) => {
 const transaksiService = {
   getAllTransaksi,
   getTransaksiById,
-  getTransaksiByTipeCabai,
+  getTransaksiByType,
   addTransaksi,
   deleteTransaksi,
   acceptTransaksi,

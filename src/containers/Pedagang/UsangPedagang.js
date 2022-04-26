@@ -4,38 +4,20 @@ import BaseTabs from 'components/Base/BaseTabs';
 import TheBottomNavigation from 'components/Base/TheBottomNavigation';
 import TheProfileHeader from 'components/Base/TheProfileHeader';
 import CardUsang from 'components/Page/Pedagang/CardUsang';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
-const dataUsang = [
-  {
-    id: 0,
-    date: '13 Maret 2022',
-    jumlah: 450,
-    totalSebelum: 40150,
-    totalSetelah: 40150,
-    hargaPerKg: 40150
-  },
-  {
-    id: 1,
-    date: '13 Maret 2022',
-    jumlah: 450,
-    totalSebelum: 40150,
-    totalSetelah: 40150,
-    hargaPerKg: 40150
-  },
-  {
-    id: 2,
-    date: '13 Maret 2022',
-    jumlah: 450,
-    totalSebelum: 40150,
-    totalSetelah: 40150,
-    hargaPerKg: 40150
-  }
-];
+import { getAllUsang } from 'redux/slices/usang';
 
 function UsangPedagang() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { usang } = useSelector((state) => state.usang);
+
+  useEffect(() => {
+    dispatch(getAllUsang());
+  }, [dispatch]);
 
   return (
     <>
@@ -103,7 +85,7 @@ function UsangPedagang() {
               </Typography>
             </Box>
           </Box>
-          {dataUsang.map((item, index) => (
+          {usang.map((item, index) => (
             <CardUsang key={index} item={item} type="selling" />
           ))}
         </Box>

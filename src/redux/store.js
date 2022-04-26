@@ -15,6 +15,7 @@ import authReducer from './slices/auth';
 import messageReducer from './slices/message';
 import stokSlice from './slices/stok';
 import transaksiSlice from './slices/transaksi';
+import usangSlice from './slices/usang';
 
 const persistConfig = {
   key: 'root',
@@ -25,7 +26,8 @@ const reducer = combineReducers({
   auth: authReducer,
   message: messageReducer,
   stok: stokSlice,
-  transaksi: transaksiSlice
+  transaksi: transaksiSlice,
+  usang: usangSlice
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

@@ -267,3 +267,61 @@
 //     alasanDitolak: 'halo'
 //   }
 // ];
+
+// const dataUsang = [
+//     {
+//       id: 0,
+//       date: '13 Maret 2022',
+//       jumlah: 450,
+//       totalSebelum: 40150,
+//       totalSetelah: 40150,
+//       hargaPerKg: 40150
+//     },
+//     {
+//       id: 1,
+//       date: '13 Maret 2022',
+//       jumlah: 450,
+//       totalSebelum: 40150,
+//       totalSetelah: 40150,
+//       hargaPerKg: 40150
+//     },
+//     {
+//       id: 2,
+//       date: '13 Maret 2022',
+//       jumlah: 450,
+//       totalSebelum: 40150,
+//       totalSetelah: 40150,
+//       hargaPerKg: 40150
+//     }
+//   ];
+
+// const riwayatUsang = [
+//     {
+//       id: 0,
+//       date: '28 Februari 2022',
+//       jenisCabai: 'Cabai Merah Besar',
+//       totalUsang: 540,
+//       hargaPerKg: 40150
+//     },
+//     {
+//       id: 1,
+//       date: '28 Februari 2022',
+//       jenisCabai: 'Cabai Merah Besar',
+//       totalUsang: 540,
+//       hargaPerKg: 40150
+//     },
+//     {
+//       id: 2,
+//       date: '28 Februari 2022',
+//       jenisCabai: 'Cabai Merah Besar',
+//       totalUsang: 540,
+//       hargaPerKg: 40150
+//     },
+//     {
+//       id: 3,
+//       date: '28 Februari 2022',
+//       jenisCabai: 'Cabai Merah Besar',
+//       totalUsang: 540,
+//       hargaPerKg: 40150
+//     }
+//   ];
