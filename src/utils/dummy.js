@@ -325,3 +325,46 @@
 //       hargaPerKg: 40150
 //     }
 //   ];
+
+// const riwayatBlanko = [
+//   {
+//     id: 0,
+//     date: '28 Februari 2022',
+//     jenisCabai: 'Cabai Merah Besar',
+//     totalPanen: 540,
+//     hargaPerKg: 40150
+//   },
+//   {
+//     id: 1,
+//     date: '28 Februari 2022',
+//     jenisCabai: 'Cabai Merah Besar',
+//     totalPanen: 540,
+//     hargaPerKg: 40150
+//   },
+//   {
+//     id: 2,
+//     date: '28 Februari 2022',
+//     jenisCabai: 'Cabai Merah Besar',
+//     totalPanen: 540,
+//     hargaPerKg: 40150
+//   },
+//   {
+//     id: 3,
+//     date: '28 Februari 2022',
+//     jenisCabai: 'Cabai Merah Besar',
+//     totalPanen: 540,
+//     hargaPerKg: 40150
+//   }
+// ];
+
+// const data = {
+//   luasAkhir: 80,
+//   luasHabis: 120,
+//   luasBelumHabis: 70,
+//   luasRusak: 20,
+//   luasPenanaman: 150,
+//   luasAkhirBulan: 140,
+//   produksiHabis: 10,
+//   produksiBelumHabis: 5,
+//   hargaPerKilo: 48000
+// };

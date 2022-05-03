@@ -10,48 +10,21 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllStok } from 'redux/slices/stok';
 import { getAllTransaksi } from 'redux/slices/transaksi';
+import { getAllBlanko } from 'redux/slices/blanko';
 
 // import iconNotFound from 'public/images/icons/icon_riwayat_notfound.svg';
-
-const riwayatBlanko = [
-  {
-    id: 0,
-    date: '28 Februari 2022',
-    jenisCabai: 'Cabai Merah Besar',
-    totalPanen: 540,
-    hargaPerKg: 40150
-  },
-  {
-    id: 1,
-    date: '28 Februari 2022',
-    jenisCabai: 'Cabai Merah Besar',
-    totalPanen: 540,
-    hargaPerKg: 40150
-  },
-  {
-    id: 2,
-    date: '28 Februari 2022',
-    jenisCabai: 'Cabai Merah Besar',
-    totalPanen: 540,
-    hargaPerKg: 40150
-  },
-  {
-    id: 3,
-    date: '28 Februari 2022',
-    jenisCabai: 'Cabai Merah Besar',
-    totalPanen: 540,
-    hargaPerKg: 40150
-  }
-];
 
 function RiwayatPetani() {
   const dispatch = useDispatch();
 
   const { stoks: riwayatStok } = useSelector((state) => state.stok);
   const { riwayat: riwayatTransaksi } = useSelector((state) => state.transaksi);
+  const { riwayat: riwayatBlanko } = useSelector((state) => state.blanko);
+
   useEffect(() => {
     dispatch(getAllStok());
     dispatch(getAllTransaksi());
+    dispatch(getAllBlanko());
   }, [dispatch]);
 
   return (

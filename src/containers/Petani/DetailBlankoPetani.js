@@ -1,71 +1,75 @@
-import { Divider, Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { Divider, Stack, Typography } from '@mui/material';
 import BaseHeader from 'components/Base/BaseHeader';
-import React from 'react';
-
-const data = {
-  luasAkhir: 80,
-  luasHabis: 120,
-  luasBelumHabis: 70,
-  luasRusak: 20,
-  luasPenanaman: 150,
-  luasAkhirBulan: 140,
-  produksiHabis: 10,
-  produksiBelumHabis: 5,
-  hargaPerKilo: 48000
-};
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getBlankoById } from 'redux/slices/blanko';
+import { momentFormat } from 'utils/MomentFormat';
 
 function DetailBlankoPetani() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { detail } = useSelector((state) => state.blanko);
+
+  useEffect(() => {
+    dispatch(getBlankoById(id));
+  }, [dispatch]);
+
   return (
     <>
-      <BaseHeader label="Blanko - 28 Februari 2022" to="/petani/stok" />
-      <Box display="flex" flexDirection="column" gap={3} px={2}>
-        <Box>
+      <BaseHeader label={`Blanko - ${momentFormat(detail[0].tanggalPencatatan)}`} to={-1} />
+      <Stack gap={3} pt={2} px={2}>
+        <Stack gap={1}>
+          <Typography variant="h5">Tipe Cabai</Typography>
+          <Typography variant="body2">{detail[0]?.tipeCabai}</Typography>
+          <Divider />
+        </Stack>
+        <Stack gap={1}>
           <Typography variant="h5">Luas tanaman akhir bulan lalu (Ha)</Typography>
-          <Typography variant="body2">{data.luasAkhir}</Typography>
+          <Typography variant="body2">{detail[0]?.luasTanamanAkhirBulanLalu}</Typography>
           <Divider />
-        </Box>
-        <Box>
+        </Stack>
+        <Stack gap={1}>
           <Typography variant="h5">Luas panen habis / dibongkar (Ha)</Typography>
-          <Typography variant="body2">{data.luasHabis}</Typography>
+          <Typography variant="body2">{detail[0]?.luasPanenHabis}</Typography>
           <Divider />
-        </Box>
-        <Box>
+        </Stack>
+        <Stack gap={1}>
           <Typography variant="h5">Luas panen belum habis (Ha)</Typography>
-          <Typography variant="body2">{data.luasBelumHabis}</Typography>
+          <Typography variant="body2">{detail[0]?.luasPanenBelumHabis}</Typography>
           <Divider />
-        </Box>
-        <Box>
+        </Stack>
+        <Stack gap={1}>
           <Typography variant="h5">Luas rusak/tidak berhasil/puso (Ha)</Typography>
-          <Typography variant="body2">{data.luasRusak}</Typography>
+          <Typography variant="body2">{detail[0]?.luasRusak}</Typography>
           <Divider />
-        </Box>
-        <Box>
+        </Stack>
+        <Stack gap={1}>
           <Typography variant="h5">Luas penanaman baru/tambah tanam (Ha)</Typography>
-          <Typography variant="body2">{data.luasPenanaman}</Typography>
+          <Typography variant="body2">{detail[0]?.luasPenanamanBaru}</Typography>
           <Divider />
-        </Box>
-        <Box>
+        </Stack>
+        <Stack gap={1}>
           <Typography variant="h5">Luas tanaman akhir bulan laporan (Ha)</Typography>
-          <Typography variant="body2">{data.luasAkhirBulan}</Typography>
+          <Typography variant="body2">{detail[0]?.luasTanamanAkhirBulanLaporan}</Typography>
           <Divider />
-        </Box>
-        <Box>
+        </Stack>
+        <Stack gap={1}>
           <Typography variant="h5">Produksi dipanen habis/dibongkar (Kwintal)</Typography>
-          <Typography variant="body2">{data.produksiHabis}</Typography>
+          <Typography variant="body2">{detail[0]?.prodPanenHabis}</Typography>
           <Divider />
-        </Box>
-        <Box>
+        </Stack>
+        <Stack gap={1}>
           <Typography variant="h5">Produksi belum habis (Kwintal)</Typography>
-          <Typography variant="body2">{data.produksiBelumHabis}</Typography>
+          <Typography variant="body2">{detail[0]?.prodBelumHabis}</Typography>
           <Divider />
-        </Box>
-        <Box>
+        </Stack>
+        <Stack gap={1}>
           <Typography variant="h5">Rata-rata harga jual petani per kilogram (Rupiah)</Typography>
-          <Typography variant="body2">{data.hargaPerKilo}</Typography>
+          <Typography variant="body2">{detail[0]?.rataHargaJual}</Typography>
           <Divider />
-        </Box>
-      </Box>
+        </Stack>
+      </Stack>
     </>
   );
 }

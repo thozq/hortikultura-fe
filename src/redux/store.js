@@ -1,36 +1,8 @@
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER
-} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 
-import { combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import authReducer from './slices/auth';
-import messageReducer from './slices/message';
-import stokSlice from './slices/stok';
-import transaksiSlice from './slices/transaksi';
-import usangSlice from './slices/usang';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
-const persistConfig = {
-  key: 'root',
-  storage
-};
-
-const reducer = combineReducers({
-  auth: authReducer,
-  message: messageReducer,
-  stok: stokSlice,
-  transaksi: transaksiSlice,
-  usang: usangSlice
-});
-
-const persistedReducer = persistReducer(persistConfig, reducer);
+import persistedReducer from './reducers';
 
 const store = configureStore({
   reducer: persistedReducer,

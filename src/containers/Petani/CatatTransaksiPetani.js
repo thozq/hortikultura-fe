@@ -66,9 +66,8 @@ function CatatTransaksiPetani() {
       .then(() => {
         navigate(-1);
       })
-      .catch(() => {
-        setLoading(false);
-      });
+      .catch(() => {})
+      .finally(() => setLoading(false));
   };
 
   return (
