@@ -1,13 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import StokService from 'services/stok.service';
+import { setMessage } from './message';
 
 export const getDashboardStok = createAsyncThunk('stok/getDashboardStok', async () => {
   const response = await StokService.getDashboardStok();
   return response.data;
 });
 
-export const addStok = createAsyncThunk('stok/addStok', async (data) => {
+export const addStok = createAsyncThunk('stok/addStok', async (data, thunkAPI) => {
   const response = await StokService.addStok(data);
+  thunkAPI.dispatch(setMessage(response.data.message));
   return response.data;
 });
 

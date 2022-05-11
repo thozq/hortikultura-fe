@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import BlankoService from 'services/blanko.service';
+import { setMessage } from './message';
 
 export const getAllBlanko = createAsyncThunk('blanko/getAllBlanko', async () => {
   const response = await BlankoService.getAllBlanko();
@@ -11,8 +12,9 @@ export const getBlankoById = createAsyncThunk('blanko/getBlankoById', async (id)
   return response.data;
 });
 
-export const addBlanko = createAsyncThunk('blanko/addBlanko', async (data) => {
+export const addBlanko = createAsyncThunk('blanko/addBlanko', async (data, thunkAPI) => {
   const response = await BlankoService.addBlanko(data);
+  thunkAPI.dispatch(setMessage(response.data.message));
   return response.data;
 });
 

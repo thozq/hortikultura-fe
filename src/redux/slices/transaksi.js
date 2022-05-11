@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import TransaksiService from 'services/transaksi.service';
+import { setMessage } from './message';
 
 export const getAllTransaksi = createAsyncThunk('transaksi/getAllTransaksi', async () => {
   const response = await TransaksiService.getAllTransaksi();
@@ -11,8 +12,9 @@ export const getTransaksiById = createAsyncThunk('transaksi/getTransaksiById', a
   return response.data;
 });
 
-export const addTransaksi = createAsyncThunk('transaksi/addTransaksi', async (data) => {
+export const addTransaksi = createAsyncThunk('transaksi/addTransaksi', async (data, thunkAPI) => {
   const response = await TransaksiService.addTransaksi(data);
+  thunkAPI.dispatch(setMessage(response.data.message));
   return response.data;
 });
 
@@ -20,6 +22,7 @@ export const deleteTransaksi = createAsyncThunk(
   'transaksi/deleteTransaksi',
   async (id, thunkAPI) => {
     const response = await TransaksiService.deleteTransaksi(id);
+    thunkAPI.dispatch(setMessage(response.data.message));
     thunkAPI.dispatch(getAllTransaksi());
     return response.data;
   }
@@ -29,6 +32,7 @@ export const acceptTransaksi = createAsyncThunk(
   'transaksi/acceptTransaksi',
   async (id, thunkAPI) => {
     const response = await TransaksiService.acceptTransaksi(id);
+    thunkAPI.dispatch(setMessage(response.data.message));
     thunkAPI.dispatch(getAllTransaksi());
     return response.data;
   }
@@ -38,6 +42,7 @@ export const declineTransaksi = createAsyncThunk(
   'transaksi/declineTransaksi',
   async (id, thunkAPI) => {
     const response = await TransaksiService.declineTransaksi(id);
+    thunkAPI.dispatch(setMessage(response.data.message));
     thunkAPI.dispatch(getAllTransaksi());
     return response.data;
   }
@@ -45,8 +50,9 @@ export const declineTransaksi = createAsyncThunk(
 
 export const editTransaksi = createAsyncThunk(
   'transaksi/editTransaksi',
-  async ({ id, formData }) => {
+  async ({ id, formData }, thunkAPI) => {
     const response = await TransaksiService.editTransaksi({ id, formData });
+    thunkAPI.dispatch(setMessage(response.data.message));
     return response.data;
   }
 );

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import UsangService from 'services/usang.service';
+import { setMessage } from './message';
 
 export const getAllUsang = createAsyncThunk('usang/getAllUsang', async () => {
   const response = await UsangService.getAllUsang();
@@ -11,8 +12,9 @@ export const getUsangById = createAsyncThunk('usang/getUsangById', async (id) =>
   return response.data;
 });
 
-export const addUsang = createAsyncThunk('usang/addUsang', async (data) => {
+export const addUsang = createAsyncThunk('usang/addUsang', async (data, thunkAPI) => {
   const response = await UsangService.addUsang(data);
+  thunkAPI.dispatch(setMessage(response.data.message));
   return response.data;
 });
 
