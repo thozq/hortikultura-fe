@@ -28,22 +28,22 @@ function DetailUsangPedagang() {
         </Stack>
         <Stack gap={1}>
           <Typography variant="h5">Total Cabai Sebelumnya</Typography>
-          <Typography variant="body2">{detail[0].totalSebelum}</Typography>
+          <Typography variant="body2">{detail[0]?.totalSebelum}</Typography>
           <Divider />
         </Stack>
         <Stack gap={1}>
           <Typography variant="h5">Total Cabai Setelahnya</Typography>
-          <Typography variant="body2">{detail[0].totalSetelah}</Typography>
+          <Typography variant="body2">{detail[0]?.totalSetelah}</Typography>
           <Divider />
         </Stack>
         <Stack gap={1}>
           <Typography variant="h5">Harga per kg</Typography>
-          <Typography variant="body2">{formatRupiah(detail[0].hargaJual)}</Typography>
+          <Typography variant="body2">{formatRupiah(detail[0]?.hargaJual)}</Typography>
           <Divider />
         </Stack>
         <Stack gap={1}>
           <Typography variant="h5">Pemanfaatan Cabai</Typography>
-          <Typography variant="body2">{detail[0].pemanfaatan}</Typography>
+          <Typography variant="body2">{detail[0]?.pemanfaatan}</Typography>
           <Divider />
         </Stack>
       </Stack>

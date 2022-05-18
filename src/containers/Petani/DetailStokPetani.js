@@ -21,7 +21,7 @@ function DetailStokPetani() {
   return (
     <>
       <BaseHeader
-        label={`${CabaiEnum[detail[0].tipeCabai]} - ${momentFormat(detail[0]?.createdAt)}`}
+        label={`${CabaiEnum[detail[0]?.tipeCabai]} - ${momentFormat(detail[0]?.createdAt)}`}
         to={-1}
       />
       <Stack gap={3} pt={2} px={2}>
