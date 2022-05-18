@@ -28,7 +28,7 @@ const CustomButton = styled(Button)({
 });
 
 const BaseButton = (props) => {
-  const { shape, children, link, ...rest } = props;
+  const { shape, children, link, removeIcon, ...rest } = props;
 
   const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ const BaseButton = (props) => {
           onClick={() => navigate(link)}
           {...rest}>
           {children}
-          <AddCircleRounded />
+          {!removeIcon && <AddCircleRounded />}
         </CustomButton>
       ) : shape === 'error' ? (
         <Button

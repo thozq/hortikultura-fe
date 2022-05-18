@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = 'https://backend-cabai.herokuapp.com/api/v1/';
+const API_URL = process.env.REACT_APP_API_URL;
 const signup = (name, email, password, provinsi, kecamatan, kabupaten, alamat, role) => {
   return axios.post(API_URL + 'auth/signup', {
     name,

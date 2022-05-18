@@ -1,6 +1,6 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-const API_URL = 'https://backend-cabai.herokuapp.com/api/v1/';
+const API_URL = process.env.REACT_APP_API_URL;
 
 const getDashboardStok = async () => {
   return axios.get(API_URL + 'stok', { headers: authHeader() });

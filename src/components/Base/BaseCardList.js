@@ -17,7 +17,7 @@ const BaseCardList = (props) => {
           px={2}
           borderRadius={2}
           color="white"
-          bgcolor={theme.palette.red.main}
+          bgcolor={theme.palette.secondary.main}
           display="flex"
           alignItems="center"
           justifyContent="space-between">

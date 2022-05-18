@@ -4,8 +4,18 @@ import BaseButton from 'components/Base/BaseButton';
 import BaseCardList from 'components/Base/BaseCardList';
 import TheProfileHeader from 'components/Base/TheProfileHeader';
 import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllSupervisi } from 'redux/slices/dinas';
 
 function BerandaPdh() {
+  const dispatch = useDispatch();
+  const { petani } = useSelector((state) => state.dinas);
+
+  useEffect(() => {
+    dispatch(getAllSupervisi());
+  }, []);
+
   return (
     <>
       <TheProfileHeader name="Ahmad" role="pdh" />
@@ -17,7 +27,7 @@ function BerandaPdh() {
             habitasse ultrices pretium nisi, dis. Magna.
           </Typography>
         </Box>
-        <BaseButton shape="withicon" link="" size="large" variant="outlined" fullWidth>
+        <BaseButton shape="withicon" removeIcon link="" size="large" variant="outlined" fullWidth>
           <Typography variant="h5">Akuisisi Akun</Typography>
           <SupervisedUserCircleRounded />
         </BaseButton>
@@ -31,9 +41,9 @@ function BerandaPdh() {
             </Typography>
           </Box>
           <Stack gap={1}>
-            <BaseCardList title="Misih Narwan" />
-            <BaseCardList title="Misih Narwan" />
-            <BaseCardList title="Misih Narwan" />
+            {petani.map((item, index) => (
+              <BaseCardList key={index} title={item.name} />
+            ))}
           </Stack>
         </Box>
       </Stack>
