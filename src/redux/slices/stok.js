@@ -9,7 +9,7 @@ export const getDashboardStok = createAsyncThunk('stok/getDashboardStok', async 
 
 export const addStok = createAsyncThunk('stok/addStok', async (data, thunkAPI) => {
   const response = await StokService.addStok(data);
-  thunkAPI.dispatch(setMessage(response.data.message));
+  thunkAPI.dispatch(setMessage(response));
   return response.data;
 });
 

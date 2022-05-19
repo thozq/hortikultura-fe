@@ -17,7 +17,7 @@ function DetailBlankoPetani() {
 
   return (
     <>
-      <BaseHeader label={`Blanko - ${momentFormat(detail[0].tanggalPencatatan)}`} to={-1} />
+      <BaseHeader label={`Blanko - ${momentFormat(detail[0]?.tanggalPencatatan)}`} to={-1} />
       <Stack gap={3} pt={2} px={2}>
         <Stack gap={1}>
           <Typography variant="h5">Tipe Cabai</Typography>

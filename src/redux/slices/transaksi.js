@@ -14,7 +14,7 @@ export const getTransaksiById = createAsyncThunk('transaksi/getTransaksiById', a
 
 export const addTransaksi = createAsyncThunk('transaksi/addTransaksi', async (data, thunkAPI) => {
   const response = await TransaksiService.addTransaksi(data);
-  thunkAPI.dispatch(setMessage(response.data.message));
+  thunkAPI.dispatch(setMessage(response));
   return response.data;
 });
 
@@ -22,7 +22,7 @@ export const deleteTransaksi = createAsyncThunk(
   'transaksi/deleteTransaksi',
   async (id, thunkAPI) => {
     const response = await TransaksiService.deleteTransaksi(id);
-    thunkAPI.dispatch(setMessage(response.data.message));
+    thunkAPI.dispatch(setMessage(response));
     thunkAPI.dispatch(getAllTransaksi());
     return response.data;
   }

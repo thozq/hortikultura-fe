@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
-const initialState = {};
+const initialState = { message: '', status: null };
 const messageSlice = createSlice({
   name: 'message',
   initialState,
   reducers: {
     setMessage: (state, action) => {
-      return { message: action.payload };
+      return { message: action.payload.data.message, status: action.payload.status };
     },
     clearMessage: () => {
-      return { message: '' };
+      return { message: '', status: null };
     }
   }
 });

@@ -8,7 +8,7 @@ const BaseAlert = () => {
   const [open, setOpen] = React.useState(true);
   const dispatch = useDispatch();
 
-  const { message } = useSelector((state) => state.message);
+  const { message, status } = useSelector((state) => state.message);
 
   useEffect(() => {
     if (message) {
@@ -23,6 +23,7 @@ const BaseAlert = () => {
     dispatch(clearMessage());
     setOpen(false);
   };
+
   if (!message) return <Fragment />;
   return (
     <>
@@ -33,7 +34,7 @@ const BaseAlert = () => {
         onClose={handleClose}>
         <Alert
           onClose={handleClose}
-          severity="success"
+          severity={status === 404 ? 'error' : 'success'}
           elevation={2}
           sx={{
             width: '100%',

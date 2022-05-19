@@ -14,7 +14,7 @@ export const getBlankoById = createAsyncThunk('blanko/getBlankoById', async (id)
 
 export const addBlanko = createAsyncThunk('blanko/addBlanko', async (data, thunkAPI) => {
   const response = await BlankoService.addBlanko(data);
-  thunkAPI.dispatch(setMessage(response.data.message));
+  thunkAPI.dispatch(setMessage(response));
   return response.data;
 });
 

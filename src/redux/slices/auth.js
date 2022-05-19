@@ -22,11 +22,12 @@ export const signup = createAsyncThunk(
       thunkAPI.dispatch(setMessage(response.data.message));
       return response.data;
     } catch (error) {
+      const response = error.response;
       const message =
         (error.response && error.response.data && error.response.data.message) ||
         error.message ||
         error.toString();
-      thunkAPI.dispatch(setMessage(message));
+      thunkAPI.dispatch(setMessage(response));
       return thunkAPI.rejectWithValue();
     }
   }

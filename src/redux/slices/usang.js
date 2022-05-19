@@ -14,7 +14,7 @@ export const getUsangById = createAsyncThunk('usang/getUsangById', async (id) =>
 
 export const addUsang = createAsyncThunk('usang/addUsang', async (data, thunkAPI) => {
   const response = await UsangService.addUsang(data);
-  thunkAPI.dispatch(setMessage(response.data.message));
+  thunkAPI.dispatch(setMessage(response));
   return response.data;
 });
 
