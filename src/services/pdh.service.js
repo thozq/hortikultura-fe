@@ -6,8 +6,8 @@ const getAllSupervisi = async () => {
   return axios.get(API_URL + 'supervisi/lihatsupervisi', { headers: authHeader() });
 };
 
-const dinasService = {
+const pdhService = {
   getAllSupervisi
 };
 
-export default dinasService;
+export default pdhService;

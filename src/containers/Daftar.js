@@ -29,7 +29,7 @@ function Daftar() {
       .required('Password is required')
   });
   const onSubmit = (formValue) => {
-    alert(JSON.stringify(formValue, null, 2));
+    // alert(JSON.stringify(formValue, null, 2));
     const { name, email, password, provinsi, kecamatan, kabupaten, alamat, role } = formValue;
     setLoading(true);
     dispatch(

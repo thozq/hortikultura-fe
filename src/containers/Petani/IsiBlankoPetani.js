@@ -62,7 +62,7 @@ function IsiBlankoPetani() {
       .required('Rata-rata harga jual petani per kilogram (Rupiah) diperlukan')
   });
   const onSubmit = (formValue) => {
-    alert(JSON.stringify(formValue, null, 2));
+    // alert(JSON.stringify(formValue, null, 2));
     const {
       tipeCabai,
       tanggalPencatatan,

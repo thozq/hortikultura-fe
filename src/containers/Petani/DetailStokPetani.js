@@ -1,6 +1,7 @@
 import { Divider, Stack, Typography } from '@mui/material';
 import BaseHeader from 'components/Base/BaseHeader';
 import React from 'react';
+import { Fragment } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -18,6 +19,7 @@ function DetailStokPetani() {
     dispatch(getStokById(id));
   }, [dispatch]);
 
+  if (!detail) return <Fragment />;
   return (
     <>
       <BaseHeader

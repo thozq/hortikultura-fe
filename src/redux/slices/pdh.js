@@ -1,14 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import DinasService from 'services/dinas.service';
+import PdhService from 'services/pdh.service';
 
-export const getAllSupervisi = createAsyncThunk('dinas/getAllSupervisi', async () => {
-  const response = await DinasService.getAllSupervisi();
+export const getAllSupervisi = createAsyncThunk('pdh/getAllSupervisi', async () => {
+  const response = await PdhService.getAllSupervisi();
   return response.data;
 });
 
-const dinasSlice = createSlice({
-  name: 'dinas',
-  initialState: { status: null, petani: [] },
+const pdhSlice = createSlice({
+  name: 'pdh',
+  initialState: {
+    status: null,
+    petani: []
+  },
   extraReducers: {
     [getAllSupervisi.pending]: (state) => {
       state.status = 'loading';
@@ -23,4 +26,4 @@ const dinasSlice = createSlice({
   }
 });
 
-export default dinasSlice.reducer;
+export default pdhSlice.reducer;

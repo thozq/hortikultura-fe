@@ -1,16 +1,18 @@
 import { SupervisedUserCircleRounded } from '@mui/icons-material';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseCardList from 'components/Base/BaseCardList';
 import TheProfileHeader from 'components/Base/TheProfileHeader';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllSupervisi } from 'redux/slices/dinas';
+import { useNavigate } from 'react-router-dom';
+import { getAllSupervisi } from 'redux/slices/pdh';
 
 function BerandaPdh() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { petani } = useSelector((state) => state.dinas);
+  const { petani } = useSelector((state) => state.pdh);
 
   useEffect(() => {
     dispatch(getAllSupervisi());
@@ -32,16 +34,17 @@ function BerandaPdh() {
           <SupervisedUserCircleRounded />
         </BaseButton>
         <Box>
-          <Box display="flex" alignItems="center" justifyContent="space-between" mb={1}>
-            <Typography variant="h5" mb={1}>
-              Riwayat Akun
-            </Typography>
-            <Typography variant="h6" mb={1}>
-              Lihat Semua
-            </Typography>
-          </Box>
+          <Stack direction="row" alignItems="center" justifyContent="space-between" mb={1}>
+            <Typography variant="h5">Riwayat Akun</Typography>
+            <Button
+              sx={{ textTransform: 'none' }}
+              color="secondary"
+              onClick={() => navigate('/pdh/riwayat-akun')}>
+              <Typography variant="h6">Lihat Semua</Typography>
+            </Button>
+          </Stack>
           <Stack gap={1}>
-            {petani.map((item, index) => (
+            {petani?.map((item, index) => (
               <BaseCardList key={index} title={item.name} />
             ))}
           </Stack>

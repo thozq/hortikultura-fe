@@ -1,6 +1,7 @@
 import { Divider, Stack, Typography } from '@mui/material';
 import BaseHeader from 'components/Base/BaseHeader';
 import React, { useEffect } from 'react';
+import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getBlankoById } from 'redux/slices/blanko';
@@ -15,6 +16,7 @@ function DetailBlankoPetani() {
     dispatch(getBlankoById(id));
   }, [dispatch]);
 
+  if (!detail) return <Fragment />;
   return (
     <>
       <BaseHeader label={`Blanko - ${momentFormat(detail[0]?.tanggalPencatatan)}`} to={-1} />

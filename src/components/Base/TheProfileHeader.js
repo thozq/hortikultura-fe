@@ -1,12 +1,15 @@
-import { Avatar, Box, Typography } from '@mui/material';
+import { ExitToAppOutlined } from '@mui/icons-material';
+import { AppBar, Avatar, Box, IconButton, Paper, Typography } from '@mui/material';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { changeUser } from 'redux/slices/auth';
 
 const TheProfileHeader = (props) => {
   const { name, role } = props;
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const { user, parentUser } = useSelector((state) => state.auth);
 
   function stringAvatar(name) {
     return {
@@ -19,14 +22,45 @@ const TheProfileHeader = (props) => {
   });
 
   return (
-    <Box display="flex" justifyContent="space-between" alignItems="center" p={2}>
-      <Box display="flex" flexDirection="column" gap={0.5}>
-        <Typography variant="h4">{user.name}</Typography>
-        <Typography variant="h5">{roleName}</Typography>
+    <>
+      <Box display="flex" justifyContent="space-between" alignItems="center" p={2}>
+        <Box display="flex" flexDirection="column" gap={0.5}>
+          <Typography variant="h4">{user.name}</Typography>
+          <Typography variant="h5">{roleName}</Typography>
+        </Box>
+
+        <Avatar {...stringAvatar(name)} onClick={() => navigate(`/${role}/data-diri`)} />
       </Box>
 
-      <Avatar {...stringAvatar(name)} onClick={() => navigate(`/${role}/data-diri`)} />
-    </Box>
+      {parentUser && (
+        <AppBar position="fixed" sx={{ background: 'none', boxShadow: 'none' }}>
+          <Box display="flex" justifyContent="center">
+            <Paper
+              elevation={8}
+              width={'100%'}
+              sx={{
+                p: 1,
+                pt: 0.5,
+                borderRadius: 2,
+                borderTopLeftRadius: 0,
+                borderTopRightRadius: 0
+              }}>
+              <Box display="flex" alignItems="center" justifyContent="space-between">
+                <Typography>
+                  <Typography variant="h6" component="span" display="inline-block">
+                    {parentUser?.name}
+                  </Typography>{' '}
+                  sedang mensupervisi
+                </Typography>
+                <IconButton onClick={() => dispatch(changeUser())}>
+                  <ExitToAppOutlined color="error" sx={{ height: '16px' }} />
+                </IconButton>
+              </Box>
+            </Paper>
+          </Box>
+        </AppBar>
+      )}
+    </>
   );
 };
 

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { ArrowBackIosNewRounded } from '@mui/icons-material';
 import { Box, IconButton, LinearProgress, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
@@ -12,7 +13,7 @@ const BaseHeader = (props) => {
   return (
     <>
       <Box display="flex" alignItems="center" justifyContent="space-between" p={2}>
-        <Link to={to}>
+        <Link to={to ? to : -1}>
           <IconButton>
             <ArrowBackIosNewRounded />
           </IconButton>
@@ -25,6 +26,11 @@ const BaseHeader = (props) => {
       </Box>
     </>
   );
+};
+
+BaseHeader.prototype = {
+  label: PropTypes.string.isRequired,
+  to: PropTypes.any.isRequired
 };
 
 export default BaseHeader;

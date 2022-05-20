@@ -1,4 +1,9 @@
-import { AddCircleRounded, ExitToAppRounded } from '@mui/icons-material';
+import {
+  AddCircleRounded,
+  DeleteOutlined,
+  ExitToAppRounded,
+  PeopleOutlined
+} from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
@@ -47,6 +52,19 @@ const BaseButton = (props) => {
           {children}
           {!removeIcon && <AddCircleRounded />}
         </CustomButton>
+      ) : shape === 'supervise' ? (
+        <CustomButton
+          sx={{
+            color: 'white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}
+          startIcon={<PeopleOutlined />}
+          onClick={() => navigate(link)}
+          {...rest}>
+          {children}
+        </CustomButton>
       ) : shape === 'error' ? (
         <Button
           sx={{
@@ -76,6 +94,23 @@ const BaseButton = (props) => {
           color="error"
           variant="outlined"
           startIcon={<ExitToAppRounded />}
+          onClick={() => navigate(link)}
+          {...rest}>
+          {children}
+        </Button>
+      ) : shape === 'delete' ? (
+        <Button
+          sx={{
+            borderRadius: '8px',
+            boxShadow: 'none',
+            textTransform: 'none',
+            fontSize: 16,
+            padding: '8px 16px',
+            lineHeight: 1.5
+          }}
+          color="error"
+          variant="outlined"
+          startIcon={<DeleteOutlined />}
           onClick={() => navigate(link)}
           {...rest}>
           {children}

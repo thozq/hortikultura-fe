@@ -4,6 +4,7 @@ import { setMessage } from './message';
 import AuthService from '../../services/auth.service';
 
 const user = JSON.parse(localStorage.getItem('user'));
+// const childUser = JSON.parse(localStorage.getItem('child-user'));
 
 export const signup = createAsyncThunk(
   'auth/signup',
@@ -32,27 +33,49 @@ export const signup = createAsyncThunk(
     }
   }
 );
+
 export const signin = createAsyncThunk('auth/signin', async ({ email, password }, thunkAPI) => {
   try {
     const data = await AuthService.signin(email, password);
     return { user: data.user };
   } catch (error) {
+    const response = error.response;
     const message =
       (error.response && error.response.data && error.response.data.message) ||
       error.message ||
       error.toString();
-    thunkAPI.dispatch(setMessage(message));
+    thunkAPI.dispatch(setMessage(response));
     return thunkAPI.rejectWithValue();
   }
 });
+
 export const logout = createAsyncThunk('auth/logout', async () => {
   await AuthService.logout();
 });
 
-const initialState = user ? { isLoggedIn: true, user } : { isLoggedIn: false, user: null };
+export const relog = createAsyncThunk('auth/relog', async (data, thunkAPI) => {
+  try {
+    const response = await AuthService.relog(data);
+    return { user: response.user };
+  } catch (error) {
+    const response = error.response;
+    thunkAPI.dispatch(setMessage(response));
+    return thunkAPI.rejectWithValue();
+  }
+});
+
+const initialState = { isLoggedIn: user ? true : false, user: null, parentUser: null };
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    changeUser: () => {
+      localStorage.removeItem('child-user');
+      localStorage.removeItem('child-token');
+      return { user: user, parentUser: null, isLoggedIn: true };
+    }
+  },
   extraReducers: {
     [signup.fulfilled]: (state, action) => {
       state.isLoggedIn = false;
@@ -71,9 +94,18 @@ const authSlice = createSlice({
     [logout.fulfilled]: (state, action) => {
       state.isLoggedIn = false;
       state.user = null;
+      state.parentUser = null;
+    },
+    [relog.fulfilled]: (state, action) => {
+      state.isLoggedIn = true;
+      state.user = action.payload.user;
+      state.parentUser = user;
+    },
+    [relog.rejected]: (state) => {
+      state.isLoggedIn = false;
     }
   }
 });
-const { reducer } = authSlice;
-
+const { reducer, actions } = authSlice;
+export const { changeUser } = actions;
 export default reducer;

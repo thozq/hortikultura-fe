@@ -25,18 +25,20 @@ import CatatTransaksiPedagang from 'containers/Pedagang/CatatTransaksiPedagang';
 import UsangPedagang from 'containers/Pedagang/UsangPedagang';
 import RiwayatPedagang from 'containers/Pedagang/RiwayatPedagang';
 import CatatUsangPedagang from 'containers/Pedagang/CatatUsangPedagang';
+import DetailUsangPedagang from 'containers/Pedagang/DetailUsangPedagang';
 import DataDiriPedagang from 'containers/Pedagang/DataDiriPedagang';
 import DetailTransaksiPedagang from 'containers/Pedagang/DetailTransaksiPedagang';
 import UlangTransaksiPedagang from 'containers/Pedagang/UlangTransaksiPedagang';
 
+import IndexPdh from 'containers/Pdh/IndexPdh';
+import BerandaPdh from 'containers/Pdh/BerandaPdh';
+import RiwayatAkunPdh from 'containers/Pdh/RiwayatAkunPdh';
+import DetailRiwayatAkunPdh from 'containers/Pdh/DetailRiwayatAkunPdh';
+import DataDiriPdh from 'containers/Pdh/DataDiriPdh';
+
 import IndexDinas from 'containers/Dinas/IndexDinas';
 import BerandaDinas from 'containers/Dinas/BerandaDinas';
 import DataDiriDinas from 'containers/Dinas/DataDiriDinas';
-
-import IndexPdh from 'containers/Pdh/IndexPdh';
-import BerandaPdh from 'containers/Pdh/BerandaPdh';
-import DataDiriPdh from 'containers/Pdh/DataDiriPdh';
-import DetailUsangPedagang from 'containers/Pedagang/DetailUsangPedagang';
 
 function RouterConfig() {
   return (
@@ -82,18 +84,20 @@ function RouterConfig() {
         <Route path="data-diri" element={<DataDiriPedagang />} />
       </Route>
 
+      {/* PDH */}
+      <Route path="pdh" element={<IndexPdh />}>
+        <Route path="/pdh" element={<Navigate to={'beranda'} replace />} />
+        <Route path="beranda" element={<BerandaPdh />} />
+        <Route path="riwayat-akun" element={<RiwayatAkunPdh />} />
+        <Route path="data-diri" element={<DataDiriPdh />} />
+        <Route path="riwayat-akun/detail-riwayat-akun/:id" element={<DetailRiwayatAkunPdh />} />
+      </Route>
+
       {/* Dinas */}
       <Route path="dinas" element={<IndexDinas />}>
         <Route path="/dinas" element={<Navigate to={'beranda'} replace />} />
         <Route path="beranda" element={<BerandaDinas />} />
         <Route path="data-diri" element={<DataDiriDinas />} />
-      </Route>
-
-      {/* PDH */}
-      <Route path="pdh" element={<IndexPdh />}>
-        <Route path="/pdh" element={<Navigate to={'beranda'} replace />} />
-        <Route path="beranda" element={<BerandaPdh />} />
-        <Route path="data-diri" element={<DataDiriPdh />} />
       </Route>
     </Routes>
   );
