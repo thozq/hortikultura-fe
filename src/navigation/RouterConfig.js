@@ -35,6 +35,7 @@ import BerandaPdh from 'containers/Pdh/BerandaPdh';
 import RiwayatAkunPdh from 'containers/Pdh/RiwayatAkunPdh';
 import DetailRiwayatAkunPdh from 'containers/Pdh/DetailRiwayatAkunPdh';
 import DataDiriPdh from 'containers/Pdh/DataDiriPdh';
+import MasukPdh from 'containers/Pdh/MasukPdh';
 
 import IndexDinas from 'containers/Dinas/IndexDinas';
 import BerandaDinas from 'containers/Dinas/BerandaDinas';
@@ -88,6 +89,7 @@ function RouterConfig() {
       <Route path="pdh" element={<IndexPdh />}>
         <Route path="/pdh" element={<Navigate to={'beranda'} replace />} />
         <Route path="beranda" element={<BerandaPdh />} />
+        <Route path="akuisisi-akun" element={<MasukPdh />} />
         <Route path="riwayat-akun" element={<RiwayatAkunPdh />} />
         <Route path="data-diri" element={<DataDiriPdh />} />
         <Route path="riwayat-akun/detail-riwayat-akun/:id" element={<DetailRiwayatAkunPdh />} />

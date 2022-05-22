@@ -22,7 +22,7 @@ const CardRiwayatAkun = (props) => {
   };
 
   return (
-    <Stack gap={2} p={2} bgcolor="dark.light" borderRadius={1}>
+    <Stack gap={2} p={2} bgcolor="dark.light" borderRadius={2}>
       <Typography variant="h5">{item?.date}</Typography>
       <Stack gap={2}>
         <Grid container direction="row">
@@ -64,7 +64,7 @@ const CardRiwayatAkun = (props) => {
         <Divider light />
         <Stack direction="row" justifyContent="space-between">
           <BaseButton shape="outlined">
-            <Typography variant="h5" onClick={() => navigate('detail-riwayat-akun/0')}>
+            <Typography variant="h5" onClick={() => navigate(`detail-riwayat-akun/${item?._id}`)}>
               Detail
             </Typography>
           </BaseButton>

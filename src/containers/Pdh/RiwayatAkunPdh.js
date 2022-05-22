@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material';
 import BaseHeader from 'components/Base/BaseHeader';
-import CardRiwayatAkun from 'components/Page/Pedagang/CardRiwayatAkun';
+import CardRiwayatAkun from 'components/Page/Pdh/CardRiwayatAkun';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -10,7 +10,7 @@ function RiwayatAkunPdh() {
   return (
     <>
       <BaseHeader label="Riwayat Akun" to={-1} />
-      <Box px={2} py={1}>
+      <Box px={2} pt={1} pb={2}>
         <Typography variant="h4" sx={{ mb: 2 }}>
           Riwayat Akun
         </Typography>

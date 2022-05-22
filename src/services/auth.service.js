@@ -48,10 +48,24 @@ const relog = async (data) => {
       return response.data;
     });
 };
+
+const addSupervisi = async (data) => {
+  return axios
+    .post(API_URL + 'supervisi/tambahsupervisi', data, { headers: authHeader() })
+    .then((response) => {
+      if (response.data) {
+        localStorage.setItem('child-user', JSON.stringify(response.data.petani));
+        localStorage.setItem('child-token', response.data.token);
+      }
+      return response.data;
+    });
+};
+
 const authService = {
   signup,
   signin,
   logout,
-  relog
+  relog,
+  addSupervisi
 };
 export default authService;

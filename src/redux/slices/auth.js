@@ -64,6 +64,17 @@ export const relog = createAsyncThunk('auth/relog', async (data, thunkAPI) => {
   }
 });
 
+export const addSupervisi = createAsyncThunk('auth/addSupervisi', async (data, thunkAPI) => {
+  try {
+    const response = await AuthService.addSupervisi(data);
+    return { user: response.petani };
+  } catch (error) {
+    const response = error.response;
+    thunkAPI.dispatch(setMessage(response));
+    return thunkAPI.rejectWithValue();
+  }
+});
+
 const initialState = { isLoggedIn: user ? true : false, user: null, parentUser: null };
 
 const authSlice = createSlice({
@@ -102,6 +113,14 @@ const authSlice = createSlice({
       state.parentUser = user;
     },
     [relog.rejected]: (state) => {
+      state.isLoggedIn = false;
+    },
+    [addSupervisi.fulfilled]: (state, action) => {
+      state.isLoggedIn = true;
+      state.user = action.payload.user;
+      state.parentUser = user;
+    },
+    [addSupervisi.rejected]: (state) => {
       state.isLoggedIn = false;
     }
   }
