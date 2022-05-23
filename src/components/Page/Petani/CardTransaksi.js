@@ -26,7 +26,7 @@ const CardTransaksi = (props) => {
           <Stack direction="row" alignItems="center" justifyContent="space-between">
             <Typography>Dijual Kepada</Typography>
             <Typography variant="h6">
-              {item.pembeli.name} ({RoleEnum[item.pembeli.role]})
+              {item.pembeli?.name} ({RoleEnum[item.pembeli?.role]})
             </Typography>
           </Stack>
           <Stack direction="row" justifyContent="space-between">

@@ -20,8 +20,8 @@ export const signup = createAsyncThunk(
         alamat,
         role
       );
-      thunkAPI.dispatch(setMessage(response.data.message));
-      return response.data;
+      thunkAPI.dispatch(setMessage(response));
+      return { user: response.data.user };
     } catch (error) {
       const response = error.response;
       const message =
@@ -89,7 +89,8 @@ const authSlice = createSlice({
   },
   extraReducers: {
     [signup.fulfilled]: (state, action) => {
-      state.isLoggedIn = false;
+      state.isLoggedIn = true;
+      state.user = action.payload.user;
     },
     [signup.rejected]: (state, action) => {
       state.isLoggedIn = false;

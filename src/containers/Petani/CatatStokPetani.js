@@ -117,8 +117,13 @@ function CatatStokPetani() {
                   formikProps={formikProps}
                 />
                 <Box mt={2}>
-                  <BaseButton fullWidth type="submit" disabled={loading}>
-                    {loading ? <span>Memuat...</span> : 'Kirim'}
+                  <BaseButton
+                    fullWidth
+                    type="submit"
+                    disabled={
+                      !(formikProps.isValid && formikProps.dirty) || formikProps.isSubmitting
+                    }>
+                    {loading ? 'Memuat..' : 'Kirim'}
                   </BaseButton>
                 </Box>
               </Stack>

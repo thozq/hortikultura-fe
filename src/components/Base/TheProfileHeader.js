@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { changeUser } from 'redux/slices/auth';
 
-const TheProfileHeader = (props) => {
-  const { name, role } = props;
+const TheProfileHeader = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, parentUser } = useSelector((state) => state.auth);
@@ -29,7 +28,10 @@ const TheProfileHeader = (props) => {
           <Typography variant="h5">{roleName}</Typography>
         </Box>
 
-        <Avatar {...stringAvatar(name)} onClick={() => navigate(`/${role}/data-diri`)} />
+        <Avatar
+          {...stringAvatar(user.name)}
+          onClick={() => navigate(`/${user.access}/data-diri`)}
+        />
       </Box>
 
       {parentUser && (

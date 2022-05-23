@@ -12,7 +12,6 @@ import StokPetani from 'containers/Petani/StokPetani';
 import IsiBlankoPetani from 'containers/Petani/IsiBlankoPetani';
 import DetailBlankoPetani from 'containers/Petani/DetailBlankoPetani';
 import DetailTransaksiPetani from 'containers/Petani/DetailTransaksiPetani';
-import DataDiriPetani from 'containers/Petani/DataDiriPetani';
 import CatatStokPetani from 'containers/Petani/CatatStokPetani';
 import DetailStokPetani from 'containers/Petani/DetailStokPetani';
 import UlangTransaksiPetani from 'containers/Petani/UlangTransaksiPetani';
@@ -26,7 +25,6 @@ import UsangPedagang from 'containers/Pedagang/UsangPedagang';
 import RiwayatPedagang from 'containers/Pedagang/RiwayatPedagang';
 import CatatUsangPedagang from 'containers/Pedagang/CatatUsangPedagang';
 import DetailUsangPedagang from 'containers/Pedagang/DetailUsangPedagang';
-import DataDiriPedagang from 'containers/Pedagang/DataDiriPedagang';
 import DetailTransaksiPedagang from 'containers/Pedagang/DetailTransaksiPedagang';
 import UlangTransaksiPedagang from 'containers/Pedagang/UlangTransaksiPedagang';
 
@@ -34,12 +32,11 @@ import IndexPdh from 'containers/Pdh/IndexPdh';
 import BerandaPdh from 'containers/Pdh/BerandaPdh';
 import RiwayatAkunPdh from 'containers/Pdh/RiwayatAkunPdh';
 import DetailRiwayatAkunPdh from 'containers/Pdh/DetailRiwayatAkunPdh';
-import DataDiriPdh from 'containers/Pdh/DataDiriPdh';
+import DataDiri from 'containers/DataDiri';
 import MasukPdh from 'containers/Pdh/MasukPdh';
 
 import IndexDinas from 'containers/Dinas/IndexDinas';
 import BerandaDinas from 'containers/Dinas/BerandaDinas';
-import DataDiriDinas from 'containers/Dinas/DataDiriDinas';
 
 function RouterConfig() {
   return (
@@ -63,7 +60,7 @@ function RouterConfig() {
         <Route path="transaksi/ulang-transaksi/:id" element={<UlangTransaksiPetani />} />
         <Route path="transaksi/detail-transaksi/:id" element={<DetailTransaksiPetani />} />
         <Route path="riwayat" element={<RiwayatPetani />} />
-        <Route path="data-diri" element={<DataDiriPetani />} />
+        <Route path="data-diri" element={<DataDiri />} />
       </Route>
 
       {/* Pedagang */}
@@ -82,7 +79,7 @@ function RouterConfig() {
         <Route path="riwayat" element={<RiwayatPedagang />} />
         <Route path="riwayat/detail-transaksi/:id" element={<DetailTransaksiPedagang />} />
         <Route path="riwayat/detail-usang/:id" element={<DetailUsangPedagang />} />
-        <Route path="data-diri" element={<DataDiriPedagang />} />
+        <Route path="data-diri" element={<DataDiri />} />
       </Route>
 
       {/* PDH */}
@@ -91,15 +88,15 @@ function RouterConfig() {
         <Route path="beranda" element={<BerandaPdh />} />
         <Route path="akuisisi-akun" element={<MasukPdh />} />
         <Route path="riwayat-akun" element={<RiwayatAkunPdh />} />
-        <Route path="data-diri" element={<DataDiriPdh />} />
         <Route path="riwayat-akun/detail-riwayat-akun/:id" element={<DetailRiwayatAkunPdh />} />
+        <Route path="data-diri" element={<DataDiri />} />
       </Route>
 
       {/* Dinas */}
       <Route path="dinas" element={<IndexDinas />}>
         <Route path="/dinas" element={<Navigate to={'beranda'} replace />} />
         <Route path="beranda" element={<BerandaDinas />} />
-        <Route path="data-diri" element={<DataDiriDinas />} />
+        <Route path="data-diri" element={<DataDiri />} />
       </Route>
     </Routes>
   );

@@ -1,13 +1,9 @@
 import { Box, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseCard from 'components/Base/BaseCard';
+import { Fragment } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  acceptTransaksi,
-  declineTransaksi,
-  deleteTransaksi,
-  getAllTransaksi
-} from 'redux/slices/transaksi';
+import { acceptTransaksi, declineTransaksi, deleteTransaksi } from 'redux/slices/transaksi';
 import { CabaiEnum, RoleEnum, StatusEnum } from 'utils/constants';
 import { formatNumber, formatRupiah } from 'utils/Formats';
 import { momentFormat } from 'utils/MomentFormat';
@@ -18,31 +14,21 @@ const CardTransaksi = (props) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    try {
-      dispatch(deleteTransaksi(item._id));
-    } finally {
-      dispatch(getAllTransaksi());
-    }
+    dispatch(deleteTransaksi(item._id));
   };
 
   const handleDecline = () => {
-    try {
-      dispatch(declineTransaksi(item._id));
-    } finally {
-      dispatch(getAllTransaksi());
-    }
+    dispatch(declineTransaksi(item._id));
   };
 
   const handleAccept = () => {
-    try {
-      dispatch(acceptTransaksi(item._id));
-    } finally {
-      dispatch(getAllTransaksi());
-    }
+    dispatch(acceptTransaksi(item._id));
   };
 
+  if (!item) return <Fragment />;
   return (
     <>
+      wdw
       <BaseCard
         title={`Status: ${StatusEnum[item.statusTransaksi]} - ${momentFormat(item.createdAt)}`}
         link={`detail-transaksi/${item._id}`}
@@ -52,7 +38,7 @@ const CardTransaksi = (props) => {
             <Stack direction="row" alignItems="center" justifyContent="space-between">
               <Typography>Dijual Kepada</Typography>
               <Typography variant="h6">
-                {item.pembeli.name} ({RoleEnum[item.pembeli.role]})
+                {item.pembeli?.name} ({RoleEnum[item.pembeli?.role]})
               </Typography>
             </Stack>
           )}
@@ -60,7 +46,7 @@ const CardTransaksi = (props) => {
             <Stack direction="row" alignItems="center" justifyContent="space-between">
               <Typography>Dibeli Dari</Typography>
               <Typography variant="h6">
-                {item.penjual.name} ({RoleEnum[item.penjual.role]})
+                {item.penjual?.name} ({RoleEnum[item.penjual?.role]})
               </Typography>
             </Stack>
           )}

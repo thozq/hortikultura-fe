@@ -1,10 +1,9 @@
 import { Box, Link, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { Form, Formik } from 'formik';
-import { clearMessage } from 'redux/slices/message';
 import { signin } from 'redux/slices/auth';
 import { Navigate, useNavigate } from 'react-router-dom';
 import FormikController from 'components/Formik/FormikController';
@@ -17,23 +16,19 @@ function Masuk() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(clearMessage());
-  }, [dispatch]);
-
   const initialValues = {
     email: '',
     password: ''
   };
   const validationSchema = yup.object({
     email: yup
-      .string('Enter your email')
-      .email('Enter a valid email')
-      .required('Email is required'),
+      .string('Masukkan email')
+      .email('Masukkan email dengan benar')
+      .required('Email diperlukan'),
     password: yup
-      .string('Enter your password')
-      .min(6, 'Password should be of minimum 6 characters length')
-      .required('Password is required')
+      .string('Masukkan password')
+      .min(6, 'Panjang password minimal 6 karakter')
+      .required('Password dibutuhkan')
   });
   const onSubmit = (formValue) => {
     const { email, password } = formValue;
@@ -79,7 +74,6 @@ function Masuk() {
                   name="email"
                   label="Email"
                   type="email"
-                  formikProps={formikProps}
                 />
                 <FormikController
                   control="textfield"
@@ -88,9 +82,14 @@ function Masuk() {
                   name="password"
                   label="Password"
                   type="password"
-                  formikProps={formikProps}
                 />
-                <BaseButton type="submit">{loading ? <span>Memuat...</span> : 'Masuk'}</BaseButton>
+                <BaseButton
+                  type="submit"
+                  disabled={
+                    !(formikProps.isValid && formikProps.dirty) || formikProps.isSubmitting
+                  }>
+                  {loading ? 'Memuat...' : 'Masuk'}
+                </BaseButton>
               </Stack>
             </Form>
           )}

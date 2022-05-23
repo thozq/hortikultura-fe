@@ -29,7 +29,7 @@ function RiwayatPetani() {
 
   return (
     <>
-      <TheProfileHeader name="Ahmad" role="petani" />
+      <TheProfileHeader />
       <Box p={2} mb="56px">
         <Box mb={2}>
           <Typography variant="h4">Riwayat</Typography>

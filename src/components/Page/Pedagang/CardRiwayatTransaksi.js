@@ -37,7 +37,7 @@ const CardRiwayatTransaksi = (props) => {
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <Typography>Dijual Kepada</Typography>
         <Typography variant="h6">
-          {item.pembeli.name} ({RoleEnum[item.pembeli.role]})
+          {item.pembeli?.name} ({RoleEnum[item.pembeli?.role]})
         </Typography>
       </Box>
     </BaseCard>

@@ -20,7 +20,7 @@ function BerandaPdh() {
 
   return (
     <>
-      <TheProfileHeader name="Ahmad" role="pdh" />
+      <TheProfileHeader />
       <Stack gap={2} p={2} mb="56px">
         <Box>
           <Typography>

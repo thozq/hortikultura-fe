@@ -1,10 +1,9 @@
 import { Box, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { Form, Formik } from 'formik';
-import { clearMessage } from 'redux/slices/message';
 import FormikController from 'components/Formik/FormikController';
 import { addSupervisi } from 'redux/slices/auth';
 
@@ -13,10 +12,6 @@ function MasukPdh() {
 
   const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(clearMessage());
-  }, [dispatch]);
 
   const initialValues = {
     email: '',
@@ -86,7 +81,13 @@ function MasukPdh() {
                   type="password"
                   formikProps={formikProps}
                 />
-                <BaseButton type="submit">{loading ? <span>Memuat...</span> : 'Masuk'}</BaseButton>
+                <BaseButton
+                  type="submit"
+                  disabled={
+                    !(formikProps.isValid && formikProps.dirty) || formikProps.isSubmitting
+                  }>
+                  {loading ? 'Memuat...' : 'Masuk'}
+                </BaseButton>
               </Stack>
             </Form>
           )}

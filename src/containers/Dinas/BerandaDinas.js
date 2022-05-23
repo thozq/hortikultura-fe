@@ -7,7 +7,7 @@ import TheProfileHeader from 'components/Base/TheProfileHeader';
 function BerandaDinas() {
   return (
     <>
-      <TheProfileHeader name="Ahmad" role="dinas" />
+      <TheProfileHeader />
       <Stack gap={2} p={2} mb="56px">
         <Box>
           <Typography>

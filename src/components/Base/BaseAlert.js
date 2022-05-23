@@ -34,7 +34,7 @@ const BaseAlert = () => {
         onClose={handleClose}>
         <Alert
           onClose={handleClose}
-          severity={status === 404 ? 'error' : 'success'}
+          severity={status === 404 || status === 401 || status === 403 ? 'error' : 'success'}
           elevation={2}
           sx={{
             width: '100%',

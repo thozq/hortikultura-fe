@@ -22,7 +22,7 @@ function BerandaPetani() {
 
   return (
     <>
-      <TheProfileHeader name="Ahmad" role="petani" />
+      <TheProfileHeader />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
         <Box>
           <Typography>

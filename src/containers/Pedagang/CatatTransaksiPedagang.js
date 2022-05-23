@@ -125,8 +125,13 @@ function CatatTransaksiPedagang() {
                   formikProps={formikProps}
                 />
                 <Box mt={5}>
-                  <BaseButton fullWidth type="submit" disabled={status === 'loading'}>
-                    {status === 'loading' ? <span>Memuat...</span> : 'Kirim'}
+                  <BaseButton
+                    fullWidth
+                    type="submit"
+                    disabled={
+                      !(formikProps.isValid && formikProps.dirty) || formikProps.isSubmitting
+                    }>
+                    {status === 'loading' ? 'Memuat...' : 'Kirim'}
                   </BaseButton>
                 </Box>
               </Stack>

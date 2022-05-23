@@ -18,8 +18,8 @@ const BaseTextField = (props) => {
 };
 
 const FormikTextField = (props) => {
-  const { formikProps, ...rest } = props;
-  return <Field disabled={formikProps.isSubmitting} component={BaseTextField} {...rest} />;
+  const { ...rest } = props;
+  return <Field component={BaseTextField} {...rest} />;
 };
 
 export default FormikTextField;

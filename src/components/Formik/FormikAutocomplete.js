@@ -3,12 +3,12 @@ import { Field } from 'formik';
 import React from 'react';
 
 const BaseTextField = (props) => {
-  const { formikProps, form, field, ...rest } = props;
+  const { form, field, ...rest } = props;
   return (
     <TextField
       {...field}
       {...rest}
-      disabled={formikProps.isSubmitting}
+      // disabled={formikProps.isSubmitting}
       error={!!form.errors[field.name] && form.touched[field.name]}
       helperText={
         form.errors[field.name] && form.touched[field.name] ? form.errors[field.name] : null

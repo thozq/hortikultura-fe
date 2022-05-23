@@ -107,8 +107,13 @@ function UlangTransaksiPedagang() {
                   <Divider />
                 </Stack>
                 <Box mt={5}>
-                  <BaseButton fullWidth type="submit">
-                    {loading ? <span>Memuat...</span> : 'Kirim'}
+                  <BaseButton
+                    fullWidth
+                    type="submit"
+                    disabled={
+                      !(formikProps.isValid && formikProps.dirty) || formikProps.isSubmitting
+                    }>
+                    {loading ? 'Memuat...' : 'Kirim'}
                   </BaseButton>
                 </Box>
               </Stack>

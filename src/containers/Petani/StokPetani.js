@@ -22,7 +22,7 @@ function StokPetani() {
 
   return (
     <>
-      <TheProfileHeader name="Ahmad" role="petani" />
+      <TheProfileHeader />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
         <BaseButton shape="withicon" link="catat-stok" size="large" variant="outlined" fullWidth>
           <Typography variant="h5">Catat Stok</Typography>

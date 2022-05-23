@@ -25,7 +25,7 @@ function RiwayatPedagang() {
 
   return (
     <>
-      <TheProfileHeader name="Ahmad" role="pedagang" />
+      <TheProfileHeader />
       <Box p={2} mb="56px">
         <BaseTabs labels={['Riwayat Transaksi', 'Riwayat Usang']}>
           <Box display="flex" flexDirection="column" gap={1.5}>

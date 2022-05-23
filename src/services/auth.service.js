@@ -3,16 +3,24 @@ import authHeader from './auth-header';
 const API_URL = process.env.REACT_APP_API_URL;
 
 const signup = (name, email, password, provinsi, kecamatan, kabupaten, alamat, role) => {
-  return axios.post(API_URL + 'auth/signup', {
-    name,
-    email,
-    password,
-    provinsi,
-    kecamatan,
-    kabupaten,
-    alamat,
-    role
-  });
+  return axios
+    .post(API_URL + 'auth/signup', {
+      name,
+      email,
+      password,
+      provinsi,
+      kecamatan,
+      kabupaten,
+      alamat,
+      role
+    })
+    .then((response) => {
+      if (response.data) {
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem('auth-token', response.data.token);
+      }
+      return response;
+    });
 };
 
 const signin = (email, password) => {

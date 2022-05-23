@@ -3,6 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import authReducer from './slices/auth';
+import userReducer from './slices/user';
 import messageReducer from './slices/message';
 import stokSlice from './slices/stok';
 import transaksiSlice from './slices/transaksi';
@@ -17,6 +18,7 @@ const persistConfig = {
 
 const reducer = combineReducers({
   auth: authReducer,
+  user: userReducer,
   message: messageReducer,
   stok: stokSlice,
   transaksi: transaksiSlice,

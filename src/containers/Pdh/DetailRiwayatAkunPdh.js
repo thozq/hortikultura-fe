@@ -2,10 +2,24 @@ import { VisibilityOffOutlined, VisibilityOutlined } from '@mui/icons-material';
 import { Avatar, Box, IconButton, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseHeader from 'components/Base/BaseHeader';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getProfile } from 'redux/slices/user';
+import { RoleEnum } from 'utils/constants';
 
 function DetailRiwayatAkunPdh() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
   const [visibility, setVisibility] = useState(false);
+
+  const { profile } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    dispatch(getProfile(id));
+  }, [dispatch]);
+
+  const handleRelog = () => {};
 
   return (
     <>
@@ -14,11 +28,11 @@ function DetailRiwayatAkunPdh() {
         <Avatar>P</Avatar>
         <Box>
           <Typography>Nama</Typography>
-          <Typography variant="h5">Aditya Marwan</Typography>
+          <Typography variant="h5">{profile.name}</Typography>
         </Box>
         <Box>
           <Typography>Peran</Typography>
-          <Typography variant="h5">Petani</Typography>
+          <Typography variant="h5">{RoleEnum[profile.role]}</Typography>
         </Box>
         <Box>
           <Typography>Password</Typography>
@@ -37,22 +51,22 @@ function DetailRiwayatAkunPdh() {
         </Box>
         <Box>
           <Typography>Alamat</Typography>
-          <Typography variant="h5">Jl Menuju cintamu duhay cintaku Blok A6</Typography>
+          <Typography variant="h5">{profile.alamat}</Typography>
         </Box>
         <Box>
           <Typography>Kecamatan</Typography>
-          <Typography variant="h5">Bantul</Typography>
+          <Typography variant="h5">{profile.kecamatan.alt_name}</Typography>
         </Box>
         <Box>
           <Typography>Kabupaten</Typography>
-          <Typography variant="h5">Milengguk</Typography>
+          <Typography variant="h5">{profile.kabupaten.alt_name}</Typography>
         </Box>
         <Box>
           <Typography>Provinsi</Typography>
-          <Typography variant="h5">Jawa Timur</Typography>
+          <Typography variant="h5">{profile.provinsi.alt_name}</Typography>
         </Box>
         <Stack direction="row" justifyContent="space-between" spacing={2}>
-          <BaseButton shape="supervise">
+          <BaseButton shape="supervise" onClick={handleRelog()}>
             <Typography variant="h5">Akuisisi Kembali</Typography>
           </BaseButton>
           <BaseButton shape="delete">
