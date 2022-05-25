@@ -3,7 +3,6 @@ import BaseButton from 'components/Base/BaseButton';
 import TheBottomNavigation from 'components/Base/TheBottomNavigation';
 import TheProfileHeader from 'components/Base/TheProfileHeader';
 import CardBlanko from 'components/Page/Petani/CardBlanko';
-import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';

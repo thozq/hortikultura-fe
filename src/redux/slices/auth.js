@@ -36,8 +36,9 @@ export const signup = createAsyncThunk(
 
 export const signin = createAsyncThunk('auth/signin', async ({ email, password }, thunkAPI) => {
   try {
-    const data = await AuthService.signin(email, password);
-    return { user: data.user };
+    const response = await AuthService.signin(email, password);
+    thunkAPI.dispatch(setMessage(response));
+    return { user: response.data.user };
   } catch (error) {
     const response = error.response;
     const message =
@@ -56,7 +57,20 @@ export const logout = createAsyncThunk('auth/logout', async () => {
 export const relog = createAsyncThunk('auth/relog', async (data, thunkAPI) => {
   try {
     const response = await AuthService.relog(data);
-    return { user: response.user };
+    thunkAPI.dispatch(setMessage(response));
+    return { user: response.data.user };
+  } catch (error) {
+    const response = error.response;
+    thunkAPI.dispatch(setMessage(response));
+    return thunkAPI.rejectWithValue();
+  }
+});
+
+export const relogById = createAsyncThunk('auth/relog', async (id, thunkAPI) => {
+  try {
+    const response = await AuthService.relogById(id);
+    thunkAPI.dispatch(setMessage(response));
+    return { user: response.data.user };
   } catch (error) {
     const response = error.response;
     thunkAPI.dispatch(setMessage(response));
@@ -67,7 +81,8 @@ export const relog = createAsyncThunk('auth/relog', async (data, thunkAPI) => {
 export const addSupervisi = createAsyncThunk('auth/addSupervisi', async (data, thunkAPI) => {
   try {
     const response = await AuthService.addSupervisi(data);
-    return { user: response.petani };
+    thunkAPI.dispatch(setMessage(response));
+    return { user: response.data.petani };
   } catch (error) {
     const response = error.response;
     thunkAPI.dispatch(setMessage(response));
@@ -81,10 +96,10 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    changeUser: () => {
+    changeUser: (state) => {
       localStorage.removeItem('child-user');
       localStorage.removeItem('child-token');
-      return { user: user, parentUser: null, isLoggedIn: true };
+      return { isLoggedIn: true, user: state.parentUser, parentUser: state.parentUser };
     }
   },
   extraReducers: {
@@ -92,18 +107,19 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.user = action.payload.user;
     },
-    [signup.rejected]: (state, action) => {
+    [signup.rejected]: (state) => {
       state.isLoggedIn = false;
     },
     [signin.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;
+      state.parentUser = action.payload.user;
     },
-    [signin.rejected]: (state, action) => {
+    [signin.rejected]: (state) => {
       state.isLoggedIn = false;
       state.user = null;
     },
-    [logout.fulfilled]: (state, action) => {
+    [logout.fulfilled]: (state) => {
       state.isLoggedIn = false;
       state.user = null;
       state.parentUser = null;
@@ -111,7 +127,6 @@ const authSlice = createSlice({
     [relog.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;
-      state.parentUser = user;
     },
     [relog.rejected]: (state) => {
       state.isLoggedIn = false;
@@ -119,7 +134,6 @@ const authSlice = createSlice({
     [addSupervisi.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;
-      state.parentUser = user;
     },
     [addSupervisi.rejected]: (state) => {
       state.isLoggedIn = false;

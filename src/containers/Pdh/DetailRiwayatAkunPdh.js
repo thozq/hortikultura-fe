@@ -5,6 +5,7 @@ import BaseHeader from 'components/Base/BaseHeader';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { relogById } from 'redux/slices/auth';
 import { getProfile } from 'redux/slices/user';
 import { RoleEnum } from 'utils/constants';
 
@@ -19,7 +20,9 @@ function DetailRiwayatAkunPdh() {
     dispatch(getProfile(id));
   }, [dispatch]);
 
-  const handleRelog = () => {};
+  const handleRelog = () => {
+    dispatch(relogById(id));
+  };
 
   return (
     <>
@@ -28,11 +31,11 @@ function DetailRiwayatAkunPdh() {
         <Avatar>P</Avatar>
         <Box>
           <Typography>Nama</Typography>
-          <Typography variant="h5">{profile.name}</Typography>
+          <Typography variant="h5">{profile?.name}</Typography>
         </Box>
         <Box>
           <Typography>Peran</Typography>
-          <Typography variant="h5">{RoleEnum[profile.role]}</Typography>
+          <Typography variant="h5">{RoleEnum[profile?.role]}</Typography>
         </Box>
         <Box>
           <Typography>Password</Typography>
@@ -51,22 +54,22 @@ function DetailRiwayatAkunPdh() {
         </Box>
         <Box>
           <Typography>Alamat</Typography>
-          <Typography variant="h5">{profile.alamat}</Typography>
+          <Typography variant="h5">{profile?.alamat}</Typography>
         </Box>
         <Box>
           <Typography>Kecamatan</Typography>
-          <Typography variant="h5">{profile.kecamatan.alt_name}</Typography>
+          <Typography variant="h5">{profile?.kecamatan.name}</Typography>
         </Box>
         <Box>
           <Typography>Kabupaten</Typography>
-          <Typography variant="h5">{profile.kabupaten.alt_name}</Typography>
+          <Typography variant="h5">{profile?.kabupaten.name}</Typography>
         </Box>
         <Box>
           <Typography>Provinsi</Typography>
-          <Typography variant="h5">{profile.provinsi.alt_name}</Typography>
+          <Typography variant="h5">{profile?.provinsi.name}</Typography>
         </Box>
         <Stack direction="row" justifyContent="space-between" spacing={2}>
-          <BaseButton shape="supervise" onClick={handleRelog()}>
+          <BaseButton shape="supervise" onClick={handleRelog}>
             <Typography variant="h5">Akuisisi Kembali</Typography>
           </BaseButton>
           <BaseButton shape="delete">

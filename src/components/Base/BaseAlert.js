@@ -30,7 +30,7 @@ const BaseAlert = () => {
       <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         open={open}
-        autoHideDuration={6000}
+        autoHideDuration={4000}
         onClose={handleClose}>
         <Alert
           onClose={handleClose}

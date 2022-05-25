@@ -34,7 +34,7 @@ const TheProfileHeader = () => {
         />
       </Box>
 
-      {parentUser && (
+      {parentUser.id !== user.id && (
         <AppBar position="fixed" sx={{ background: 'none', boxShadow: 'none' }}>
           <Box display="flex" justifyContent="center">
             <Paper

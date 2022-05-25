@@ -34,7 +34,7 @@ const signin = (email, password) => {
         localStorage.setItem('user', JSON.stringify(response.data.user));
         localStorage.setItem('auth-token', response.data.token);
       }
-      return response.data;
+      return response;
     });
 };
 
@@ -53,7 +53,19 @@ const relog = async (data) => {
         localStorage.setItem('child-user', JSON.stringify(response.data.user));
         localStorage.setItem('child-token', response.data.token);
       }
-      return response.data;
+      return response;
+    });
+};
+
+const relogById = async (id) => {
+  return axios
+    .post(API_URL + 'supervisi/relog/' + id, {}, { headers: authHeader() })
+    .then((response) => {
+      if (response.data) {
+        localStorage.setItem('child-user', JSON.stringify(response.data.user));
+        localStorage.setItem('child-token', response.data.token);
+      }
+      return response;
     });
 };
 
@@ -65,7 +77,7 @@ const addSupervisi = async (data) => {
         localStorage.setItem('child-user', JSON.stringify(response.data.petani));
         localStorage.setItem('child-token', response.data.token);
       }
-      return response.data;
+      return response;
     });
 };
 
@@ -74,6 +86,7 @@ const authService = {
   signin,
   logout,
   relog,
+  relogById,
   addSupervisi
 };
 export default authService;
