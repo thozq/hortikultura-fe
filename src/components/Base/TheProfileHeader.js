@@ -4,6 +4,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { changeUser } from 'redux/slices/auth';
+import BaseLoader from './BaseLoader';
 
 const TheProfileHeader = () => {
   const navigate = useNavigate();
@@ -33,8 +34,9 @@ const TheProfileHeader = () => {
           onClick={() => navigate(`/${user.access}/data-diri`)}
         />
       </Box>
+      <BaseLoader />
 
-      {parentUser.id !== user.id && (
+      {parentUser?.id !== user?.id && parentUser?.role === 'pdh' && (
         <AppBar position="fixed" sx={{ background: 'none', boxShadow: 'none' }}>
           <Box display="flex" justifyContent="center">
             <Paper

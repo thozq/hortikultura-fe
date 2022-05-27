@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PURGE } from 'redux-persist';
 import PdhService from 'services/pdh.service';
 
 export const getAllSupervisi = createAsyncThunk('pdh/getAllSupervisi', async () => {
@@ -6,23 +7,25 @@ export const getAllSupervisi = createAsyncThunk('pdh/getAllSupervisi', async () 
   return response.data;
 });
 
+const initialState = {
+  status: '',
+  petani: []
+};
 const pdhSlice = createSlice({
   name: 'pdh',
-  initialState: {
-    status: null,
-    petani: []
-  },
-  extraReducers: {
-    [getAllSupervisi.pending]: (state) => {
+  initialState: initialState,
+  extraReducers: (builder) => {
+    builder.addCase(PURGE, () => initialState);
+    builder.addCase(getAllSupervisi.pending, (state) => {
       state.status = 'loading';
-    },
-    [getAllSupervisi.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getAllSupervisi.fulfilled, (state, action) => {
       state.status = 'success';
       state.petani = action.payload.petani;
-    },
-    [getAllSupervisi.rejected]: (state) => {
+    });
+    builder.addCase(getAllSupervisi.rejected, (state) => {
       state.status = 'failed';
-    }
+    });
   }
 });
 

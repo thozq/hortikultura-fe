@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import BlankoService from 'services/blanko.service';
 import { setMessage } from './message';
+import { PURGE } from 'redux-persist';
 
 export const getAllBlanko = createAsyncThunk('blanko/getAllBlanko', async () => {
   const response = await BlankoService.getAllBlanko();
@@ -18,39 +19,41 @@ export const addBlanko = createAsyncThunk('blanko/addBlanko', async (data, thunk
   return response.data;
 });
 
+const initialState = { riwayat: [], status: null, detail: {} };
 const blankoSlice = createSlice({
   name: 'blanko',
-  initialState: { riwayat: [], status: null, detail: null },
-  extraReducers: {
-    [getAllBlanko.pending]: (state) => {
+  initialState: initialState,
+  extraReducers: (builder) => {
+    builder.addCase(PURGE, () => initialState);
+    builder.addCase(getAllBlanko.pending, (state) => {
       state.status = 'loading';
-    },
-    [getAllBlanko.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getAllBlanko.fulfilled, (state, action) => {
       state.status = 'success';
       state.riwayat = action.payload.data;
-    },
-    [getAllBlanko.rejected]: (state) => {
+    });
+    builder.addCase(getAllBlanko.rejected, (state) => {
       state.status = 'failed';
-    },
-    [getBlankoById.pending]: (state) => {
+    });
+    builder.addCase(getBlankoById.pending, (state) => {
       state.status = 'loading';
-    },
-    [getBlankoById.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getBlankoById.fulfilled, (state, action) => {
       state.status = 'success';
       state.detail = action.payload.data;
-    },
-    [getBlankoById.rejected]: (state) => {
+    });
+    builder.addCase(getBlankoById.rejected, (state) => {
       state.status = 'failed';
-    },
-    [addBlanko.pending]: (state) => {
+    });
+    builder.addCase(addBlanko.pending, (state) => {
       state.status = 'loading';
-    },
-    [addBlanko.fulfilled]: (state) => {
+    });
+    builder.addCase(addBlanko.fulfilled, (state) => {
       state.status = 'success';
-    },
-    [addBlanko.rejected]: (state) => {
+    });
+    builder.addCase(addBlanko.rejected, (state) => {
       state.status = 'failed';
-    }
+    });
   }
 });
 

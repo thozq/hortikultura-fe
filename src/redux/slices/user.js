@@ -1,3 +1,4 @@
+import { PURGE } from 'redux-persist';
 import UserService from 'services/user.service';
 
 const { createSlice, createAsyncThunk } = require('@reduxjs/toolkit');
@@ -7,23 +8,23 @@ export const getProfile = createAsyncThunk('user/getProfile', async (id) => {
   return response.data;
 });
 
-const initialState = { status: null, profile: null };
-
+const initialState = { status: '', profile: null };
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  extraReducers: {
-    [getProfile.pending]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(PURGE, () => initialState);
+    builder.addCase(getProfile.pending, (state) => {
       state.status = 'loading';
-    },
-    [getProfile.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getProfile.fulfilled, (state, action) => {
       state.status = 'success';
       state.profile = action.payload;
-    },
-    [getProfile.rejected]: (state, action) => {
+    });
+    builder.addCase(getProfile.rejected, (state, action) => {
       state.status = 'failed';
       state.profile = action.payload;
-    }
+    });
   }
 });
 const { reducer } = userSlice;
