@@ -114,7 +114,6 @@ function Daftar() {
       </Box>
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formikProps) => {
-          console.log(formikProps);
           setSelectedProvinsi(formikProps.values.provinsi);
           setSelectedKabupaten(formikProps.values.kabupaten);
           return (
