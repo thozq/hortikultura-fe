@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PURGE } from 'redux-persist';
 import TransaksiService from 'services/transaksi.service';
 import { setMessage } from './message';
 
@@ -57,88 +58,90 @@ export const editTransaksi = createAsyncThunk(
   }
 );
 
+const initialState = {
+  status: '',
+  konfirmasi: [],
+  diajukan: [],
+  detail: {},
+  riwayat: []
+};
 const transaksiSlice = createSlice({
   name: 'transaksi',
-  initialState: {
-    status: null,
-    konfirmasi: [],
-    diajukan: [],
-    detail: {},
-    riwayat: []
-  },
+  initialState: initialState,
   reducers: {
     reset: (state) => {
       state.detail = {};
     }
   },
-  extraReducers: {
-    [getAllTransaksi.pending]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(PURGE, () => initialState);
+    builder.addCase(getAllTransaksi.pending, (state) => {
       state.status = 'loading';
-    },
-    [getAllTransaksi.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getAllTransaksi.fulfilled, (state, action) => {
       state.status = 'success';
       state.konfirmasi = action.payload.dibeli.filter((item) => item.statusTransaksi === 0);
       state.diajukan = action.payload.dijual.filter((item) => item.statusTransaksi === 0);
       state.riwayat = action.payload.dijual.filter((item) => item.statusTransaksi !== 0);
-    },
-    [getAllTransaksi.rejected]: (state) => {
+    });
+    builder.addCase(getAllTransaksi.rejected, (state) => {
       state.status = 'failed';
-    },
-    [getTransaksiById.pending]: (state) => {
+    });
+    builder.addCase(getTransaksiById.pending, (state) => {
       state.status = 'loading';
-    },
-    [getTransaksiById.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getTransaksiById.fulfilled, (state, action) => {
       state.status = 'success';
       state.detail = action.payload.data;
-    },
-    [getTransaksiById.rejected]: (state) => {
+    });
+    builder.addCase(getTransaksiById.rejected, (state) => {
       state.status = 'failed';
-    },
-    [addTransaksi.pending]: (state) => {
+    });
+    builder.addCase(addTransaksi.pending, (state) => {
       state.status = 'loading';
-    },
-    [addTransaksi.fulfilled]: (state) => {
+    });
+    builder.addCase(addTransaksi.fulfilled, (state) => {
       state.status = 'success';
-    },
-    [addTransaksi.rejected]: (state) => {
+    });
+    builder.addCase(addTransaksi.rejected, (state) => {
       state.status = 'failed';
-    },
-    [deleteTransaksi.pending]: (state) => {
+    });
+    builder.addCase(deleteTransaksi.pending, (state) => {
       state.status = 'loading';
-    },
-    [deleteTransaksi.fulfilled]: (state) => {
+    });
+    builder.addCase(deleteTransaksi.fulfilled, (state) => {
       state.status = 'success';
-    },
-    [deleteTransaksi.rejected]: (state) => {
+    });
+    builder.addCase(deleteTransaksi.rejected, (state) => {
       state.status = 'failed';
-    },
-    [acceptTransaksi.pending]: (state) => {
+    });
+    builder.addCase(acceptTransaksi.pending, (state) => {
       state.status = 'loading';
-    },
-    [acceptTransaksi.fulfilled]: (state) => {
+    });
+    builder.addCase(acceptTransaksi.fulfilled, (state) => {
       state.status = 'success';
-    },
-    [acceptTransaksi.rejected]: (state) => {
+    });
+    builder.addCase(acceptTransaksi.rejected, (state) => {
       state.status = 'failed';
-    },
-    [declineTransaksi.pending]: (state) => {
+    });
+    builder.addCase(declineTransaksi.pending, (state) => {
       state.status = 'loading';
-    },
-    [declineTransaksi.fulfilled]: (state) => {
+    });
+    builder.addCase(declineTransaksi.fulfilled, (state) => {
       state.status = 'success';
-    },
-    [declineTransaksi.rejected]: (state) => {
+    });
+    builder.addCase(declineTransaksi.rejected, (state) => {
       state.status = 'failed';
-    },
-    [editTransaksi.pending]: (state) => {
+    });
+    builder.addCase(editTransaksi.pending, (state) => {
       state.status = 'loading';
-    },
-    [editTransaksi.fulfilled]: (state) => {
+    });
+    builder.addCase(editTransaksi.fulfilled, (state) => {
       state.status = 'success';
-    },
-    [editTransaksi.rejected]: (state) => {
+    });
+    builder.addCase(editTransaksi.rejected, (state) => {
       state.status = 'failed';
-    }
+    });
   }
 });
 

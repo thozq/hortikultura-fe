@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PURGE } from 'redux-persist';
 import StokService from 'services/stok.service';
 import { setMessage } from './message';
 
@@ -23,49 +24,51 @@ export const getStokById = createAsyncThunk('stok/getStokById', async (id) => {
   return response.data.data;
 });
 
+const initialState = { dashboard: {}, status: '', stoks: [], detail: {} };
 const stokSlice = createSlice({
   name: 'stok',
-  initialState: { dashboard: {}, status: null, stoks: null, detail: null },
-  extraReducers: {
-    [getDashboardStok.pending]: (state) => {
+  initialState: initialState,
+  extraReducers: (builder) => {
+    builder.addCase(PURGE, () => initialState);
+    builder.addCase(getDashboardStok.pending, (state) => {
       state.status = 'loading';
-    },
-    [getDashboardStok.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getDashboardStok.fulfilled, (state, action) => {
       state.status = 'success';
       state.dashboard = action.payload;
-    },
-    [getDashboardStok.rejected]: (state) => {
+    });
+    builder.addCase(getDashboardStok.rejected, (state) => {
       state.status = 'failed';
-    },
-    [addStok.pending]: (state) => {
+    });
+    builder.addCase(addStok.pending, (state) => {
       state.status = 'loading';
-    },
-    [addStok.fulfilled]: (state) => {
+    });
+    builder.addCase(addStok.fulfilled, (state) => {
       state.status = 'success';
-    },
-    [addStok.rejected]: (state) => {
+    });
+    builder.addCase(addStok.rejected, (state) => {
       state.status = 'failed';
-    },
-    [getAllStok.pending]: (state) => {
+    });
+    builder.addCase(getAllStok.pending, (state) => {
       state.status = 'loading';
-    },
-    [getAllStok.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getAllStok.fulfilled, (state, action) => {
       state.status = 'success';
       state.stoks = action.payload;
-    },
-    [getAllStok.rejected]: (state) => {
+    });
+    builder.addCase(getAllStok.rejected, (state) => {
       state.status = 'failed';
-    },
-    [getStokById.pending]: (state) => {
+    });
+    builder.addCase(getStokById.pending, (state) => {
       state.status = 'loading';
-    },
-    [getStokById.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getStokById.fulfilled, (state, action) => {
       state.status = 'success';
       state.detail = action.payload;
-    },
-    [getStokById.rejected]: (state) => {
+    });
+    builder.addCase(getStokById.rejected, (state) => {
       state.status = 'failed';
-    }
+    });
   }
 });
 

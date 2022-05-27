@@ -2,6 +2,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { setMessage } from './message';
 import AuthService from '../../services/auth.service';
+import { persistor } from 'redux/store';
+import { PURGE } from 'redux-persist';
 
 const user = JSON.parse(localStorage.getItem('user'));
 // const childUser = JSON.parse(localStorage.getItem('child-user'));
@@ -51,7 +53,9 @@ export const signin = createAsyncThunk('auth/signin', async ({ email, password }
 });
 
 export const logout = createAsyncThunk('auth/logout', async () => {
-  await AuthService.logout();
+  persistor.purge().then(() => {
+    AuthService.logout();
+  });
 });
 
 export const relog = createAsyncThunk('auth/relog', async (data, thunkAPI) => {
@@ -91,7 +95,6 @@ export const addSupervisi = createAsyncThunk('auth/addSupervisi', async (data, t
 });
 
 const initialState = { isLoggedIn: user ? true : false, user: null, parentUser: null };
-
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -102,42 +105,43 @@ const authSlice = createSlice({
       return { isLoggedIn: true, user: state.parentUser, parentUser: state.parentUser };
     }
   },
-  extraReducers: {
-    [signup.fulfilled]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(PURGE, () => initialState);
+    builder.addCase(signup.fulfilled, (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;
-    },
-    [signup.rejected]: (state) => {
+    });
+    builder.addCase(signup.rejected, (state) => {
       state.isLoggedIn = false;
-    },
-    [signin.fulfilled]: (state, action) => {
+    });
+    builder.addCase(signin.fulfilled, (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;
       state.parentUser = action.payload.user;
-    },
-    [signin.rejected]: (state) => {
+    });
+    builder.addCase(signin.rejected, (state) => {
       state.isLoggedIn = false;
       state.user = null;
-    },
-    [logout.fulfilled]: (state) => {
+    });
+    builder.addCase(logout.fulfilled, (state) => {
       state.isLoggedIn = false;
       state.user = null;
       state.parentUser = null;
-    },
-    [relog.fulfilled]: (state, action) => {
+    });
+    builder.addCase(relog.fulfilled, (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;
-    },
-    [relog.rejected]: (state) => {
+    });
+    builder.addCase(relog.rejected, (state) => {
       state.isLoggedIn = false;
-    },
-    [addSupervisi.fulfilled]: (state, action) => {
+    });
+    builder.addCase(addSupervisi.fulfilled, (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;
-    },
-    [addSupervisi.rejected]: (state) => {
+    });
+    builder.addCase(addSupervisi.rejected, (state) => {
       state.isLoggedIn = false;
-    }
+    });
   }
 });
 const { reducer, actions } = authSlice;

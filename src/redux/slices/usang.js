@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { PURGE } from 'redux-persist';
 import UsangService from 'services/usang.service';
 import { setMessage } from './message';
 
@@ -18,40 +19,42 @@ export const addUsang = createAsyncThunk('usang/addUsang', async (data, thunkAPI
   return response.data;
 });
 
+const initialState = { usang: [], status: null, detail: {} };
 const usangSlice = createSlice({
   name: 'stok',
-  initialState: { usang: [], status: null, detail: [] },
-  extraReducers: {
-    [getAllUsang.pending]: (state) => {
+  initialState: initialState,
+  extraReducers: (builder) => {
+    builder.addCase(PURGE, () => initialState);
+    builder.addCase(getAllUsang.pending, (state) => {
       state.status = 'loading';
-    },
-    [getAllUsang.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getAllUsang.fulfilled, (state, action) => {
       state.status = 'success';
       state.usang = action.payload.data;
-    },
-    [getAllUsang.rejected]: (state) => {
+    });
+    builder.addCase(getAllUsang.rejected, (state) => {
       state.status = 'failed';
-    },
-    [getUsangById.pending]: (state) => {
+    });
+    builder.addCase(getUsangById.pending, (state) => {
       state.status = 'loading';
-    },
-    [getUsangById.fulfilled]: (state, action) => {
+    });
+    builder.addCase(getUsangById.fulfilled, (state, action) => {
       state.status = 'success';
       state.detail = action.payload.data;
-    },
-    [getUsangById.rejected]: (state) => {
+    });
+    builder.addCase(getUsangById.rejected, (state) => {
       state.status = 'failed';
-    },
-    [addUsang.pending]: (state) => {
+    });
+    builder.addCase(addUsang.pending, (state) => {
       state.status = 'loading';
-    },
-    [addUsang.fulfilled]: (state, action) => {
+    });
+    builder.addCase(addUsang.fulfilled, (state, action) => {
       state.status = 'success';
       state.detail = action.payload.data;
-    },
-    [addUsang.rejected]: (state) => {
+    });
+    builder.addCase(addUsang.rejected, (state) => {
       state.status = 'failed';
-    }
+    });
   }
 });
 
