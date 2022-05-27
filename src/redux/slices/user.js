@@ -1,0 +1,30 @@
+import UserService from 'services/user.service';
+
+const { createSlice, createAsyncThunk } = require('@reduxjs/toolkit');
+
+export const getProfile = createAsyncThunk('user/getProfile', async (id) => {
+  const response = await UserService.getProfile(id);
+  return response.data;
+});
+
+const initialState = { status: null, profile: null };
+
+const userSlice = createSlice({
+  name: 'user',
+  initialState,
+  extraReducers: {
+    [getProfile.pending]: (state) => {
+      state.status = 'loading';
+    },
+    [getProfile.fulfilled]: (state, action) => {
+      state.status = 'success';
+      state.profile = action.payload;
+    },
+    [getProfile.rejected]: (state, action) => {
+      state.status = 'failed';
+      state.profile = action.payload;
+    }
+  }
+});
+const { reducer } = userSlice;
+export default reducer;
