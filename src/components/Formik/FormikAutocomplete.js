@@ -13,6 +13,9 @@ const BaseTextField = (props) => {
       helperText={
         form.errors[field.name] && form.touched[field.name] ? form.errors[field.name] : null
       }
+      // Note: temporary solution to fontsize
+      InputProps={{ style: { fontSize: 14 } }}
+      InputLabelProps={{ style: { fontSize: 14 } }}
       sx={{ backgroundColor: 'white', borderRadius: 1 }}
     />
   );
@@ -36,6 +39,11 @@ const FormikAutocomplete = (props) => {
       }}
       options={options}
       disabled={disabled}
+      sx={{
+        '& .MuiAutocomplete-input, & .MuiInputLabel-root': {
+          fontSize: 14
+        }
+      }}
       renderInput={(params) => (
         <Field component={BaseTextField} formikProps={formikProps} {...params} {...rest} />
       )}
