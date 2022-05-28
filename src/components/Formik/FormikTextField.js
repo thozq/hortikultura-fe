@@ -12,6 +12,9 @@ const BaseTextField = (props) => {
       helperText={
         form.errors[field.name] && form.touched[field.name] ? form.errors[field.name] : null
       }
+      // Note: temporary solution to fontsize
+      InputProps={{ style: { fontSize: 14 } }}
+      InputLabelProps={{ style: { fontSize: 14 } }}
       sx={{ backgroundColor: 'white', borderRadius: 1 }}
     />
   );
