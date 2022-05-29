@@ -120,75 +120,66 @@ function IsiBlankoPetani() {
                 formikProps={formikProps}
               />
               <FormikController
-                control="textfield"
+                control="number"
                 id="luasTanamanAkhirBulanLalu"
                 name="luasTanamanAkhirBulanLalu"
                 label="Luas tanaman akhir bulan lalu (Ha)"
-                type="number"
                 formikProps={formikProps}
               />
               <FormikController
-                control="textfield"
+                control="number"
                 id="luasPanenHabis"
                 name="luasPanenHabis"
                 label="Luas panen habis / dibongkar (Ha)"
-                type="number"
                 formikProps={formikProps}
               />
               <FormikController
-                control="textfield"
+                control="number"
                 id="luasPanenBelumHabis"
                 name="luasPanenBelumHabis"
                 label="Luas panen belum habis (Ha)"
-                type="number"
                 formikProps={formikProps}
               />
               <FormikController
-                control="textfield"
+                control="number"
                 id="luasRusak"
                 name="luasRusak"
                 label="Luas rusak/tidak berhasil/puso (Ha)"
-                type="number"
                 formikProps={formikProps}
               />
               <FormikController
-                control="textfield"
+                control="number"
                 id="luasPenanamanBaru"
                 name="luasPenanamanBaru"
                 label="Luas penanaman baru/tambah tanam (Ha)"
-                type="number"
                 formikProps={formikProps}
               />
               <FormikController
-                control="textfield"
+                control="number"
                 id="luasTanamanAkhirBulanLaporan"
                 name="luasTanamanAkhirBulanLaporan"
                 label="Luas tanaman akhir bulan laporan (Ha)"
-                type="number"
                 formikProps={formikProps}
               />
               <FormikController
-                control="textfield"
+                control="number"
                 id="prodPanenHabis"
                 name="prodPanenHabis"
                 label="Produksi dipanen habis/dibongkar (Kwintal)"
-                type="number"
                 formikProps={formikProps}
               />
               <FormikController
-                control="textfield"
+                control="number"
                 id="prodBelumHabis"
                 name="prodBelumHabis"
                 label="Produksi belum habis (Kwintal)"
-                type="number"
                 formikProps={formikProps}
               />
               <FormikController
-                control="textfield"
+                control="number"
                 id="rataHargaJual"
                 name="rataHargaJual"
                 label="Rata-rata harga jual petani per kilogram (Rupiah)"
-                type="number"
                 formikProps={formikProps}
               />
               <Box mt={5}>

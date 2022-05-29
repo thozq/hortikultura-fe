@@ -186,7 +186,8 @@ function Daftar() {
                   label="Kabupaten"
                   formikProps={formikProps}
                   options={kabupaten}
-                  disabled={!formikProps.values.provinsi || formikProps.values.kabupaten}
+                  // disabled={!formikProps.values.provinsi || formikProps.values.kabupaten}
+                  disabled={!formikProps.values.provinsi}
                 />
                 <FormikController
                   control="autocomplete"
@@ -196,7 +197,8 @@ function Daftar() {
                   label="Kecamatan"
                   formikProps={formikProps}
                   options={kecamatan}
-                  disabled={!formikProps.values.kabupaten || formikProps.values.kecamatan}
+                  // disabled={!formikProps.values.kabupaten || formikProps.values.kecamatan}
+                  disabled={!formikProps.values.kabupaten}
                 />
                 {/* <Button
                   variant="text"

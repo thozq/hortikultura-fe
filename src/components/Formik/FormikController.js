@@ -1,5 +1,6 @@
 import FormikAutocomplete from './FormikAutocomplete';
 import FormikDatePicker from './FormikDatePicker';
+import FormikNumber from './FormikNumber';
 import FormikSelect from './FormikSelect';
 import FormikTextField from './FormikTextField';
 
@@ -17,6 +18,8 @@ const FormikController = (props) => {
       return <FormikDatePicker {...rest} />;
     case 'autocomplete':
       return <FormikAutocomplete options={options} disabled={disabled} {...rest} />;
+    case 'number':
+      return <FormikNumber {...rest} />;
     default:
       return null;
   }
