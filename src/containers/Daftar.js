@@ -1,4 +1,4 @@
-import { Box, Button, Link, Stack, Typography } from '@mui/material';
+import { Box, Link, Stack, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
@@ -50,10 +50,10 @@ function Daftar() {
 
   // const validateKabupaten = () => {};
 
-  const handleClearLocation = (formikProps) => {
-    console.log('test', formikProps);
-    setField
-  };
+  // const handleClearLocation = (formikProps) => {
+  //   console.log('test', formikProps);
+  //   setField
+  // };
 
   // Notes: perlu diroute berdasarkan role
 
@@ -177,34 +177,35 @@ function Daftar() {
                   options={provinsi}
                   formikProps={formikProps}
                 />
-                <Box>
-                  <FormikController
-                    control="autocomplete"
-                    fullWidth
-                    id="kabupaten"
-                    name="kabupaten"
-                    label="Kabupaten"
-                    formikProps={formikProps}
-                    options={kabupaten}
-                    disabled={!formikProps.values.provinsi || formikProps.values.kabupaten}
-                  />
-                  <FormikController
-                    control="autocomplete"
-                    fullWidth
-                    id="kecamatan"
-                    name="kecamatan"
-                    label="Kecamatan"
-                    formikProps={formikProps}
-                    options={kecamatan}
-                    disabled={!formikProps.values.kabupaten || formikProps.values.kecamatan}
-                  />
-                  <Button
-                    variant="text"
-                    sx={{ textTransform: 'none' }}
-                    onClick={() => handleClearLocation(formikProps)}>
-                    Ulang Daerah
-                  </Button>
-                </Box>
+                {/* <Box> */}
+                <FormikController
+                  control="autocomplete"
+                  fullWidth
+                  id="kabupaten"
+                  name="kabupaten"
+                  label="Kabupaten"
+                  formikProps={formikProps}
+                  options={kabupaten}
+                  disabled={!formikProps.values.provinsi || formikProps.values.kabupaten}
+                />
+                <FormikController
+                  control="autocomplete"
+                  fullWidth
+                  id="kecamatan"
+                  name="kecamatan"
+                  label="Kecamatan"
+                  formikProps={formikProps}
+                  options={kecamatan}
+                  disabled={!formikProps.values.kabupaten || formikProps.values.kecamatan}
+                />
+                {/* <Button
+                  variant="text"
+                  sx={{ textTransform: 'none' }}
+                  // onClick={() => handleClearLocation(formikProps)}
+                >
+                  Ulang Daerah
+                </Button> */}
+                {/* </Box> */}
                 <FormikController
                   control="multiline"
                   fullWidth
