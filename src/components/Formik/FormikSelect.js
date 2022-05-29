@@ -19,7 +19,7 @@ const FormikSelect = (props) => {
       }}
       formikProps={formikProps}>
       {options.map((option) => (
-        <MenuItem key={option.value} value={option.value}>
+        <MenuItem key={option.value} value={option.value} sx={{ fontSize: 14 }}>
           {option.label}
         </MenuItem>
       ))}
