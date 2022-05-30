@@ -66,17 +66,15 @@ function CatatUsangPedagang() {
                 formikProps={formikProps}
               />
               <FormikController
-                control="textfield"
+                control="number"
                 label="Jumlah Cabai Usang (kg)"
                 name="jumlahUsang"
-                type="number"
                 formikProps={formikProps}
               />
               <FormikController
-                control="textfield"
+                control="number"
                 label="Harga Jual Per kg (Rp)"
                 name="hargaJual"
-                type="number"
                 formikProps={formikProps}
               />
               <FormikController
