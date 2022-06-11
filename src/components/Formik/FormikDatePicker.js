@@ -38,6 +38,7 @@ const FormikDatePicker = (props) => {
         renderInput={(params) => (
           <Field component={BaseTextField} formikProps={formikProps} {...params} />
         )}
+        disableFuture
         {...rest}
       />
     </LocalizationProvider>

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Divider, Stack, Typography } from '@mui/material';
 
 const BaseListDetail = (props) => {
@@ -13,6 +14,10 @@ const BaseListDetail = (props) => {
       ))}
     </Stack>
   );
+};
+
+BaseListDetail.prototype = {
+  data: PropTypes.array.isRequired
 };
 
 export default BaseListDetail;

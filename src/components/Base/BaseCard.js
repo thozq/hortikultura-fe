@@ -30,7 +30,7 @@ const BaseCard = (props) => {
           alignItems="center"
           justifyContent="space-between"
           sx={{ borderBottomLeftRadius: '0', borderBottomRightRadius: '0' }}>
-          <Typography color="white" variant="h6">
+          <Typography color="white" variant="h5">
             {title}
           </Typography>
           <IconButton size="small" sx={{ color: 'white' }} onClick={() => navigate(link)}>

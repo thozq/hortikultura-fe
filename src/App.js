@@ -3,6 +3,7 @@ import RouterConfig from 'navigation/RouterConfig';
 import Layout from 'layouts/Layout';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import theme from 'themes/theme';
+import BaseLoadingRedux from 'components/Base/BaseLoadingRedux';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <Layout>
+            <BaseLoadingRedux />
             <RouterConfig />
           </Layout>
         </ThemeProvider>
