@@ -60,7 +60,7 @@ function CatatTransaksiPetani() {
   const initialValues = {
     lahan: '',
     tanggalPencatatan: today,
-    hasilPanen: '',
+    jumlahDijual: '',
     hargaJual: '',
     grade: '',
     pembeli: '',
@@ -72,7 +72,7 @@ function CatatTransaksiPetani() {
     tanggalPencatatan: yup
       .date('Masukkan tanggal transaksi')
       .required('Tanggal transaksi diperlukan'),
-    hasilPanen: yup.number('Masukkan jumlah dijual').required('Jumlah dijual diperlukan'),
+    jumlahDijual: yup.number('Masukkan jumlah dijual').required('Jumlah dijual diperlukan'),
     hargaJual: yup.number('Masukkan harga per kg').required('Harga per kg diperlukan')
     // tipePedagang: yup.string('Tipe pedagang dijual').required('Tipe pedagang diperlukan'),
     // pembeli: yup.string('Masukkan nama pedagang').required('Nama pedagang diperlukan')
@@ -81,7 +81,7 @@ function CatatTransaksiPetani() {
     const {
       lahan,
       tanggalPencatatan,
-      hasilPanen,
+      jumlahDijual,
       hargaJual,
       grade,
       pembeli,
@@ -89,11 +89,11 @@ function CatatTransaksiPetani() {
       tipePedagang
     } = formValue;
 
-    const accountForm = { lahan, tanggalPencatatan, hasilPanen, hargaJual, grade, pembeli };
+    const accountForm = { lahan, tanggalPencatatan, jumlahDijual, hargaJual, grade, pembeli };
     const noAccountForm = {
       lahan,
       tanggalPencatatan,
-      hasilPanen,
+      jumlahDijual,
       hargaJual,
       grade,
       namaPedagang,
@@ -145,7 +145,7 @@ function CatatTransaksiPetani() {
                 <FormikController
                   control="number"
                   label="Hasil Panen (kuintal)"
-                  name="hasilPanen"
+                  name="jumlahDijual"
                   formikProps={formikProps}
                 />
                 <FormikController
