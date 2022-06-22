@@ -126,28 +126,28 @@ function CatatPenanaman() {
                   control="numbercurrency"
                   id="modalBenih"
                   name="modalBenih"
-                  label="Benih"
+                  label="Benih (Rp)"
                   formikProps={formikProps}
                 />
                 <FormikController
                   control="numbercurrency"
                   id="modalPupuk"
                   name="modalPupuk"
-                  label="Pupuk"
+                  label="Pupuk (Rp)"
                   formikProps={formikProps}
                 />
                 <FormikController
                   control="numbercurrency"
                   id="modalPestisida"
                   name="modalPestisida"
-                  label="Pestisida"
+                  label="Pestisida (Rp)"
                   formikProps={formikProps}
                 />
                 <FormikController
                   control="numbercurrency"
                   id="modalPekerja"
                   name="modalPekerja"
-                  label="Tenaga Kerja"
+                  label="Tenaga Kerja (Rp)"
                   formikProps={formikProps}
                 />
                 <Box mt={2}>

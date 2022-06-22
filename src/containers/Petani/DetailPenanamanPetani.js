@@ -19,6 +19,8 @@ function DetailPenanamanPetani() {
   const { id } = useParams();
   const { detail } = useSelector((state) => state.lahan);
 
+  console.log(detail);
+
   useEffect(() => {
     dispatch(getLahanById(id));
   }, [dispatch]);
@@ -38,7 +40,7 @@ function DetailPenanamanPetani() {
     }
   ];
 
-  const dataPanen = detail.transaksi.map(({ _id, hargaJual, jumlahDijual, totalProduksi }) => ({
+  const dataPanen = detail.transaksi?.map(({ _id, hargaJual, jumlahDijual, totalProduksi }) => ({
     id: _id,
     hasil: `${formatNumber(jumlahDijual)} kuintal x ${formatRupiah(hargaJual)}`,
     total: formatRupiah(totalProduksi)
@@ -79,7 +81,7 @@ function DetailPenanamanPetani() {
       </Stack>
       <Divider />
       <Stack direction="column" p={2} gap={2}>
-        {dataBlanko.map(({ label, value }, index) => (
+        {dataBlanko?.map(({ label, value }, index) => (
           <Stack key={index}>
             <Typography>{label}</Typography>
             <Typography variant="h6">{value}</Typography>
@@ -119,7 +121,7 @@ function DetailPenanamanPetani() {
             <Typography textTransform="none">Edit Modal</Typography>
           </Button>
         </Stack>
-        {dataModal.map(({ label, value }, index) => (
+        {dataModal?.map(({ label, value }, index) => (
           <Stack key={index} direction="row" justifyContent="space-between">
             <Typography>{label}</Typography>
             <Typography variant="h6">{formatRupiah(value)}</Typography>
