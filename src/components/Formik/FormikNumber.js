@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import { Field } from 'formik';
+import { forwardRef } from 'react';
 import NumberFormat from 'react-number-format';
 
 // const BaseTextField = (props) => {
@@ -27,36 +27,34 @@ import NumberFormat from 'react-number-format';
 //   );
 // };
 
-const NumberFormatCustom = (props) => {
-  const { inputRef, onChange, ...other } = props;
+const NumberFormatCustom = forwardRef((props, ref) => {
+  const { name, formikProps, ...rest } = props;
 
   return (
     <NumberFormat
-      {...other}
-      getInputRef={inputRef}
-      onValueChange={(values) => {
-        onChange({
-          target: {
-            value: values.value
-          }
-        });
-      }}
-      thousandSeparator
-      prefix="Rp "
+      ref={ref}
+      isNumericString={true}
+      thousandSeparator={'.'}
+      decimalSeparator={','}
+      value={formikProps.values[name]}
+      onValueChange={(val) => formikProps.setFieldValue(`${name}`, val.floatValue)}
+      {...rest}
     />
   );
-};
+});
+
+NumberFormatCustom.displayName = 'NumberFormatCustom';
 
 const FormikNumber = (props) => {
-  const { name, label, ...rest } = props;
+  const { label, defaultValue, ...rest } = props;
 
   return (
-    <Field
-      component={TextField}
-      name={name}
+    <TextField
       label={label}
+      defaultValue={defaultValue}
+      InputLabelProps={{ shrink: true }}
       InputProps={{ inputComponent: NumberFormatCustom }}
-      {...rest}
+      inputProps={{ inputMode: 'decimal', autoCapitalize: 'none', ...rest }}
     />
   );
 };

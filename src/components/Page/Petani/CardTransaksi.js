@@ -26,16 +26,17 @@ const CardTransaksi = (props) => {
           <Stack direction="row" alignItems="center" justifyContent="space-between">
             <Typography>Dijual Kepada</Typography>
             <Typography variant="h6">
-              {item.pembeli?.name} ({RoleEnum[item.pembeli?.role]})
+              {item.pembeli ? item.pembeli?.name : item.namaPedagang} (
+              {item.pembeli ? RoleEnum[item.pembeli?.role] : RoleEnum[item.tipePedagang]})
             </Typography>
           </Stack>
           <Stack direction="row" justifyContent="space-between">
             <Typography>Tipe Cabai</Typography>
-            <Typography variant="h6">{CabaiEnum[item.tipeCabai]}</Typography>
+            <Typography variant="h6">{CabaiEnum[item.lahan?.tipeCabai]}</Typography>
           </Stack>
           <Stack direction="row" justifyContent="space-between">
             <Typography>Jumlah Dijual</Typography>
-            <Typography variant="h6">{formatNumber(item.jumlahDijual)}</Typography>
+            <Typography variant="h6">{formatNumber(item.jumlahDijual)} kuintal</Typography>
           </Stack>
           <Stack direction="row" alignItems="center" justifyContent="space-between">
             <Typography>Harga jual Per kg</Typography>

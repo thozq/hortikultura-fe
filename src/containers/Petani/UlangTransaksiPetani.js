@@ -17,7 +17,7 @@ function UlangTransaksiPetani() {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
 
-  const { detail } = useSelector((state) => state.transaksi);
+  const { detail } = useSelector((state) => state.notification);
 
   useEffect(() => {
     dispatch(reset());

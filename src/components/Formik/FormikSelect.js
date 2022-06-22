@@ -3,8 +3,8 @@ import { MenuItem } from '@mui/material';
 import FormikTextField from './FormikTextField';
 
 const FormikSelect = (props) => {
-  const { options, name, defaultValue, formikProps, ...rest } = props;
-
+  const { options, name, defaultValue, disabled, formikProps, ...rest } = props;
+  console.log(options);
   // Notes warning from MUI Controlled and Uncontrolled Input
 
   return (
@@ -13,10 +13,11 @@ const FormikSelect = (props) => {
       select
       name={name}
       defaultValue={defaultValue}
-      {...rest}
       onChange={(event, values) => {
         formikProps.setFieldValue(name, values.props.value);
       }}
+      disabled={disabled}
+      {...rest}
       formikProps={formikProps}>
       {options.map((option) => (
         <MenuItem key={option.value} value={option.value} sx={{ fontSize: 14 }}>

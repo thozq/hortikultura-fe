@@ -36,7 +36,7 @@ function DetailBlankoPetani() {
   return (
     <>
       <BaseHeader label={`Blanko - ${momentFormat(detail[0]?.tanggalPencatatan)}`} to={-1} />
-      <BaseListDetail data={data} />
+      <BaseListDetail data={data} p={2} />
     </>
   );
 }

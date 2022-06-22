@@ -1,0 +1,195 @@
+import BaseHeader from 'components/Base/BaseHeader';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Fragment, useEffect } from 'react';
+import { Button, Divider, Stack, Typography } from '@mui/material';
+import { formatNumber, formatRupiah } from 'utils/Formats';
+import BaseButton from 'components/Base/BaseButton';
+import FormikController from 'components/Formik/FormikController';
+import { Form, Formik } from 'formik';
+import * as yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLahanById } from 'redux/slices/lahan';
+import { momentFormat } from 'utils/MomentFormat';
+import { CabaiEnum } from 'utils/constants';
+import urlFormData from 'utils/urlFormData';
+
+function DetailPenanamanPetani() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { detail } = useSelector((state) => state.lahan);
+
+  useEffect(() => {
+    dispatch(getLahanById(id));
+  }, [dispatch]);
+
+  const dataBlanko = [
+    {
+      label: 'Batang Ditanam',
+      value: `${detail.jumlahBatang} Batang`
+    },
+    {
+      label: 'Luas Lahan (Ha)',
+      value: detail.luasLahan
+    },
+    {
+      label: 'Tanggal Mulai Panen',
+      value: detail.tanggalMulaiPanen ? momentFormat(detail.tanggalMulaiPanen) : '-'
+    }
+  ];
+
+  const dataPanen = detail.transaksi.map(({ _id, hargaJual, jumlahDijual, totalProduksi }) => ({
+    id: _id,
+    hasil: `${formatNumber(jumlahDijual)} kuintal x ${formatRupiah(hargaJual)}`,
+    total: formatRupiah(totalProduksi)
+  }));
+
+  const dataModal = [
+    { label: 'Benih', value: detail.modalBenih },
+    { label: 'Pupuk', value: detail.modalPupuk },
+    { label: 'Pestisida', value: detail.modalPestisida },
+    { label: 'Tenaga Kerja', value: detail.modalPekerja }
+  ];
+
+  const initialValues = {
+    luasRusak: detail.luasRusak
+  };
+  const validationSchema = yup.object({
+    luasRusak: yup.number('Masukkan Total Hasil Panen')
+  });
+  const onSubmit = (formValue) => {
+    const { luasRusak } = formValue;
+    const formData = urlFormData({ luasRusak });
+    console.log(formData);
+  };
+
+  if (!detail) return <Fragment />;
+  return (
+    <>
+      <BaseHeader label={`${detail.namaLahan} - ${CabaiEnum[detail.tipeCabai]}`} to={-1} />
+      <Stack direction="row" alignItems="center" justifyContent="space-between" p={2}>
+        <Stack direction="column" alignItems="center" justifyContent="center">
+          <Typography variant="body2">Tanggal Penanaman</Typography>
+          <Typography variant="h5">{momentFormat(detail.tanggalTanam)}</Typography>
+        </Stack>
+        <Stack direction="column" alignItems="center" justifyContent="center">
+          <Typography variant="body2">Tanggal Selesai</Typography>
+          <Typography variant="h5">{detail.tanggalSelesai ?? '-'}</Typography>
+        </Stack>
+      </Stack>
+      <Divider />
+      <Stack direction="column" p={2} gap={2}>
+        {dataBlanko.map(({ label, value }, index) => (
+          <Stack key={index}>
+            <Typography>{label}</Typography>
+            <Typography variant="h6">{value}</Typography>
+          </Stack>
+        ))}
+        <Typography variant="body1">Luas Rusak (Ha)</Typography>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}>
+          {(formikProps) => {
+            console.log(formikProps);
+            return (
+              <Form>
+                <FormikController
+                  control="number"
+                  id="luasRusak"
+                  name="luasRusak"
+                  label="Luas lahan rusak"
+                  defaultValue={formikProps.values['luasRusak']}
+                  formikProps={formikProps}
+                />
+              </Form>
+            );
+          }}
+        </Formik>
+        <Stack>
+          <Typography>Presentase Kerusakan</Typography>
+          <Typography variant="h6">{detail.persenRusak}%</Typography>
+        </Stack>
+      </Stack>
+      <Divider />
+      <Stack p={2} gap={2}>
+        <Stack direction="row" justifyContent="space-between">
+          <Typography variant="h5">Total Modal</Typography>
+          <Button sx={{ px: 0 }}>
+            <Typography textTransform="none">Edit Modal</Typography>
+          </Button>
+        </Stack>
+        {dataModal.map(({ label, value }, index) => (
+          <Stack key={index} direction="row" justifyContent="space-between">
+            <Typography>{label}</Typography>
+            <Typography variant="h6">{formatRupiah(value)}</Typography>
+          </Stack>
+        ))}
+        <Stack direction="row" justifyContent="space-between">
+          <Typography>Total</Typography>
+          <Typography variant="h6" color="primary.main">
+            {formatRupiah(detail.totalModal)}
+          </Typography>
+        </Stack>
+      </Stack>
+      <Divider />
+      <Stack direction="column" p={2} gap={2}>
+        <Typography variant="h5">Hasil Panen</Typography>
+        <Stack direction="column" gap={2}>
+          {dataPanen?.map(({ id, hasil, total }, index) => (
+            <Stack key={index} direction="row" justifyContent="space-between" alignItems="end">
+              <Stack direction="column">
+                <Typography variant="body2">Hasil Panen {index + 1}</Typography>
+                <Typography>{hasil}</Typography>
+              </Stack>
+              <Stack direction="column" alignItems="flex-end">
+                <Button
+                  sx={{ px: 0 }}
+                  onClick={() => {
+                    navigate('/transaksi/detail-transaksi/' + id);
+                  }}>
+                  <Typography textTransform="none">Cek Transaksi</Typography>
+                </Button>
+                <Typography variant="h5">{total}</Typography>
+              </Stack>
+            </Stack>
+          ))}
+        </Stack>
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Typography variant="body2">Total Hasil Panen</Typography>
+          <Typography variant="h5">{formatNumber(detail.jumlahPanen) ?? 0} kuintal</Typography>
+        </Stack>
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Typography variant="body2">Total Hasil Penjualan</Typography>
+          <Typography variant="h5">{formatRupiah(detail.jumlahPenjualan) ?? 0}</Typography>
+        </Stack>
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Typography variant="body2">Keuntungan Bersih</Typography>
+          <Typography variant="h5" color="primary.main">
+            {formatRupiah(detail.keuntungan) ?? 0}
+          </Typography>
+        </Stack>
+        <Divider />
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Typography variant="body2">Rata-rata Jumlah Panen</Typography>
+          <Typography variant="h5">
+            {formatNumber(detail.rataanJumlahPanen) ?? 0} kuintal
+          </Typography>
+        </Stack>
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Typography variant="body2">Rata-rata Harga per kg</Typography>
+          <Typography variant="h5">{formatRupiah(detail.rataanHargaJual) ?? 0}</Typography>
+        </Stack>
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Typography variant="body2">Total Jumlah Panen</Typography>
+          <Typography variant="h5">{detail.jumlahPanen} Transaksi</Typography>
+        </Stack>
+      </Stack>
+      <Stack p={2}>
+        <BaseButton>Lahan Selesai</BaseButton>
+      </Stack>
+    </>
+  );
+}
+
+export default DetailPenanamanPetani;

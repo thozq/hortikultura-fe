@@ -176,7 +176,7 @@ function IsiBlankoPetani() {
                 formikProps={formikProps}
               />
               <FormikController
-                control="number"
+                control="numbercurrency"
                 id="rataHargaJual"
                 name="rataHargaJual"
                 label="Rata-rata harga jual petani per kilogram (Rupiah)"
