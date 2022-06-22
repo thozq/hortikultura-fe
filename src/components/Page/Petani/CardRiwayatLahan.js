@@ -1,11 +1,14 @@
 import { Stack, Typography } from '@mui/material';
 import BaseCard from 'components/Base/BaseCard';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { formatNumber } from 'utils/Formats';
 import { momentFormat } from 'utils/MomentFormat';
 
 function CardRiwayatLahan(props) {
   const { item } = props;
+
+  const navigate = useNavigate();
 
   const data = [
     {
@@ -27,7 +30,7 @@ function CardRiwayatLahan(props) {
   ];
 
   return (
-    <BaseCard>
+    <BaseCard onClick={() => navigate(`/petani/penanaman/detail-penanaman/${item._id}`)}>
       <Stack gap={1}>
         {data.map(({ label, value }, index) => (
           <Stack key={index} direction="row" justifyContent="space-between">
