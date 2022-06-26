@@ -1,6 +1,6 @@
 import BaseHeader from 'components/Base/BaseHeader';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Button, Divider, Stack, Typography } from '@mui/material';
 import { formatNumber, formatRupiah } from 'utils/Formats';
 import BaseButton from 'components/Base/BaseButton';
@@ -8,7 +8,7 @@ import FormikController from 'components/Formik/FormikController';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { getLahanById } from 'redux/slices/lahan';
+import { editLuasRusakLahan, getLahanById } from 'redux/slices/lahan';
 import { momentFormat } from 'utils/MomentFormat';
 import { CabaiEnum } from 'utils/constants';
 import urlFormData from 'utils/urlFormData';
@@ -18,12 +18,13 @@ function DetailPenanamanPetani() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { detail } = useSelector((state) => state.lahan);
+  const [changeLuasRusak, setChangeLuasRusak] = useState(detail.luasRusak);
 
   console.log(detail);
 
   useEffect(() => {
     dispatch(getLahanById(id));
-  }, [dispatch]);
+  }, [dispatch, changeLuasRusak]);
 
   const dataBlanko = [
     {
@@ -54,15 +55,16 @@ function DetailPenanamanPetani() {
   ];
 
   const initialValues = {
-    luasRusak: detail.luasRusak
+    luasRusak: detail?.luasRusak
   };
   const validationSchema = yup.object({
     luasRusak: yup.number('Masukkan Total Hasil Panen')
   });
   const onSubmit = (formValue) => {
     const { luasRusak } = formValue;
+    setChangeLuasRusak(luasRusak);
     const formData = urlFormData({ luasRusak });
-    console.log(formData);
+    dispatch(editLuasRusakLahan(id, formData));
   };
 
   if (!detail) return <Fragment />;
@@ -96,14 +98,20 @@ function DetailPenanamanPetani() {
             console.log(formikProps);
             return (
               <Form>
-                <FormikController
-                  control="number"
-                  id="luasRusak"
-                  name="luasRusak"
-                  label="Luas lahan rusak"
-                  defaultValue={formikProps.values['luasRusak']}
-                  formikProps={formikProps}
-                />
+                <Stack direction="row" gap={1}>
+                  <FormikController
+                    control="number"
+                    id="luasRusak"
+                    name="luasRusak"
+                    label="Luas lahan rusak"
+                    shrink
+                    defaultValue={formikProps.values['luasRusak']}
+                    formikProps={formikProps}
+                  />
+                  <BaseButton type="submit" disabled={!(formikProps.isValid && formikProps.dirty)}>
+                    Ubah
+                  </BaseButton>
+                </Stack>
               </Form>
             );
           }}

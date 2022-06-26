@@ -118,7 +118,7 @@ function CatatPenanaman() {
                   control="number"
                   id="luasLahan"
                   name="luasLahan"
-                  label="Luas Lahan"
+                  label="Luas Lahan (Ha)"
                   formikProps={formikProps}
                 />
                 <Typography variant="h5">Modal Penanaman</Typography>
@@ -154,9 +154,7 @@ function CatatPenanaman() {
                   <BaseButton
                     fullWidth
                     type="submit"
-                    disabled={
-                      !(formikProps.isValid && formikProps.dirty) || formikProps.isSubmitting
-                    }>
+                    disabled={!(formikProps.isValid && formikProps.dirty)}>
                     {loading ? 'Memuat..' : 'Kirim'}
                   </BaseButton>
                 </Box>

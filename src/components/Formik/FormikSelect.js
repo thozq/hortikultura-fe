@@ -4,7 +4,6 @@ import FormikTextField from './FormikTextField';
 
 const FormikSelect = (props) => {
   const { options, name, defaultValue, disabled, formikProps, ...rest } = props;
-  console.log(options);
   // Notes warning from MUI Controlled and Uncontrolled Input
 
   return (
@@ -15,6 +14,7 @@ const FormikSelect = (props) => {
       defaultValue={defaultValue}
       onChange={(event, values) => {
         formikProps.setFieldValue(name, values.props.value);
+        console.log('in values', values);
       }}
       disabled={disabled}
       {...rest}

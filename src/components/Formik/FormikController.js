@@ -8,7 +8,7 @@ import FormikSelect from './FormikSelect';
 import FormikTextField from './FormikTextField';
 
 const FormikController = (props) => {
-  const { control, label, options, disabled, defaultValue, ...rest } = props;
+  const { control, label, options, shrink, disabled, defaultValue, ...rest } = props;
 
   switch (control) {
     case 'textfield':
@@ -30,7 +30,7 @@ const FormikController = (props) => {
     case 'autocomplete':
       return <FormikAutocomplete label={label} options={options} disabled={disabled} {...rest} />;
     case 'number':
-      return <FormikNumber label={label} defaultValue={defaultValue} {...rest} />;
+      return <FormikNumber label={label} defaultValue={defaultValue} shrink={shrink} {...rest} />;
     case 'numbercurrency':
       return <FormikNumberCurrency label={label} {...rest} />;
     case 'numberweight':

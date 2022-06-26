@@ -18,6 +18,11 @@ export const getLahanById = createAsyncThunk('lahan/getLahanById', async (id) =>
   return response.data;
 });
 
+export const editLuasRusakLahan = createAsyncThunk('lahan/editLuasRusakLahan', async (id, data) => {
+  const response = await LahanService.editLuasRusakLahan(id, data);
+  return response.data;
+});
+
 const initialState = { riwayat: [], status: null, detail: {} };
 const lahanSlice = createSlice({
   name: 'lahan',
@@ -42,6 +47,15 @@ const lahanSlice = createSlice({
       state.detail = action.payload.data;
     });
     builder.addCase(getLahanById.rejected, (state) => {
+      state.status = 'failed';
+    });
+    builder.addCase(editLuasRusakLahan.pending, (state) => {
+      state.status = 'loading';
+    });
+    builder.addCase(editLuasRusakLahan.fulfilled, (state) => {
+      state.status = 'success';
+    });
+    builder.addCase(editLuasRusakLahan.rejected, (state) => {
       state.status = 'failed';
     });
   }

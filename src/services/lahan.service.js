@@ -18,10 +18,15 @@ const getLahanById = async (id) => {
   return axios.get(API_URL + 'lahan/lihatlahan/' + id, { headers: authHeader() });
 };
 
+const editLuasRusakLahan = async (id, data) => {
+  return axios.put(API_URL + 'lahan/rusak/' + id, data, { headers: authHeader() });
+};
+
 const lahanService = {
   getAllLahan,
   addLahan,
   getLahanName,
-  getLahanById
+  getLahanById,
+  editLuasRusakLahan
 };
 export default lahanService;

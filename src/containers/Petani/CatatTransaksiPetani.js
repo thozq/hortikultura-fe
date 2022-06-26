@@ -23,25 +23,36 @@ import { today } from 'utils/MomentFormat';
 import { CheckBoxOutlineBlankRounded, CheckBoxRounded } from '@mui/icons-material';
 import urlFormData from 'utils/urlFormData';
 import lahanService from 'services/lahan.service';
+import moment from 'moment';
 
 function CatatTransaksiPetani() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [namaLahan, setNamaLahan] = useState([]);
+  const [lahanId, setLahanId] = useState('');
+  const [tanggalTanam, setTanggalTanam] = useState('');
   const [tipePedagang, setTipePedagang] = useState('');
   const [namaPedagang, setNamaPedagang] = useState([]);
   const [haveAccount, setHaveAccount] = useState('yes');
 
   useEffect(() => {
     lahanService.getLahanName().then((response) => {
-      const data = response.data.data.map(({ _id, namaLahan }) => ({
+      const data = response.data.data.map(({ _id, namaLahan, tanggalTanam }) => ({
         value: _id,
-        label: namaLahan
+        label: namaLahan,
+        tanggalTanam
       }));
       setNamaLahan(data);
     });
   }, []);
+
+  useEffect(() => {
+    let tanggalTanam = '';
+    const filterLahan = namaLahan.find((x) => x.value === lahanId);
+    tanggalTanam = filterLahan?.tanggalTanam;
+    setTanggalTanam(tanggalTanam);
+  }, [lahanId]);
 
   useEffect(() => {
     if (haveAccount === 'yes' && tipePedagang) {
@@ -125,6 +136,7 @@ function CatatTransaksiPetani() {
         {(formikProps) => {
           console.log(formikProps);
           setTipePedagang(formikProps.values.tipePedagang);
+          setLahanId(formikProps.values.lahan);
           return (
             <Form>
               <Stack gap={2} p={2}>
@@ -141,10 +153,11 @@ function CatatTransaksiPetani() {
                   label="Tanggal Penjualan Cabai"
                   name="tanggalPencatatan"
                   formikProps={formikProps}
+                  minDate={moment(tanggalTanam)}
                 />
                 <FormikController
-                  control="number"
-                  label="Hasil Panen (kuintal)"
+                  control="numberweight"
+                  label="Hasil Panen (Kg)"
                   name="jumlahDijual"
                   formikProps={formikProps}
                 />
@@ -268,9 +281,7 @@ function CatatTransaksiPetani() {
                   <BaseButton
                     fullWidth
                     type="submit"
-                    disabled={
-                      !(formikProps.isValid && formikProps.dirty) || formikProps.isSubmitting
-                    }>
+                    disabled={!(formikProps.isValid && formikProps.dirty)}>
                     {/* {loading ? <span>Memuat...</span> : 'Kirim'} */}
                     Kirim
                   </BaseButton>
