@@ -13,7 +13,7 @@ function CardRiwayatLahan(props) {
   const data = [
     {
       label: 'Tanggal Penanaman',
-      value: momentFormat(item.createdAt)
+      value: momentFormat(item.tanggalTanam)
     },
     {
       label: 'Jumlah Batang yang Ditanam',
