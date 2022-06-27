@@ -9,7 +9,7 @@ import BerandaPetani from 'containers/Petani/BerandaPetani';
 import TransaksiPetani from 'containers/Petani/TransaksiPetani';
 import RiwayatPetani from 'containers/Petani/RiwayatPetani';
 import StokPetani from 'containers/Petani/StokPetani';
-import IsiBlankoPetani from 'containers/Petani/IsiBlankoPetani';
+import CatatBlankoPetani from 'containers/Petani/CatatBlankoPetani';
 import DetailBlankoPetani from 'containers/Petani/DetailBlankoPetani';
 import DetailTransaksiPetani from 'containers/Petani/DetailTransaksiPetani';
 import CatatStokPetani from 'containers/Petani/CatatStokPetani';
@@ -53,7 +53,7 @@ function RouterConfig() {
       <Route path="petani" element={<IndexPetani />}>
         <Route path="/petani" element={<Navigate to={'beranda'} replace />} />
         <Route path="beranda" element={<BerandaPetani />} />
-        <Route path="beranda/isi-blanko" element={<IsiBlankoPetani />} />
+        <Route path="beranda/catat-blanko" element={<CatatBlankoPetani />} />
         <Route path="beranda/detail-blanko/:id" element={<DetailBlankoPetani />} />
         <Route path="penanaman" element={<PenanamanPetani />} />
         <Route path="penanaman/catat-penanaman" element={<CatatPenanamanPetani />} />

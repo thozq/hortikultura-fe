@@ -8,7 +8,7 @@ import FormikSelect from './FormikSelect';
 import FormikTextField from './FormikTextField';
 
 const FormikController = (props) => {
-  const { control, label, options, shrink, disabled, defaultValue, ...rest } = props;
+  const { control, label, options, shrink, disabled, defaultValue, month, ...rest } = props;
 
   switch (control) {
     case 'textfield':
@@ -26,7 +26,7 @@ const FormikController = (props) => {
         />
       );
     case 'datepicker':
-      return <FormikDatePicker label={label} {...rest} />;
+      return <FormikDatePicker label={label} month={month} {...rest} />;
     case 'autocomplete':
       return <FormikAutocomplete label={label} options={options} disabled={disabled} {...rest} />;
     case 'number':
