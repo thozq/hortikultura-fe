@@ -8,8 +8,13 @@ import FormikController from 'components/Formik/FormikController';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { editLuasRusakLahan, getLahanById } from 'redux/slices/lahan';
-import { momentFormat } from 'utils/MomentFormat';
+import {
+  cancelFinishLahan,
+  editLuasRusakLahan,
+  finishLahan,
+  getLahanById
+} from 'redux/slices/lahan';
+import { momentFormat, today } from 'utils/MomentFormat';
 import { CabaiEnum } from 'utils/constants';
 import urlFormData from 'utils/urlFormData';
 
@@ -19,8 +24,6 @@ function DetailPenanamanPetani() {
   const { id } = useParams();
   const { detail } = useSelector((state) => state.lahan);
   const [changeLuasRusak, setChangeLuasRusak] = useState(detail.luasRusak);
-
-  console.log(detail);
 
   useEffect(() => {
     dispatch(getLahanById(id));
@@ -54,6 +57,30 @@ function DetailPenanamanPetani() {
     { label: 'Tenaga Kerja', value: detail.modalPekerja }
   ];
 
+  const handleFinish = () => {
+    const tanggalSelesai = today;
+
+    const formData = urlFormData({ tanggalSelesai });
+
+    dispatch(finishLahan({ id, data: formData }))
+      .unwrap()
+      .then(() => {
+        dispatch(getLahanById(id));
+      })
+      .catch(() => {})
+      .finally(() => {});
+  };
+
+  const handleCancelFinish = () => {
+    dispatch(cancelFinishLahan(id))
+      .unwrap()
+      .then(() => {
+        dispatch(getLahanById(id));
+      })
+      .catch(() => {})
+      .finally(() => {});
+  };
+
   const initialValues = {
     luasRusak: detail?.luasRusak
   };
@@ -64,7 +91,13 @@ function DetailPenanamanPetani() {
     const { luasRusak } = formValue;
     setChangeLuasRusak(luasRusak);
     const formData = urlFormData({ luasRusak });
-    dispatch(editLuasRusakLahan(id, formData));
+    dispatch(editLuasRusakLahan({ id, data: formData }))
+      .unwrap()
+      .then(() => {
+        dispatch(getLahanById(id));
+      })
+      .catch(() => {})
+      .finally(() => {});
   };
 
   if (!detail) return <Fragment />;
@@ -195,8 +228,13 @@ function DetailPenanamanPetani() {
           <Typography variant="h5">{detail.jumlahPanen} Transaksi</Typography>
         </Stack>
       </Stack>
-      <Stack p={2}>
-        <BaseButton>Lahan Selesai</BaseButton>
+      <Stack p={2} gap={2}>
+        <BaseButton type="submit" onClick={handleFinish}>
+          Lahan Selesai
+        </BaseButton>
+        <BaseButton type="submit" shape="error" onClick={handleCancelFinish}>
+          Batal Selesai
+        </BaseButton>
       </Stack>
     </>
   );

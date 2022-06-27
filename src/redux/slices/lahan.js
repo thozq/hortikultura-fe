@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import LahanService from 'services/lahan.service';
-// import { setMessage } from './message';
+import { setMessage } from './message';
 import { PURGE } from 'redux-persist';
 
 export const getAllLahan = createAsyncThunk('lahan/getAllLahan', async () => {
@@ -8,8 +8,9 @@ export const getAllLahan = createAsyncThunk('lahan/getAllLahan', async () => {
   return response.data;
 });
 
-export const addLahan = createAsyncThunk('lahan/addLahan', async (data) => {
+export const addLahan = createAsyncThunk('lahan/addLahan', async (data, thunkAPI) => {
   const response = await LahanService.addLahan(data);
+  thunkAPI.dispatch(setMessage(response));
   return response.data;
 });
 
@@ -18,10 +19,29 @@ export const getLahanById = createAsyncThunk('lahan/getLahanById', async (id) =>
   return response.data;
 });
 
-export const editLuasRusakLahan = createAsyncThunk('lahan/editLuasRusakLahan', async (id, data) => {
-  const response = await LahanService.editLuasRusakLahan(id, data);
+export const editLuasRusakLahan = createAsyncThunk(
+  'lahan/editLuasRusakLahan',
+  async ({ id, data }, thunkAPI) => {
+    const response = await LahanService.editLuasRusakLahan(id, data);
+    thunkAPI.dispatch(setMessage(response));
+    return response.data;
+  }
+);
+
+export const finishLahan = createAsyncThunk('lahan/finishLahan', async ({ id, data }, thunkAPI) => {
+  const response = await LahanService.finishLahan(id, data);
+  thunkAPI.dispatch(setMessage(response));
   return response.data;
 });
+
+export const cancelFinishLahan = createAsyncThunk(
+  'lahan/cancelFinishLahan',
+  async (id, thunkAPI) => {
+    const response = await LahanService.cancelFinishLahan(id);
+    thunkAPI.dispatch(setMessage(response));
+    return response.data;
+  }
+);
 
 const initialState = { riwayat: [], status: null, detail: {} };
 const lahanSlice = createSlice({
@@ -56,6 +76,24 @@ const lahanSlice = createSlice({
       state.status = 'success';
     });
     builder.addCase(editLuasRusakLahan.rejected, (state) => {
+      state.status = 'failed';
+    });
+    builder.addCase(finishLahan.pending, (state) => {
+      state.status = 'loading';
+    });
+    builder.addCase(finishLahan.fulfilled, (state) => {
+      state.status = 'success';
+    });
+    builder.addCase(finishLahan.rejected, (state) => {
+      state.status = 'failed';
+    });
+    builder.addCase(cancelFinishLahan.pending, (state) => {
+      state.status = 'loading';
+    });
+    builder.addCase(cancelFinishLahan.fulfilled, (state) => {
+      state.status = 'success';
+    });
+    builder.addCase(cancelFinishLahan.rejected, (state) => {
       state.status = 'failed';
     });
   }
