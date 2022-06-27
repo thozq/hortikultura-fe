@@ -78,7 +78,7 @@ function DetailPenanamanPetani() {
         </Stack>
         <Stack direction="column" alignItems="center" justifyContent="center">
           <Typography variant="body2">Tanggal Selesai</Typography>
-          <Typography variant="h5">{detail.tanggalSelesai ?? '-'}</Typography>
+          <Typography variant="h5">{momentFormat(detail.tanggalSelesai) ?? '-'}</Typography>
         </Stack>
       </Stack>
       <Divider />
