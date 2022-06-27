@@ -20,7 +20,7 @@ function CatatPenanaman() {
   const initialValues = {
     namaLahan: '',
     tipeCabai: '',
-    tanggalPenanaman: today,
+    tanggalTanam: today,
     jumlahBatang: '',
     luasLahan: '',
     modalBenih: '',
@@ -31,9 +31,7 @@ function CatatPenanaman() {
   const validationSchema = yup.object({
     namaLahan: yup.string('Masukkan nama lahan').required('Nama lahan wajib diisi'),
     tipeCabai: yup.string('Masukkan Tipe Cabai').required('Tipe Cabai Wajib diisi'),
-    tanggalPenanaman: yup
-      .date('Masukkan tanggal pencatatan')
-      .required('Tanggal pencatatan diperlukan'),
+    tanggalTanam: yup.date('Masukkan tanggal pencatatan').required('Tanggal pencatatan diperlukan'),
     jumlahBatang: yup
       .number('Masukkan Total Hasil Panen')
       .required('Total Hasil Panen Wajib diisi'),
@@ -43,7 +41,7 @@ function CatatPenanaman() {
     const {
       tipeCabai,
       namaLahan,
-      tanggalPenanaman,
+      tanggalTanam,
       jumlahBatang,
       luasLahan,
       modalBenih,
@@ -55,7 +53,7 @@ function CatatPenanaman() {
     const formData = urlFormData({
       tipeCabai,
       namaLahan,
-      tanggalPenanaman,
+      tanggalTanam,
       jumlahBatang,
       luasLahan,
       modalBenih,
@@ -102,8 +100,8 @@ function CatatPenanaman() {
                 />
                 <FormikController
                   control="datepicker"
-                  id="tanggalPenanaman"
-                  name="tanggalPenanaman"
+                  id="tanggalTanam"
+                  name="tanggalTanam"
                   label="Tanggal Penanaman"
                   formikProps={formikProps}
                 />

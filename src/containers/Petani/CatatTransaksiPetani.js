@@ -84,7 +84,8 @@ function CatatTransaksiPetani() {
       .date('Masukkan tanggal transaksi')
       .required('Tanggal transaksi diperlukan'),
     jumlahDijual: yup.number('Masukkan jumlah dijual').required('Jumlah dijual diperlukan'),
-    hargaJual: yup.number('Masukkan harga per kg').required('Harga per kg diperlukan')
+    hargaJual: yup.number('Masukkan harga per kg').required('Harga per kg diperlukan'),
+    grade: yup.string('Masukkan grade cabai').required('Grade cabai diperlukan')
     // tipePedagang: yup.string('Tipe pedagang dijual').required('Tipe pedagang diperlukan'),
     // pembeli: yup.string('Masukkan nama pedagang').required('Nama pedagang diperlukan')
   });
@@ -134,7 +135,7 @@ function CatatTransaksiPetani() {
       <BaseHeader label="Catat Transaksi Cabai" to={-1} />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formikProps) => {
-          console.log(formikProps);
+          console.log('formikprops', formikProps);
           setTipePedagang(formikProps.values.tipePedagang);
           setLahanId(formikProps.values.lahan);
           return (

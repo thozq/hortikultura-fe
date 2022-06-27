@@ -1,6 +1,7 @@
 import {
   FormControl,
   FormControlLabel,
+  FormHelperText,
   FormLabel,
   Radio,
   RadioGroup,
@@ -8,10 +9,12 @@ import {
 } from '@mui/material';
 import React from 'react';
 
+// On going error handling
+
 function FormikRadioButton(props) {
   const { label, name, options = [], formikProps, ...rest } = props;
   return (
-    <FormControl>
+    <FormControl error={!!formikProps.errors[name] && formikProps.touched[name]}>
       <FormLabel id={name}>{label}</FormLabel>
       <RadioGroup
         row
@@ -34,6 +37,7 @@ function FormikRadioButton(props) {
           />
         ))}
       </RadioGroup>
+      <FormHelperText>{formikProps.errors[name]}</FormHelperText>
     </FormControl>
   );
 }

@@ -74,7 +74,7 @@ function DetailPenanamanPetani() {
       <Stack direction="row" alignItems="center" justifyContent="space-between" p={2}>
         <Stack direction="column" alignItems="center" justifyContent="center">
           <Typography variant="body2">Tanggal Penanaman</Typography>
-          <Typography variant="h5">{momentFormat(detail.tanggalTanam)}</Typography>
+          <Typography variant="h5">{momentFormat(detail.tanggalTanam) ?? '-'}</Typography>
         </Stack>
         <Stack direction="column" alignItems="center" justifyContent="center">
           <Typography variant="body2">Tanggal Selesai</Typography>
