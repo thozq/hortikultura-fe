@@ -45,7 +45,7 @@ import UbahModalPetani from 'containers/Petani/UbahModalPetani';
 function RouterConfig() {
   return (
     <Routes>
-      {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+      <Route path="*" element={<Navigate to="/" replace />} />
       <Route path="/" element={<Navigate to={'masuk'} replace />} />
       <Route path="masuk" element={<Masuk />} />
       <Route path="daftar" element={<Daftar />} />
