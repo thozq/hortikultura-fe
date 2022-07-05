@@ -2,13 +2,13 @@ import { Box, Typography } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import TheBottomNavigation from 'components/Base/TheBottomNavigation';
 import TheProfileHeader from 'components/Base/TheProfileHeader';
-import CardPenanaman from 'components/Page/Petani/CardPenanaman';
+import CardLahan from 'components/Page/Petani/CardLahan';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getAllLahan } from 'redux/slices/lahan';
 
-function PenanamanPetani() {
+function LahanPetani() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -27,12 +27,7 @@ function PenanamanPetani() {
             Catat setiap penanaman cabai yang anda lakukan disini!
           </Typography>
         </Box>
-        <BaseButton
-          shape="withicon"
-          link="catat-penanaman"
-          size="large"
-          variant="outlined"
-          fullWidth>
+        <BaseButton shape="withicon" link="catat-lahan" size="large" variant="outlined" fullWidth>
           <Typography variant="h5">Penanaman Baru</Typography>
         </BaseButton>
         <Box display="flex" flexDirection="column" gap={2}>
@@ -43,7 +38,7 @@ function PenanamanPetani() {
             </Typography>
           </Box>
           {riwayat.map((item, index) => (
-            <CardPenanaman key={index} item={item} />
+            <CardLahan key={index} item={item} />
           ))}
         </Box>
         <TheBottomNavigation role="petani" />
@@ -52,4 +47,4 @@ function PenanamanPetani() {
   );
 }
 
-export default PenanamanPetani;
+export default LahanPetani;

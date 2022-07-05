@@ -282,9 +282,8 @@ function CatatTransaksiPetani() {
                   <BaseButton
                     fullWidth
                     type="submit"
-                    disabled={!(formikProps.isValid && formikProps.dirty)}>
-                    {/* {loading ? <span>Memuat...</span> : 'Kirim'} */}
-                    Kirim
+                    disabled={!(formikProps.isValid && formikProps.dirty) || loading}>
+                    {loading ? <span>Memuat...</span> : 'Kirim'}
                   </BaseButton>
                 </Box>
               </Stack>

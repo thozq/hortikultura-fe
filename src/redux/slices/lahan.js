@@ -43,6 +43,12 @@ export const cancelFinishLahan = createAsyncThunk(
   }
 );
 
+export const editModal = createAsyncThunk('lahan/editModal', async ({ id, data }, thunkAPI) => {
+  const response = await LahanService.editModal(id, data);
+  thunkAPI.dispatch(setMessage(response));
+  return response.data;
+});
+
 const initialState = { riwayat: [], status: null, detail: {} };
 const lahanSlice = createSlice({
   name: 'lahan',
@@ -94,6 +100,15 @@ const lahanSlice = createSlice({
       state.status = 'success';
     });
     builder.addCase(cancelFinishLahan.rejected, (state) => {
+      state.status = 'failed';
+    });
+    builder.addCase(editModal.pending, (state) => {
+      state.status = 'loading';
+    });
+    builder.addCase(editModal.fulfilled, (state) => {
+      state.status = 'success';
+    });
+    builder.addCase(editModal.rejected, (state) => {
       state.status = 'failed';
     });
   }

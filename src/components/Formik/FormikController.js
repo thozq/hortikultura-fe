@@ -32,7 +32,9 @@ const FormikController = (props) => {
     case 'number':
       return <FormikNumber label={label} defaultValue={defaultValue} shrink={shrink} {...rest} />;
     case 'numbercurrency':
-      return <FormikNumberCurrency label={label} {...rest} />;
+      return (
+        <FormikNumberCurrency label={label} defaultValue={defaultValue} shrink={shrink} {...rest} />
+      );
     case 'numberweight':
       return <FormikNumberWeight label={label} {...rest} />;
     case 'radio':

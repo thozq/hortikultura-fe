@@ -23,10 +23,12 @@ const NumberFormatCustom = forwardRef((props, ref) => {
 NumberFormatCustom.displayName = 'NumberFormatCustom';
 
 const FormikNumberCurrency = (props) => {
-  const { label, ...rest } = props;
+  const { label, shrink, defaultValue, ...rest } = props;
   return (
     <TextField
       label={label}
+      defaultValue={defaultValue}
+      InputLabelProps={{ shrink: shrink }}
       InputProps={{ inputComponent: NumberFormatCustom }}
       inputProps={{ inputMode: 'numeric', ...rest }}
     />

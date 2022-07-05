@@ -30,7 +30,7 @@ function CardRiwayatLahan(props) {
   ];
 
   return (
-    <BaseCard onClick={() => navigate(`/petani/penanaman/detail-penanaman/${item._id}`)}>
+    <BaseCard onClick={() => navigate(`/petani/lahan/detail-lahan/${item._id}`)}>
       <Stack gap={1}>
         {data.map(({ label, value }, index) => (
           <Stack key={index} direction="row" justifyContent="space-between">

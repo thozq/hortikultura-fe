@@ -12,7 +12,7 @@ import { today } from 'utils/MomentFormat';
 import urlFormData from 'utils/urlFormData';
 import { addLahan } from 'redux/slices/lahan';
 
-function CatatPenanaman() {
+function CatatLahan() {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -165,4 +165,4 @@ function CatatPenanaman() {
   );
 }
 
-export default CatatPenanaman;
+export default CatatLahan;

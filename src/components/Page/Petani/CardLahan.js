@@ -5,7 +5,7 @@ import { CabaiEnum } from 'utils/constants';
 import { momentFormat } from 'utils/MomentFormat';
 import { formatNumber } from 'utils/Formats';
 
-const CardPenanamanPetani = (props) => {
+const CardLahanPetani = (props) => {
   const { item } = props;
 
   const data = [
@@ -31,7 +31,7 @@ const CardPenanamanPetani = (props) => {
     <>
       <BaseCard
         title={`${item.namaLahan} - ${CabaiEnum[item.tipeCabai]}`}
-        link={`/petani/penanaman/detail-penanaman/${item._id}`}>
+        link={`/petani/lahan/detail-lahan/${item._id}`}>
         <Stack gap={1}>
           {data?.map(({ label, value }, index) => (
             <Stack key={index} direction="row" justifyContent="space-between">
@@ -45,8 +45,8 @@ const CardPenanamanPetani = (props) => {
   );
 };
 
-CardPenanamanPetani.propTypes = {
+CardLahanPetani.propTypes = {
   item: PropTypes.object
 };
 
-export default CardPenanamanPetani;
+export default CardLahanPetani;

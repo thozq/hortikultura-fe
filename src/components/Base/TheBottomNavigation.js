@@ -19,7 +19,7 @@ const TheBottomNavigation = (props) => {
         switch (route) {
           case '/petani/beranda':
             return 0;
-          case '/petani/penanaman':
+          case '/petani/lahan':
             return 1;
           case '/petani/transaksi':
             return 2;
@@ -52,7 +52,7 @@ const TheBottomNavigation = (props) => {
 
   const actionsPetani = [
     { label: 'Beranda', icon: <HomeRounded />, link: () => navigate('/petani/beranda') },
-    { label: 'Tanam Baru', icon: <IconTanamBaru />, link: () => navigate('/petani/penanaman') },
+    { label: 'Lahan', icon: <IconTanamBaru />, link: () => navigate('/petani/lahan') },
     {
       label: 'Transaksi',
       icon: <IconPenjualan />,

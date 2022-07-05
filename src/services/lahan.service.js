@@ -34,6 +34,10 @@ const cancelFinishLahan = async (id) => {
   return axios.put(API_URL + 'lahan/batalselesai/' + id, {}, { headers: authHeader() });
 };
 
+const editModal = async (id, data) => {
+  return axios.put(API_URL + 'lahan/modal/' + id, data, { headers: authHeader() });
+};
+
 const lahanService = {
   getAllLahan,
   addLahan,
@@ -42,6 +46,7 @@ const lahanService = {
   editLuasRusakLahan,
   getTipeLahan,
   finishLahan,
-  cancelFinishLahan
+  cancelFinishLahan,
+  editModal
 };
 export default lahanService;

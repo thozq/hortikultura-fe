@@ -18,7 +18,7 @@ import { momentFormat, today } from 'utils/MomentFormat';
 import { CabaiEnum } from 'utils/constants';
 import urlFormData from 'utils/urlFormData';
 
-function DetailPenanamanPetani() {
+function DetailLahanPetani() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -159,7 +159,11 @@ function DetailPenanamanPetani() {
         <Stack direction="row" justifyContent="space-between">
           <Typography variant="h5">Total Modal</Typography>
           <Button sx={{ px: 0 }}>
-            <Typography textTransform="none">Edit Modal</Typography>
+            <Typography
+              textTransform="none"
+              onClick={() => navigate('/petani/lahan/ubah-modal/' + id)}>
+              Ubah Modal
+            </Typography>
           </Button>
         </Stack>
         {dataModal?.map(({ label, value }, index) => (
@@ -189,7 +193,7 @@ function DetailPenanamanPetani() {
                 <Button
                   sx={{ px: 0 }}
                   onClick={() => {
-                    navigate('/transaksi/detail-transaksi/' + id);
+                    navigate('/petani/transaksi/detail-transaksi/' + id);
                   }}>
                   <Typography textTransform="none">Cek Transaksi</Typography>
                 </Button>
@@ -240,4 +244,4 @@ function DetailPenanamanPetani() {
   );
 }
 
-export default DetailPenanamanPetani;
+export default DetailLahanPetani;
