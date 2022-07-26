@@ -10,6 +10,7 @@ import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   cancelFinishLahan,
+  deleteLahan,
   editLuasRusakLahan,
   finishLahan,
   getLahanById
@@ -76,6 +77,16 @@ function DetailLahanPetani() {
       .unwrap()
       .then(() => {
         dispatch(getLahanById(id));
+      })
+      .catch(() => {})
+      .finally(() => {});
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteLahan(id))
+      .unwrap()
+      .then(() => {
+        navigate(-1);
       })
       .catch(() => {})
       .finally(() => {});
@@ -238,6 +249,9 @@ function DetailLahanPetani() {
         </BaseButton>
         <BaseButton type="submit" shape="error" onClick={handleCancelFinish}>
           Batal Selesai
+        </BaseButton>
+        <BaseButton type="submit" shape="error" onClick={handleDelete}>
+          Hapus Lahan
         </BaseButton>
       </Stack>
     </>

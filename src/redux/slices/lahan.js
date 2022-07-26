@@ -49,6 +49,12 @@ export const editModal = createAsyncThunk('lahan/editModal', async ({ id, data }
   return response.data;
 });
 
+export const deleteLahan = createAsyncThunk('lahan/deleteLahan', async (id, thunkAPI) => {
+  const response = await LahanService.deleteLahan(id);
+  thunkAPI.dispatch(setMessage(response));
+  return response.data;
+});
+
 const initialState = { riwayat: [], status: null, detail: {} };
 const lahanSlice = createSlice({
   name: 'lahan',
