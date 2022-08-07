@@ -28,7 +28,7 @@ function DetailRiwayatAkunPdh() {
       .unwrap()
       .then(() => {})
       .catch(() => {})
-      .finally(() => setLoading(false));
+      .finally(() => {});
   };
 
   const handleDelete = () => {
@@ -37,7 +37,7 @@ function DetailRiwayatAkunPdh() {
       .unwrap()
       .then(() => {})
       .catch(() => {})
-      .finally(() => setLoading(false));
+      .finally(() => {});
   };
 
   return (
