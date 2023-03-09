@@ -25,7 +25,7 @@ function CatatLahan() {
     luasLahan: '',
     modalBenih: '',
     modalPupuk: '',
-    optionsJenisPupuk: '',
+    jenisPupuk: '',
     modalPestisida: '',
     modalPekerja: ''
   };
@@ -47,7 +47,7 @@ function CatatLahan() {
       luasLahan,
       modalBenih,
       modalPupuk,
-      optionsJenisPupuk,
+      jenisPupuk,
       modalPestisida,
       modalPekerja
     } = formValue;
@@ -60,7 +60,7 @@ function CatatLahan() {
       luasLahan,
       modalBenih,
       modalPupuk,
-      optionsJenisPupuk,
+      jenisPupuk,
       modalPestisida,
       modalPekerja
     });
@@ -124,7 +124,7 @@ function CatatLahan() {
                  <FormikController
                   control="select"
                   id="jenisPupuk"
-                  name="varianPupuk"
+                  name="jenisPupuk"
                   label="Jenis Pupuk"
                   options={optionsJenisPupuk}
                   formikProps={formikProps}
