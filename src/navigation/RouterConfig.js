@@ -59,8 +59,8 @@ function RouterConfig() {
         <Route path="beranda/catat-blanko" element={<CatatBlankoPetani />} />
         <Route path="beranda/detail-blanko/:id" element={<DetailBlankoPetani />} />
         <Route path="lahan" element={<LahanPetani />} />
-        <Route path="lahan/catat-lahan" element={<CatatLahanPetani />} />
-        <Route path="lahan/detail-lahan/:id" element={<DetailLahanPetani />} />
+        <Route path="lahan/tambah" element={<CatatLahanPetani />} />
+        <Route path="lahan/view/:idLahan" element={<DetailLahanPetani />} />
         <Route path="lahan/ubah-modal/:id" element={<UbahModalPetani />} />
         <Route path="stok" element={<StokPetani />} />
         <Route path="stok/catat-stok" element={<CatatStokPetani />} />
