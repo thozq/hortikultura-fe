@@ -14,7 +14,7 @@ export const addLahan = createAsyncThunk('lahan/tambah', async (data, thunkAPI) 
   return response.data;
 });
 
-export const getLahanById = createAsyncThunk('lahan/getLahanById', async (id) => {
+export const getLahanById = createAsyncThunk('lahan/view', async (id) => {
   const response = await LahanService.getLahanById(id);
   return response.data;
 });

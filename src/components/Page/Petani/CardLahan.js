@@ -30,7 +30,7 @@ const CardLahanPetani = (props) => {
   return (
     <>
       <BaseCard
-        title={`${item.namaLahan} - ${CabaiEnum[item.tipeCabai]}`}
+        title={`${item.namaLahan} - ${CabaiEnum[item.komoditas]}`}
         link={`/petani/lahan/detail-lahan/${item._id}`}>
         <Stack gap={1}>
           {data?.map(({ label, value }, index) => (

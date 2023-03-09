@@ -109,6 +109,16 @@ const CabaiEnum = Object.freeze({
   bawangPutih: 'Bawang Putih'
 });
 
+const PupukEnum = Object.freeze({
+  urea: 'Urea',
+  tsp: 'TSP/SP36',
+  za: 'ZA',
+  npk: 'NPK',
+  npkKhusus: 'NPK Formula Khusus',
+  organik: 'Organik',
+  organikCair: 'Organik Cair'
+});
+
 const StatusEnum = Object.freeze({
   0: 'Diajukan',
   1: 'Ditolak',
@@ -163,4 +173,5 @@ export {
   RoleEnum,
   GradeEnum,
   optionsJenisPupuk,
+  PupukEnum
 };

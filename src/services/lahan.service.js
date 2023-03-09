@@ -15,7 +15,7 @@ const getLahanName = async () => {
 };
 
 const getLahanById = async (id) => {
-  return axios.get(API_URL + 'lahan/' + id, { headers: authHeader() });
+  return axios.get(API_URL + 'lahan/view/' + id, { headers: authHeader() });
 };
 
 const editLuasRusakLahan = async (id, data) => {

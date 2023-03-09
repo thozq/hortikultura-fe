@@ -16,7 +16,7 @@ import {
   getLahanById
 } from 'redux/slices/lahan';
 import { momentFormat, today } from 'utils/MomentFormat';
-import { CabaiEnum, StatusEnumSmall } from 'utils/constants';
+import { CabaiEnum, StatusEnumSmall, PupukEnum } from 'utils/constants';
 import urlFormData from 'utils/urlFormData';
 
 function DetailLahanPetani() {
@@ -38,6 +38,10 @@ function DetailLahanPetani() {
     {
       label: 'Luas Lahan (ha)',
       value: detail.luasLahan
+    },
+    {
+      label: 'Jenis pupuk',
+      value: PupukEnum[detail.jenisPupuk]
     },
     {
       label: 'Tanggal Mulai Panen',
@@ -117,7 +121,7 @@ function DetailLahanPetani() {
   if (!detail) return <Fragment />;
   return (
     <>
-      <BaseHeader label={`${detail.namaLahan} - ${CabaiEnum[detail.tipeCabai]}`} to={-1} />
+      <BaseHeader label={`${detail.namaLahan} - ${CabaiEnum[detail.komoditas]}`} to={-1} />
       <Stack direction="row" alignItems="center" justifyContent="space-between" p={2}>
         <Stack direction="column" alignItems="center" justifyContent="center">
           <Typography variant="body2">Tanggal Penanaman</Typography>
