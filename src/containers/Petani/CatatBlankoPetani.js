@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { checkBlanko, syncBlanko } from 'redux/slices/blanko';
 import lahanService from 'services/lahan.service';
-import { CabaiEnum, optionsMusim } from 'utils/constants';
+import { CabaiEnum, optionsMusim, pupukEnum } from 'utils/constants';
 import urlFormData from 'utils/urlFormData';
 import * as yup from 'yup';
 
@@ -118,8 +118,7 @@ function KirimBlankoPetani(props) {
     { label: 'Luas Rusak/Tidak Berhasil/Puso (ha)', value: check?.luasRusak ?? '-' },
     { label: 'Luas Penanaman Baru/Tambah Tanam (ha)', value: check?.luasPenanamanBaru ?? '-' },
     {
-      label: 'Luas Tanaman Akhir Bulan Laporan (ha)',
-      value: check?.luasTanamanAkhirBulanLaporan
+      label: 'Luas Tanaman Akhir Bulan Laporan (ha)', value: check?.luasTanamanAkhirBulanLaporan
     },
     { label: 'Produksi Dipanen Habis/Dibongkar (kuintal)', value: check?.prodPanenHabis ?? '-' },
     { label: 'Produksi Belum Habis (kuintal)', value: check?.prodBelumHabis ?? '-' },
@@ -161,3 +160,4 @@ function CatatBlankoPetani() {
 }
 
 export default CatatBlankoPetani;
+
