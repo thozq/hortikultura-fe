@@ -91,7 +91,7 @@ function CatatLahan() {
                   options={optionsTipeCabai}
                   formikProps={formikProps}
                 />
-                <Typography variant="h5">Pilih TIpe Tanaman</Typography>
+                <Typography variant="h5">Pilih Tipe Tanaman</Typography>
                 <FormikController
                   control="select"
                   id="tipeCabai"
