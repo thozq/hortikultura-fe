@@ -8,7 +8,7 @@ export const getAllLahan = createAsyncThunk('lahan/getAllLahan', async () => {
   return response.data;
 });
 
-export const addLahan = createAsyncThunk('lahan/addLahan', async (data, thunkAPI) => {
+export const addLahan = createAsyncThunk('lahan/tambah', async (data, thunkAPI) => {
   const response = await LahanService.addLahan(data);
   thunkAPI.dispatch(setMessage(response));
   return response.data;
