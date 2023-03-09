@@ -141,7 +141,7 @@ function CatatLahan() {
                   id="varianpupuk"
                   name="varianPupuk"
                   label="Varian Pupuk"
-                  options = {varianPupuk}
+                  options={varianPupuk}
                   formikProps={formikProps}
                 />
                 <FormikController
