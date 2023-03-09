@@ -6,6 +6,7 @@ import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { signup } from 'redux/slices/auth';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { optionsRolePetugas } from 'utils/constants';
 import FormikController from 'components/Formik/FormikController';
 import UserService from 'services/user.service';
 // import BaseLoadingRedux from 'components/Base/BaseLoadingRedux';
@@ -89,10 +90,12 @@ function DaftarPdh() {
     //   }
     // ),
     kecamatan: yup.number('Masukkan kecamatan').required('Kecamatan diperlukan'),
-    alamat: yup.string('Masukkan alamat').required('alamat diperlukan')
+    alamat: yup.string('Masukkan alamat').required('alamat diperlukan'),
+    role: yup.string('Masukkan peran').required('Peran diperlukan')
   });
   const onSubmit = (formValue) => {
-    const { name, phone, email, password, provinsi, kecamatan, kabupaten, alamat } = formValue;
+    const { name, phone, email, password, provinsi, kecamatan, kabupaten, alamat, role } =
+      formValue;
     setLoading(true);
     dispatch(
       signup({
@@ -105,7 +108,7 @@ function DaftarPdh() {
           kecamatan,
           kabupaten,
           alamat,
-          role: 'pdh'
+          role
         }
       })
     )
@@ -232,6 +235,15 @@ function DaftarPdh() {
                   label="Alamat"
                   formikProps={formikProps}
                 />
+                <FormikController
+                  control="select"
+                  fullWidth
+                  id="peran"
+                  name="role"
+                  label="Peran"
+                  options={optionsRolePetugas}
+                  formikProps={formikProps}
+                />
                 <Box mt={2}>
                   <BaseButton
                     fullWidth
@@ -259,3 +271,4 @@ function DaftarPdh() {
 }
 
 export default DaftarPdh;
+

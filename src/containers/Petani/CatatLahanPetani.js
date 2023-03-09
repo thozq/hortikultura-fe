@@ -3,7 +3,7 @@ import BaseButton from 'components/Base/BaseButton';
 import BaseHeader from 'components/Base/BaseHeader';
 import FormikController from 'components/Formik/FormikController';
 import { Form, Formik } from 'formik';
-import { optionsTipeCabai } from 'utils/constants';
+import { optionsTipeCabai, varianPupuk } from 'utils/constants';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -25,12 +25,13 @@ function CatatLahan() {
     luasLahan: '',
     modalBenih: '',
     modalPupuk: '',
+    varianPupuk: '',
     modalPestisida: '',
     modalPekerja: ''
   };
   const validationSchema = yup.object({
     namaLahan: yup.string('Masukkan nama lahan').required('Nama lahan wajib diisi'),
-    tipeCabai: yup.string('Masukkan Tipe Cabai').required('Tipe Cabai Wajib diisi'),
+    tipeCabai: yup.string('Masukkan Tipe Tanaman').required('Tipe Tanaman Wajib diisi'),
     tanggalTanam: yup.date('Masukkan tanggal pencatatan').required('Tanggal pencatatan diperlukan'),
     jumlahBatang: yup
       .number('Masukkan Total Hasil Panen')
@@ -46,6 +47,7 @@ function CatatLahan() {
       luasLahan,
       modalBenih,
       modalPupuk,
+      varianPupuk,
       modalPestisida,
       modalPekerja
     } = formValue;
@@ -58,6 +60,7 @@ function CatatLahan() {
       luasLahan,
       modalBenih,
       modalPupuk,
+      varianPupuk,
       modalPestisida,
       modalPekerja
     });
@@ -74,7 +77,7 @@ function CatatLahan() {
 
   return (
     <>
-      <BaseHeader label="Penanaman Baru Cabai" to={-1} />
+      <BaseHeader label="Penanaman Baru Tanaman" to={-1} />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formikProps) => {
           return (
@@ -88,12 +91,12 @@ function CatatLahan() {
                   options={optionsTipeCabai}
                   formikProps={formikProps}
                 />
-                <Typography variant="h5">Pilih TIpe Cabai</Typography>
+                <Typography variant="h5">Pilih TIpe Tanaman</Typography>
                 <FormikController
                   control="select"
                   id="tipeCabai"
                   name="tipeCabai"
-                  label="Tipe Cabai"
+                  label="Tipe Tanaman"
                   options={optionsTipeCabai}
                   formikProps={formikProps}
                 />
@@ -131,6 +134,14 @@ function CatatLahan() {
                   id="modalPupuk"
                   name="modalPupuk"
                   label="Pupuk (Rp)"
+                  formikProps={formikProps}
+                />
+                <FormikController
+                  control="select"
+                  id="varianpupuk"
+                  name="varianPupuk"
+                  label="Varian Pupuk"
+                  options = {varianPupuk}
                   formikProps={formikProps}
                 />
                 <FormikController

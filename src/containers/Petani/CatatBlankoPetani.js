@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { checkBlanko, syncBlanko } from 'redux/slices/blanko';
 import lahanService from 'services/lahan.service';
-import { CabaiEnum } from 'utils/constants';
+import { CabaiEnum, optionsMusim } from 'utils/constants';
 import urlFormData from 'utils/urlFormData';
 import * as yup from 'yup';
 
@@ -34,7 +34,7 @@ function CekBlankoPetani(props) {
     tanggalPencatatan: new Date()
   };
   const validationSchema = yup.object({
-    tipeCabai: yup.string('Masukkan tipe cabai').required('Tipe cabai diperlukan'),
+    tipeCabai: yup.string('Masukkan tipe tanaman').required('Tipe tanaman diperlukan'),
     tanggalPencatatan: yup
       .date('Masukkan tanggal pencatatan')
       .required('Tanggal pencatatan diperlukan')
@@ -61,13 +61,21 @@ function CekBlankoPetani(props) {
         {(formikProps) => (
           <Form>
             <Stack gap={2} p={2}>
-              <Typography variant="h5">Pilih Tipe Cabai</Typography>
+              <Typography variant="h5">Pilih Tipe Tanaman</Typography>
               <FormikController
                 control="select"
                 id="tipeCabai"
                 name="tipeCabai"
-                label="Tipe Cabai"
+                label="Tipe Tanaman"
                 options={dataTipeCabai}
+                formikProps={formikProps}
+              />
+              <FormikController
+                control="select"
+                id="musim"
+                name="musim"
+                label="Musim Panen"
+                options={optionsMusim}
                 formikProps={formikProps}
               />
               <FormikController
@@ -153,3 +161,4 @@ function CatatBlankoPetani() {
 }
 
 export default CatatBlankoPetani;
+

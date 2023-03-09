@@ -10,6 +10,14 @@ const optionsTipeCabai = [
   {
     value: 'cabaiRawitMerah',
     label: 'Cabai Rawit Merah'
+  },
+  {
+    value: 'bawangMerah',
+    label: 'Bawang Merah'
+  },
+  {
+    value: 'bawangPutih',
+    label: 'Bawang Putih'
   }
 ];
 
@@ -63,6 +71,16 @@ const optionsRole = [
   }
 ];
 
+const optionsRolePetugas = [
+  {
+    value: 'petugas PDH',
+    label: 'Petugas PDH'
+  },
+  {
+    value: 'dinas pertanian',
+    label: 'Dinas Pertanian'
+  }
+];
 const optionsGradeCabai = [
   { value: 'a', label: 'A' },
   { value: 'b', label: 'B' },
@@ -78,10 +96,17 @@ const optionsUsang = [
   { value: 'lainnya', label: 'Lainnya' }
 ];
 
+const optionsMusim = [
+  { value:'kemarau', label: 'Musim Kemarau' },
+  { value: 'hujan', label: 'Musim Hujan'}
+];
+
 const CabaiEnum = Object.freeze({
   cabaiMerahBesar: 'Cabai Merah Besar',
   cabaiMerahKeriting: 'Cabai Merah Keriting',
-  cabaiRawitMerah: 'Cabai Rawit Merah'
+  cabaiRawitMerah: 'Cabai Rawit Merah',
+  bawangMerah: 'Bawang Merah',
+  bawangPutih: 'Bawang Putih'
 });
 
 const StatusEnum = Object.freeze({
@@ -104,6 +129,7 @@ const RoleEnum = Object.freeze({
   pengecer: 'Pengecer',
   grosir: 'Grosir',
   pdh: 'PDH',
+  dinas: 'Dinas Pertanian',
   dinasPetanianKota: 'Dinas Pertanian Kota',
   dinasPertanianKabupaten: 'Dinas Pertanian Kabupaten'
 });
@@ -114,16 +140,37 @@ const GradeEnum = Object.freeze({
   c: 'C',
   d: 'D'
 });
-
+const varianPupuk = [ 
+  { value: 'urea', label: 'Urea' },
+  { value: 'tsp', label: 'TSP/SP36' },
+  { value: 'za', label: 'ZA' },
+  { value: 'npk', label: 'NPK' },
+  { value: 'npk khusus', label: 'NPK formula khusus' },
+  { value: 'organik', label: 'Organik' },
+  { value: 'organik cair', label: 'Organik cair' }
+];
+const pupukEnum = Object.freeze( {
+  urea: 'Urea', 
+  tsp: 'TSP/SA36',
+  za: 'ZA', 
+  npk: 'NPK', 
+  npkKhusus: 'NPK formula khusus', 
+  organik: 'Organik', 
+  organikCair: 'Organik cair'
+})
 export {
   optionsTipeCabai,
   optionsPedagang,
   optionsRole,
+  optionsRolePetugas,
   optionsGradeCabai,
   optionsUsang,
+  optionsMusim,
   CabaiEnum,
   StatusEnum,
   StatusEnumSmall,
   RoleEnum,
-  GradeEnum
+  GradeEnum,
+  varianPupuk,
+  pupukEnum
 };
