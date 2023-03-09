@@ -140,24 +140,15 @@ const GradeEnum = Object.freeze({
   c: 'C',
   d: 'D'
 });
-const varianPupuk = [
+const optionsJenisPupuk = [
   { value: 'urea', label: 'Urea' },
   { value: 'tsp', label: 'TSP/SP36' },
   { value: 'za', label: 'ZA' },
   { value: 'npk', label: 'NPK' },
-  { value: 'npk khusus', label: 'NPK formula khusus' },
+  { value: 'npkKhusus', label: 'NPK formula khusus' },
   { value: 'organik', label: 'Organik' },
-  { value: 'organik cair', label: 'Organik cair' }
+  { value: 'organikCair', label: 'Organik cair' }
 ];
-const pupukEnum = Object.freeze({
-  urea: 'Urea',
-  tsp: 'TSP/SA36',
-  za: 'ZA',
-  npk: 'NPK',
-  npkKhusus: 'NPK formula khusus',
-  organik: 'Organik',
-  organikCair: 'Organik cair'
-});
 export {
   optionsTipeCabai,
   optionsPedagang,
@@ -171,6 +162,5 @@ export {
   StatusEnumSmall,
   RoleEnum,
   GradeEnum,
-  varianPupuk,
-  pupukEnum
+  optionsJenisPupuk,
 };

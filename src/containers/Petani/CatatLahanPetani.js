@@ -3,7 +3,7 @@ import BaseButton from 'components/Base/BaseButton';
 import BaseHeader from 'components/Base/BaseHeader';
 import FormikController from 'components/Formik/FormikController';
 import { Form, Formik } from 'formik';
-import { optionsTipeCabai, varianPupuk } from 'utils/constants';
+import { optionsTipeCabai, optionsJenisPupuk } from 'utils/constants';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -25,7 +25,7 @@ function CatatLahan() {
     luasLahan: '',
     modalBenih: '',
     modalPupuk: '',
-    varianPupuk: '',
+    optionsJenisPupuk: '',
     modalPestisida: '',
     modalPekerja: ''
   };
@@ -47,7 +47,7 @@ function CatatLahan() {
       luasLahan,
       modalBenih,
       modalPupuk,
-      varianPupuk,
+      optionsJenisPupuk,
       modalPestisida,
       modalPekerja
     } = formValue;
@@ -60,7 +60,7 @@ function CatatLahan() {
       luasLahan,
       modalBenih,
       modalPupuk,
-      varianPupuk,
+      optionsJenisPupuk,
       modalPestisida,
       modalPekerja
     });
@@ -121,6 +121,14 @@ function CatatLahan() {
                   label="Luas Lahan (ha)"
                   formikProps={formikProps}
                 />
+                 <FormikController
+                  control="select"
+                  id="jenisPupuk"
+                  name="varianPupuk"
+                  label="Jenis Pupuk"
+                  options={optionsJenisPupuk}
+                  formikProps={formikProps}
+                />
                 <Typography variant="h5">Modal Penanaman</Typography>
                 <FormikController
                   control="numbercurrency"
@@ -134,14 +142,6 @@ function CatatLahan() {
                   id="modalPupuk"
                   name="modalPupuk"
                   label="Pupuk (Rp)"
-                  formikProps={formikProps}
-                />
-                <FormikController
-                  control="select"
-                  id="varianpupuk"
-                  name="varianPupuk"
-                  label="Varian Pupuk"
-                  options={varianPupuk}
                   formikProps={formikProps}
                 />
                 <FormikController
