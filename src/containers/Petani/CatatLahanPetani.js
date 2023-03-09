@@ -19,7 +19,7 @@ function CatatLahan() {
 
   const initialValues = {
     namaLahan: '',
-    tipeCabai: '',
+    komoditas: '',
     tanggalTanam: today,
     jumlahBatang: '',
     luasLahan: '',
@@ -31,7 +31,7 @@ function CatatLahan() {
   };
   const validationSchema = yup.object({
     namaLahan: yup.string('Masukkan nama lahan').required('Nama lahan wajib diisi'),
-    tipeCabai: yup.string('Masukkan Tipe Tanaman').required('Tipe Tanaman Wajib diisi'),
+    komoditas: yup.string('Masukkan Tipe Tanaman').required('Tipe Tanaman Wajib diisi'),
     tanggalTanam: yup.date('Masukkan tanggal pencatatan').required('Tanggal pencatatan diperlukan'),
     jumlahBatang: yup
       .number('Masukkan Total Hasil Panen')
@@ -40,7 +40,7 @@ function CatatLahan() {
   });
   const onSubmit = (formValue) => {
     const {
-      tipeCabai,
+      komoditas,
       namaLahan,
       tanggalTanam,
       jumlahBatang,
@@ -53,7 +53,7 @@ function CatatLahan() {
     } = formValue;
 
     const formData = urlFormData({
-      tipeCabai,
+      komoditas,
       namaLahan,
       tanggalTanam,
       jumlahBatang,
@@ -88,15 +88,14 @@ function CatatLahan() {
                   id="namaLahan"
                   name="namaLahan"
                   label="Nama Lahan"
-                  options={optionsTipeCabai}
                   formikProps={formikProps}
                 />
-                <Typography variant="h5">Pilih Tipe Tanaman</Typography>
+                <Typography variant="h5">Pilih Komoditas Tanaman</Typography>
                 <FormikController
                   control="select"
-                  id="tipeCabai"
-                  name="tipeCabai"
-                  label="Tipe Tanaman"
+                  id="komoditas"
+                  name="komoditas"
+                  label="Komoditas Tanaman"
                   options={optionsTipeCabai}
                   formikProps={formikProps}
                 />
