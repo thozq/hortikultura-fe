@@ -33,6 +33,29 @@ const CustomButton = styled(Button)({
   }
 });
 
+const DinasButton = styled(Button)({
+  borderRadius: '8px',
+  boxShadow: 'none',
+  borderColor: '#99C7A9',
+  textTransform: 'none',
+  fontSize: 7,
+  padding: '3px 5px',
+  border: 'solid',
+  backgroundColor: 'white',
+  '&:hover': {
+    backgroundColor: '#EAFFE5',
+    boxShadow: 'none',
+    border: 'solid'
+  },
+  '&:active': {
+    boxShadow: 'none',
+    border: 'solid'
+  },
+  '&:focus': {
+    // boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+    border: 'solid'
+  }
+});
 const ButtonChild = (props) => {
   const { loading = false, children } = props;
 
@@ -137,6 +160,18 @@ const BaseButton = (props) => {
           {...rest}>
           <ButtonChild loading={loading}>{children}</ButtonChild>
         </Button>
+      ) : shape === 'filter' ? (
+        <DinasButton
+          sx={{
+            color: '#99C7A9',
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+          variant="outlined"
+          onClick={() => navigate(link)}
+          {...rest}>
+         <ButtonChild loading={loading}>{children}</ButtonChild>
+       </DinasButton>
       ) : (
         <CustomButton
           sx={{
