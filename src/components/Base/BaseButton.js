@@ -170,8 +170,8 @@ const BaseButton = (props) => {
           variant="outlined"
           onClick={() => navigate(link)}
           {...rest}>
-         <ButtonChild loading={loading}>{children}</ButtonChild>
-       </DinasButton>
+          <ButtonChild loading={loading}>{children}</ButtonChild>
+        </DinasButton>
       ) : (
         <CustomButton
           sx={{
