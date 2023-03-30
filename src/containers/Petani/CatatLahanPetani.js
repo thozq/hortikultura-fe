@@ -88,14 +88,15 @@ function CatatLahan() {
                   id="namaLahan"
                   name="namaLahan"
                   label="Nama Lahan"
+                  options={optionsTipeCabai}
                   formikProps={formikProps}
                 />
-                <Typography variant="h5">Pilih Komoditas Tanaman</Typography>
+                <Typography variant="h5">Pilih Tipe Tanaman</Typography>
                 <FormikController
                   control="select"
                   id="komoditas"
                   name="komoditas"
-                  label="Komoditas Tanaman"
+                  label="Tipe Tanaman"
                   options={optionsTipeCabai}
                   formikProps={formikProps}
                 />
@@ -120,7 +121,7 @@ function CatatLahan() {
                   label="Luas Lahan (ha)"
                   formikProps={formikProps}
                 />
-                 <FormikController
+                <FormikController
                   control="select"
                   id="jenisPupuk"
                   name="jenisPupuk"
