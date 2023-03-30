@@ -18,6 +18,7 @@ import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import { useState, useEffect } from 'react';
 import { jenisStatistik } from 'utils/constants';
+import dinasService from 'services/dinas.service';
 // import { CabaiEnum } from 'utils/constants';
 // import TheProfileHeader from 'components/Base/TheProfileHeader';
 
@@ -33,7 +34,7 @@ function BerandaDinas() {
     setOpen(false);
   };
   // const [alignment, setAlignment] = useState('Harga Rata-Rata');
-  const [isOnApplyClick, setIsOnApplyClick] = useState(false);
+  // const [isOnApplyClick, setIsOnApplyClick] = useState(false);
 
   // const handleAlignment = (event, newAlignment) => {
   //   setAlignment(newAlignment);
@@ -41,7 +42,7 @@ function BerandaDinas() {
   const [provinsiList, setProvinsi] = useState('');
   const [kabupatenList, setKabupaten] = useState('');
   const [kecamatanList, setKecamatan] = useState('');
-  // const [jenisStat, setJenisStat] = useState('');
+  const [jenisStat, setJenisStat] = useState('Harga Rata-Rata');
   const [selectedProvinsi, setSelectedProvinsi] = useState('');
   const [selectedKabupaten, setSelectedKabupaten] = useState('');
   const [showProvinsi, setShowProvinsi] = useState('');
@@ -76,7 +77,7 @@ function BerandaDinas() {
     });
   };
   const initialValues = {
-    jenisStatistik: '',
+    jenisStatistik: 'harga',
     provinsi: '',
     kabupaten: '',
     kecamatan: ''
@@ -87,26 +88,30 @@ function BerandaDinas() {
     kabupaten: yup.number('Pilih kabupaten'),
     kecamatan: yup.number('Pilih kecamatan')
   });
-  const OnApplyClick = () => {
-    setIsOnApplyClick(true);
-  };
 
-  const onSubmit = (formValue) => {
+  const onSubmit = async (formValue) => {
     const { jenisStatistik, provinsi, kabupaten, kecamatan } = formValue;
+    console.log('khkygkhbk');
     let provinsiName = provinsiList.filter((item) => item.id == provinsi);
     let kabupatenName = kabupatenList.filter((item) => item.id == kabupaten);
     let kecamatanName = kecamatanList.filter((item) => item.id == kecamatan);
-
+    if (jenisStatistik == 'harga') {
+      setJenisStat('Harga Rata Rata');
+    } else {
+      setJenisStat('Total Produksi');
+    }
     setShowProvinsi(provinsiName[0].label);
     setShowKabupaten(kabupatenName[0].label);
     setShowKecamatan(kecamatanName[0].label);
-    console.log(formValue);
-    console.log(provinsiName);
-    console.log(kabupatenName);
-    console.log(kecamatanName);
-    console.log(jenisStatistik);
-    OnApplyClick();
-    console.log(isOnApplyClick);
+    const data = { jenisStatistik, provinsi, kabupaten, kecamatan };
+    try {
+      const response = await dinasService.filterStatisik(data);
+      console.log(response);
+      // return { user: response.data.user };
+      // return 'bisa';
+    } catch (error) {
+      console.log('ada error');
+    }
   };
 
   return (
@@ -132,17 +137,8 @@ function BerandaDinas() {
                   <Box>
                     <Typography variant="h4">Filter Statistik Deskriptif</Typography>
                   </Box>
-                  {/* <ToggleButtonGroup
-                    color="success"
-                    value={alignment}
-                    exclusive
-                    onChange={handleAlignment}
-                    aria-label="Jenis">
-                    <ToggleButton value="Harga Rata-Rata">Harga Rata-Rata</ToggleButton>
-                    <ToggleButton value="Total Produksi">Total Produksi</ToggleButton>
-                  </ToggleButtonGroup> */}
                   <FormikController
-                    control="autocomplete"
+                    control="select"
                     fullWidth
                     id="jenisStatistik"
                     name="jenisStatistik"
@@ -207,7 +203,7 @@ function BerandaDinas() {
         </Stack>
         <Box>
           <Typography variant="h5" align="center">
-            Tes
+            {`Statistik ${jenisStat}`}
           </Typography>
           <Typography variant="h5" mb={1} align="center">
             {`Kec. ${showKecamatan}, ${showKabupaten}, ${showProvinsi}`}
