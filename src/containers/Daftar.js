@@ -137,7 +137,7 @@ function Daftar() {
               <Stack gap={2} p={2}>
                 <Typography variant="h4">Daftar</Typography>
                 <Typography>
-                  Menjadi bagian dalam proses distribusi didaerahmu dan tawarkan cabai terbaikmu !{' '}
+                  Menjadi bagian dalam proses distribusi didaerahmu dan tawarkan tanaman terbaikmu !{' '}
                 </Typography>
                 {message && (
                   <div>

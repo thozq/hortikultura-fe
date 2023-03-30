@@ -38,6 +38,10 @@ const editModal = async (id, data) => {
   return axios.put(API_URL + 'lahan/modal/' + id, data, { headers: authHeader() });
 };
 
+// const tambahModal = async (id, data) => {
+//   return axios.put(API_URL + )
+// }
+
 const deleteLahan = async (id) => {
   return axios.delete(API_URL + 'lahan/hapus/' + id, { headers: authHeader() });
 };
