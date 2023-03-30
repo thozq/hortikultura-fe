@@ -159,6 +159,11 @@ const optionsJenisPupuk = [
   { value: 'organik', label: 'Organik' },
   { value: 'organikCair', label: 'Organik cair' }
 ];
+
+const jenisStatistik = [
+  { value: 'harga', label: 'Harga Rata-Rata' },
+  { value: 'produksi', label: 'Total Produksi' }
+];
 export {
   optionsTipeCabai,
   optionsPedagang,
@@ -173,5 +178,6 @@ export {
   RoleEnum,
   GradeEnum,
   optionsJenisPupuk,
-  PupukEnum
+  PupukEnum,
+  jenisStatistik
 };

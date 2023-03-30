@@ -181,7 +181,7 @@ function DetailLahanPetani() {
             <Typography
               textTransform="none"
               onClick={() => navigate('/petani/lahan/ubah-modal/' + id)}>
-              Ubah Modal
+              Tambah Modal
             </Typography>
           </Button>
         </Stack>
