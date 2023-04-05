@@ -12,7 +12,7 @@ const CardUsang = (props) => {
     <BaseCard title={momentFormat(item.tanggalPencatatan)} link={`detail-usang/${item._id}`}>
       <Stack gap={1}>
         <Stack direction="row" justifyContent="space-between">
-          <Typography>Tipe Cabai</Typography>
+          <Typography>Komoditas Tanaman</Typography>
           <Typography variant="h6">{CabaiEnum[item.tipeCabai]}</Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">

@@ -20,7 +20,7 @@ import { useState, useEffect } from 'react';
 import { jenisStatistik } from 'utils/constants';
 import dinasService from 'services/dinas.service';
 // import { CabaiEnum } from 'utils/constants';
-// import TheProfileHeader from 'components/Base/TheProfileHeader';
+import TheProfileHeader from 'components/Base/TheProfileHeader';
 
 function BerandaDinas() {
   const [open, setOpen] = useState(false);
@@ -116,6 +116,7 @@ function BerandaDinas() {
 
   return (
     <>
+      <TheProfileHeader />
       <Drawer
         PaperProps={{
           sx: { width: '444px', mx: 'auto', left: open && isDesktop ? '-17px' : 0 }

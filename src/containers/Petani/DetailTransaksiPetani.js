@@ -52,7 +52,7 @@ function DetailTransaksiPetani() {
   return (
     <>
       <BaseHeader
-        label={`${CabaiEnum[detail?.lahan?.tipeCabai]} - ${momentFormat(
+        label={`${CabaiEnum[detail?.lahan?.komoditas]} - ${momentFormat(
           detail?.tanggalPencatatan
         )}`}
         to={-1}

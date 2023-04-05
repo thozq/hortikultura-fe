@@ -39,18 +39,18 @@ function DetailUsangPedagang() {
   return (
     <>
       <BaseHeader
-        label={`${CabaiEnum[detail?.tipeCabai]} - ${momentFormat(detail?.tanggalPencatatan)}`}
+        label={`${CabaiEnum[detail?.komoditas]} - ${momentFormat(detail?.tanggalPencatatan)}`}
         to={-1}
       />
       <Stack gap={3} pt={2} px={2}>
         <Stack gap={3}>
           <Stack gap={1}>
-            <Typography variant="body2">Jumlah Cabai Usang</Typography>
+            <Typography variant="body2">Jumlah Tanaman Usang</Typography>
             <Typography variant="h5">{formatNumber(detail?.jumlahUsang)} kuintal</Typography>
             <Divider />
           </Stack>
           <Stack gap={1}>
-            <Typography variant="body2">Pemanfaatan Cabai</Typography>
+            <Typography variant="body2">Pemanfaatan Tanaman</Typography>
             <Typography variant="h5" textTransform="capitalize">
               {detail?.pemanfaatan}
             </Typography>

@@ -18,6 +18,7 @@ import DetailStokPetani from 'containers/Petani/DetailStokPetani';
 import UlangTransaksiPetani from 'containers/Petani/UlangTransaksiPetani';
 import LahanPetani from 'containers/Petani/LahanPetani';
 import CatatLahanPetani from 'containers/Petani/CatatLahanPetani';
+import RiwayatModalPetani from 'containers/Petani/RiwayatModalPetani';
 
 import IndexPedagang from 'containers/Pedagang/IndexPedagang';
 import BerandaPedagang from 'containers/Pedagang/BerandaPedagang';
@@ -62,6 +63,7 @@ function RouterConfig() {
         <Route path="lahan/catat-lahan" element={<CatatLahanPetani />} />
         <Route path="lahan/detail-lahan/:id" element={<DetailLahanPetani />} />
         <Route path="lahan/ubah-modal/:id" element={<UbahModalPetani />} />
+        <Route path="lahan/riwayat-modal/:id" element={<RiwayatModalPetani />} />
         <Route path="stok" element={<StokPetani />} />
         <Route path="stok/catat-stok" element={<CatatStokPetani />} />
         <Route path="stok/detail-stok/:id" element={<DetailStokPetani />} />

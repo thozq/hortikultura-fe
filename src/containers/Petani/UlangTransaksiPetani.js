@@ -25,14 +25,14 @@ function UlangTransaksiPetani() {
   }, [dispatch]);
 
   const initialValues = {
-    tipeCabai: detail?.tipeCabai ?? '',
+    komoditas: detail?.komoditas ?? '',
     tanggalPencatatan: detail?.tanggalPencatatan ?? '',
     jumlahDijual: detail?.jumlahDijual ?? '',
     hargaJual: detail?.hargaJual ?? ''
   };
 
   const validationSchema = yup.object({
-    tipeCabai: yup.string('Masukkan tipe cabai').required('Tipe cabai diperlukan'),
+    komoditas: yup.string('Masukkan komoditas tanaman').required('Komoditas tanaman diperlukan'),
     tanggalPencatatan: yup
       .date('Masukkan tanggal transaksi')
       .required('Tanggal transaksi diperlukan'),
@@ -40,9 +40,9 @@ function UlangTransaksiPetani() {
     hargaJual: yup.number('Masukkan harga per kg').required('Harga per kg diperlukan')
   });
   const onSubmit = (formValue) => {
-    const { tipeCabai, tanggalPencatatan, jumlahDijual, hargaJual } = formValue;
+    const { komoditas, tanggalPencatatan, jumlahDijual, hargaJual } = formValue;
     const formData = new URLSearchParams();
-    formData.append('tipeCabai', tipeCabai);
+    formData.append('komoditas', komoditas);
     formData.append('tanggalPencatatan', tanggalPencatatan);
     formData.append('jumlahDijual', jumlahDijual);
     formData.append('hargaJual', hargaJual);
@@ -60,17 +60,17 @@ function UlangTransaksiPetani() {
 
   return (
     <>
-      <BaseHeader label={'Ajukan Kembali Transaksi Cabai'} to={-1} />
+      <BaseHeader label={'Ajukan Kembali Transaksi Tanaman'} to={-1} />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formikProps) => {
           return (
             <Form>
               <Stack gap={2} p={2}>
-                <Typography variant="h5">Pilih Tipe Cabai</Typography>
+                <Typography variant="h5">Pilih Komoditas Tanaman</Typography>
                 <FormikController
                   control="select"
-                  label="Tipe Cabai"
-                  name="tipeCabai"
+                  label="Komoditas Tanaman"
+                  name="komoditas"
                   options={optionsTipeCabai}
                   formikProps={formikProps}
                 />

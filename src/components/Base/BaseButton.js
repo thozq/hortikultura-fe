@@ -172,6 +172,38 @@ const BaseButton = (props) => {
           {...rest}>
           <ButtonChild loading={loading}>{children}</ButtonChild>
         </DinasButton>
+      ) : shape === 'download' ? (
+        <Button
+          sx={{
+            color: 'green',
+            borderRadius: '8px',
+            boxShadow: 'none',
+            textTransform: 'none',
+            fontSize: 16,
+            padding: '8px 35px',
+            lineHeight: 1.5
+          }}
+          variant="outlined"
+          onClick={() => navigate(link)}
+          {...rest}>
+          <ButtonChild loading={loading}>{children}</ButtonChild>
+        </Button>
+      ) : shape === 'batal' ? (
+        <Button
+          sx={{
+            borderRadius: '8px',
+            boxShadow: 'none',
+            textTransform: 'none',
+            fontSize: 16,
+            padding: '8px 35px',
+            lineHeight: 1.5
+          }}
+          color="error"
+          variant="outlined"
+          onClick={() => navigate(link)}
+          {...rest}>
+          <ButtonChild loading={loading}>{children}</ButtonChild>
+        </Button>
       ) : (
         <CustomButton
           sx={{

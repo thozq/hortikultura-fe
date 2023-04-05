@@ -13,7 +13,7 @@ import * as yup from 'yup';
 import { optionsJenisPupuk } from 'utils/constants';
 // import { useSelector } from 'react-redux';
 
-function UbahModalPetani() {
+function RiwayatModalPetani() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -129,4 +129,4 @@ function UbahModalPetani() {
   );
 }
 
-export default UbahModalPetani;
+export default RiwayatModalPetani;

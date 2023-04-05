@@ -197,6 +197,13 @@ function DetailLahanPetani() {
             {formatRupiah(detail.totalModal)}
           </Typography>
         </Stack>
+        <Button sx={{ px: 0 }}>
+          <Typography
+            textTransform="none"
+            onClick={() => navigate('/petani/lahan/riwayat-modal/' + id)}>
+            Riwayat Modal
+          </Typography>
+        </Button>
       </Stack>
       <Divider />
       <Stack direction="column" p={2} gap={2}>

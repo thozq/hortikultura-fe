@@ -88,7 +88,6 @@ function CatatLahan() {
                   id="namaLahan"
                   name="namaLahan"
                   label="Nama Lahan"
-                  options={optionsTipeCabai}
                   formikProps={formikProps}
                 />
                 <Typography variant="h5">Pilih Tipe Tanaman</Typography>

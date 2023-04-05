@@ -16,13 +16,13 @@ function CatatUsangPedagang() {
   const navigate = useNavigate();
 
   const initialValues = {
-    tipeCabai: '',
+    komoditas: '',
     jumlahUsang: '',
     tanggalPencatatan: new Date(),
     pemanfaatan: ''
   };
   const validationSchema = yup.object({
-    tipeCabai: yup.string('Masukkan tipe cabai').required('Tipe cabai diperlukan'),
+    komoditas: yup.string('Masukkan komoditas tanaman').required('Komoditas tanaman diperlukan'),
     jumlahUsang: yup.number('Masukkan jumlah dijual').required('Jumlah dijual diperlukan'),
     tanggalPencatatan: yup
       .date('Masukkan tanggal transaksi')
@@ -30,9 +30,9 @@ function CatatUsangPedagang() {
     pemanfaatan: yup.string('Masukkan pemanfaatan').required('Pemanfaatan diperlukan')
   });
   const onSubmit = (formValue) => {
-    const { tipeCabai, jumlahUsang, tanggalPencatatan, pemanfaatan } = formValue;
+    const { komoditas, jumlahUsang, tanggalPencatatan, pemanfaatan } = formValue;
     const formData = new URLSearchParams();
-    formData.append('tipeCabai', tipeCabai);
+    formData.append('komoditas', komoditas);
     formData.append('jumlahUsang', jumlahUsang);
     formData.append('tanggalPencatatan', tanggalPencatatan);
     formData.append('pemanfaatan', pemanfaatan);
@@ -49,16 +49,16 @@ function CatatUsangPedagang() {
 
   return (
     <>
-      <BaseHeader label="Catat Cabai Usang" to="/pedagang/usang" />
+      <BaseHeader label="Catat Komoditas Usang" to="/pedagang/usang" />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formikProps) => (
           <Form>
             <Stack gap={2} p={2}>
-              <Typography variant="h5">Pilih Tipe Cabai</Typography>
+              <Typography variant="h5">Pilih Komoditas Tanaman</Typography>
               <FormikController
                 control="select"
-                label="Tipe Cabai"
-                name="tipeCabai"
+                label="Komoditas"
+                name="komoditas"
                 options={optionsTipeCabai}
                 formikProps={formikProps}
               />

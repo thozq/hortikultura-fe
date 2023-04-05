@@ -18,7 +18,7 @@ function DetailBlankoPetani() {
   }, [dispatch]);
 
   const data = [
-    { label: 'Tipe Cabai', value: CabaiEnum[detail?.tipeCabai] },
+    { label: 'Komoditas Tanaman', value: CabaiEnum[detail?.komoditas] },
     {
       label: 'Luas tanaman akhir bulan lalu (ha)',
       value: detail?.luasTanamanAkhirBulanLalu ?? '-'

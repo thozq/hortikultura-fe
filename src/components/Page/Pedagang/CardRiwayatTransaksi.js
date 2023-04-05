@@ -47,8 +47,8 @@ const CardRiwayatTransaksi = (props) => {
         </>
       )}
       <Box display="flex" alignItems="center" justifyContent="space-between">
-        <Typography>Tipe Cabai</Typography>
-        <Typography variant="h6">{CabaiEnum[item.tipeCabai]}</Typography>
+        <Typography>Komoditas Tanaman</Typography>
+        <Typography variant="h6">{CabaiEnum[item.komoditas]}</Typography>
       </Box>
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <Typography>Jumlah Dijual</Typography>

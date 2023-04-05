@@ -18,8 +18,8 @@ const CardRiwayatUsang = (props) => {
       <Stack gap={1}>
         <Typography variant="h6">{momentFormat(item.tanggalPencatatan)}</Typography>
         <Stack direction="row" justifyContent="space-between">
-          <Typography>Tipe Cabai</Typography>
-          <Typography variant="h6">{CabaiEnum[item.tipeCabai]}</Typography>
+          <Typography>Komoditas Tanaman</Typography>
+          <Typography variant="h6">{CabaiEnum[item.komoditas]}</Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
           <Typography>Jumlah Cabai Usang</Typography>

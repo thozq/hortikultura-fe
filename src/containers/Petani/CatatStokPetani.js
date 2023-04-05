@@ -17,7 +17,7 @@ function CatatStokPetani() {
   const navigate = useNavigate();
 
   const initialValues = {
-    tipeCabai: '',
+    komoditas: '',
     tanggalPencatatan: today,
     totalHasilPanen: '',
     hasilPanenSukses: '',
@@ -25,7 +25,7 @@ function CatatStokPetani() {
     hargaJual: ''
   };
   const validationSchema = yup.object({
-    tipeCabai: yup.string('Masukkan Tipe Cabai').required('Tipe Cabai Wajib diisi'),
+    komoditas: yup.string('Masukkan komoditas tanaman').required('Komoditas tanaman wajib diisi'),
     tanggalPencatatan: yup
       .date('Masukkan tanggal pencatatan')
       .required('Tanggal pencatatan diperlukan'),
@@ -41,9 +41,9 @@ function CatatStokPetani() {
     hargaJual: yup.number('Masukkan Harga Jual').required('Harga Jual Wajib diisi')
   });
   const onSubmit = (formValue) => {
-    const { tipeCabai, totalHasilPanen, hasilPanenSukses, hasilPanenGagal, hargaJual } = formValue;
+    const { komoditas, totalHasilPanen, hasilPanenSukses, hasilPanenGagal, hargaJual } = formValue;
     const formData = new URLSearchParams();
-    formData.append('tipeCabai', tipeCabai);
+    formData.append('komoditas', komoditas);
     formData.append('totalHasilPanen', totalHasilPanen);
     formData.append('hasilPanenSukses', hasilPanenSukses);
     formData.append('hasilPanenGagal', hasilPanenGagal);
@@ -60,18 +60,18 @@ function CatatStokPetani() {
 
   return (
     <>
-      <BaseHeader label="Catat Stok Cabai" to={-1} />
+      <BaseHeader label="Catat Stok Tanaman" to={-1} />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formikProps) => {
           return (
             <Form>
               <Stack gap={2} p={2}>
-                <Typography variant="h5">Pilih TIpe Cabai</Typography>
+                <Typography variant="h5">Pilih Komoditas Tanaman</Typography>
                 <FormikController
                   control="select"
-                  id="tipeCabai"
-                  name="tipeCabai"
-                  label="Tipe Cabai"
+                  id="komoditas"
+                  name="komoditas"
+                  label="Komoditas Tanaman"
                   options={optionsTipeCabai}
                   formikProps={formikProps}
                 />

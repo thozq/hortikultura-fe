@@ -15,7 +15,7 @@ function DataDiriPetani() {
 
   return (
     <>
-      <BaseHeader label="Jual Tipe Cabai" to={-1} />
+      <BaseHeader label="Jual Komoditas Tanaman" to={-1} />
       <Box p={2}>
         <Stack spacing={2}>
           <Avatar>P</Avatar>

@@ -15,7 +15,7 @@ const CardRiwayatBlanko = (props) => {
       <Stack gap={1}>
         <Typography variant="h6">{momentFormat(item.createdAt)}</Typography>
         <Stack direction="row" justifyContent="space-between">
-          <Typography>Tipe Cabai</Typography>
+          <Typography>Komoditas Tanaman</Typography>
           <Typography variant="h6">{CabaiEnum[item.tipeCabai]}</Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">

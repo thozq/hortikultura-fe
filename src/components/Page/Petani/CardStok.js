@@ -11,8 +11,8 @@ const CardStok = (props) => {
     <BaseCard title={momentFormat(item.createdAt)} link={`detail-stok/${item._id}`}>
       <Stack gap={1}>
         <Stack direction="row" justifyContent="space-between">
-          <Typography>Tipe Cabai</Typography>
-          <Typography variant="h6">{CabaiEnum[item.tipeCabai]}</Typography>
+          <Typography>Komoditas Tanaman</Typography>
+          <Typography variant="h6">{CabaiEnum[item.komoditas]}</Typography>
         </Stack>
         <Stack direction="row" justifyContent="space-between">
           <Typography>Total Hasil Panen (kg)</Typography>

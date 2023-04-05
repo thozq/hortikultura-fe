@@ -47,8 +47,8 @@ const CardTransaksi = (props) => {
             </Typography>
           </Stack>
           <Stack direction="row" justifyContent="space-between">
-            <Typography>Tipe Cabai</Typography>
-            <Typography variant="h6">{CabaiEnum[item.lahan?.tipeCabai]}</Typography>
+            <Typography>Komoditas Tanaman</Typography>
+            <Typography variant="h6">{CabaiEnum[item.lahan?.komoditas]}</Typography>
           </Stack>
           <Stack direction="row" justifyContent="space-between">
             <Typography>Jumlah Dijual</Typography>

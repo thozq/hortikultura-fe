@@ -17,7 +17,7 @@ function CekBlankoPetani(props) {
   const { setFormBlanko } = props;
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const [dataTipeCabai, setDataTipeCabai] = useState([]);
+  const [dataKomoditas, setDataKomoditas] = useState([]);
 
   useEffect(() => {
     lahanService.getTipeLahan().then((response) => {
@@ -25,26 +25,27 @@ function CekBlankoPetani(props) {
         value: item,
         label: CabaiEnum[item]
       }));
-      setDataTipeCabai(data);
+      console.log(data);
+      setDataKomoditas(data);
     });
   }, []);
 
   const initialValues = {
-    tipeCabai: '',
+    komoditas: '',
     tanggalPencatatan: new Date()
   };
   const validationSchema = yup.object({
-    tipeCabai: yup.string('Masukkan tipe tanaman').required('Tipe tanaman diperlukan'),
+    komoditas: yup.string('Masukkan tipe tanaman').required('Tipe tanaman diperlukan'),
     tanggalPencatatan: yup
       .date('Masukkan tanggal pencatatan')
       .required('Tanggal pencatatan diperlukan')
   });
   const onSubmit = (formValue) => {
     // alert(JSON.stringify(formValue, null, 2));
-    const { tipeCabai, tanggalPencatatan } = formValue;
+    const { komoditas, tanggalPencatatan } = formValue;
     setFormBlanko(formValue);
 
-    const formData = urlFormData({ tipeCabai, tanggalPencatatan });
+    const formData = urlFormData({ komoditas, tanggalPencatatan });
 
     setLoading(true);
     dispatch(checkBlanko(formData))
@@ -64,10 +65,10 @@ function CekBlankoPetani(props) {
               <Typography variant="h5">Pilih Tipe Tanaman</Typography>
               <FormikController
                 control="select"
-                id="tipeCabai"
-                name="tipeCabai"
+                id="komoditas"
+                name="komoditas"
                 label="Tipe Tanaman"
-                options={dataTipeCabai}
+                options={dataKomoditas}
                 formikProps={formikProps}
               />
               <FormikController
@@ -111,7 +112,7 @@ function KirimBlankoPetani(props) {
   const { check } = useSelector((state) => state.blanko);
 
   const data = [
-    { label: 'Tipe Cabai', value: CabaiEnum[check?.tipeCabai] ?? '-' },
+    { label: 'Komoditas Tanaman', value: CabaiEnum[check?.dataKomoditas] ?? '-' },
     { label: 'Luas Tanaman Akhir Bulan Lalu (ha)', value: check?.luasTanamanAkhirBulanLalu ?? '-' },
     { label: 'Luas Panen Habis / Dibongkar (ha)', value: check?.luasPanenHabis ?? '-' },
     { label: 'Luas Panen Belum Habis (ha)', value: check?.luasPanenBelumHabis ?? '-' },

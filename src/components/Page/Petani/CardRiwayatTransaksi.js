@@ -21,7 +21,7 @@ const CardRiwayatTransaksi = (props) => {
       label: 'Peran',
       value: RoleEnum[item.pembeli?.role] ?? item.tipePembeli
     },
-    { label: 'Tipe Cabai', value: CabaiEnum[item.lahan.tipeCabai] },
+    { label: 'Komoditas Tanaman', value: CabaiEnum[item.lahan.komoditas] },
     { label: 'Jumlah Dijual', value: `${formatNumber(item.jumlahDijual)} kuintal` },
     { label: 'Harga Per kg', value: formatRupiah(item.hargaJual) }
   ];

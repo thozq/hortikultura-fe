@@ -51,7 +51,7 @@ function CatatTransaksiPedagang() {
   }, [tipePembeli]);
 
   const initialValues = {
-    tipeCabai: '',
+    komoditas: '',
     tanggalPencatatan: today,
     jumlahDijual: '',
     hargaJual: '',
@@ -60,7 +60,7 @@ function CatatTransaksiPedagang() {
     tipePembeli: ''
   };
   const validationSchema = yup.object({
-    tipeCabai: yup.string('Masukkan tipe cabai').required('Tipe cabai diperlukan'),
+    komoditas: yup.string('Masukkan komoditas tanaman').required('Komoditas tanaman diperlukan'),
     tanggalPencatatan: yup
       .date('Masukkan tanggal transaksi')
       .required('Tanggal transaksi diperlukan'),
@@ -71,12 +71,12 @@ function CatatTransaksiPedagang() {
     // pembeli: yup.string('Masukkan nama pedagang').required('Nama pedagang diperlukan')
   });
   const onSubmit = (formValue) => {
-    const { tipeCabai, tanggalPencatatan, jumlahDijual, grade, hargaJual, pembeli, namaPembeli } =
+    const { komoditas, tanggalPencatatan, jumlahDijual, grade, hargaJual, pembeli, namaPembeli } =
       formValue;
 
-    const accountForm = { tipeCabai, tanggalPencatatan, jumlahDijual, hargaJual, grade, pembeli };
+    const accountForm = { komoditas, tanggalPencatatan, jumlahDijual, hargaJual, grade, pembeli };
     const noAccountForm = {
-      tipeCabai,
+      komoditas,
       tanggalPencatatan,
       jumlahDijual,
       hargaJual,
@@ -112,11 +112,11 @@ function CatatTransaksiPedagang() {
           return (
             <Form>
               <Stack gap={2} p={2}>
-                <Typography variant="h5">Pilih Tipe Cabai</Typography>
+                <Typography variant="h5">Pilih Komoditas Tanaman</Typography>
                 <FormikController
                   control="select"
-                  label="Tipe Cabai"
-                  name="tipeCabai"
+                  label="Komoditas"
+                  name="komoditas"
                   options={optionsTipeCabai}
                   formikProps={formikProps}
                 />

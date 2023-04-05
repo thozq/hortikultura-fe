@@ -10,7 +10,7 @@ const CardBlanko = (props) => {
   return (
     <>
       <BaseCard
-        title={`${CabaiEnum[item.tipeCabai]} - ${momentFormat(item.tanggalPencatatan)}`}
+        title={`${CabaiEnum[item.komoditas]} - ${momentFormat(item.tanggalPencatatan)}`}
         link={`/petani/beranda/detail-blanko/${item._id}`}>
         <Stack gap={1}>
           <Stack direction="row" justifyContent="space-between">
