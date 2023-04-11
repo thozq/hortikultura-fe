@@ -5,13 +5,13 @@ import FormikController from 'components/Formik/FormikController';
 import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { optionsJenisPupuk } from 'utils/constants';
 import { useDispatch, useSelector } from 'react-redux';
+import { addModal } from 'redux/slices/modal';
 import { useNavigate, useParams } from 'react-router-dom';
-import { editModal, getLahanById } from 'redux/slices/lahan';
+import { getLahanById } from 'redux/slices/lahan';
 import urlFormData from 'utils/urlFormData';
 import * as yup from 'yup';
-import { optionsJenisPupuk } from 'utils/constants';
-// import { useSelector } from 'react-redux';
 
 function UbahModalPetani() {
   const { id } = useParams();
@@ -26,25 +26,25 @@ function UbahModalPetani() {
 
   const initialValues = {
     modalBenih: detail.modalBenih,
-    jenisPupuk: detail.jenisPupuk,
     modalPupuk: detail.modalPupuk,
     modalPestisida: detail.modalPestisida,
+    jenisPupuk: detail.jenisPupuk,
     modalPekerja: detail.modalPekerja
   };
   const validationSchema = yup.object({});
   const onSubmit = (formValue) => {
-    const { modalBenih, jenisPupuk, modalPupuk, modalPestisida, modalPekerja } = formValue;
+    const { modalBenih, modalPupuk, jenisPupuk, modalPestisida, modalPekerja } = formValue;
 
     const formData = urlFormData({
       modalBenih,
-      jenisPupuk,
       modalPupuk,
+      jenisPupuk,
       modalPestisida,
       modalPekerja
     });
 
     setLoading(true);
-    dispatch(editModal({ id, data: formData }))
+    dispatch(addModal({ id, data: formData }))
       .unwrap()
       .then(() => {
         navigate(-1);
@@ -70,8 +70,13 @@ function UbahModalPetani() {
                     id="modalBenih"
                     name="modalBenih"
                     label="Benih (Rp)"
-                    defaultValue={detail.modalBenih}
-                    shrink
+                    formikProps={formikProps}
+                  />
+                  <FormikController
+                    control="numbercurrency"
+                    id="modalPupuk"
+                    name="modalPupuk"
+                    label="Pupuk (Rp)"
                     formikProps={formikProps}
                   />
                   <FormikController
@@ -80,17 +85,6 @@ function UbahModalPetani() {
                     name="jenisPupuk"
                     label="Jenis Pupuk"
                     options={optionsJenisPupuk}
-                    defaultValue={detail.jenisPupuk}
-                    shrink
-                    formikProps={formikProps}
-                  />
-                  <FormikController
-                    control="numbercurrency"
-                    id="modalPupuk"
-                    name="modalPupuk"
-                    label="Pupuk (Rp)"
-                    defaultValue={detail.modalPupuk}
-                    shrink
                     formikProps={formikProps}
                   />
                   <FormikController
@@ -98,8 +92,6 @@ function UbahModalPetani() {
                     id="modalPestisida"
                     name="modalPestisida"
                     label="Pestisida (Rp)"
-                    defaultValue={detail.modalPestisida}
-                    shrink
                     formikProps={formikProps}
                   />
                   <FormikController
@@ -107,8 +99,6 @@ function UbahModalPetani() {
                     id="modalPekerja"
                     name="modalPekerja"
                     label="Tenaga Kerja (Rp)"
-                    defaultValue={detail.modalPekerja}
-                    shrink
                     formikProps={formikProps}
                   />
                 </Stack>
@@ -117,7 +107,7 @@ function UbahModalPetani() {
                     fullWidth
                     type="submit"
                     disabled={!(formikProps.isValid && formikProps.dirty) || loading}>
-                    {loading ? 'Memuat..' : 'Tambah'}
+                    {loading ? 'Memuat..' : 'Ubah'}
                   </BaseButton>
                 </Box>
               </Form>

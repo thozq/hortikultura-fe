@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { Stack, Typography } from '@mui/material';
 import BaseCard from 'components/Base/BaseCard';
-import { momentFormat } from 'utils/MomentFormat';
 import { formatRupiah } from 'utils/Formats';
 
 const CardModal = (props) => {
@@ -30,9 +29,7 @@ const CardModal = (props) => {
   ];
   return (
     <>
-      <BaseCard
-        title={`${item.namaLahan} - ${momentFormat(item.tanggalTambah)}`}
-        link={`/petani/lahan/riwayat-modal/${item._id}`}>
+      <BaseCard>
         <Stack gap={1}>
           {data?.map(({ label, value }, index) => (
             <Stack key={index} direction="row" justifyContent="space-between">

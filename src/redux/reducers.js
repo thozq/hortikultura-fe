@@ -10,6 +10,8 @@ import usangSlice from './slices/usang';
 import blankoReducer from './slices/blanko';
 import supervisiReducer from './slices/supervisi';
 import lahanReducer from './slices/lahan';
+import modalReducer from './slices/modal';
+import dinasReducer from './slices/dinas';
 
 const persistConfig = {
   key: 'root',
@@ -24,7 +26,9 @@ const reducer = combineReducers({
   usang: usangSlice,
   blanko: blankoReducer,
   supervisi: supervisiReducer,
-  lahan: lahanReducer
+  lahan: lahanReducer,
+  modal: modalReducer,
+  dinas: dinasReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

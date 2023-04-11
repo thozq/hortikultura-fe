@@ -88,7 +88,7 @@ function CatatTransaksiPetani() {
       .required('Tanggal transaksi diperlukan'),
     jumlahDijual: yup.number('Masukkan jumlah dijual').required('Jumlah dijual diperlukan'),
     hargaJual: yup.number('Masukkan harga per kg').required('Harga per kg diperlukan'),
-    grade: yup.string('Masukkan grade cabai').required('Grade cabai diperlukan')
+    grade: yup.string('Masukkan grade cabai').required('Grade tanaman diperlukan')
     // tipePembeli: yup.string('Tipe pedagang dijual').required('Tipe pedagang diperlukan'),
     // pembeli: yup.string('Masukkan nama pedagang').required('Nama pedagang diperlukan')
   });

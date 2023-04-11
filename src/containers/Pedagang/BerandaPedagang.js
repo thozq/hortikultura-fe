@@ -70,11 +70,11 @@ function BerandaPedagang() {
                   </Box>
                 </Stack>
                 <Box>
-                  <Typography>Total Cabai Dibeli</Typography>
+                  <Typography>Total Tanaman Dibeli</Typography>
                   <Typography variant="h5">{summary?.countTransaksiSuksesBeli}</Typography>
                 </Box>
                 <Box>
-                  <Typography>Total Cabai Dijual</Typography>
+                  <Typography>Total Tanaman Dijual</Typography>
                   <Typography variant="h5">{summary?.countTransaksiSuksesJual}</Typography>
                 </Box>
               </Stack>

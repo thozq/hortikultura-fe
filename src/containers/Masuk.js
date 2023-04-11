@@ -45,12 +45,13 @@ function Masuk() {
   return (
     <>
       <Box p={2} variant="h4">
-        Sistem Cabai
+        Sistem Tanaman Hortikultura
       </Box>
       <Box display="flex" flexDirection="column" gap={2} p={2}>
         <Typography variant="h4">Masuk</Typography>
         <Typography>
-          Masuk kedalam akunmu untuk akses transaksi cabai kamu dan jualkan ke orang sekitarmu!
+          Masuk kedalam akunmu untuk akses transaksi komoditas tanaman kamu dan jualkan ke orang
+          sekitarmu!
         </Typography>
         {message && (
           <div>
@@ -103,7 +104,7 @@ function Masuk() {
           Daftar sebagai
           <Link onClick={() => navigate('/daftar-pdh')} style={{ cursor: 'pointer' }}>
             {' '}
-            Petugas Data Hortikultura (PDH)
+            Petugas Pertanian
           </Link>
         </Typography>
       </Box>

@@ -18,13 +18,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getAllSupervisi } from 'redux/slices/supervisi';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
-import MonthlyPicker from 'components/Base/MonthlyPicker';
+// import FormikDatePicker from 'components/Formik/FormikDatePicker';
+import FormikController from 'components/Formik/FormikController';
+import { Formik, Form } from 'formik';
+import { today } from 'utils/MomentFormat';
+import blankoService from 'services/blanko.service';
 
 function BerandaPdh() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { petani } = useSelector((state) => state.supervisi);
-
+  const initialValues = {
+    bulanTahun: today
+  };
+  const onSubmit = async () => {
+    try {
+      const response = await blankoService.exportBlanko();
+      console.log(response);
+      // return { user: response.data.user };
+      // return 'bisa';
+    } catch (error) {
+      console.log('ada error');
+    }
+  };
   useEffect(() => {
     dispatch(getAllSupervisi());
   }, []);
@@ -57,39 +73,55 @@ function BerandaPdh() {
                   vertical: 'top',
                   horizontal: 'center'
                 }}>
-                <Box>
-                  <Typography variant="h4" sx={{ pl: 1.5, pb: 1, pt: 1 }}>
-                    Export Blanko
-                  </Typography>
-                  <Typography
-                    variant="subtitle2"
-                    color="text.secondary"
-                    sx={{ pl: 1.5, pr: 1.5, pb: 1, pt: 1 }}>
-                    Rekapitulasi Blanko tersedia dalam format excel.
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    pl: 12,
-                    pr: 8,
-                    pb: 1
-                  }}>
-                  <MonthlyPicker />
-                </Box>
-                <Box
-                  sx={{
-                    pl: 4,
-                    m: 1,
-                    pr: 4
-                  }}
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="space-between">
-                  <BaseButton shape="batal" onClick={popupState.close}>
-                    BATAL
-                  </BaseButton>
-                  <BaseButton shape="download">EXPORT</BaseButton>
-                </Box>
+                <Formik initialValues={initialValues} onSubmit={onSubmit}>
+                  {(formikProps) => (
+                    <Form>
+                      <Stack>
+                        <Box>
+                          <Typography variant="h4" sx={{ pl: 1.5, pb: 1, pt: 1 }}>
+                            Export Blanko
+                          </Typography>
+                          <Typography
+                            variant="subtitle2"
+                            color="text.secondary"
+                            sx={{ pl: 1.5, pr: 1.5, pb: 1, pt: 1 }}>
+                            Rekapitulasi Blanko tersedia dalam format excel.
+                          </Typography>
+                        </Box>
+                        <Box
+                          sx={{
+                            pl: 8,
+                            pr: 8,
+                            pb: 1
+                          }}>
+                          <FormikController
+                            control="datepicker"
+                            name="bulanTahun"
+                            label="Pilih Bulan"
+                            month
+                            formikProps={formikProps}
+                          />
+                        </Box>
+                        <Box
+                          sx={{
+                            pl: 4,
+                            m: 1,
+                            pr: 4
+                          }}
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="space-between">
+                          <BaseButton shape="batal" onClick={popupState.close}>
+                            BATAL
+                          </BaseButton>
+                          <BaseButton type="submit" shape="download">
+                            EXPORT
+                          </BaseButton>
+                        </Box>
+                      </Stack>
+                    </Form>
+                  )}
+                </Formik>
               </Popover>
             </div>
           )}

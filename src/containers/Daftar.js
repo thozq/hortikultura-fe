@@ -126,7 +126,7 @@ function Daftar() {
   return (
     <>
       <Box p={2} variant="h4">
-        Sistem Cabai
+        Sistem Tanaman Hortikultura
       </Box>
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formikProps) => {

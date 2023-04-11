@@ -10,7 +10,8 @@ import {
   // ToggleButtonGroup
 } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
-import BaseCardBlanko from 'components/Base/BaseCardBlanko';
+// import BaseCardBlanko from 'components/Base/BaseCardBlanko';
+import CardStatistik from 'components/Page/Dinas/CardStatistik';
 import React from 'react';
 import FormikController from 'components/Formik/FormikController';
 import UserService from 'services/user.service';
@@ -119,7 +120,7 @@ function BerandaDinas() {
       <TheProfileHeader />
       <Drawer
         PaperProps={{
-          sx: { width: '444px', mx: 'auto', left: open && isDesktop ? '-17px' : 0 }
+          sx: { width: '444px', mx: 'auto', left: open && isDesktop ? '-1px' : 0 }
         }}
         anchor="bottom"
         open={open}
@@ -212,19 +213,7 @@ function BerandaDinas() {
         </Box>
         <Grid container spacing={2}>
           <Grid item>
-            <BaseCardBlanko item="Bawang Putih" harga="Rp43000" persen="5%" />
-          </Grid>
-          <Grid item>
-            <BaseCardBlanko item="Bawang Merah" harga="Rp43000" persen="5%" />
-          </Grid>
-          <Grid item>
-            <BaseCardBlanko item="Cabai Merah Besar" harga="Rp43000" persen="5%" />
-          </Grid>
-          <Grid item>
-            <BaseCardBlanko item="Cabai Merah Keriting" harga="Rp43000" persen="5%" />
-          </Grid>
-          <Grid item>
-            <BaseCardBlanko item="Cabai Rawit Merah" harga="Rp43000" persen="5%" />
+            <CardStatistik item="Bawang Merah" harga="43000" persen="5%" />
           </Grid>
         </Grid>
       </Stack>

@@ -24,7 +24,7 @@ function LahanPetani() {
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
         <Box>
           <Typography variant="body2">
-            Catat setiap penanaman cabai yang anda lakukan disini!
+            Catat setiap penanaman komoditas tanaman yang anda lakukan disini!
           </Typography>
         </Box>
         <BaseButton shape="withicon" link="catat-lahan" size="large" variant="outlined" fullWidth>

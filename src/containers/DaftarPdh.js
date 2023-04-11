@@ -126,7 +126,7 @@ function DaftarPdh() {
   return (
     <>
       <Box p={2} variant="h4">
-        Sistem Cabai
+        Sistem Tanaman Hortikultura
       </Box>
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formikProps) => {
@@ -137,7 +137,7 @@ function DaftarPdh() {
               <Stack gap={2} p={2}>
                 <Box>
                   <Typography variant="h4">Daftar sebagai</Typography>
-                  <Typography variant="h4">Petugas Data Hortikultura (PDH)</Typography>
+                  <Typography variant="h4">Petugas Pertanian</Typography>
                 </Box>
                 {message && (
                   <div>

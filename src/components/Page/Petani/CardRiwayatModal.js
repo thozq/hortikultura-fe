@@ -32,7 +32,7 @@ function CardRiwayatModal(props) {
   ];
 return (
     <BaseCard>
-    title={`${item.namaLahan} - ${CabaiEnum[item.komoditas]}`}
+  
 
     </BaseCard>
 );

@@ -25,7 +25,6 @@ function CekBlankoPetani(props) {
         value: item,
         label: CabaiEnum[item]
       }));
-      console.log(data);
       setDataKomoditas(data);
     });
   }, []);
@@ -112,7 +111,7 @@ function KirimBlankoPetani(props) {
   const { check } = useSelector((state) => state.blanko);
 
   const data = [
-    { label: 'Komoditas Tanaman', value: CabaiEnum[check?.dataKomoditas] ?? '-' },
+    { label: 'Komoditas Tanaman', value: CabaiEnum[check?.komoditas] ?? '-' },
     { label: 'Luas Tanaman Akhir Bulan Lalu (ha)', value: check?.luasTanamanAkhirBulanLalu ?? '-' },
     { label: 'Luas Panen Habis / Dibongkar (ha)', value: check?.luasPanenHabis ?? '-' },
     { label: 'Luas Panen Belum Habis (ha)', value: check?.luasPanenBelumHabis ?? '-' },

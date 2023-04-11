@@ -7,7 +7,7 @@ const getAllBlanko = async () => {
 };
 
 const getBlankoById = async (id) => {
-  return axios.get(API_URL + 'blanko/' + id, { headers: authHeader() });
+  return axios.get(API_URL + 'blanko/view/' + id, { headers: authHeader() });
 };
 
 // const getBlankoByType = async (type) => {
@@ -17,7 +17,9 @@ const getBlankoById = async (id) => {
 // const addBlanko = async (data) => {
 //   return axios.post(API_URL + 'blanko/tambah', data, { headers: authHeader() });
 // };
-
+const exportBlanko = async () => {
+  return axios.get(API_URL + 'blanko/export', { headers: authHeader() });
+};
 const checkBlanko = async (data) => {
   return axios.post(API_URL + 'blanko/daftarisian', data, { headers: authHeader() });
 };
@@ -32,6 +34,7 @@ const blankoService = {
   // getBlankoByType,
   // addBlanko,
   checkBlanko,
-  syncBlanko
+  syncBlanko,
+  exportBlanko
 };
 export default blankoService;

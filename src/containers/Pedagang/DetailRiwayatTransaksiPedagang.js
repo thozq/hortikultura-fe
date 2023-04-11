@@ -61,7 +61,9 @@ function DetailRiwayatTransaksiPedagang() {
   return (
     <>
       <BaseHeader
-        label={`${CabaiEnum[detail?.komoditas]} - ${momentFormat(detail?.tanggalPencatatan)}`}
+        label={`${CabaiEnum[detail?.lahan?.komoditas]} - ${momentFormat(
+          detail?.tanggalPencatatan
+        )}`}
         to={-1}
       />
       <Stack gap={3} pt={2} px={2}>

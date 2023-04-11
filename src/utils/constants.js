@@ -74,7 +74,7 @@ const optionsRole = [
 const optionsRolePetugas = [
   {
     value: 'pdh',
-    label: 'Petugas PDH'
+    label: 'Petugas PPD'
   },
   {
     value: 'dinas',
