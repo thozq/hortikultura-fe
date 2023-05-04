@@ -120,7 +120,7 @@ function BerandaDinas() {
       <TheProfileHeader />
       <Drawer
         PaperProps={{
-          sx: { width: '444px', mx: 'auto', left: open && isDesktop ? '-1px' : 0 }
+          sx: { width: '444px', mx: 'auto', left: open && isDesktop ? '-17px' : 0 }
         }}
         anchor="bottom"
         open={open}
@@ -180,7 +180,7 @@ function BerandaDinas() {
                     disabled={!formikProps.values.kabupaten}
                   />
                   <Box mt={2}>
-                    <BaseButton fullWidth type="submit">
+                    <BaseButton fullWidth type="submit" onClick={handleDrawerClose}>
                       Terapkan
                     </BaseButton>
                   </Box>
@@ -190,33 +190,51 @@ function BerandaDinas() {
           }}
         </Formik>
       </Drawer>
-      <Stack gap={2} p={2} mb="56px">
-        <Stack direction="row" spacing={7} mb={3}>
-          <Typography variant="h4"> Statistik Deskriptif Tanaman </Typography>
-          <BaseButton
-            shape="filter"
-            link=""
-            size="small"
-            variant="outlined"
-            onClick={handleDrawerOpen}>
-            <TuneRounded />
-            <Typography variant="subtitle1">Filter</Typography>
-          </BaseButton>
-        </Stack>
-        <Box>
-          <Typography variant="h5" align="center">
-            {`Statistik ${jenisStat}`}
-          </Typography>
-          <Typography variant="h5" mb={1} align="center">
-            {`Kec. ${showKecamatan}, ${showKabupaten}, ${showProvinsi}`}
-          </Typography>
-        </Box>
-        <Grid container spacing={2}>
-          <Grid item>
-            <CardStatistik item="Bawang Merah" harga="43000" persen="5%" />
+      <Box
+        sx={{
+          background: `linear-gradient(to bottom, #86AC8C,  #FFF)`,
+          borderRadius: '20px'
+        }}>
+        <Stack gap={1} p={2}>
+          <Stack direction="row" spacing={7} mb={3}>
+            <Typography variant="h4"> Statistik Deskriptif Tanaman </Typography>
+            <BaseButton
+              shape="filter"
+              link=""
+              size="small"
+              variant="outlined"
+              onClick={handleDrawerOpen}>
+              <TuneRounded />
+              <Typography variant="subtitle1">Filter</Typography>
+            </BaseButton>
+          </Stack>
+          <Box>
+            <Typography variant="h6" align="center">
+              {`Statistik ${jenisStat}`}
+            </Typography>
+            <Typography variant="body1" mb={1} align="center">
+              {`Kec. ${showKecamatan}, ${showKabupaten}, ${showProvinsi}`}
+            </Typography>
+          </Box>
+          <Grid container spacing={2}>
+            <Grid item>
+              <CardStatistik item="Bawang Merah" harga="23000" persen="5%" />
+            </Grid>
+            <Grid item>
+              <CardStatistik item="Bawang Putih" harga="20000" persen="2%" />
+            </Grid>
+            <Grid item>
+              <CardStatistik item="Cabai Merah Besar" harga="45000" persen="3%" />
+            </Grid>
+            <Grid item>
+              <CardStatistik item="Cabai Rawit Merah" harga="43000" persen="4%" />
+            </Grid>
+            <Grid item>
+              <CardStatistik item="Cabai Merah Keriting" harga="42000" persen="1%" />
+            </Grid>
           </Grid>
-        </Grid>
-      </Stack>
+        </Stack>
+      </Box>
     </>
   );
 }

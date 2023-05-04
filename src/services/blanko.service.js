@@ -17,8 +17,15 @@ const getBlankoById = async (id) => {
 // const addBlanko = async (data) => {
 //   return axios.post(API_URL + 'blanko/tambah', data, { headers: authHeader() });
 // };
-const exportBlanko = async () => {
-  return axios.get(API_URL + 'blanko/export', { headers: authHeader() });
+const exportBlanko = async (bulanTahun) => {
+  const params = { bulanTahun };
+  const headers = authHeader();
+  const response = await axios.get(API_URL + 'blanko/export', {
+    params,
+    headers,
+    responseType: 'blob'
+  });
+  return response.data;
 };
 const checkBlanko = async (data) => {
   return axios.post(API_URL + 'blanko/daftarisian', data, { headers: authHeader() });

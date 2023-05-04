@@ -3,7 +3,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 import authHeader from './auth-header';
 
 const filterStatisik = async (data) => {
-  return axios.post(API_URL + 'dinas', data, { headers: authHeader() });
+  return axios.get(API_URL + 'dinas', data, { headers: authHeader() });
 };
 
 const dinasService = {

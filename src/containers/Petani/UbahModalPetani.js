@@ -107,7 +107,7 @@ function UbahModalPetani() {
                     fullWidth
                     type="submit"
                     disabled={!(formikProps.isValid && formikProps.dirty) || loading}>
-                    {loading ? 'Memuat..' : 'Ubah'}
+                    {loading ? 'Memuat..' : 'Tambah'}
                   </BaseButton>
                 </Box>
               </Form>

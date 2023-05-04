@@ -23,6 +23,7 @@ import FormikController from 'components/Formik/FormikController';
 import { Formik, Form } from 'formik';
 import { today } from 'utils/MomentFormat';
 import blankoService from 'services/blanko.service';
+import fileDownload from 'js-file-download';
 
 function BerandaPdh() {
   const navigate = useNavigate();
@@ -31,12 +32,11 @@ function BerandaPdh() {
   const initialValues = {
     bulanTahun: today
   };
-  const onSubmit = async () => {
+  const onSubmit = async (values) => {
+    const { bulanTahun } = values;
     try {
-      const response = await blankoService.exportBlanko();
-      console.log(response);
-      // return { user: response.data.user };
-      // return 'bisa';
+      const data = await blankoService.exportBlanko(bulanTahun);
+      return fileDownload(data, `Blanko.xlsx`);
     } catch (error) {
       console.log('ada error');
     }
@@ -90,7 +90,7 @@ function BerandaPdh() {
                         </Box>
                         <Box
                           sx={{
-                            pl: 8,
+                            pl: 11,
                             pr: 8,
                             pb: 1
                           }}>
