@@ -18,11 +18,9 @@ const getBlankoById = async (id) => {
 //   return axios.post(API_URL + 'blanko/tambah', data, { headers: authHeader() });
 // };
 const exportBlanko = async (bulanTahun) => {
-  const params = { bulanTahun };
-  const headers = authHeader();
   const response = await axios.get(API_URL + 'blanko/export', {
-    params,
-    headers,
+    params: bulanTahun,
+    headers: authHeader(),
     responseType: 'blob'
   });
   return response.data;

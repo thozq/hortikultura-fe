@@ -25,6 +25,21 @@ import { today } from 'utils/MomentFormat';
 import blankoService from 'services/blanko.service';
 import fileDownload from 'js-file-download';
 
+const monthAlias = [
+  'Januari',
+  'Februari',
+  'Maret',
+  'April',
+  'Mei',
+  'Juni',
+  'Juli',
+  'Agustus',
+  'September',
+  'Oktober',
+  'November',
+  'Desember'
+];
+
 function BerandaPdh() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -34,9 +49,22 @@ function BerandaPdh() {
   };
   const onSubmit = async (values) => {
     const { bulanTahun } = values;
+    const date = new Date(bulanTahun);
+    const month = date?.getMonth();
+    const year = date?.getFullYear();
+
+    const monthFile = (date.getMonth() + 1).toString().padStart(2, '0'); // Get month (add 1 because getMonth() returns a zero-based index) and add leading zero if necessary
+    const yearFile = date.getFullYear(); // Get full year
+    const formattedDate = `${monthFile}-${yearFile}`; // Concatenate day, month, and year with hyphens as separators
+
+    console.log(month, year);
     try {
-      const data = await blankoService.exportBlanko(bulanTahun);
-      return fileDownload(data, `Blanko.xlsx`);
+      const params = {
+        bulan: monthAlias[month],
+        tahun: year
+      };
+      const data = await blankoService.exportBlanko(params);
+      return fileDownload(data, `Blanko ${formattedDate}.xlsx`);
     } catch (error) {
       console.log('ada error');
     }

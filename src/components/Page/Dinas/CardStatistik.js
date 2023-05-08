@@ -12,16 +12,16 @@ import {
 } from 'chart.js';
 
 const CardStatistik = (props) => {
-  const { item, harga, persen } = props;
+  const { item, harga, persen, label, statistic, desc } = props;
 
   ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip);
 
   const data = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+    labels: label,
     datasets: [
       {
         labels: 'Harga Rata-Rata per Bulan',
-        data: [43500, 42500, 50000, 52000, 45000, 30000],
+        data: statistic,
         borderColor: 'green',
         pointBorderColor: 'white'
       }
@@ -33,7 +33,7 @@ const CardStatistik = (props) => {
         display: false
       },
       y: {
-        min: 10000,
+        min: 0,
         display: false,
         ticks: {
           display: false
@@ -56,7 +56,7 @@ const CardStatistik = (props) => {
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {' '}
-            PER KG
+            {desc}
           </Typography>
         </Box>
         <Box

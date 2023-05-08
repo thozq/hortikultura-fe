@@ -34,21 +34,18 @@ function BerandaDinas() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  // const [alignment, setAlignment] = useState('Harga Rata-Rata');
-  // const [isOnApplyClick, setIsOnApplyClick] = useState(false);
 
-  // const handleAlignment = (event, newAlignment) => {
-  //   setAlignment(newAlignment);
-  // };
   const [provinsiList, setProvinsi] = useState('');
   const [kabupatenList, setKabupaten] = useState('');
   const [kecamatanList, setKecamatan] = useState('');
-  const [jenisStat, setJenisStat] = useState('Harga Rata-Rata');
+  const [jenisStat, setJenisStat] = useState('');
   const [selectedProvinsi, setSelectedProvinsi] = useState('');
   const [selectedKabupaten, setSelectedKabupaten] = useState('');
   const [showProvinsi, setShowProvinsi] = useState('');
   const [showKabupaten, setShowKabupaten] = useState('');
   const [showKecamatan, setShowKecamatan] = useState('');
+
+  const [statistic, setStatistic] = useState([]);
 
   useEffect(() => {
     getAllProvinsi();
@@ -78,7 +75,7 @@ function BerandaDinas() {
     });
   };
   const initialValues = {
-    jenisStatistik: 'harga',
+    jenisStatistik: '',
     provinsi: '',
     kabupaten: '',
     kecamatan: ''
@@ -92,27 +89,52 @@ function BerandaDinas() {
 
   const onSubmit = async (formValue) => {
     const { jenisStatistik, provinsi, kabupaten, kecamatan } = formValue;
-    console.log('khkygkhbk');
+    console.log(formValue);
     let provinsiName = provinsiList.filter((item) => item.id == provinsi);
     let kabupatenName = kabupatenList.filter((item) => item.id == kabupaten);
     let kecamatanName = kecamatanList.filter((item) => item.id == kecamatan);
     if (jenisStatistik == 'harga') {
-      setJenisStat('Harga Rata Rata');
-    } else {
+      setJenisStat('Harga Rata-Rata');
+    } else if (jenisStatistik == 'produksi') {
       setJenisStat('Total Produksi');
     }
-    setShowProvinsi(provinsiName[0].label);
-    setShowKabupaten(kabupatenName[0].label);
-    setShowKecamatan(kecamatanName[0].label);
-    const data = { jenisStatistik, provinsi, kabupaten, kecamatan };
+    console.log(provinsiName);
+    if (provinsiName) setShowProvinsi(provinsiName?.[0]?.label);
+    if (kabupatenName) setShowKabupaten(kabupatenName?.[0]?.label);
+    if (kecamatanName) setShowKecamatan(kecamatanName?.[0]?.label);
     try {
-      const response = await dinasService.filterStatisik(data);
-      console.log(response);
-      // return { user: response.data.user };
-      // return 'bisa';
+      const response = await dinasService.filterStatisik(formValue);
+      const comodity = response?.data?.data?.komoditas;
+
+      if (!comodity) return;
+
+      // format data
+      const result = [];
+
+      for (const key in comodity) {
+        const data = comodity[key];
+        const month = Object.keys(data);
+        const value = Object.values(data).map((item) => item.data);
+
+        result.push({
+          komoditas: key,
+          month: month,
+          data: value
+        });
+      }
+
+      setStatistic(result);
     } catch (error) {
       console.log('ada error');
     }
+  };
+
+  const getLabelAlias = {
+    bawangPutih: 'Bawang Putih',
+    cabaiRawitMerah: 'Cabai Rawit Merah',
+    bawangMerah: 'Bawang Merah',
+    cabaiMerahBesar: 'Cabai Merah Besar',
+    cabaiMerahKeriting: 'Cabai Merah Keriting'
   };
 
   return (
@@ -217,7 +239,19 @@ function BerandaDinas() {
             </Typography>
           </Box>
           <Grid container spacing={2}>
-            <Grid item>
+            {statistic?.map((item, idx) => (
+              <Grid item key={idx}>
+                <CardStatistik
+                  item={getLabelAlias[item?.komoditas]}
+                  harga={item?.data?.[item?.data?.length - 1]}
+                  persen="5%"
+                  label={item?.month}
+                  statistic={item?.data}
+                  desc={jenisStat === 'Harga Rata-Rata' ? 'PER KG' : 'KUINTAL'}
+                />
+              </Grid>
+            ))}
+            {/* <Grid item>
               <CardStatistik item="Bawang Merah" harga="23000" persen="5%" />
             </Grid>
             <Grid item>
@@ -231,7 +265,7 @@ function BerandaDinas() {
             </Grid>
             <Grid item>
               <CardStatistik item="Cabai Merah Keriting" harga="42000" persen="1%" />
-            </Grid>
+            </Grid> */}
           </Grid>
         </Stack>
       </Box>
