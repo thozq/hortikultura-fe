@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Stack, Typography } from '@mui/material';
 import BaseCard from 'components/Base/BaseCard';
+import { momentFormat } from 'utils/MomentFormat';
 import { formatRupiah } from 'utils/Formats';
 
 const CardModal = (props) => {
