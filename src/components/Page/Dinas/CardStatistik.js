@@ -21,9 +21,9 @@ const CardStatistik = (props) => {
     datasets: [
       {
         labels: 'Harga Rata-Rata per Bulan',
-        data: Math.trunc(statistic),
-        borderColor: 'green',
-        pointBorderColor: 'white'
+        data: statistic,
+        borderColor: 'black',
+        pointBorderColor: 'blue'
       }
     ]
   };
@@ -33,7 +33,7 @@ const CardStatistik = (props) => {
         display: false
       },
       y: {
-        min: 0,
+        min: 1,
         display: false,
         ticks: {
           display: false
