@@ -8,6 +8,14 @@ const CardModal = (props) => {
   const { item } = props;
   const data = [
     {
+      label: 'Tanggal Penambahan',
+      value: momentFormat(item.createdAt)
+    },
+    {
+      label: 'Modal Benih',
+      value: formatRupiah(item.modalBenih)
+    },
+    {
       label: 'Jenis Pupuk',
       value: item.jenisPupuk
     },
