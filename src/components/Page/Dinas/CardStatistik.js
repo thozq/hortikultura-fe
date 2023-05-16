@@ -21,7 +21,7 @@ const CardStatistik = (props) => {
     datasets: [
       {
         labels: 'Harga Rata-Rata per Bulan',
-        data: statistic,
+        data: Math.trunc(statistic),
         borderColor: 'green',
         pointBorderColor: 'white'
       }
