@@ -75,7 +75,7 @@ const CardStatistik = (props) => {
         </Box>
       </CardContent>
       <CardMedia>
-        <Line data={data} options={options} />
+        <Line data={Math.trunc(data)} options={options} />
       </CardMedia>
     </Card>
   );
