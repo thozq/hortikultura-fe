@@ -251,6 +251,21 @@ function BerandaDinas() {
                 />
               </Grid>
             ))}
+            {/* <Grid item>
+              <CardStatistik item="Bawang Merah" harga="23000" persen="5%" />
+            </Grid>
+            <Grid item>
+              <CardStatistik item="Bawang Putih" harga="20000" persen="2%" />
+            </Grid>
+            <Grid item>
+              <CardStatistik item="Cabai Merah Besar" harga="45000" persen="3%" />
+            </Grid>
+            <Grid item>
+              <CardStatistik item="Cabai Rawit Merah" harga="43000" persen="4%" />
+            </Grid>
+            <Grid item>
+              <CardStatistik item="Cabai Merah Keriting" harga="42000" persen="1%" />
+            </Grid> */}
           </Grid>
         </Stack>
       </Box>
