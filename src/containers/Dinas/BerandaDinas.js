@@ -246,7 +246,7 @@ function BerandaDinas() {
                   harga={Math.trunc(item?.data?.[item?.data?.length - 1])}
                   persen="5%"
                   label={item?.month}
-                  statistic={item?.data}
+                  statistic={Math.trunc(item?.data)}
                   desc={jenisStat === 'Harga Rata-Rata' ? 'PER KG' : 'KUINTAL'}
                 />
               </Grid>
