@@ -243,7 +243,7 @@ function BerandaDinas() {
               <Grid item key={idx}>
                 <CardStatistik
                   item={getLabelAlias[item?.komoditas]}
-                  harga={item?.data?.[item?.data?.length - 1]}
+                  harga={Math.trunc(item?.data?.[item?.data?.length - 1])}
                   persen="5%"
                   label={item?.month}
                   statistic={item?.data}
