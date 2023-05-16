@@ -12,10 +12,6 @@ const CardModal = (props) => {
       value: momentFormat(item.createdAt)
     },
     {
-      label: 'Modal Benih',
-      value: formatRupiah(item.modalBenih)
-    },
-    {
       label: 'Jenis Pupuk',
       value: item.jenisPupuk
     },
