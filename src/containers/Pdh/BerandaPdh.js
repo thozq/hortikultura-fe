@@ -25,20 +25,20 @@ import { today } from 'utils/MomentFormat';
 import blankoService from 'services/blanko.service';
 import fileDownload from 'js-file-download';
 
-const monthAlias = [
-  'Januari',
-  'Februari',
-  'Maret',
-  'April',
-  'Mei',
-  'Juni',
-  'Juli',
-  'Agustus',
-  'September',
-  'Oktober',
-  'November',
-  'Desember'
-];
+// const monthAlias = [
+//   'Januari',
+//   'Februari',
+//   'Maret',
+//   'April',
+//   'Mei',
+//   'Juni',
+//   'Juli',
+//   'Agustus',
+//   'September',
+//   'Oktober',
+//   'November',
+//   'Desember'
+// ];
 
 function BerandaPdh() {
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ function BerandaPdh() {
     const month = date?.getMonth();
     const year = date?.getFullYear();
 
-    const monthFile = monthAlias[(date.getMonth() + 1).toString().padStart(2, '0')]; // Get month (add 1 because getMonth() returns a zero-based index) and add leading zero if necessary
+    const monthFile = (date.getMonth() + 1).toString().padStart(2, '0'); // Get month (add 1 because getMonth() returns a zero-based index) and add leading zero if necessary
     const yearFile = date.getFullYear(); // Get full year
     const formattedDate = `${monthFile}-${yearFile}`; // Concatenate day, month, and year with hyphens as separators
 
