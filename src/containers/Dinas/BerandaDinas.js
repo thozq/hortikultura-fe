@@ -235,8 +235,8 @@ function BerandaDinas() {
               {`Statistik ${jenisStat}`}
             </Typography>
             <Typography variant="body1" mb={1} align="center">
-              {`${showKecamatan ? showKecamatan : ' '}, ${
-                showKabupaten ? showKabupaten : 'Kabupaten'
+              {`Kec. ${showKecamatan ? showKecamatan : ' '}, ${
+                showKabupaten ? showKabupaten : 'Kab.'
               }, ${showProvinsi ? showProvinsi : 'Semua Provinsi'}`}
             </Typography>
           </Box>
