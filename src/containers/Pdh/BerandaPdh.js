@@ -25,20 +25,20 @@ import { today } from 'utils/MomentFormat';
 import blankoService from 'services/blanko.service';
 import fileDownload from 'js-file-download';
 
-// const monthAlias = [
-//   'Januari',
-//   'Februari',
-//   'Maret',
-//   'April',
-//   'Mei',
-//   'Juni',
-//   'Juli',
-//   'Agustus',
-//   'September',
-//   'Oktober',
-//   'November',
-//   'Desember'
-// ];
+const monthAlias = [
+  'Januari',
+  'Februari',
+  'Maret',
+  'April',
+  'Mei',
+  'Juni',
+  'Juli',
+  'Agustus',
+  'September',
+  'Oktober',
+  'November',
+  'Desember'
+];
 
 function BerandaPdh() {
   const navigate = useNavigate();
@@ -60,7 +60,7 @@ function BerandaPdh() {
     console.log(month, year);
     try {
       const params = {
-        bulan: month,
+        bulan: monthAlias[month],
         tahun: year
       };
       const data = await blankoService.exportBlanko(params);
