@@ -244,7 +244,11 @@ function BerandaDinas() {
                 <CardStatistik
                   item={getLabelAlias[item?.komoditas]}
                   harga={item?.data?.[item?.data?.length - 1]}
-                  persen="5%"
+                  persen={
+                    ((item?.data?.[item?.data?.length - 2] - item?.data?.[item?.data?.length - 1]) /
+                      item?.data?.[item?.data?.length - 2]) *
+                    100
+                  }
                   label={item?.month}
                   statistic={item?.data}
                   desc={jenisStat === 'Harga Rata-Rata' ? 'PER KG' : 'KUINTAL'}
