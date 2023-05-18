@@ -235,9 +235,9 @@ function BerandaDinas() {
               {`Statistik ${jenisStat}`}
             </Typography>
             <Typography variant="body1" mb={1} align="center">
-              {`Kec. ${showKecamatan ? showKecamatan : 'Semua Kecamatan'}, ${
-                showKabupaten ? showKabupaten : 'Semua Kabupaten'
-              }, ${showProvinsi ? showProvinsi : ' '}`}
+              {`${showKecamatan ? showKecamatan : ' '}, ${
+                showKabupaten ? showKabupaten : 'Kabupaten'
+              }, ${showProvinsi ? showProvinsi : 'Semua Provinsi'}`}
             </Typography>
           </Box>
           <Grid container spacing={2}>
