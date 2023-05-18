@@ -33,7 +33,7 @@ const CardStatistik = (props) => {
         display: false
       },
       y: {
-        min: 1,
+        min: 0,
         display: false,
         ticks: {
           display: false

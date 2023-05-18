@@ -235,7 +235,9 @@ function BerandaDinas() {
               {`Statistik ${jenisStat}`}
             </Typography>
             <Typography variant="body1" mb={1} align="center">
-              {`Kec. ${showKecamatan ?? 'Semua Kecamatan'}, ${showKabupaten ?? 'Semua Kabupaten'}, ${showProvinsi ?? ' '}`}
+              {`Kec. ${showKecamatan ? showKecamatan : 'Semua Kecamatan'}, ${
+                showKabupaten ? showKabupaten : 'Semua Kabupaten'
+              }, ${showProvinsi ? showProvinsi : ' '}`}
             </Typography>
           </Box>
           <Grid container spacing={2}>
@@ -244,11 +246,7 @@ function BerandaDinas() {
                 <CardStatistik
                   item={getLabelAlias[item?.komoditas]}
                   harga={item?.data?.[item?.data?.length - 1]}
-                  persen={
-                    ((item?.data?.[item?.data?.length - 2] - item?.data?.[item?.data?.length - 1]) /
-                      item?.data?.[item?.data?.length - 2]) *
-                    100
-                  }
+                  persen={item?.persentase?.komoditas}
                   label={item?.month}
                   statistic={item?.data}
                   desc={jenisStat === 'Harga Rata-Rata' ? 'PER KG' : 'KUINTAL'}
