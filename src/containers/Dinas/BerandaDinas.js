@@ -247,7 +247,8 @@ function BerandaDinas() {
                   item={getLabelAlias[item?.komoditas]}
                   harga={item?.data?.komoditas?.[item?.komoditas]?.slice(-1)?.[1]} // Access the last price value
                   persen={item?.persentase?.komoditas?.[item?.komoditas]} // Access the percentage value
-                  label={item?.data?.komoditas?.[item?.komoditas]?.slice(-1)?.[0]} // Access the last month value
+                  label={item?.data?.komoditas[item?.komoditas]?.map(entry => entry[0])} // Access all month values
+                  statistic={item?.data?.komoditas[item?.komoditas]?.map(entry => entry[1])} // Access all price values
                   desc={jenisStat === 'Harga Rata-Rata' ? 'PER KG' : 'KUINTAL'}
                 />
               </Grid>
