@@ -70,7 +70,7 @@ const CardStatistik = (props) => {
           <ArrowUpward color="green" />
           <Typography variant="subtitle2" color="primary">
             {' '}
-            {persen}{' '}
+            {persen} {''}
           </Typography>
         </Box>
       </CardContent>
