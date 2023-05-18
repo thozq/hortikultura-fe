@@ -248,7 +248,6 @@ function BerandaDinas() {
                   harga={item?.data?.komoditas?.[item?.komoditas]?.slice(-1)?.[1]} // Access the last price value
                   persen={item?.persentase?.komoditas?.[item?.komoditas]} // Access the percentage value
                   label={item?.data?.komoditas?.[item?.komoditas]?.slice(-1)?.[0]} // Access the last month value
-                  statistic={item?.data}
                   desc={jenisStat === 'Harga Rata-Rata' ? 'PER KG' : 'KUINTAL'}
                 />
               </Grid>
