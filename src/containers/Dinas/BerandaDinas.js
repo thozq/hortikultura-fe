@@ -241,26 +241,18 @@ function BerandaDinas() {
             </Typography>
           </Box>
           <Grid container spacing={2}>
-            {statistic?.map((item, idx) => {
-              const komoditasData = item?.data?.komoditas;
-              const persentaseData = item?.persentase?.komoditas;
-              const harga =
-                komoditasData && persentaseData
-                  ? komoditasData[item.komoditas]?.slice(-1)?.[1]
-                  : null;
-              const persen = persentaseData ? persentaseData[item.komoditas] : null;
-              const label = komoditasData ? komoditasData[item.komoditas]?.slice(-1)?.[0] : null;
+            {statistic?.map((item, idx) => (
               <Grid item key={idx}>
                 <CardStatistik
                   item={getLabelAlias[item?.komoditas]}
-                  harga={harga}
-                  persen={persen}
-                  label={label}
+                  harga={item?.data?.komoditas?.[item?.komoditas]?.slice(-1)?.[1]} // Access the last price value
+                  persen={item?.persentase?.komoditas?.[item?.komoditas]} // Access the percentage value
+                  label={item?.data?.komoditas?.[item?.komoditas]?.slice(-1)?.[0]} // Access the last month value
                   statistic={item?.data}
                   desc={jenisStat === 'Harga Rata-Rata' ? 'PER KG' : 'KUINTAL'}
                 />
-              </Grid>;
-            })}
+              </Grid>
+            ))}
             {/* <Grid item>
               <CardStatistik item="Bawang Merah" harga="23000" persen="5%" />
             </Grid>
