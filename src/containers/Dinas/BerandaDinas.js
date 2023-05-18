@@ -247,15 +247,15 @@ function BerandaDinas() {
                   item={getLabelAlias[item?.komoditas]}
                   harga={item?.data?.komoditas?.[item?.komoditas]?.slice(-1)?.[1]} // Access the last price value
                   persen={() => {
-                    const persen = item?.persentase?.komoditas[item?.komoditas];
+                    const persen = item?.persentase?.komoditas?.[item?.komoditas];
                     console.log('Percentage:', persen); // Log the percentage value
                     return persen;
                   }} // Access the percentage value
-                  label={item?.data?.komoditas[item?.komoditas]?.map((entry) => {
+                  label={item?.data?.komoditas?.[item?.komoditas]?.map((entry) => {
                     console.log('Month:', entry[0]); // Log the month value
                     return entry[0];
                   })}
-                  statistic={item?.data?.komoditas[item?.komoditas]?.map((entry) => {
+                  statistic={item?.data?.komoditas?.[item?.komoditas]?.map((entry) => {
                     console.log('Price:', entry[1]); // Log the price value
                     return entry[1];
                   })}
