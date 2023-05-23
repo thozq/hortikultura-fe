@@ -268,8 +268,10 @@ function BerandaDinas() {
               <Grid item key={idx}>
                 <CardStatistik
                   item={getLabelAlias[item?.komoditas]}
-                  harga={item?.data?.slice(-1)?.[1]} // Access the last price value
+                  harga={item?.data?.[item.data?.length - 1]} // Access the last price value
                   persen={item?.persentase} // Access the percentage value
+                  label={item?.month}
+                  statistic={item?.data}
                   desc={jenisStat === 'Harga Rata-Rata' ? 'PER KG' : 'KUINTAL'}
                 />
               </Grid>
