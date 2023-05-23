@@ -1,6 +1,6 @@
 import { Box, Typography, Card, CardContent, CardMedia, CardHeader } from '@mui/material';
 import { Line } from 'react-chartjs-2';
-import { ArrowUpward } from '@mui/icons-material/';
+
 // import { CabaiEnum } from 'utils/constants';
 import {
   Chart as ChartJS,
@@ -12,7 +12,7 @@ import {
 } from 'chart.js';
 
 const CardStatistik = (props) => {
-  const { item, harga, persen, label, statistic, desc } = props;
+  const { item, harga, persen, label, statistic, desc, arrow } = props;
 
   ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip);
 
@@ -67,7 +67,7 @@ const CardStatistik = (props) => {
             maxWidth: 50,
             pl: 1
           }}>
-          <ArrowUpward color="green" />
+          {arrow}
           <Typography variant="subtitle2" color="primary">
             {' '}
             {persen} {''}

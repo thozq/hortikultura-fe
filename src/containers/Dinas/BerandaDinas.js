@@ -1,4 +1,6 @@
 import { TuneRounded } from '@mui/icons-material';
+import { ArrowUpward } from '@mui/icons-material/';
+import { ArrowDownward } from '@mui/icons-material';
 import {
   Box,
   Stack,
@@ -272,6 +274,11 @@ function BerandaDinas() {
                   persen={item?.persentase} // Access the percentage value
                   label={item?.month}
                   statistic={item?.data}
+                  arrow = {
+                    item?.data?.[item.data?.length - 1] > item?.data?.[item.data?.length - 2]
+                      ? <ArrowUpward style={{ color: "green" }} />
+                      : <ArrowDownward style={{ color: "red" }} />
+                  }
                   desc={jenisStat === 'Harga Rata-Rata' ? 'PER KG' : 'KUINTAL'}
                 />
               </Grid>
