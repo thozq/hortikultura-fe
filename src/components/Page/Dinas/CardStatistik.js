@@ -12,21 +12,21 @@ import {
 } from 'chart.js';
 
 const CardStatistik = (props) => {
-  const { item, harga, persen, label, statistic, desc } = props;
+  const { item, harga, persen, desc } = props;
 
   ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip);
 
-  const data = {
-    labels: label,
-    datasets: [
-      {
-        labels: 'Harga Rata-Rata per Bulan',
-        data: statistic,
-        borderColor: 'black',
-        pointBorderColor: 'blue'
-      }
-    ]
-  };
+  // const data = {
+  //   labels: label,
+  //   datasets: [
+  //     {
+  //       labels: 'Harga Rata-Rata per Bulan',
+  //       data: statistic,
+  //       borderColor: 'black',
+  //       pointBorderColor: 'blue'
+  //     }
+  //   ]
+  // };
   const options = {
     scales: {
       x: {
@@ -75,7 +75,7 @@ const CardStatistik = (props) => {
         </Box>
       </CardContent>
       <CardMedia>
-        <Line data={data} options={options} />
+        {/* <Line data={data} options={options} /> */}
       </CardMedia>
     </Card>
   );

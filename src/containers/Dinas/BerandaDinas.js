@@ -104,8 +104,28 @@ function BerandaDinas() {
     if (kecamatanName) setShowKecamatan(kecamatanName?.[0]?.label);
     try {
       const response = await dinasService.filterStatisik(formValue);
-      const comodity = response?.data?.data?.komoditas;
+      // const comodity = response?.data?.data?.komoditas;
 
+      // if (!comodity) return;
+
+      // // format data
+      // const result = [];
+
+      // for (const key in comodity) {
+      //   const data = comodity[key];
+      //   const month = Object.keys(data);
+      //   const value = Object.values(data).map((item) => item.data);
+
+      //   result.push({
+      //     komoditas: key,
+      //     month: month,
+      //     data: value
+      //   });
+      // }
+
+      // setStatistic(result);
+      const comodity = response?.data?.komoditas;
+      const persentase = response?.data?.persentase;
       if (!comodity) return;
 
       // format data
@@ -113,13 +133,14 @@ function BerandaDinas() {
 
       for (const key in comodity) {
         const data = comodity[key];
-        const month = Object.keys(data);
-        const value = Object.values(data).map((item) => item.data);
+        const month = data.map((item) => item[0]);
+        const value = data.map((item) => item[1]);
 
         result.push({
           komoditas: key,
           month: month,
-          data: value
+          data: value,
+          persentase: persentase[key]
         });
       }
 
@@ -245,20 +266,8 @@ function BerandaDinas() {
               <Grid item key={idx}>
                 <CardStatistik
                   item={getLabelAlias[item?.komoditas]}
-                  harga={item?.data?.komoditas?.[item?.komoditas]?.slice(-1)?.[1]} // Access the last price value
-                  persen={() => {
-                    const persen = item?.persentase?.komoditas?.[item?.komoditas];
-                    console.log('Percentage:', persen); // Log the percentage value
-                    return persen;
-                  }} // Access the percentage value
-                  label={item?.data?.komoditas?.[item?.komoditas]?.map((entry) => {
-                    console.log('Month:', entry[0]); // Log the month value
-                    return entry[0];
-                  })}
-                  statistic={item?.data?.komoditas?.[item?.komoditas]?.map((entry) => {
-                    console.log('Price:', entry[1]); // Log the price value
-                    return entry[1];
-                  })}
+                  harga={item?.data?.slice(-1)?.[1]} // Access the last price value
+                  persen={item?.persentase} // Access the percentage value
                   desc={jenisStat === 'Harga Rata-Rata' ? 'PER KG' : 'KUINTAL'}
                 />
               </Grid>
