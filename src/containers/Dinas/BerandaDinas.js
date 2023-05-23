@@ -124,9 +124,9 @@ function BerandaDinas() {
       // }
 
       // setStatistic(result);
-      const comodity = response?.data?.komoditas;
+      const comodity = response?.data?.data?.komoditas;
       console.log(comodity);
-      const persentase = response?.data?.persentase;
+      const persentase = response?.data?.data?.persentase;
       console.log(persentase);
       if (!comodity) return;
 
