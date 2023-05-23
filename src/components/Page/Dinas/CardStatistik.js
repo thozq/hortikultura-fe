@@ -1,20 +1,20 @@
 import { Box, Typography, Card, CardContent, CardMedia, CardHeader } from '@mui/material';
-import { Line } from 'react-chartjs-2';
+// import { Line } from 'react-chartjs-2';
 import { ArrowUpward } from '@mui/icons-material/';
 // import { CabaiEnum } from 'utils/constants';
-import {
-  Chart as ChartJS,
-  LineElement,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  Tooltip
-} from 'chart.js';
+// import {
+//   Chart as ChartJS,
+//   LineElement,
+//   CategoryScale,
+//   LinearScale,
+//   PointElement,
+//   Tooltip
+// } from 'chart.js';
 
 const CardStatistik = (props) => {
   const { item, harga, persen, desc } = props;
 
-  ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip);
+  // ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip);
 
   // const data = {
   //   labels: label,
@@ -27,24 +27,24 @@ const CardStatistik = (props) => {
   //     }
   //   ]
   // };
-  const options = {
-    scales: {
-      x: {
-        display: false
-      },
-      y: {
-        min: 0,
-        display: false,
-        ticks: {
-          display: false
-        },
-        grid: {
-          display: false,
-          drawBorder: false
-        }
-      }
-    }
-  };
+  // const options = {
+  //   scales: {
+  //     x: {
+  //       display: false
+  //     },
+  //     y: {
+  //       min: 0,
+  //       display: false,
+  //       ticks: {
+  //         display: false
+  //       },
+  //       grid: {
+  //         display: false,
+  //         drawBorder: false
+  //       }
+  //     }
+  //   }
+  // };
 
   return (
     <Card sx={{ maxWidth: 175 }}>
@@ -74,9 +74,7 @@ const CardStatistik = (props) => {
           </Typography>
         </Box>
       </CardContent>
-      <CardMedia>
-        {/* <Line data={data} options={options} /> */}
-      </CardMedia>
+      <CardMedia>{/* <Line data={data} options={options} /> */}</CardMedia>
     </Card>
   );
 };
