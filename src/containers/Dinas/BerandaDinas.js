@@ -104,7 +104,6 @@ function BerandaDinas() {
     if (kecamatanName) setShowKecamatan(kecamatanName?.[0]?.label);
     try {
       const response = await dinasService.filterStatisik(formValue);
-      console.log(response);
       // const comodity = response?.data?.data?.komoditas;
 
       // if (!comodity) return;
@@ -126,7 +125,9 @@ function BerandaDinas() {
 
       // setStatistic(result);
       const comodity = response?.data?.komoditas;
+      console.log(comodity);
       const persentase = response?.data?.persentase;
+      console.log(persentase);
       if (!comodity) return;
 
       // format data
@@ -146,7 +147,6 @@ function BerandaDinas() {
       }
 
       setStatistic(result);
-      console.log(setStatistic);
     } catch (error) {
       console.log('ada error');
     }
