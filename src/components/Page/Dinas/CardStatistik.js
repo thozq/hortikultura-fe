@@ -22,8 +22,8 @@ const CardStatistik = (props) => {
       {
         labels: 'Harga Rata-Rata per Bulan',
         data: statistic,
-        borderColor: 'black',
-        pointBorderColor: 'blue'
+        borderColor: '#ffc107',
+        pointBorderColor: '#424242'
       }
     ]
   };

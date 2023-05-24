@@ -135,7 +135,7 @@ function CatatTransaksiPetani() {
 
   return (
     <>
-      <BaseHeader label="Catat Transaksi Cabai" to={-1} />
+      <BaseHeader label="Catat Transaksi Tanaman" to={-1} />
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(formikProps) => {
           setTipePembeli(formikProps.values.tipePembeli);
