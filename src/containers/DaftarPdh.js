@@ -157,7 +157,7 @@ function DaftarPdh() {
                   fullWidth
                   id="phone"
                   name="phone"
-                  label="Nomor Telpon/NIK"
+                  label="Nomor Telpon"
                   formikProps={formikProps}
                 />
                 <FormikController
