@@ -271,7 +271,10 @@ function BerandaDinas() {
                 <CardStatistik
                   item={getLabelAlias[item?.komoditas]}
                   harga={item?.data?.[item.data?.length - 1]} // Access the last price value
-                  persen={`${item?.persentase}%`} // Access the percentage value
+                  persen={(Number.isNaN(item?.persentase) || !Number.isFinite(item?.persentase))
+                    ? '0%'
+                    : `${item?.persentase}%`
+                   } // Access the percentage value
                   label={item?.month}
                   statistic={item?.data}
                   arrow={
@@ -285,21 +288,6 @@ function BerandaDinas() {
                 />
               </Grid>
             ))}
-            {/* <Grid item>
-              <CardStatistik item="Bawang Merah" harga="23000" persen="5%" />
-            </Grid>
-            <Grid item>
-              <CardStatistik item="Bawang Putih" harga="20000" persen="2%" />
-            </Grid>
-            <Grid item>
-              <CardStatistik item="Cabai Merah Besar" harga="45000" persen="3%" />
-            </Grid>
-            <Grid item>
-              <CardStatistik item="Cabai Rawit Merah" harga="43000" persen="4%" />
-            </Grid>
-            <Grid item>
-              <CardStatistik item="Cabai Merah Keriting" harga="42000" persen="1%" />
-            </Grid> */}
           </Grid>
         </Stack>
       </Box>
