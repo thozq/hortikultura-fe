@@ -69,8 +69,7 @@ const CardStatistik = (props) => {
           }}>
           {arrow}
           <Typography variant="subtitle2" style={{ color: '#424242' }}>
-            {' '}
-            {persen} {''}
+            {persen}
           </Typography>
         </Box>
       </CardContent>
