@@ -65,7 +65,7 @@ const CardStatistik = (props) => {
             alignItems: 'center',
             display: 'flex',
             maxWidth: 50,
-            paddingRight: '8px'
+            paddingRight: '20px'
           }}>
           {arrow}
           <Typography variant="subtitle2" style={{ color: '#424242' }}>
