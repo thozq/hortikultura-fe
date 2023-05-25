@@ -138,7 +138,7 @@ const RoleEnum = Object.freeze({
   pengepul: 'Pengepul',
   pengecer: 'Pengecer',
   grosir: 'Grosir',
-  pdh: 'PDH',
+  pdh: 'PPD',
   dinas: 'Dinas Pertanian',
   dinasPetanianKota: 'Dinas Pertanian Kota',
   dinasPertanianKabupaten: 'Dinas Pertanian Kabupaten'
