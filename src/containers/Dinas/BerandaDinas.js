@@ -251,7 +251,7 @@ function BerandaDinas() {
                 <CardStatistik
                   item={getLabelAlias[item?.komoditas]}
                   harga={item?.data?.[item.data?.length - 1]} // Access the last price value
-                  persen={item?.persentase === 'Infinity' ? '0%' : `${item?.persentase}%`} // Access the percentage value
+                  persen={`${item?.persentase}%`} // Access the percentage value
                   label={item?.month}
                   statistic={item?.data}
                   arrow={
