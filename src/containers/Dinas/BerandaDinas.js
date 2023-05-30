@@ -77,7 +77,7 @@ function BerandaDinas() {
     });
   };
   const initialValues = {
-    jenisStatistik: 'harga',
+    jenisStatistik: '',
     provinsi: '',
     kabupaten: '',
     kecamatan: ''
