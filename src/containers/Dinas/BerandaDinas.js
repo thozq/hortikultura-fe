@@ -77,7 +77,7 @@ function BerandaDinas() {
     });
   };
   const initialValues = {
-    jenisStatistik: 'harga',
+    jenisStatistik: '',
     provinsi: '',
     kabupaten: '',
     kecamatan: ''
@@ -168,7 +168,7 @@ function BerandaDinas() {
                     <Typography variant="h4">Filter Statistik Deskriptif</Typography>
                   </Box>
                   <FormikController
-                    control="autocomplete"
+                    control="select"
                     fullWidth
                     id="jenisStatistik"
                     name="jenisStatistik"
@@ -252,11 +252,13 @@ function BerandaDinas() {
                 <CardStatistik
                   item={getLabelAlias[item?.komoditas]}
                   harga={item?.data?.[item.data?.length - 1]} // Access the last price value
-                  persen={`${item?.persentase}%`} // Access the percentage value
+                  persen={item?.persentase === null ? '0%' : `${item?.persentase}%`} // Access the percentage value
                   label={item?.month}
                   statistic={item?.data}
                   arrow={
-                    item?.data?.[item.data?.length - 1] > item?.data?.[item.data?.length - 2] ? (
+                    item?.data?.[item.data?.length - 1] > item?.data?.[item.data?.length - 2] ||
+                    item?.persentase === null ||
+                    item?.persentase === 0 ? (
                       <ArrowUpward style={{ color: 'green' }} />
                     ) : (
                       <ArrowDownward style={{ color: 'red' }} />
