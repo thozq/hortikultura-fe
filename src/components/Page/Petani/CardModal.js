@@ -3,6 +3,7 @@ import { Stack, Typography } from '@mui/material';
 import BaseCard from 'components/Base/BaseCard';
 import { momentFormat } from 'utils/MomentFormat';
 import { formatRupiah } from 'utils/Formats';
+import { PupukEnum } from 'utils/constants';
 
 const CardModal = (props) => {
   const { item } = props;
@@ -17,7 +18,7 @@ const CardModal = (props) => {
     },
     {
       label: 'Jenis Pupuk',
-      value: item.jenisPupuk
+      value: PupukEnum[item.jenisPupuk]
     },
     {
       label: 'Modal Pupuk',
