@@ -89,7 +89,7 @@ function BerandaDinas() {
     kecamatan: yup.number('Pilih kecamatan')
   });
 
-  const onSubmit = async (formValue) => {
+  const onSubmit = async (formValue, { setSubmitting }) => {
     const { jenisStatistik, provinsi, kabupaten, kecamatan } = formValue;
     console.log(formValue);
     let provinsiName = provinsiList.filter((item) => item.id == provinsi);
@@ -106,6 +106,7 @@ function BerandaDinas() {
     if (kecamatanName) setShowKecamatan(kecamatanName?.[0]?.label);
     try {
       const response = await dinasService.filterStatisik(formValue);
+      console.log(response);
       const comodity = response?.data?.data?.komoditas;
       console.log(comodity);
       const persentase = response?.data?.data?.persentase;
@@ -132,6 +133,7 @@ function BerandaDinas() {
     } catch (error) {
       console.log('ada error');
     }
+    setSubmitting(false);
   };
 
   const getLabelAlias = {
