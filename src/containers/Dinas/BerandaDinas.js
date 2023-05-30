@@ -77,7 +77,7 @@ function BerandaDinas() {
     });
   };
   const initialValues = {
-    jenisStatistik: '',
+    jenisStatistik: 'harga',
     provinsi: '',
     kabupaten: '',
     kecamatan: ''
@@ -106,26 +106,6 @@ function BerandaDinas() {
     if (kecamatanName) setShowKecamatan(kecamatanName?.[0]?.label);
     try {
       const response = await dinasService.filterStatisik(formValue);
-      // const comodity = response?.data?.data?.komoditas;
-
-      // if (!comodity) return;
-
-      // // format data
-      // const result = [];
-
-      // for (const key in comodity) {
-      //   const data = comodity[key];
-      //   const month = Object.keys(data);
-      //   const value = Object.values(data).map((item) => item.data);
-
-      //   result.push({
-      //     komoditas: key,
-      //     month: month,
-      //     data: value
-      //   });
-      // }
-
-      // setStatistic(result);
       const comodity = response?.data?.data?.komoditas;
       console.log(comodity);
       const persentase = response?.data?.data?.persentase;
@@ -187,7 +167,7 @@ function BerandaDinas() {
                     <Typography variant="h4">Filter Statistik Deskriptif</Typography>
                   </Box>
                   <FormikController
-                    control="select"
+                    control="autocomplete"
                     fullWidth
                     id="jenisStatistik"
                     name="jenisStatistik"
