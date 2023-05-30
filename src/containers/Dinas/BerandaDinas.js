@@ -207,7 +207,7 @@ function BerandaDinas() {
                     disabled={!formikProps.values.kabupaten}
                   />
                   <Box mt={2}>
-                    <BaseButton fullWidth type="submit">
+                    <BaseButton fullWidth type="submit" onClick={handleDrawerClose}>
                       Terapkan
                     </BaseButton>
                   </Box>
