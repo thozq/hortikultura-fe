@@ -27,7 +27,7 @@ import TheProfileHeader from 'components/Base/TheProfileHeader';
 
 function BerandaDinas() {
   const [open, setOpen] = useState(false);
-  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
+ 
 
   const handleDrawerOpen = () => {
     setOpen(true);
