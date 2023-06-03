@@ -13,6 +13,7 @@ import * as yup from 'yup';
 import { useState, useEffect } from 'react';
 import { jenisStatistik } from 'utils/constants';
 import dinasService from 'services/dinas.service';
+import { formatRupiah } from 'utils/Formats';
 // import { CabaiEnum } from 'utils/constants';
 import TheProfileHeader from 'components/Base/TheProfileHeader';
 
@@ -241,7 +242,11 @@ function BerandaDinas() {
               <Grid item key={idx}>
                 <CardStatistik
                   item={getLabelAlias[item?.komoditas]}
-                  harga={item?.data?.[item.data?.length - 1]} // Access the last price value
+                  harga={
+                    jenisStatistik === 'harga'
+                      ? formatRupiah(item?.data?.[item.data?.length - 1])
+                      : item?.data?.[item.data?.length - 1]
+                  } // Access the last price value
                   persen={item?.persentase === null ? '0%' : `${item?.persentase}%`} // Access the percentage value
                   label={item?.month}
                   statistic={item?.data}
