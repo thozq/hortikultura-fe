@@ -148,7 +148,7 @@ function BerandaDinas() {
       <TheProfileHeader />
       <Drawer
         PaperProps={{
-          sx: { width: '444px', mx: 'auto', left: open && isDesktop ? '-17px' : 0 }
+          sx: { width: '444px', mx: 'auto', inset: 'auto 0 0' }
         }}
         anchor="bottom"
         open={open}
