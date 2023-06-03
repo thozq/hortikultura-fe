@@ -239,11 +239,11 @@ function BerandaDinas() {
           </Box>
           <Grid container spacing={2}>
             {statistic?.map((item, idx) => (
-              <Grid item key={idx}>
+              <Grid item xs={6} key={idx}>
                 <CardStatistik
                   item={getLabelAlias[item?.komoditas]}
                   harga={
-                    jenisStatistik === 'harga'
+                    jenisStat === 'Harga Rata-Rata'
                       ? formatRupiah(item?.data?.[item.data?.length - 1])
                       : item?.data?.[item.data?.length - 1]
                   } // Access the last price value
