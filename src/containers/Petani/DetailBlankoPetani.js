@@ -16,8 +16,12 @@ function DetailBlankoPetani() {
   useEffect(() => {
     dispatch(getBlankoById(id));
   }, [dispatch]);
-
+  const getLabelAlias = {
+    kemarau: 'Musim Kemarau',
+    hujan: 'Musim Hujan'
+  };
   const data = [
+    { label: 'Musim Panen', value: getLabelAlias[detail?.musim] ?? '-' },
     { label: 'Komoditas Tanaman', value: CabaiEnum[detail?.komoditas] },
     {
       label: 'Luas tanaman akhir bulan lalu (ha)',

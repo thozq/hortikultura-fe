@@ -31,21 +31,22 @@ function CekBlankoPetani(props) {
 
   const initialValues = {
     komoditas: '',
-    tanggalPencatatan: new Date()
+    tanggalPencatatan: new Date(),
+    musimPanen: ''
   };
   const validationSchema = yup.object({
     komoditas: yup.string('Masukkan tipe tanaman').required('Tipe tanaman diperlukan'),
     tanggalPencatatan: yup
       .date('Masukkan tanggal pencatatan')
-      .required('Tanggal pencatatan diperlukan')
+      .required('Tanggal pencatatan diperlukan'),
+    musimPanen: yup.string('Masukkan musim panen').required('Musim panen diperlukan')
   });
   const onSubmit = (formValue) => {
     // alert(JSON.stringify(formValue, null, 2));
-    const { komoditas, tanggalPencatatan } = formValue;
+    const { komoditas, tanggalPencatatan, musimPanen } = formValue;
+    console.log(formValue);
     setFormBlanko(formValue);
-
-    const formData = urlFormData({ komoditas, tanggalPencatatan });
-
+    const formData = urlFormData({ komoditas, tanggalPencatatan, musimPanen });
     setLoading(true);
     dispatch(checkBlanko(formData))
       .unwrap()
@@ -72,8 +73,8 @@ function CekBlankoPetani(props) {
               />
               <FormikController
                 control="select"
-                id="musim"
-                name="musim"
+                id="musimPanen"
+                name="musimPanen"
                 label="Musim Panen"
                 options={optionsMusim}
                 formikProps={formikProps}
