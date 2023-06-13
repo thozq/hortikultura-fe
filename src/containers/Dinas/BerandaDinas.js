@@ -68,7 +68,7 @@ function BerandaDinas() {
     });
   };
   const initialValues = {
-    jenisStatistik: '',
+    jenisStatistik: 'harga',
     provinsi: '',
     kabupaten: '',
     kecamatan: ''
@@ -95,8 +95,19 @@ function BerandaDinas() {
     if (provinsiName) setShowProvinsi(provinsiName?.[0]?.label);
     if (kabupatenName) setShowKabupaten(kabupatenName?.[0]?.label);
     if (kecamatanName) setShowKecamatan(kecamatanName?.[0]?.label);
+    fetchData(formValue);
+  };
+
+  const fetchData = async (data) => {
+    const { jenisStatistik } = data || {};
+
+    if (jenisStatistik == 'harga') {
+      setJenisStat('Harga Rata-Rata');
+    } else if (jenisStatistik == 'produksi') {
+      setJenisStat('Total Produksi');
+    }
     try {
-      const response = await dinasService.filterStatisik(formValue);
+      const response = await dinasService.filterStatisik(data);
       console.log(response);
       const comodity = response?.data?.data?.komoditas;
       console.log(comodity);
@@ -126,6 +137,10 @@ function BerandaDinas() {
     }
   };
 
+  useEffect(() => {
+    fetchData(initialValues);
+  }, []);
+
   const getLabelAlias = {
     bawangPutih: 'Bawang Putih',
     cabaiRawitMerah: 'Cabai Rawit Merah',
@@ -141,6 +156,7 @@ function BerandaDinas() {
         PaperProps={{
           sx: { maxWidth: '444px', mx: 'auto', inset: 'auto 0 0' }
         }}
+        ModalProps={{ disableScrollLock: true }}
         anchor="bottom"
         open={open}
         onClose={handleDrawerClose}
