@@ -38,8 +38,8 @@ function Masuk() {
       });
   };
 
-  if (isLoggedIn) {
-    return <Navigate to={`/${currentUser?.access}`} />;
+  if (isLoggedIn && currentUser) {
+    return <Navigate to={`/${currentUser.access}`} />;
   }
 
   return (

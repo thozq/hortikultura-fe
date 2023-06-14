@@ -77,7 +77,7 @@ export const addSupervisi = createAsyncThunk('auth/addSupervisi', async (data, t
   try {
     const response = await SupervisiService.addSupervisi(data);
     thunkAPI.dispatch(setMessage(response));
-    return { user: response.data.petani };
+    return { user: response.data.data.petani };
   } catch (error) {
     const response = error.response;
     thunkAPI.dispatch(setMessage(response));
