@@ -50,7 +50,7 @@ function Masuk() {
       <Box display="flex" flexDirection="column" gap={2} p={2}>
         <Typography variant="h4">Masuk</Typography>
         <Typography>
-          Masuk kedalam akunmu untuk dapat mengakses berbagai macam fitur sesuai dengan peranmu
+          Masuk kedalam akunmu untuk dapat mengakses berbagai macam fitur sesuai dengan peranmu!
         </Typography>
         {message && (
           <div>
