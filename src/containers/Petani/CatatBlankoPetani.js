@@ -72,18 +72,19 @@ function CekBlankoPetani(props) {
                 formikProps={formikProps}
               />
               <FormikController
+                control="datepicker"
+                month
+                label="Tanggal Penanaman"
+                name="tanggalPencatatan"
+                formikProps={formikProps}
+              />
+              <Typography variant="h5">Tambahkan Musim Panen</Typography>
+              <FormikController
                 control="select"
                 id="musimPanen"
                 name="musimPanen"
                 label="Musim Panen"
                 options={optionsMusim}
-                formikProps={formikProps}
-              />
-              <FormikController
-                control="datepicker"
-                month
-                label="Tanggal Penanaman"
-                name="tanggalPencatatan"
                 formikProps={formikProps}
               />
               <Box>
