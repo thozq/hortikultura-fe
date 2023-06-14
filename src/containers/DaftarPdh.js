@@ -120,7 +120,7 @@ function DaftarPdh() {
   };
 
   if (isLoggedIn) {
-    return <Navigate to={`/${currentUser.access}`} />;
+    return <Navigate to={`/${currentUser?.access}`} />;
   }
 
   return (
