@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import BaseHeader from 'components/Base/BaseHeader';
 import React from 'react';
 import { useEffect } from 'react';
@@ -18,14 +18,37 @@ function RiwayatModalPetani() {
   }, [dispatch]);
 
   const { riwayat } = useSelector((state) => state.modal);
-
+  console.log(riwayat);
   return (
     <>
       <BaseHeader label="Riwayat Modal Penanaman" />
       <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
-        {riwayat?.map((item, index) => (
-          <CardModal key={index} item={item} />
-        ))}
+        {riwayat?.length === 0 ? (
+          <Box
+            px={2}
+            py={0.5}
+            borderRadius={2}
+            display="flex"
+            alignItems="center"
+            sx={{
+              bgcolor: '#F4F5F9',
+              position: 'absolute',
+              left: '35px',
+              top: '300px'
+            }}>
+            <Typography
+              sx={{
+                fontFamily: 'Poppins',
+                fontSize: 14,
+                fontWeight: 'semibold',
+                textAlign: 'center'
+              }}>
+              Belum ada modal yang ditambahkan.
+            </Typography>
+          </Box>
+        ) : (
+          riwayat?.map((item, index) => <CardModal key={index} item={item} />)
+        )}
       </Box>
     </>
   );
