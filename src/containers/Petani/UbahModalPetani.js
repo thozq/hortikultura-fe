@@ -6,7 +6,7 @@ import { Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { optionsJenisPupuk } from 'utils/constants';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addModal } from 'redux/slices/modal';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getLahanById } from 'redux/slices/lahan';
@@ -18,18 +18,17 @@ function UbahModalPetani() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const { detail } = useSelector((state) => state.lahan);
 
   useEffect(() => {
     dispatch(getLahanById(id));
   }, [dispatch]);
 
   const initialValues = {
-    modalBenih: detail.modalBenih,
-    modalPupuk: detail.modalPupuk,
-    modalPestisida: detail.modalPestisida,
-    jenisPupuk: detail.jenisPupuk,
-    modalPekerja: detail.modalPekerja
+    modalBenih: '',
+    modalPupuk: '',
+    modalPestisida: '',
+    jenisPupuk: '',
+    modalPekerja: ''
   };
   const validationSchema = yup.object({});
   const onSubmit = (formValue) => {
