@@ -165,7 +165,7 @@ function DaftarPdh() {
                   fullWidth
                   id="email"
                   name="email"
-                  label="Email (*optional)"
+                  label="Email"
                   type="email"
                   formikProps={formikProps}
                 />
