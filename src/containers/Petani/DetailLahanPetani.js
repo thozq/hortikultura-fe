@@ -18,6 +18,7 @@ import {
 import { momentFormat, today } from 'utils/MomentFormat';
 import { CabaiEnum, StatusEnumSmall, PupukEnum } from 'utils/constants';
 import urlFormData from 'utils/urlFormData';
+import { getAllModal } from 'redux/slices/modal';
 
 function DetailLahanPetani() {
   const dispatch = useDispatch();
@@ -29,6 +30,13 @@ function DetailLahanPetani() {
   useEffect(() => {
     dispatch(getLahanById(id));
   }, [dispatch, changeLuasRusak]);
+
+  useEffect(() => {
+    dispatch(getAllModal(id));
+  }, [dispatch]);
+
+  const { riwayat } = useSelector((state) => state.modal);
+  console.log(riwayat);
 
   const dataBlanko = [
     {
@@ -197,13 +205,15 @@ function DetailLahanPetani() {
             {formatRupiah(detail.totalModal)}
           </Typography>
         </Stack>
-        <Button sx={{ px: 0 }}>
-          <Typography
-            textTransform="none"
-            onClick={() => navigate('/petani/lahan/riwayat-modal/' + id)}>
-            Riwayat Modal
-          </Typography>
-        </Button>
+        {riwayat?.length > 0 && (
+          <Button sx={{ px: 0 }}>
+            <Typography
+              textTransform="none"
+              onClick={() => navigate('/petani/lahan/riwayat-modal/' + id)}>
+              Riwayat Modal
+            </Typography>
+          </Button>
+        )}
       </Stack>
       <Divider />
       <Stack direction="column" p={2} gap={2}>
