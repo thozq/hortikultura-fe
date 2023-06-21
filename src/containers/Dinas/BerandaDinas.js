@@ -80,7 +80,7 @@ function BerandaDinas() {
     kecamatan: yup.number('Pilih kecamatan')
   });
 
-  const onSubmit = async (formValue) => {
+  const onSubmit = (formValue) => {
     const { jenisStatistik, provinsi, kabupaten, kecamatan } = formValue;
     console.log(formValue);
     let provinsiName = provinsiList.filter((item) => item.id == provinsi);
