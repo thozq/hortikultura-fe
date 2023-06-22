@@ -3,10 +3,19 @@ import { Stack, Typography } from '@mui/material';
 import BaseCard from 'components/Base/BaseCard';
 import { momentFormat } from 'utils/MomentFormat';
 import { formatRupiah } from 'utils/Formats';
-import { PupukEnum } from 'utils/constants';
+// import { PupukEnum } from 'utils/constants';
 
 const CardModal = (props) => {
   const { item } = props;
+  const getLabelAlias = {
+    urea: 'Urea',
+    tsp: 'TSP/SP36',
+    za: 'ZA',
+    npk: 'NPK',
+    npkKhusus: 'NPK Formula Khusus',
+    organik: 'Organik',
+    organikCair: 'Organik Cair'
+  };
   const data = [
     {
       label: 'Tanggal Penambahan',
@@ -14,23 +23,23 @@ const CardModal = (props) => {
     },
     {
       label: 'Modal Benih',
-      value: formatRupiah(item.modalBenih)
+      value: item.modalBenih === 0 ? 'Rp 0' : formatRupiah(item.modalBenih)
     },
     {
       label: 'Jenis Pupuk',
-      value: PupukEnum[item.jenisPupuk]
+      value: getLabelAlias[item.jenisPupuk] ?? '-'
     },
     {
       label: 'Modal Pupuk',
-      value: formatRupiah(item.modalPupuk)
+      value: item.modalPupuk === 0 ? 'Rp 0' : formatRupiah(item.modalPupuk)
     },
     {
       label: 'Modal Pestisida',
-      value: formatRupiah(item.modalPestisida)
+      value: item.modalPestisida === 0 ? 'Rp 0' : formatRupiah(item.modalPestisida)
     },
     {
       label: 'Modal Pekerja',
-      value: formatRupiah(item.modalPekerja)
+      value: item.modalPekerja === 0 ? 'Rp 0' : formatRupiah(item.modalPekerja)
     }
   ];
   return (
@@ -49,7 +58,7 @@ const CardModal = (props) => {
   );
 };
 
-CardModal.PropTypes = {
+CardModal.propTypes = {
   item: PropTypes.object
 };
 

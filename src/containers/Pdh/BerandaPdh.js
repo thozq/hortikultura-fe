@@ -53,9 +53,9 @@ function BerandaPdh() {
     const month = date?.getMonth();
     const year = date?.getFullYear();
 
-    const monthFile = (date.getMonth() + 1).toString().padStart(2, '0'); // Get month (add 1 because getMonth() returns a zero-based index) and add leading zero if necessary
-    const yearFile = date.getFullYear(); // Get full year
-    const formattedDate = `${monthFile}-${yearFile}`; // Concatenate day, month, and year with hyphens as separators
+    const monthFile = (date.getMonth() + 1).toString().padStart(2, '0');
+    const yearFile = date.getFullYear();
+    const formattedDate = `${monthFile}-${yearFile}`;
 
     console.log(month, year);
     try {
