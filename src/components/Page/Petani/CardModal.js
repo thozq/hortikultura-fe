@@ -1,12 +1,32 @@
 import PropTypes from 'prop-types';
-import { Stack, Typography } from '@mui/material';
+import { Stack, Typography, Box } from '@mui/material';
 import BaseCard from 'components/Base/BaseCard';
 import { momentFormat } from 'utils/MomentFormat';
 import { formatRupiah } from 'utils/Formats';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteModal } from 'redux/slices/modal';
+import BaseButton from 'components/Base/BaseButton';
+import { useNavigate } from 'react-router-dom';
 // import { PupukEnum } from 'utils/constants';
 
 const CardModal = (props) => {
   const { item } = props;
+  console.log(props);
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const handleDelete = () => {
+    setLoading(true);
+    dispatch(deleteModal({ id: item._id, idLahan: item.lahan }))
+      .unwrap()
+      .then(() => {})
+      .catch(() => {})
+      .finally(() => {
+        setLoading(false);
+      });
+    console.log(item._id);
+  };
   const getLabelAlias = {
     urea: 'Urea',
     tsp: 'TSP/SP36',
@@ -53,6 +73,24 @@ const CardModal = (props) => {
             </Stack>
           ))}
         </Stack>
+        <Box display="flex" flexDirection="row" alignItems="center" gap={5} mt={1} ml={5} mr={5}>
+          <BaseButton
+            shape="withicon"
+            removeIcon
+            onClick={() => navigate(`/petani/lahan/edit-modal/${item?._id}`)}
+            size="small"
+            variant="outlined">
+            <Typography variant="body1">Edit Modal</Typography>
+          </BaseButton>
+          <BaseButton
+            shape="error"
+            variant="outlined"
+            onClick={handleDelete}
+            loading={loading}
+            disabled={loading}>
+            <Typography variant="body1">Hapus Modal</Typography>
+          </BaseButton>
+        </Box>
       </BaseCard>
     </>
   );

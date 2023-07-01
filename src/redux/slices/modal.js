@@ -13,6 +13,19 @@ export const addModal = createAsyncThunk('modal/addModal', async ({ id, data }, 
   thunkAPI.dispatch(setMessage(response));
   return response.data;
 });
+
+export const editModal = createAsyncThunk('modal/edit', async ({ id, data }, thunkAPI) => {
+  const response = await modalService.editModal(id, data);
+  thunkAPI.dispatch(setMessage(response));
+  return response.data;
+});
+
+export const deleteModal = createAsyncThunk('modal/delete', async ({ id, idLahan }, thunkAPI) => {
+  const response = await modalService.deleteModal(id);
+  thunkAPI.dispatch(getAllModal(idLahan));
+  thunkAPI.dispatch(setMessage(response));
+  return response.data;
+});
 const initialState = { riwayat: [], status: null, detail: {} };
 const modalSlice = createSlice({
   name: 'modal',
@@ -36,6 +49,24 @@ const modalSlice = createSlice({
       state.status = 'success';
     });
     builder.addCase(addModal.rejected, (state) => {
+      state.status = 'failed';
+    });
+    builder.addCase(editModal.pending, (state) => {
+      state.status = 'loading';
+    });
+    builder.addCase(editModal.fulfilled, (state) => {
+      state.status = 'success';
+    });
+    builder.addCase(editModal.rejected, (state) => {
+      state.status = 'failed';
+    });
+    builder.addCase(deleteModal.pending, (state) => {
+      state.status = 'loading';
+    });
+    builder.addCase(deleteModal.fulfilled, (state) => {
+      state.status = 'success';
+    });
+    builder.addCase(deleteModal.rejected, (state) => {
       state.status = 'failed';
     });
   }

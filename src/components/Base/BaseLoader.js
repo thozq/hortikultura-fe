@@ -7,8 +7,9 @@ const BaseLoader = () => {
   const { status: transaksi } = useSelector((state) => state.transaksi);
   const { status: usang } = useSelector((state) => state.usang);
   const { status: lahan } = useSelector((state) => state.lahan);
+  const { status: modal } = useSelector((state) => state.modal);
 
-  const isLoading = [user, blanko, transaksi, usang, lahan].includes('loading');
+  const isLoading = [user, blanko, transaksi, usang, lahan, modal].includes('loading');
 
   return (
     <Box display={isLoading ? '' : 'hidden'}>

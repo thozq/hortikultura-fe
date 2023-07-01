@@ -185,13 +185,14 @@ function DetailLahanPetani() {
       <Stack p={2} gap={2}>
         <Stack direction="row" justifyContent="space-between">
           <Typography variant="h5">Total Modal</Typography>
-          <Button sx={{ px: 0 }}>
-            <Typography
-              textTransform="none"
-              onClick={() => navigate('/petani/lahan/ubah-modal/' + id)}>
-              Tambah Modal
-            </Typography>
-          </Button>
+          <BaseButton
+            shape="withicon"
+            removeIcon
+            onClick={() => navigate('/petani/lahan/ubah-modal/' + id)}
+            size="small"
+            variant="outlined">
+            <Typography variant="body1">Tambah Modal</Typography>
+          </BaseButton>
         </Stack>
         {dataModal?.map(({ label, value }, index) => (
           <Stack key={index} direction="row" justifyContent="space-between">
@@ -206,13 +207,14 @@ function DetailLahanPetani() {
           </Typography>
         </Stack>
         {riwayat?.length > 0 && (
-          <Button sx={{ px: 0 }}>
-            <Typography
-              textTransform="none"
-              onClick={() => navigate('/petani/lahan/riwayat-modal/' + id)}>
-              Riwayat Modal
-            </Typography>
-          </Button>
+          <BaseButton
+            shape="outlined"
+            removeIcon
+            onClick={() => navigate('/petani/lahan/riwayat-modal/' + id)}
+            size="large"
+            variant="outlined">
+            <Typography variant="body1">Riwayat Modal</Typography>
+          </BaseButton>
         )}
       </Stack>
       <Divider />

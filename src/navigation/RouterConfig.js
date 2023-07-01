@@ -43,6 +43,7 @@ import IndexDinas from 'containers/Dinas/IndexDinas';
 import BerandaDinas from 'containers/Dinas/BerandaDinas';
 import DetailLahanPetani from 'containers/Petani/DetailLahanPetani';
 import UbahModalPetani from 'containers/Petani/UbahModalPetani';
+import EditModalPetani from 'containers/Petani/EditModalPetani';
 
 function RouterConfig() {
   return (
@@ -73,6 +74,7 @@ function RouterConfig() {
         <Route path="transaksi/detail-transaksi/:type/:id" element={<DetailTransaksiPetani />} />
         <Route path="riwayat" element={<RiwayatPetani />} />
         <Route path="data-diri" element={<DataDiri />} />
+        <Route path="lahan/edit-modal/:id" element={<EditModalPetani />} />
       </Route>
 
       {/* Pedagang */}

@@ -9,9 +9,17 @@ const getAllModal = async (id) => {
 const addModal = async (id, data) => {
   return axios.post(API_URL + 'modal/addModal/' + id, data, { headers: authHeader() });
 };
+const editModal = async (id, data) => {
+  return axios.put(API_URL + 'modal/edit/' + id, data, { headers: authHeader() });
+};
+const deleteModal = async (id) => {
+  return axios.delete(API_URL + 'modal/delete/' + id, { headers: authHeader() });
+};
 const modalService = {
   getAllModal,
-  addModal
+  addModal,
+  editModal,
+  deleteModal
 };
 
 export default modalService;

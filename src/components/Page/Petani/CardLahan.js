@@ -4,7 +4,8 @@ import BaseCard from 'components/Base/BaseCard';
 import { CabaiEnum } from 'utils/constants';
 import { momentFormat } from 'utils/MomentFormat';
 import { formatNumber, formatRupiah } from 'utils/Formats';
-
+import BaseAccordion from 'components/Base/BaseAccordion';
+import theme from 'themes/theme';
 const CardLahanPetani = (props) => {
   const { item } = props;
 
@@ -29,18 +30,24 @@ const CardLahanPetani = (props) => {
 
   return (
     <>
-      <BaseCard
+      <BaseAccordion
         title={`${item.namaLahan} - ${CabaiEnum[item.komoditas]}`}
-        link={`/petani/lahan/detail-lahan/${item._id}`}>
-        <Stack gap={1}>
-          {data?.map(({ label, value }, index) => (
-            <Stack key={index} direction="row" justifyContent="space-between">
-              <Typography variant="body1">{label}</Typography>
-              <Typography variant="h6">{value}</Typography>
+        link={`/petani/lahan/detail-lahan/${item._id}`}
+        detail={
+          <BaseCard
+            sx={{
+              bgcolor: theme.palette.secondary.main
+            }}>
+            <Stack gap={1}>
+              {data?.map(({ label, value }, index) => (
+                <Stack key={index} direction="row" justifyContent="space-between">
+                  <Typography variant="body1">{label}</Typography>
+                  <Typography variant="h6">{value}</Typography>
+                </Stack>
+              ))}
             </Stack>
-          ))}
-        </Stack>
-      </BaseCard>
+          </BaseCard>
+        }></BaseAccordion>
     </>
   );
 };

@@ -22,7 +22,7 @@ function RiwayatModalPetani() {
   return (
     <>
       <BaseHeader label="Riwayat Modal Penanaman" />
-      <Box display="flex" flexDirection="column" gap={3} p={2} mb="56px">
+      <Box display="flex" flexDirection="column" gap={3} p={2}>
         {riwayat?.length === 0 ? (
           <Box
             px={2}
@@ -47,7 +47,7 @@ function RiwayatModalPetani() {
             </Typography>
           </Box>
         ) : (
-          riwayat?.map((item, index) => <CardModal key={index} item={item} />)
+          riwayat?.map((item, index) => <CardModal key={index} item={item} id={id} />)
         )}
       </Box>
     </>
