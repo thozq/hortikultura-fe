@@ -1,4 +1,4 @@
-import { Box, Stack} from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import BaseButton from 'components/Base/BaseButton';
 import BaseHeader from 'components/Base/BaseHeader';
 import FormikController from 'components/Formik/FormikController';
