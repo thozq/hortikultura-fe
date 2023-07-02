@@ -61,7 +61,7 @@ function EditModalPetani() {
 
   return (
     <>
-      <BaseHeader label="Tambah Modal Penanaman" />
+      <BaseHeader label="Ubah Modal Penanaman" />
       <Box p={2}>
         <Formik
           initialValues={initialValues}
